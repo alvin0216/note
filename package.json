@@ -1,0 +1,19 @@
+{
+  "name": "note",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "dev": "npm run docs:dev",
+    "build": "npm run docs:build"
+  },
+  "dependencies": {
+    "element-ui": "^2.13.0",
+    "vuepress": "^1.2.0"
+  },
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.2.0"
+  }
+}
