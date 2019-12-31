@@ -6,8 +6,8 @@
         <router-link :to="post.path">{{ post.title || post.path }}</router-link>
       </li>
 
-      <el-tabs style="margin-top: 10px;">
-        <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name">
+      <el-tabs style="margin-top: 10px;" :value="activeName">
+        <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name" :name="item.name">
           <div v-for="post of item.list" :key="post.path">
             <span>{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
             <router-link :to="post.path">{{ post.title || post.path }}</router-link>
@@ -64,8 +64,15 @@ export default {
           .filter(page => page.frontmatter.date)
           .sort((x, y) => (x.frontmatter.date > y.frontmatter.date ? 1 : -1))
       })
-
       return tabList
+    },
+    // 最新的文章的 tab name
+    activeName() {
+      let target = null
+      if (this.recentList[0]) {
+        target = this.tabList.find(item => this.recentList[0].regularPath.indexOf(item.tab) === 0)
+      }
+      return target ? target.name : ''
     }
   },
   methods: {
