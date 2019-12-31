@@ -62,7 +62,7 @@ export default {
       tabList.forEach(tab => {
         tab.list = [...tab.list]
           .filter(page => page.frontmatter.date)
-          .sort((x, y) => (x.frontmatter.date > y.frontmatter.date ? 1 : -1))
+          .sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
       })
       return tabList
     },
