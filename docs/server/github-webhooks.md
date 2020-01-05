@@ -1,5 +1,5 @@
 ---
-title: 利用 github wenhooks 实现自动化部署
+title: 利用 github webhooks 实现自动化部署
 date: 2020-01-05 15:37:52
 ---
 
