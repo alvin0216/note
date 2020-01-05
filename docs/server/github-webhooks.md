@@ -111,7 +111,7 @@ const http = require('http')
 const { spawn } = require('child_process')
 
 const createHandler = require('github-webhook-handler')
-const handler = createHandler({ path: '/webhook', secret: 'guosw-note' })
+const handler = createHandler({ path: '/webhook', secret: 'myhashsecret' })
 
 http
   .createServer(function(req, res) {
