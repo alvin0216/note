@@ -3,6 +3,10 @@ title: awesome
 date: 2019-01-04 17:24:41
 ---
 
+## iterm2
+
+删除一行：`control + u`
+
 ## mac
 
 - 删除光标后的字符：`fn + del`
@@ -12,7 +16,7 @@ date: 2019-01-04 17:24:41
 ## centos
 
 - 查看端口占用情况：`netstat -ntlp`
-  
+
 查看 6001 端口占用情况，并 `kill`
 
 ```bash
