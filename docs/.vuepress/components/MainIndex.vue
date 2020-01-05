@@ -24,7 +24,7 @@ export default {
           page =>
             page.frontmatter.date && page.regularPath.includes(this.path) && !page.relativePath.includes('README.md')
         )
-        .sort((x, y) => x.frontmatter.date - y.frontmatter.date)
+        .sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
     }
   },
   methods: {
