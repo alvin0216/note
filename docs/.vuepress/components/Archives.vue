@@ -42,7 +42,7 @@ export default {
       // tab 分类
       const tabList = nav.map(item => ({
         name: item.text,
-        tab: item.regularPath,
+        tab: item.link,
         list: []
       }))
 
