@@ -1,6 +1,8 @@
 ---
-title: vim 命令小计
+title: vim
 date: 2019-12-31 10:51:03
 ---
 
-## hahah
+## 高清图
+
+![](../../assets/vim.png)

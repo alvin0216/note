@@ -26,3 +26,7 @@ cp6  0 0 :::6001   :::*   LISTEN   31313/node
 
 kill 31313
 ```
+
+## vim
+
+![](../../assets/vim.png)

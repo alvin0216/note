@@ -2,14 +2,14 @@
   <div class="page">
     <ul>
       <li v-for="post in recentList" :key="post.path">
-        <span>{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
+        <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
         <router-link :to="post.path">{{ post.title || post.path }}</router-link>
       </li>
 
       <el-tabs style="margin-top: 10px;" :value="activeName">
         <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name" :name="item.name">
           <div v-for="post of item.list" :key="post.path">
-            <span>{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
+            <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
             <router-link :to="post.path">{{ post.title || post.path }}</router-link>
           </div>
         </el-tab-pane>
@@ -104,4 +104,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="css">
+.time {
+  display: inline-block;
+  width: 90px;
+}
+</style>
