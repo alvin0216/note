@@ -5,16 +5,15 @@
         <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
         <router-link :to="post.path">{{ post.title || post.path }}</router-link>
       </li>
-
-      <el-tabs style="margin-top: 10px;" :value="activeName">
-        <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name" :name="item.name">
-          <div v-for="post of item.list" :key="post.path">
-            <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
-            <router-link :to="post.path">{{ post.title || post.path }}</router-link>
-          </div>
-        </el-tab-pane>
-      </el-tabs>
     </ul>
+    <el-tabs style="margin-top: 10px;" :value="activeName">
+      <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name" :name="item.name">
+        <div v-for="post of item.list" :key="post.path">
+          <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
+          <router-link :to="post.path">{{ post.title || post.path }}</router-link>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
