@@ -93,6 +93,14 @@ tar 功能：文件备份压缩
 - `Linux centos` 重启命令：`reboot`
 - `Linux centos` 关机命令：`halt`
 
+### 和远程的交互
+
+`scp`
+
+- `scp root@12.34.56.78:/home/1.text /`: 拷贝远程 `1.text` 到本地目录 `/`
+- `scp /1.text root@12.34.56.78:/home`: 上传 `1.text` 文件到远程
+- `scp /data root@12.34.56.78:/home` `: 上传文件夹以及内容到远程
+
 ## yum 常用命令
 
 - **查看是否安装了软件包**
