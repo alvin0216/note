@@ -8,6 +8,10 @@ module.exports = [
     link: '/react/'
   },
   {
+    text: 'Node',
+    link: '/node/'
+  },
+  {
     text: '服务器',
     link: '/server/'
   },
