@@ -5,12 +5,9 @@ date: 2019-01-04 17:24:41
 
 ## 相关链接
 
-### mac
-
 - [mac 安装 autojump](https://segmentfault.com/a/1190000011277135)
-
-### centos
-
+- [命令行打开 vscode](https://blog.csdn.net/h774140913/article/details/84650273)
+- [Vi/Vim如何消除搜索后的关键字高亮](https://zhidao.baidu.com/question/1574869395955046300.html): `noh`
 - [centos 安装 zsh 及其插件](https://iluoy.com/articles/133): `zsh` `autojump` `zsh-autosuggestions` 等
 
 ## 命令

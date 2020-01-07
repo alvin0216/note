@@ -1,5 +1,5 @@
 ---
-title: javascript 杂记
+title: javascript question
 date: 2020-01-06 14:02:40
 ---
 
@@ -19,3 +19,7 @@ console.log(JSON.stringify(obj))
 ```
 
 `JSON.stringify` 会将 `function` `undefined` 等过滤，其他规则详见 [JSON.stringify](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+
+## 什么是防抖和节流？有什么区别？如何实现？
+
+[防抖和节流的实现](/javascript/debounce-throttle)
