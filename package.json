@@ -8,14 +8,17 @@
     "docs:build": "vuepress build docs",
     "dev": "npm run docs:dev",
     "build": "npm run docs:build",
-    "page": "node quickPage.js",
-    "push": "node push.js"
+    "page": "node ./utils/page.js p",
+    "push": "node ./utils/push"
   },
   "dependencies": {
     "element-ui": "^2.13.0",
     "vuepress": "^1.2.0"
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.2.0"
+    "@vuepress/plugin-back-to-top": "^1.2.0",
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0",
+    "inquirer": "^7.0.3"
   }
 }
