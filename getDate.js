@@ -23,4 +23,4 @@ function getDate(fmt = 'YYYY-MM-DD hh:mm:ss') {
   }
 }
 
-console.log('date:', getDate())
+module.exports = getDate

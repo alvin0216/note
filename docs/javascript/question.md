@@ -1,5 +1,5 @@
 ---
-title: javascript question
+title: Javascript Question
 date: 2020-01-06 14:02:40
 ---
 
