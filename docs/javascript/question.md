@@ -22,4 +22,5 @@ console.log(JSON.stringify(obj))
 
 ## 什么是防抖和节流？有什么区别？如何实现？
 
-[防抖函数的实现](/javascript/debounce)
+- [防抖函数的实现](/javascript/debounce)
+- [节流函数的实现](/javascript/throttle)
