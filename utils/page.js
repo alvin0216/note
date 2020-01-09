@@ -7,7 +7,10 @@ const getDate = require('./getDate')
 
 // 查询目录
 const list = fs.readdirSync('./docs') // 读取文件目录，里面还包含了文件
-const folderList = list.filter(f => /^[a-zA-Z]+$/.test(f)) // 过滤出纯目录
+const folderList = list.filter(pathname => {
+  const filePath = path.resolve(__dirname, `../docs/${pathname}`)
+  return pathname !== '.vuepress' && fs.statSync(filePath).isDirectory()
+})
 
 program
   .command('page')
