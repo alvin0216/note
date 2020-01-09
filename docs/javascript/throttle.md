@@ -1,5 +1,5 @@
 ---
-title: throttle (节流函数)的实现
+title: Throttle (节流函数)的实现
 date: 2020-01-08 14:40:22
 ---
 

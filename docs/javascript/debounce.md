@@ -1,5 +1,5 @@
 ---
-title: debounce (防抖函数)的实现
+title: Debounce (防抖函数)的实现
 date: 2020-01-07 21:35:59
 ---
 
