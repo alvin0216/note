@@ -227,7 +227,7 @@ var obj = {
     setTimeout(() => log.call(obj), 2)
   },
   func4: function() {
-    setTimeout(() => log.bind(obj), 3)
+    setTimeout(log.bind(obj), 3)
   }
 }
 
