@@ -1,14 +1,18 @@
 <template>
   <div class="page">
-    <ul>
-      <li v-for="post in recentList" :key="post.path">
-        <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
-        <router-link :to="post.path">{{ post.title || post.path }}</router-link>
-      </li>
-    </ul>
-    <el-tabs style="margin-top: 10px;" :value="activeName">
-      <el-tab-pane v-for="item of tabList" :key="item.tab" :label="item.name" :name="item.name">
-        <div v-for="post of item.list" :key="post.path">
+    <div v-for="post of postList" :key="post.path">
+      <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
+      <router-link :to="post.path">{{ post.title || post.path }}</router-link>
+    </div>
+
+    <el-tabs v-model="tabName" style="margin-top: 15px">
+      <el-tab-pane
+        v-for="item of tabList"
+        :key="item.tabName"
+        :label="item.tabName"
+        :name="item.tabName"
+      >
+        <div v-for="post of item.postList" :key="post.path">
           <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
           <router-link :to="post.path">{{ post.title || post.path }}</router-link>
         </div>
@@ -30,48 +34,47 @@ export default {
     ElTabs,
     ElTabPane
   },
+  data() {
+    return {
+      tabName: ''
+    }
+  },
+  mounted() {
+    const latestPost = this.postList[0]
+    if (!latestPost) return false
+    const target = nav.find(item => latestPost.regularPath.indexOf(item.link) === 0)
+    if (target) {
+      this.tabName = target.text
+    }
+  },
   computed: {
-    recentList() {
-      return this.$site.pages
-        .filter(page => page.frontmatter.date && !page.relativePath.includes('/README.md') && page.path !== '/')
-        .sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
-        .slice(0, 30)
+    postList() {
+      // sort filter
+      const list = this.$site.pages.reduce((list, page) => {
+        if (page => page.frontmatter.date && !page.relativePath.includes('/README.md') && page.path !== '/') {
+          list.push(page)
+        }
+        return list
+      }, [])
+
+      return list.sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
     },
     tabList() {
-      // tab 分类
-      const tabList = nav.map(item => ({
-        name: item.text,
-        tab: item.link,
-        list: []
-      }))
+      const tabList = [
+        // {
+        //   tabName: 'recentList',
+        //   postList: this.postList
+        // }
+      ]
 
-      // 将 page 筛入 tab 中
-      this.$site.pages.forEach(page => {
-        if (!page.relativePath.includes('/README.md') && page.path !== '/') {
-          const tab = tabList.find(item => {
-            return page.regularPath.indexOf(item.tab) === 0
-          })
-          if (!!tab) {
-            tab.list.push(page)
-          }
-        }
+      nav.forEach(item => {
+        tabList.push({
+          tabName: item.text,
+          postList: this.postList.filter(post => post.regularPath.indexOf(item.link) === 0)
+        })
       })
 
-      // list 排序
-      tabList.forEach(tab => {
-        tab.list = [...tab.list]
-          .filter(page => page.frontmatter.date)
-          .sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
-      })
       return tabList
-    },
-    // 最新的文章的 tab name
-    activeName() {
-      let target = null
-      if (this.recentList[0]) {
-        target = this.tabList.find(item => this.recentList[0].regularPath.indexOf(item.tab) === 0)
-      }
-      return target ? target.name : ''
     }
   },
   methods: {
