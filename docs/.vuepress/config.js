@@ -7,7 +7,7 @@ module.exports = {
     repo: 'https://github.com/gershonv',
     // nav:
     sidebar: 'auto',
-    nav: [{ text: '主页', link: '/' }, ...require('./nav')]
+    nav: [{ text: 'Home', link: '/' }, ...require('./nav')]
   },
   plugins: ['@vuepress/back-to-top']
 }

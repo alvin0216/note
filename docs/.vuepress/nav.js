@@ -12,7 +12,7 @@ module.exports = [
     link: '/node/'
   },
   {
-    text: '服务器',
+    text: 'System',
     link: '/server/'
   },
   {
@@ -20,7 +20,7 @@ module.exports = [
     link: '/html-css/'
   },
   {
-    text: '其他',
+    text: 'Others',
     link: '/others/'
   }
 ]

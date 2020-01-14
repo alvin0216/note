@@ -51,7 +51,7 @@ export default {
     postList() {
       // sort filter
       const list = this.$site.pages.reduce((list, page) => {
-        if (page => page.frontmatter.date && !page.relativePath.includes('/README.md') && page.path !== '/') {
+        if (page.frontmatter.date && !page.relativePath.includes('/README.md') && page.path !== '/') {
           list.push(page)
         }
         return list
