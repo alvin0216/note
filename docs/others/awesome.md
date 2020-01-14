@@ -21,6 +21,16 @@ date: 2019-01-04 17:24:41
 - 删除光标后的字符：`fn + del`
 - 截图【全屏】：`command + shift + 3`
 - 截图【自由选中】：`command + shift + 4`
+- 查看端口占用情况：
+
+  - ```bash
+      lsof -i :6060 # 查看 6060 端口
+
+      COMMAND   PID       USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+      node    34472 guoshaowei   22u  IPv6 0xc291ef64528a6725      0t0  TCP *:6060 (LISTEN)
+
+      kill -9 34472 # kill pid
+    ```
 
 ### centos
 
