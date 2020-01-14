@@ -10,6 +10,9 @@ date: 2019-12-31 14:20:32
 ```bash
 # 软回滚一个版本,可以理解为撤销最近一次的 commit
 git reset --soft HEAD~1
+
+# 删除远程分支
+git push origin -d dev
 ```
 
 ## 配置个人信息
