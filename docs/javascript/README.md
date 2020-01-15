@@ -3,6 +3,6 @@ sidebar: false
 date: 2019-10-16 09:07:08
 ---
 
-## 工具
+## Javascript
 
-<MainIndex path='tools' />
+<MainIndex path='javascript' />
