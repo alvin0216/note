@@ -34,6 +34,8 @@ console.log((foo.bar, foo.bar)()) // 1
 ### 模拟实现下 call/apply/bind
 
 - [Call Apply 的模拟实现](/javascript/call-apply)
+- [Bind 的模拟实现](/javascript/bind)
+- [New 的模拟实现](/javascript/new)
 
 #### Call 的模拟实现
 
@@ -114,6 +116,10 @@ function func(age) {
 
 func.apply2(obj, [18])
 ```
+
+#### Bind 的模拟实现
+
+#### New 的模拟实现
 
 ### JSON.stringify
 
