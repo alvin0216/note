@@ -13,7 +13,7 @@ function execute(cmd) {
 
 execute(
   `
-    git add .
+    git add assets docs
     git commit -m 'update at ${getDate()}'
     git push
   `
