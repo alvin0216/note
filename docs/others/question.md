@@ -3,9 +3,7 @@ title: Some Question
 date: 2020-01-06 14:02:40
 ---
 
-## JavaScript
-
-### 判断 this 的指向
+## 判断 this 的指向
 
 ```js
 var value = 1
@@ -31,13 +29,13 @@ console.log((foo.bar, foo.bar)()) // 1
 
 详见 [JavaScript 深入之从 ECMAScript 规范解读 this](https://github.com/mqyqingfeng/Blog/issues/7)
 
-### 模拟实现下 call/apply/bind
+## 模拟实现下 call/apply/bind
 
 - [Call Apply 的模拟实现](/javascript/call-apply)
 - [Bind 的模拟实现](/javascript/bind)
 - [New 的模拟实现](/javascript/new)
 
-#### Call 的模拟实现
+### Call 的模拟实现
 
 思路：改变 this 指向，可以通过[隐性绑定](/javascript/this.html#%E9%9A%90%E5%BC%8F%E7%BB%91%E5%AE%9A)实现：
 
@@ -90,7 +88,7 @@ func.call2(obj, 18) // foo 18
 func.call2(null, 18) // undefined 18
 ```
 
-#### Apply 的模拟实现
+### Apply 的模拟实现
 
 ```js
 Function.prototype.apply2 = function(obj, args) {
@@ -117,11 +115,45 @@ function func(age) {
 func.apply2(obj, [18])
 ```
 
-#### Bind 的模拟实现
+### Bind 的模拟实现
 
-#### New 的模拟实现
+```js
+Function.prototype.bind2 = function(context) {
+  if (typeof this !== 'function') {
+    throw new Error('Function.prototype.bind - what is trying to be bound is not callable')
+  }
 
-### JSON.stringify
+  var self = this
+  var args = Array.prototype.slice.call(arguments, 1)
+
+  var fNOP = function() {}
+
+  var fBound = function() {
+    var bindArgs = Array.prototype.slice.call(arguments)
+    return self.apply(this instanceof fNOP ? this : context, args.concat(bindArgs))
+  }
+
+  fNOP.prototype = this.prototype
+  fBound.prototype = new fNOP()
+  return fBound
+}
+```
+
+### New 的模拟实现
+
+```js
+function objectFactory() {
+  var obj = new Object()
+  var Constructor = [].shift.call(arguments)
+  obj.__proto__ = Constructor.prototype
+
+  var ret = Constructor.apply(obj, arguments)
+
+  return typeof ret === 'object' ? obj : ret
+}
+```
+
+## JSON.stringify
 
 以下代码会输出什么？
 
@@ -138,7 +170,7 @@ console.log(JSON.stringify(obj))
 
 `JSON.stringify` 会将 `function` `undefined` 等过滤，其他规则详见 [JSON.stringify](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
 
-### 什么是防抖和节流？有什么区别？如何实现？
+## 什么是防抖和节流？有什么区别？如何实现？
 
 - [防抖函数的实现](/javascript/debounce)
 - [节流函数的实现](/javascript/throttle)
