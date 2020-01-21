@@ -368,3 +368,123 @@ Access-Control-Allow-Headers: x-test-cors
 `CORS` 与 `JSONP` 的使用目的相同，但是比 `JSONP` 更强大。
 
 `JSONP` 只支持 GET 请求，`CORS` 支持所有类型的 `HTTP` 请求。`JSONP` 的优势在于支持老式浏览器，以及可以向不支持 `CORS` 的网站请求数据。
+
+## postMessage
+
+`postMessage` 是 `html5` 引入的 API,`postMessage()`方法允许来自不同源的脚本采用异步方式进行有效的通信,可以实现跨文本文档,多窗口,跨域消息传递.多用于窗口间数据通信,这也使它成为跨域通信的一种有效的解决方案.
+
+### 示例
+
+**index.html**
+
+```html
+<body style="border:5px solid #333;">
+  <h1>this is index</h1>
+  <iframe src="./iframe.html" id="myframe"></iframe>
+</body>
+
+<script>
+  var iFrame = document.getElementById('myframe')
+
+  window.addEventListener('message', listen, false)
+  function listen(e) {
+    console.log('index 监听 message: ', e, e.data)
+  }
+
+  iFrame.onload = function() {
+    //iframe加载完立即发送一条消息
+    iFrame.contentWindow.postMessage('index 给 iframe 发送的数据', '*')
+  }
+</script>
+```
+
+**iframe.html**
+
+```html
+<body style="border:5px solid #333;">
+  <h1>this is iframePage</h1>
+
+  <script>
+    //给父页面发送消息
+    parent.postMessage({ msg: 'iframe 给父窗口发送的消息' }, '*')
+
+    //回调函数
+    function receiveMessageFromIndex(e) {
+      console.log('iframe 从 index 接收到消息：', e, e.data)
+    }
+
+    //监听message事件
+    window.addEventListener('message', receiveMessageFromIndex, false)
+  </script>
+</body>
+```
+
+## WebSocket 协议跨域
+
+`WebSocket protocol` 是 `HTML5` 一种新的协议。它实现了浏览器与服务器全双工通信，同时允许跨域通讯，是 `server push` 技术的一种很好的实现。
+原生 `WebSocket API` 使用起来不太方便，我们使用 `Socket.io`，它很好地封装了 `webSocket` 接口，提供了更简单、灵活的接口，也对不支持 `webSocket` 的浏览器提供了向下兼容。
+
+**index.html**
+
+```html
+<div>user input：<input type="text" /></div>
+<script src="https://cdn.bootcss.com/socket.io/2.3.0/socket.io.js"></script>
+<script>
+  var socket = io('http://127.0.0.1:6061')
+
+  // 连接成功处理
+  socket.on('connect', function() {
+    // 监听服务端消息
+    socket.on('message', function(msg) {
+      console.log('data from server: ---> ' + msg)
+    })
+
+    // 监听服务端关闭
+    socket.on('disconnect', function() {
+      console.log('Server socket has closed.')
+    })
+  })
+
+  document.getElementsByTagName('input')[0].onblur = function() {
+    socket.send(this.value)
+  }
+</script>
+```
+
+**server.js**
+
+```js
+const http = require('http')
+const socket = require('socket.io')
+
+const server = http
+  .createServer(function(req, res) {
+    res.writeHead(200, { 'Content-type': 'text/html' })
+    res.end()
+  })
+  .listen(6061)
+
+console.log('server listening on 6061')
+
+// 监听socket连接
+socket.listen(server).on('connection', function(client) {
+  // 接收信息
+  client.on('message', function(msg) {
+    client.send('hello：' + msg)
+    console.log('data from client: ---> ' + msg)
+  })
+
+  // 断开处理
+  client.on('disconnect', function() {
+    console.log('Client socket has closed.')
+  })
+})
+```
+
+## nginx 解决跨域
+
+## 参考
+
+- [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
+- [postMessage 可太有用了](https://juejin.im/post/5b8359f351882542ba1dcc31)
+- [正确面对跨域，别慌](https://juejin.im/post/5a2f92c65188253e2470f16d)
