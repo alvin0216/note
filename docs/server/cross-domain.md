@@ -210,7 +210,7 @@ http
 console.log('server listening on 6061')
 ```
 
-浏览器判断跨域为简单请求时候，会在 `Request Header` 中添加 **Origin （协议 + 域名 + 端口）**字段 ， 它表示我们的请求源，CORS 服务端会将该字段作为跨源标志。
+浏览器判断跨域为简单请求时候，会在 `Request Header` 中添加 **Origin 协议 + 域名 + 端口**字段 ， 它表示我们的请求源，CORS 服务端会将该字段作为跨源标志。
 
 `CORS` 接收到此次请求后 ， 首先会判断 `Origin` 是否在允许源（由服务端决定）范围之内，如果验证通过，服务端会在 `Response Header` 添加 `Access-Control-Allow-Origin`、`Access-Control-Allow-Credentials` 等字段。
 
@@ -254,3 +254,117 @@ xhr.withCredentials = true
 非简单请求是那种对服务器有特殊要求的请求，比如请求方法是 `PUT` 或 `DELETE`，或者 `Content-Type` 字段的类型是 `application/json`。
 
 非简单请求的 `CORS` 请求，会在正式通信之前，增加一次 `HTTP` 查询请求，称为"预检"请求（`preflight`）。
+
+**就是会发一个 `options` 请求， 浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些 HTTP 动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的 `XMLHttpRequest` 请求，否则就报错。**
+
+我们用上面的例子再实现一个 `PUT` 非简单请求
+
+```html
+<!-- index.html -->
+<h2>跨域测试页面</h2>
+<script>
+  var xhr = new XMLHttpRequest()
+  xhr.open('PUT', 'http://127.0.0.1:6061/user')
+  xhr.setRequestHeader('X-Test-Cors') // 设置预检头
+  xhr.send()
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        console.log(xhr.responseText)
+      }
+    }
+  }
+</script>
+```
+
+```js
+// server.js
+const http = require('http')
+const url = require('url')
+
+http
+  .createServer(function(req, res) {
+    res.writeHead(200, {
+      'Access-Control-Allow-Origin': 'http://127.0.0.1:8080',
+      'Access-Control-Allow-Headers': 'x-test-cors' // 设置预检头
+      'Access-Control-Allow-Methods': 'PUT, DELETE', // 允许请求的方法
+    })
+
+    res.end('callback string')
+  })
+  .listen(6061)
+
+console.log('server listening on 6061')
+```
+
+结果如下：
+
+![](../../assets/cross-domain/cors-not-simple.png)
+
+#### 预检请求
+
+"预检"请求用的请求方法是 `OPTIONS`，表示这个请求是用来询问的。头信息里面，关键字段是 `Origin`，表示请求来自哪个源。
+
+除了 `Origin` 字段，"预检"请求的头信息包括两个特殊字段。
+
+客户端的 **Request Headers**:
+
+**1. Access-Control-Request-Method**
+
+该字段是必须的，用来列出浏览器的 `CORS` 请求会用到哪些 `HTTP` 方法，上例是 `PUT`。
+
+**2. Access-Control-Request-Headers**
+
+该字段是一个逗号分隔的字符串，指定浏览器 CORS 请求会额外发送的头信息字段，上例是 **X-Test-Cors**。
+
+```js
+xhr.setRequestHeader('X-Test-Cors', '123') // 设置预检头
+```
+
+#### 预检请求的回应
+
+服务器收到"预检"请求以后，检查了 `Origin`、`Access-Control-Request-Method` 和 `Access-Control-Request-Headers` 字段以后，确认允许跨源请求，就可以做出回应。
+
+服务器回应的其他 `CORS` 相关字段如下。
+
+```yml
+Access-Control-Allow-Headers: x-test-cors
+Access-Control-Allow-Methods: PUT, DELETE
+Access-Control-Allow-Origin: http://127.0.0.1:8080
+```
+
+**1. Access-Control-Allow-Methods**
+
+该字段必需，它的值是逗号分隔的一个字符串，表明服务器支持的所有跨域请求的方法。注意，返回的是所有支持的方法，而不单是浏览器请求的那个方法。这是为了避免多次"预检"请求。
+
+通过客户端设置预检头
+
+```js
+xhr.setRequestHeader('X-Test-Cors', '123') // 设置预检头
+```
+
+在服务端协商一致为
+
+```yml
+Access-Control-Allow-Headers: x-test-cors
+```
+
+**2. Access-Control-Allow-Headers**
+
+我们可以发现，非简单请求单单设置了 `Access-Control-Allow-Origin` 和 `Access-Control-Allow-Headers` （允许跨域的源和预检头）还存在跨域的问题。是因为我们还没设置 `Access-Control-Allow-Headers`, 该字段也是必须的。
+
+它也是一个逗号分隔的字符串，表明服务器支持的所有头信息字段，不限于浏览器在"预检"中请求的字段。
+
+**3. Access-Control-Allow-Credentials**
+
+该字段与简单请求时的含义相同。
+
+**4. Access-Control-Max-Age**
+
+该字段可选，用来指定本次预检请求的有效期，单位为秒。上面结果中，有效期是 20 天（1728000 秒），即允许缓存该条回应 1728000 秒（即 20 天），在此期间，不用发出另一条预检请求。
+
+#### 相比 jsonp
+
+`CORS` 与 `JSONP` 的使用目的相同，但是比 `JSONP` 更强大。
+
+`JSONP` 只支持 GET 请求，`CORS` 支持所有类型的 `HTTP` 请求。`JSONP` 的优势在于支持老式浏览器，以及可以向不支持 `CORS` 的网站请求数据。

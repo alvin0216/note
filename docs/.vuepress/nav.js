@@ -20,7 +20,7 @@ module.exports = [
     link: '/server/'
   },
   {
-    text: '其他',
+    text: '未分类',
     link: '/others/'
   }
 ]
