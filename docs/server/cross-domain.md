@@ -483,6 +483,36 @@ socket.listen(server).on('connection', function(client) {
 
 ## nginx 解决跨域
 
+```nginx
+server {
+    listen 80;
+
+    server_name guodada.fun;
+
+    root /projects/react-blog/build;
+
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+      # 转发
+      proxy_pass http://localhost:6060/;
+    }
+
+    gzip on;
+    gzip_buffers 32 4k;
+    gzip_comp_level 9;
+    gzip_min_length 200;
+    gzip_types gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+    gzip_vary on;
+
+    #rewrite ^(.*) https://$server_name$1 permanent;
+}
+```
+
 ## 参考
 
 - [阮一峰 跨域资源共享 CORS 详解](http://www.ruanyifeng.com/blog/2016/04/cors.html)
