@@ -1,5 +1,5 @@
 ---
-title: Some Question
+title: 灵魂拷问系列 - Javascript
 date: 2020-01-06 14:02:40
 ---
 
