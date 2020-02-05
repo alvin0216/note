@@ -3,6 +3,36 @@ title: React Hooks 记录
 date: 2019-12-31 11:29:30
 ---
 
+## useState
+
+```js
+import React, { useState, useEffect } from 'react'
+
+function App(props) {
+  const [count, setCount] = useState(0)
+  const [num, setNum] = useState(0)
+
+  console.log('render')
+  return (
+    <>
+      <h2>count: {count}</h2>
+      <h2> num: {num}</h2>
+      <button
+        onClick={e => {
+          setCount(prev => prev + 1)
+          setNum(prev => prev + 2)
+        }}>
+        onclick
+      </button>
+    </>
+  )
+}
+
+export default App
+```
+
+`useState` 中同时设置值两次，而 `render` 只输出一次，说明 `react` 已经帮我们处理好了
+
 ## useState/setState 的异同
 
 - 共同点：都是异步的操作
@@ -65,6 +95,58 @@ function Counter() {
 
 1. 首先 `state` 是 `Immutable` `的，setState` 后一定会生成一个全新的 state 引用。
 2. 但 `Class Component` 通过 `this.state` 方式读取 `state`，这导致了每次代码执行都会拿到最新的 `state` 引用，所以快速点击三次的结果是 `3 3 3`。
+
+## useEffect
+
+```jsx
+import React, { useState, useEffect } from 'react'
+
+function App(props) {
+  const [count, setCount] = useState(0)
+  const [display, setDisplay] = useState(true)
+
+  if (count > 0) setDisplay(false) // 错误
+
+  // Rendered more hooks than during the previous render.
+  if (count > 0) {
+    useEffect(() => {
+      setDisplay(false)
+    }, [])
+  }
+
+  return (
+    <>
+      <h2>count: {display && count}</h2>
+      <button onClick={e => setCount(prev => prev + 1)}>onclick</button>
+    </>
+  )
+}
+
+export default App
+```
+
+```js
+if (count > 0) setDisplay(false)
+```
+
+这种写法是不正确的，为什么呢？是因为会发生递归。
+
+`onclick` => `setCount` => `render` 而满足 `count > 0` 后会发生 `setDisplay` 会重新 `render`
+`render` 后又发现 `count > 0` 又 `setDisplay` 导致无限循环
+
+```js
+if (count > 0) {
+  useEffect(() => {
+    setDisplay(false)
+  }, [])
+}
+```
+
+这种写法是不正确的，为什么呢？`useEffect` 不能写在判断语句里面。为什么呢？
+
+> hooks 是根据 hook 的顺序来确定每次值的变化，一旦改变了就会发生不可预期的错误
+
+`count > 0` 后会增加多了一个 `hooks` 所以会报错
 
 ## useRef
 
@@ -167,6 +249,36 @@ function App(props) {
     </>
   )
 }
+```
+
+## Context
+
+使用 `useContext` 可以简化代码：
+
+```js
+import React, { useContext } from 'react'
+
+const DemoContext = React.createContext(null)
+
+function Child(props) {
+  return <DemoContext.Consumer>{value => <h2>Child: {value}</h2>}</DemoContext.Consumer>
+}
+
+function HookChild(props) {
+  const value = useContext(DemoContext)
+  return <h2>HookChild: {value}</h2>
+}
+
+function App(props) {
+  return (
+    <DemoContext.Provider value='hello world'>
+      <Child />
+      <HookChild />
+    </DemoContext.Provider>
+  )
+}
+
+export default App
 ```
 
 ## 性能优化
