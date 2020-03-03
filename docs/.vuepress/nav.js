@@ -12,15 +12,15 @@ module.exports = [
     link: '/node/'
   },
   {
-    text: 'HTML-CSS',
-    link: '/html-css/'
+    text: 'HTTP',
+    link: '/http/'
   },
   {
-    text: '运维',
-    link: '/server/'
+    text: 'Tools',
+    link: '/tools/'
   },
   {
-    text: '未分类',
-    link: '/others/'
+    text: 'Collect',
+    link: '/collect/'
   }
 ]

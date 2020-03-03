@@ -4,7 +4,7 @@ module.exports = {
   description: '郭大大的个人笔记',
   themeConfig: {
     smoothScroll: true,
-    repo: 'https://github.com/gershonv',
+    // repo: 'https://github.com/gershonv',
     // nav:
     sidebar: 'auto',
     nav: [{ text: '主页', link: '/' }, ...require('./nav')]
