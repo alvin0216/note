@@ -5,7 +5,7 @@
       <router-link :to="post.path">{{ post.title || post.path }}</router-link>
     </div>
 
-    <el-tabs v-model="tabName" style="margin-top: 15px">
+    <!-- <el-tabs v-model="tabName" style="margin-top: 15px">
       <el-tab-pane
         v-for="item of tabList"
         :key="item.tabName"
@@ -17,7 +17,7 @@
           <router-link :to="post.path">{{ post.title || post.path }}</router-link>
         </div>
       </el-tab-pane>
-    </el-tabs>
+    </el-tabs>-->
   </div>
 </template>
 
@@ -52,23 +52,23 @@ export default {
       }, [])
 
       return list.sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
-    },
-    tabList() {
-      const tabList = [
-        // {
-        //   tabName: 'recentList',
-        //   postList: this.postList
-        // }
-      ]
-      nav.forEach(item => {
-        tabList.push({
-          tabName: item.text,
-          postList: this.postList.filter(post => post.regularPath.indexOf(item.link) === 0)
-        })
-      })
-
-      return tabList
     }
+    // tabList() {
+    //   const tabList = [
+    //     // {
+    //     //   tabName: 'recentList',
+    //     //   postList: this.postList
+    //     // }
+    //   ]
+    //   nav.forEach(item => {
+    //     tabList.push({
+    //       tabName: item.text,
+    //       postList: this.postList.filter(post => post.regularPath.indexOf(item.link) === 0)
+    //     })
+    //   })
+
+    //   return tabList
+    // }
   },
   methods: {
     dateFormat
