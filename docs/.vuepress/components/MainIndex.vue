@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div>
     <ul>
       <li v-for="post in postList" :key="post.path">
         <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>

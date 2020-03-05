@@ -560,11 +560,7 @@ store.dispatch = exception(time(logger(next)))
 
 ```js
 /*接收旧的 createStore，返回新的 createStore*/
-const newCreateStore = applyMiddleware(
-  exceptionMiddleware,
-  timeMiddleware,
-  loggerMiddleware
-)(createStore)
+const newCreateStore = applyMiddleware(exceptionMiddleware, timeMiddleware, loggerMiddleware)(createStore)
 
 /*返回了一个 dispatch 被重写过的 store*/
 const store = newCreateStore(reducer)
@@ -604,11 +600,7 @@ const applyMiddleware = function(...middlewares) {
 let store = createStore(reducers, initState)
 
 /*有中间件的 createStore*/
-const rewriteCreateStoreFunc = applyMiddleware(
-  exceptionMiddleware,
-  timeMiddleware,
-  loggerMiddleware
-)
+const rewriteCreateStoreFunc = applyMiddleware(exceptionMiddleware, timeMiddleware, loggerMiddleware)
 const newCreateStore = rewriteCreateStoreFunc(createStore)
 const store = newCreateStore(reducer, initState)
 ```
@@ -630,11 +622,7 @@ function createStore(reducer, initState, rewriteCreateStoreFunc) {
 最终的用法
 
 ```js
-const rewriteCreateStoreFunc = applyMiddleware(
-  exceptionMiddleware,
-  timeMiddleware,
-  loggerMiddleware
-)
+const rewriteCreateStoreFunc = applyMiddleware(exceptionMiddleware, timeMiddleware, loggerMiddleware)
 const store = createStore(reducer, initState, rewriteCreateStoreFunc)
 ```
 
@@ -763,8 +751,7 @@ export default function connect(mapStateToProps, mapDispatchToProps) {
 
       render() {
         const dispathProps =
-          typeof mapDispatchToProps &&
-          bindActionCreators(mapDispatchToProps, this.context.store.dispatch)
+          typeof mapDispatchToProps && bindActionCreators(mapDispatchToProps, this.context.store.dispatch)
 
         return (
           <Component

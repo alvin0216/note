@@ -52,23 +52,23 @@ export default {
       }, [])
 
       return list.sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
-    }
-    // tabList() {
-    //   const tabList = [
-    //     // {
-    //     //   tabName: 'recentList',
-    //     //   postList: this.postList
-    //     // }
-    //   ]
-    //   nav.forEach(item => {
-    //     tabList.push({
-    //       tabName: item.text,
-    //       postList: this.postList.filter(post => post.regularPath.indexOf(item.link) === 0)
-    //     })
-    //   })
+    },
+    tabList() {
+      const tabList = [
+        // {
+        //   tabName: 'recentList',
+        //   postList: this.postList
+        // }
+      ]
+      nav.forEach(item => {
+        tabList.push({
+          tabName: item.text,
+          postList: this.postList.filter(post => post.regularPath.indexOf(item.link) === 0)
+        })
+      })
 
-    //   return tabList
-    // }
+      return tabList
+    }
   },
   methods: {
     dateFormat

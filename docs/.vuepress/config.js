@@ -1,23 +1,19 @@
+const sidebar = require('./sidebar')
+
 module.exports = {
   port: '4040', // 开发端口
   title: 'guodada-note',
   description: '郭大大的个人笔记',
   themeConfig: {
     smoothScroll: true,
-    sidebar: 'auto',
+    sidebarDepth: 2,
+    sidebar: sidebar,
     nav: [
       { text: '主页', link: '/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
       { text: 'React 原理解析', link: '/react-code-read/' },
-      {
-        text: 'Node & HTTP',
-        ariaLabel: 'Node & HTTP',
-        items: [
-          { text: 'Node', link: '/node/' },
-          { text: 'HTTP', link: '/http/' }
-        ]
-      },
+      { text: 'Node & HTTP', link: '/group/' },
       {
         text: '更多',
         ariaLabel: '了解更多',

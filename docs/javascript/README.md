@@ -1,8 +1,8 @@
 ---
-sidebar: false
+# sidebar: false
 date: 2019-10-16 09:07:08
 ---
 
-## Javascript
+## 首页
 
 <MainIndex />
