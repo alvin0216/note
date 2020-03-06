@@ -1,5 +1,5 @@
 ---
-title: redux 原理与实现
+title: Redux 原理与实现
 date: 2020-03-03 16:38:10
 ---
 

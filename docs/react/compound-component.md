@@ -1,5 +1,5 @@
 ---
-title: react 组合组件模式
+title: React 组合组件模式
 date: 2020-03-04 16:38:10
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: react 坑点记录
+title: React 坑点记录
 date: 2019-11-31 14:45:40
 ---
 

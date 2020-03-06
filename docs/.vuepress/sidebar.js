@@ -33,5 +33,11 @@ module.exports = {
     }
   ],
   '/question/': ['javascript'],
-  '/react-code-read/': ['']
+  '/react-code-read/': [
+    {
+      title: 'React 原理解析',
+      collapsable: false,
+      children: ['base', 'render']
+    }
+  ]
 }

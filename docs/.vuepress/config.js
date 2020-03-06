@@ -12,7 +12,7 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
-      { text: 'React 原理解析', link: '/react-code-read/' },
+      { text: 'React 原理解析', link: '/react-code-read/base' },
       { text: 'Node & HTTP', link: '/group/' },
       {
         text: '更多',
