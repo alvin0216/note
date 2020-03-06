@@ -10,7 +10,7 @@ module.exports = {
     {
       title: 'React',
       collapsable: false,
-      children: ['redux', 'hooks', 'daily']
+      children: ['compound-component', 'redux', 'hooks', 'daily']
     }
   ],
   '/group/': [
