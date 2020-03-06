@@ -1,5 +1,5 @@
 ---
-title: React 原理解析基础
+title: React 原理解析 - 基础
 date: 2020-03-06 12:09:21
 ---
 
@@ -9,6 +9,10 @@ date: 2020-03-06 12:09:21
 - `vscode` 推荐阅读源码工具: `Bookmarks`
 - [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
 - [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
+
+## 阅读顺序
+
+![](../../assets/react/order.png)
 
 首先定位到 `React` 主入口文件，看看主文件代码里有什么：
 
