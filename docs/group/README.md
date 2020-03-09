@@ -1,1 +1,1 @@
-<MainIndex />
+<MainIndex path='group'/>

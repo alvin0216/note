@@ -14,6 +14,11 @@ import { dateFormat } from '../utils'
 
 export default {
   name: 'MainIndex',
+  props: {
+    path: {
+      type: String
+    }
+  },
   computed: {
     postList() {
       return this.$site.pages
@@ -22,11 +27,6 @@ export default {
             page.frontmatter.date && page.regularPath.includes(this.path) && !page.relativePath.includes('README.md')
         )
         .sort((x, y) => (x.frontmatter.date < y.frontmatter.date ? 1 : -1))
-    }
-  },
-  data() {
-    return {
-      path: window.location.pathname.replace(/\//g, '')
     }
   },
   methods: { dateFormat }
