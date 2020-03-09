@@ -5,7 +5,7 @@ date: 2020-03-06 12:09:21
 
 ## 前言
 
-- `version`: v16.13.0
+- `version`: v16.8.6
 - `vscode` 推荐阅读源码工具: `Bookmarks`
 - [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
 - [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
@@ -17,7 +17,7 @@ date: 2020-03-06 12:09:21
 首先定位到 `React` 主入口文件，看看主文件代码里有什么：
 
 ```js
-// packages/react/src/React.js : line 74
+// packages/react/src/React.js
 const Children = { map, forEach, count, toArray, only }
 export {
   Children,
@@ -71,7 +71,7 @@ React.createElement("div", {  id: "div"},
 定位到函数代码：
 
 ```jsx
-// packages/react/src/ReactElement.js: line 348
+// packages/react/src/ReactElement.js
 export function createElement(type, config, children) {
   if (config != null) {
     if (hasValidRef(config)) {
@@ -120,7 +120,7 @@ if (childrenLength === 1) {
 ## ReactElement
 
 ```jsx
-// packages/react/src/ReactElement.js: line 146
+// packages/react/src/ReactElement.js
 const ReactElement = function(type, key, ref, self, source, owner, props) {
   const element = {
     // This tag allows us to uniquely identify this as a React Element
@@ -189,7 +189,7 @@ React.Children.map(this.props.children, c => [[c, c]])
 接下里我们进入正题，来看看 `mapChildren` 内部到底是如何实现的。
 
 ```jsx
-// packages/react/src/ReactChildren.js line 349
+// packages/react/src/ReactChildren.js
 function mapChildren(children, func, context) {
   if (children == null) {
     return children
@@ -217,7 +217,7 @@ function mapIntoWithKeyPrefixInternal(children, array, prefix, func, context) {
 > 维护这个池子的用意就是提高性能，毕竟频繁创建销毁一个有很多属性的对象会消耗性能。
 
 ```jsx
-// packages/react/src/ReactChildren.js line 53
+// packages/react/src/ReactChildren.js
 const POOL_SIZE = 10
 const traverseContextPool = []
 function getPooledTraverseContext(mapResult, keyPrefix, mapFunction, mapContext) {
@@ -257,7 +257,6 @@ function releaseTraverseContext(traverseContext) {
 ### traverseAllChildren
 
 ```jsx
-// line 237
 function traverseAllChildren(children, callback, traverseContext) {
   if (children == null) {
     return 0
@@ -334,7 +333,7 @@ return subtreeCount
 #### mapSingleChildIntoContext
 
 ```jsx
-// packages/react/src/ReactChildren.js line 298
+// packages/react/src/ReactChildren.js
 function mapSingleChildIntoContext(bookKeeping, child, childKey) {
   const { result, keyPrefix, func, context } = bookKeeping
 
