@@ -1,23 +1,11 @@
 ---
-title: React 原理解析 - 基础
+title: React 原理解析 - API 及其他
 date: 2020-03-06 12:09:21
 ---
 
-## 前言
+定位到 `packages/react/src/React.js`
 
-- `version`: v16.8.6
-- `vscode` 推荐阅读源码工具: `Bookmarks`
-- [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
-- [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
-
-## 阅读顺序
-
-![](../../assets/react/order.png)
-
-首先定位到 `React` 主入口文件，看看主文件代码里有什么：
-
-```js
-// packages/react/src/React.js
+```jsx
 const Children = { map, forEach, count, toArray, only }
 export {
   Children,
@@ -32,19 +20,21 @@ export {
 }
 ```
 
-这里可以看到 `React` 导出了一系列的 API 和类，`Children`、`createRef`, `Component`...。这里仅仅会记录下重要的函数
+这里可以看到 `React` 导出了一系列的 `API` 和类，`Children`、`createRef`, `Component`...。。
+
+让我们先看看 `React.createElement`
 
 ## React.createElement
 
 大家在写 `React` 代码的时候肯定写过 `JSX`，但是为什么一旦使用 JSX 就必须引入 `React` 呢？
 
-这是因为我们的 `JSX` 代码会被 `Babel` 编译为 `React.createElement`，不引入 `React` 的话就不能使用 `React.createElement` 了。 简单的 `demo`：
+这是因为我们的 `JSX` 代码会被 `Babel` 编译为 `React.createElement` 来创建相应的 `ReactElement`，不引入 `React` 的话就不能使用 `React.createElement` 了。
 
 ```jsx
 // jsx
 <div id='app'>content</div>
 
-// js
+// babel 会转义为
 React.createElement('div', { id: 'app' }, 'content')
 
 <div id='div'>
@@ -52,26 +42,24 @@ React.createElement('div', { id: 'app' }, 'content')
   <span>world</span>
 </div>
 
+// babel 会转义为
 React.createElement("div", {  id: "div"},
   React.createElement("span", null, "hello"),
   React.createElement("span", null, "world"))
 ```
 
-通过 `React.createElement` 创建 `ReactElement`，调用该方法需要传入三个参数：
-
-1. `type`
-   - `type` 指代这个 `ReactElement` 的类型, 字符串比如 div，p 代表原生 DOM，称为 `HostComponent`
-   - `Class` 类型是我们继承自 `Component` 或者 `PureComponent` 的组件，称为 `ClassComponent`
-   - 方法就是 `functional Component`
-   - 原生提供的 `Fragment、AsyncMode` 等是 `Symbol`，会被特殊处理
-   - 等等
-2. `config`
-3. `children`
-
-定位到函数代码：
+定位到 `packages/react/src/ReactElement.js`, 我们可以看到 `React.createElement` 的实现函数为
 
 ```jsx
-// packages/react/src/ReactElement.js
+/**
+ * @param type
+ *    指代这个 ReactElement 的类型, 字符串比如 div，p 代表原生 DOM，称为 HostComponent
+ *    Class类型是我们继承自Component或者PureComponent的组件，称为ClassComponent
+ *    方法就是functional Component
+ *    原生提供的Fragment、AsyncMode等是Symbol，会被特殊处理
+ *
+ *
+ */
 export function createElement(type, config, children) {
   if (config != null) {
     if (hasValidRef(config)) {
@@ -90,6 +78,19 @@ export function createElement(type, config, children) {
       }
     }
   }
+
+  // 首先把第二个参数之后的参数取出来，然后判断长度是否大于一。
+  // 大于一的话就代表有多个 children，这时候 props.children 会是一个数组，否则的话只是一个对象。
+  const childrenLength = arguments.length - 2
+  if (childrenLength === 1) {
+    props.children = children
+  } else if (childrenLength > 1) {
+    const childArray = Array(childrenLength)
+    for (let i = 0; i < childrenLength; i++) {
+      childArray[i] = arguments[i + 2]
+    }
+    props.children = childArray
+  }
   //...
   return ReactElement(type, key, ref, self, source, ReactCurrentOwner.current, props)
 }
@@ -97,30 +98,9 @@ export function createElement(type, config, children) {
 
 > **这段代码对 `ref` 以及 `key` 做了个验证），然后遍历 `config` 并把内建的几个属性（比如 `ref` 和 `key`）剔除后丢到 `props` 对象中。**
 
-### children 的处理
+### ReactElement
 
 ```jsx
-// packages/react/src/ReactElement.js lin 386
-const childrenLength = arguments.length - 2
-if (childrenLength === 1) {
-  props.children = children
-} else if (childrenLength > 1) {
-  const childArray = Array(childrenLength)
-  for (let i = 0; i < childrenLength; i++) {
-    childArray[i] = arguments[i + 2]
-  }
-  props.children = childArray
-}
-```
-
-首先把第二个参数之后的参数取出来，然后判断长度是否大于一。大于一的话就代表有多个 `children`，这时候 `props.children` 会是一个数组，否则的话只是一个对象。
-
-最后就是返回了一个 `ReactElement` 对象
-
-## ReactElement
-
-```jsx
-// packages/react/src/ReactElement.js
 const ReactElement = function(type, key, ref, self, source, owner, props) {
   const element = {
     // This tag allows us to uniquely identify this as a React Element

@@ -37,7 +37,7 @@ module.exports = {
     {
       title: 'React 原理解析',
       collapsable: false,
-      children: ['base', 'render', 'render2']
+      children: ['home', 'base', 'render', 'render2']
     }
   ]
 }

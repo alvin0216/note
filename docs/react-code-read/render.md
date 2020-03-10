@@ -3,27 +3,71 @@ title: React 原理解析 - render
 date: 2020-03-06 15:09:21
 ---
 
-- `version`: v16.8.6
-- `vscode` 推荐阅读源码工具: `Bookmarks`
-- [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
-- [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
-  
-![](../../assets/react/order.png)
+## 前言
 
-## render
+这一章主要将 `React` 当中创建更新的一个过程 `ReactDOM.render`, 在 `React` 当中创建更新的主要有以下的方式:
+
+- `ReactDom.render` `ReactDom.hydrate` : 这两个 `API` 都是 `React` 要把整个应用第一次渲染页面上面展现出来，这样的一个过程。
+- `setState` `forceUpdate`: 后续我们需要更新这个应用需要调用的 `API`
+
+`ReactDOM.render` 需要做什么事情呢？
+
+1. 创建 `ReactRoot`：包含 `React` 整个应用的一个最顶点的对象。
+2. 创建 `FiberRoot`和 `RootFiber`：这两个有点绕，他们两个是非常非常重要的一个知识点。
+3. 创建更新：应用进入到更新调度的阶段，更新调度是下一章的内容～进入调度之后的后续操作都是由调度器去管理的。
+
+## ReactDOM.render
+
+通过一个简单的实例了解 `ReactDOM.render`：
 
 ```jsx
-ReactDOM.render(<APP />, document.getElementById('root')
+class List extends Component {
+  state = { a: 1, b: 2, c: 3 }
+
+  render() {
+    const { a, b, c } = this.state
+    return [
+      <span key='a'>{a}</span>,
+      <span key='b'>{b}</span>,
+      <span key='c'>{c}</span>,
+      // --
+      <button>click</button>
+    ]
+  }
+}
+
+class Input extends Component {
+  render() {
+    return <input />
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <div className='main'>
+        <Input />
+        <List />
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
 ```
 
-看到这段代码，想必大家都很熟悉。它的作用时将组件渲染到对应的 `DOM` 这个容器当中。这通常也是一个 `React` 应用的入口代码，接下来我们就来梳理整个 `render` 的流程
+执行 `ReactDOM.render` 后形成的一个完整的树结构：
+
+![](../../assets/react/render1.png)
+
+在构建好 `App` 组件后我们调用 `ReactDom.render` 后 `React` 会构建出一个完整的树结构。接下来我们来看一下它的源码的具体的实现流程。
 
 定位到 `packages/react-dom/src/client/ReactDOM.js`
 
 ```jsx
 render(
   element: React$Element<any>,
-  container: DOMContainer,
+  container: DOMContainer, // 挂载到哪个 dom 节点
   callback: ?Function,
 ) {
 
@@ -37,7 +81,7 @@ render(
 }
 ```
 
-这部分代码其实没啥好说的，唯一需要注意的是在调用 `legacyRenderSubtreeIntoContainer` 函数时写死了第四个参数 `forceHydrate` 为 `false`。这个参数为 `true` .
+这部分代码其实没啥好说的，唯一需要注意的是在调用 `legacyRenderSubtreeIntoContainer` 函数时写死了第四个参数 `forceHydrate` 为 `false`。表示的是服务端渲染还是客户端渲染，这里是写死调用了客户端渲染。
 
 接下来进入 `legacyRenderSubtreeIntoContainer` 函数，这部分代码分为两块来讲。
 
@@ -58,7 +102,7 @@ function legacyRenderSubtreeIntoContainer(
   if (!root) {
     root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate)
   }
-  //...
+  //... 下一章节在讲述，主要是针对 root 去创建更新
 }
 ```
 
