@@ -3,6 +3,11 @@ title: React 原理解析 - render
 date: 2020-03-06 15:09:21
 ---
 
+- `version`: v16.8.6
+- `vscode` 推荐阅读源码工具: `Bookmarks`
+- [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
+- [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
+  
 ![](../../assets/react/order.png)
 
 ## render
