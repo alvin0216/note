@@ -3,20 +3,16 @@ title: React 原理解析 - 创建更新
 date: 2020-03-10 09:24:41
 ---
 
-- `version`: v16.8.6
-- `vscode` 推荐阅读源码工具: `Bookmarks`
-- [阅读跟随地址 jokcy React 源码解析](https://react.jokcy.me/)
-- [阅读跟随地址 yck React 原理解析](https://yuchengkai.cn/react/)
+在[上一章节](/react-code-read/render)我们可以了解到 `ReactDOM.render` 方法创建 `ReactFiberRoot` 的过程。
 
-![](../../assets/react/order.png)
+在 `legacyCreateRootFromDOMContainer` 之后后执行了
 
-## unbatchedUpdates
+1. [createFiberRoot](/react-code-read/render.html#createfiberroot) 创建了 `FiberRoot` 对象
+2. [createHostRootFiber](/react-code-read/render.html#createhostrootfiber) 创建了 `rootFiber` 对象
 
-定位到 `packages/react-dom/src/client/ReactDOM.js`
+接下来让我们了解到存在 `root` 以后会发生什么事情，定位到 `packages/react-dom/src/client/ReactDOM.js`
 
-在上一篇文章中，我们介绍了当 `ReactDom.render` 执行时，内部会首先判断是否已经存在 `root`，没有的话会去创建一个 `root`。在今天的文章中，我们将会了解到存在 `root` 以后会发生什么事情。
-
-```jsx
+```ts
 function legacyRenderSubtreeIntoContainer(
   parentComponent: ?React$Component<any, any>,
   children: ReactNodeList,
@@ -27,7 +23,7 @@ function legacyRenderSubtreeIntoContainer(
   let root: Root = (container._reactRootContainer: any)
   if (!root) {
     root = container._reactRootContainer = legacyCreateRootFromDOMContainer(container, forceHydrate)
-    // Initial mount should not be batched. from packages/react-reconciler/src/ReactFiberScheduler.js
+    // unbatchedUpdates -> 不批量更新
     unbatchedUpdates(() => {
       if (parentComponent != null) {
         root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
@@ -36,18 +32,25 @@ function legacyRenderSubtreeIntoContainer(
       }
     })
   } else {
-    // Update
-    if (parentComponent != null) {
-      root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
-    } else {
-      root.render(children, callback)
-    }
+    // 有root的情况...
   }
   return getPublicRootInstance(root._internalRoot)
 }
 ```
 
-大家可以看到，在上述的代码中调用了 `unbatchedUpdates` 函数，这个函数涉及到的知识其实在 `React` 中相当重要
+## unbatchedUpdates
+
+创建好 `root` 对象后，调用了 `unbatchedUpdates` 函数，这个函数涉及到的知识其实在 `React` 中相当重要。
+
+```ts
+unbatchedUpdates(() => {
+  if (parentComponent != null) {
+    root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
+  } else {
+    root.render(children, callback)
+  }
+})
+```
 
 大家都知道多个 `setState` 一起执行，并不会触发 `React` 的多次渲染。
 
@@ -74,15 +77,15 @@ if (parentComponent != null) {
 
 然后在 `unbatchedUpdates` 回调内部判断是否存在 `parentComponent`。这一步我们可以假定不会存在 `parentComponent`，因为很少有人会在 `root` 外部加上 `context` 组件。
 
-不存在 `parentComponent` 的话就会执行 `root.render(children, callback)`，这里的 `render` 指的是 `ReactRoot.prototype.render`。
+不存在 `parentComponent` 的话就会执行 `root.render(children, callback)`，这里的 `render` 方法被挂载到了 `ReactRoot.prototype.render`。
 
 ## ReactRoot.prototype.render
 
 定位到 `packages/react-dom/src/client/ReactDOM.js`
 
-```jsx
+```ts
 ReactRoot.prototype.render = function(children: ReactNodeList, callback: ?() => mixed): Work {
-  const root = this._internalRoot
+  const root = this._internalRoot // 取出 fiberRoot 对象
   const work = new ReactWork()
   callback = callback === undefined ? null : callback
   if (callback !== null) {
@@ -93,12 +96,14 @@ ReactRoot.prototype.render = function(children: ReactNodeList, callback: ?() => 
 }
 ```
 
-1. 在 `render` 函数内部我们首先取出 `root`，这里的 `root` 指的是 `FiberRoot`
+1. 在 `render` 函数内部我们首先取出 `root`，这里的 `root` 指的是 [FiberRoot](/react-code-read/home.html#fiberroot)
 2. 创建 `ReactWork` 的实例，这块内容我们没有必要深究，功能就是为了在组件渲染或更新后把所有传入 `ReactDom.render` 中的回调函数全部执行一遍。
 
 接下来我们来看 `updateContainer` 内部是怎么样的。
 
-### updateContainer
+## updateContainer
+
+`updateContainer` 在这里计算了一个时间，这个时间叫做 `expirationTime`，顾名思义就是这次更新的 **超时时间**。
 
 定位到 `packages/react-reconciler/src/ReactFiberReconciler.js`
 
@@ -131,20 +136,12 @@ function requestCurrentTime() {
     // We're already rendering. Return the most recently read time.
     return currentSchedulerTime
   }
-  // Check if there's pending work.
   findHighestPriorityRoot()
   if (nextFlushedExpirationTime === NoWork || nextFlushedExpirationTime === Never) {
-    // If there's no pending work, or if the pending work is offscreen, we can
-    // read the current time without risk of tearing.
     recomputeCurrentRendererTime()
     currentSchedulerTime = currentRendererTime
     return currentSchedulerTime
   }
-  // There's already pending work. We might be in the middle of a browser
-  // event. If we were to read the current time, it could cause multiple updates
-  // within the same event to receive different expiration times, leading to
-  // tearing. Return the last read time. During the next idle callback, the
-  // time will be updated.
   return currentSchedulerTime
 }
 // 最核心函数
