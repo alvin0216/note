@@ -5,4 +5,4 @@ date: 2019-12-31 10:51:03
 
 ## 高清图
 
-![](../../assets/vim.png)
+![](../../assets/others/vim.png)

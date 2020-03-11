@@ -42,7 +42,7 @@ date: 2020-01-07 21:35:59
 
 我们来看看效果：
 
-![](../../assets/debounce.gif)
+![](../../assets/javascript/debounce.gif)
 
 从左边滑到右边就触发了 165 次函数！
 
@@ -80,7 +80,7 @@ container.onmousemove = debounce(getUserAction, 1000)
 
 现在随你怎么移动，反正你移动完 1000ms 内不再触发，我才执行事件。看看使用效果：
 
-![](../../assets/debounce-1.gif)
+![](../../assets/javascript/debounce-1.gif)
 
 顿时就从 165 次降低成了 1 次!
 
@@ -193,7 +193,7 @@ function debounce(func, wait, immediate) {
 
 再来看看使用效果：
 
-![](../../assets/debounce-4.gif)
+![](../../assets/javascript/debounce-4.gif)
 
 ## 返回值
 
@@ -287,7 +287,7 @@ document.getElementById('button').addEventListener('click', function() {
 
 演示效果如下：
 
-![](../../assets/debounce-cancel.gif)
+![](../../assets/javascript/debounce-cancel.gif)
 
 至此我们已经完整实现了一个 `underscore` 中的 `debounce` 函数，恭喜，撒花！
 

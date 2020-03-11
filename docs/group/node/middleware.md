@@ -77,7 +77,7 @@ app.use((ctx, next) => {
 
 对于 `compose` 也就是 `koa` 的核心思想就是像下面这个图:
 
-![](../../../assets/koa-onion.png)
+![](../../../assets/node/koa-onion.png)
 
 ```js
 function compose(middleware) {
@@ -163,7 +163,7 @@ com('ctx', function() {
 
 如果第一个中间件中没有两次调用 next 函数, 那么正确的结果为 1 2 3 'hey' 4 'ctx'. 对于出错的真正原因是如下图:
 
-![](../../../assets/koa-middleware-demo.png)
+![](../../../assets/node/koa-middleware-demo.png)
 
 在第 5 步中, 传入的 i 值为 1, 因为还是在第一个中间件函数内部, 但是 compose 内部的 index 已经是 3 了, 所以 i < 3, 所以报错了, 可知在一个中间件函数内部不允许多次调用 next 函数.
 
