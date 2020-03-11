@@ -5,7 +5,7 @@ date: 2020-03-06 12:09:21
 
 定位到 `packages/react/src/React.js`
 
-```jsx
+```ts
 const Children = { map, forEach, count, toArray, only }
 export {
   Children,
@@ -50,7 +50,7 @@ React.createElement("div", {  id: "div"},
 
 定位到 `packages/react/src/ReactElement.js`, 我们可以看到 `React.createElement` 的实现函数为
 
-```jsx
+```ts
 /**
  * @param type
  *    指代这个 ReactElement 的类型, 字符串比如 div，p 代表原生 DOM，称为 HostComponent
@@ -100,7 +100,7 @@ export function createElement(type, config, children) {
 
 ### ReactElement
 
-```jsx
+```ts
 const ReactElement = function(type, key, ref, self, source, owner, props) {
   const element = {
     // This tag allows us to uniquely identify this as a React Element
