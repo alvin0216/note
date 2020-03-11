@@ -214,7 +214,7 @@ console.log('server listening on 6061')
 
 `CORS` 接收到此次请求后 ， 首先会判断 `Origin` 是否在允许源（由服务端决定）范围之内，如果验证通过，服务端会在 `Response Header` 添加 `Access-Control-Allow-Origin`、`Access-Control-Allow-Credentials` 等字段。
 
-![](../../../assets/cross-domain/cors-simple.png)
+![](../../../assets/http/cors-simple.png)
 
 #### 其他的字段
 
@@ -299,7 +299,7 @@ console.log('server listening on 6061')
 
 结果如下：
 
-![](../../../assets/cross-domain/cors-not-simple.png)
+![](../../../assets/http/cors-not-simple.png)
 
 #### 预检请求
 
