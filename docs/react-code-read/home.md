@@ -94,6 +94,13 @@ type BaseFiberRootProperties = {|
 
 ### Fiber
 
+什么是 `Fiber`?
+
+1. 每一个 `ReactElement` 对应一个 `Fiber` 对象，用于记录节点的各种状态。
+   - 比如组件的 `props`、`state` 等等都会记录在 `Fiber` 对象当中，`Fiber` 对象更新之后才会更新到各个组件当中！
+2. 串联整个应用形成树结构。`Fiber` 会记录每个节点的应用并且串联起来！
+   - `return` `child` `sibling`。
+
 定位到 `packages/react-reconciler/src/ReactFiber.js`
 
 ```ts
