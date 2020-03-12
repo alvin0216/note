@@ -12,7 +12,7 @@ date: 2020-03-10 09:24:41
 
 接下来让我们了解到存在 `root` 以后会发生什么事情，定位到 `packages/react-dom/src/client/ReactDOM.js`
 
-```ts
+```ts {12,16}
 function legacyRenderSubtreeIntoContainer(
   parentComponent: ?React$Component<any, any>,
   children: ReactNodeList,
@@ -42,16 +42,6 @@ function legacyRenderSubtreeIntoContainer(
 
 创建好 `root` 对象后，调用了 `unbatchedUpdates` 函数，这个函数涉及到的知识其实在 `React` 中相当重要。
 
-```ts
-unbatchedUpdates(() => {
-  if (parentComponent != null) {
-    root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
-  } else {
-    root.render(children, callback)
-  }
-})
-```
-
 大家都知道多个 `setState` 一起执行，并不会触发 `React` 的多次渲染。
 
 ```jsx
@@ -65,13 +55,13 @@ this.setState({ age: 3 })
 
 对于 `root` 来说其实没必要去批量更新，所以这里调用了 `unbatchedUpdates` 函数来告知内部不需要批量更新。
 
-```jsx
+```ts {5}
 unbatchedUpdates(() => {
-if (parentComponent != null) {
-  root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
-} else {
-  // ReactRoot.prototype.render
-  root.render(children, callback)
+  if (parentComponent != null) {
+    root.legacy_renderSubtreeIntoContainer(parentComponent, children, callback)
+  } else {
+    root.render(children, callback)
+  }
 })
 ```
 
@@ -80,6 +70,45 @@ if (parentComponent != null) {
 不存在 `parentComponent` 的话就会执行 `root.render(children, callback)`，这里的 `render` 方法被挂载到了 `ReactRoot.prototype.render`。
 
 ## ReactRoot.prototype.render
+
+```ts {10,22,23,24}
+ReactRoot.prototype.render = function(
+  children: ReactNodeList,
+  callback: ?() => mixed,
+): Work {
+  const root = this._internalRoot
+  const work = new ReactWork()
+  if (callback !== null) {
+    work.then(callback)
+  }
+  updateContainer(children, root, null, work._onCommit) // 调用 updateContainer
+  return work
+}
+
+// packages/react-reconciler/src/ReactFiberReconciler.js
+export function updateContainer(
+  element: ReactNodeList,
+  container: OpaqueRoot,
+  parentComponent: ?React$Component<any, any>,
+  callback: ?Function
+): ExpirationTime {
+  const current = container.current
+  const currentTime = requestCurrentTime()
+  const expirationTime = computeExpirationForFiber(currentTime, current)
+  return updateContainerAtExpirationTime(element, container, parentComponent, expirationTime, callback)
+}
+```
+
+1. 在 `render` 函数内部我们首先取出 `root`，这里的 `root` 指的是 [FiberRoot](/react-code-read/home.html#fiberroot)
+2. 创建 `ReactWork` 的实例，这块内容我们没有必要深究，功能就是为了在组件渲染或更新后把所有传入 `ReactDom.render` 中的回调函数全部执行一遍。
+
+::: tip
+在 `updateContainer` 中可以看到我们计算出了两个时间 `currentTime` 和 `expirationTime` (**超时时间**)。这都和任务的优先级息息相关。
+
+现在我们只需要知道 **`expirationTime`，这个时间和优先级有关，值越大，优先级越高。并且同步是优先级最高的**， 具体的计算方式我们后面再讲。
+:::
+
+<!-- ## ReactRoot.prototype.render
 
 定位到 `packages/react-dom/src/client/ReactDOM.js`
 
@@ -391,4 +420,4 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
 
 ## 总结
 
-![](../../assets/react/render2.png)
+![](../../assets/react/render2.png) -->

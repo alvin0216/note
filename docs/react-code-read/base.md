@@ -3,6 +3,12 @@ title: React 原理解析 - API 及其他
 date: 2020-03-06 12:09:21
 ---
 
+## 前言
+
+::: tip
+这一章节可以跳过，直接看下一章节。这里主要讲了 React 部分 API 的知识
+:::
+
 定位到 `packages/react/src/React.js`
 
 ```ts
@@ -168,7 +174,7 @@ React.Children.map(this.props.children, c => [[c, c]])
 
 接下里我们进入正题，来看看 `mapChildren` 内部到底是如何实现的。
 
-```jsx
+```jsx {16,17,18}
 // packages/react/src/ReactChildren.js
 function mapChildren(children, func, context) {
   if (children == null) {

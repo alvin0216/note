@@ -30,7 +30,7 @@ ReactDOM.render(<APP />, document.getElementById('root')
 
 定位到 `packages/react-dom/src/client/ReactDOM.js`
 
-```ts
+```ts {7,25}
 render(
   element: React$Element<any>,
   container: DOMContainer, // 挂载到哪个 dom 节点
@@ -84,7 +84,7 @@ function legacyRenderSubtreeIntoContainer(
 
 创建 `ReactRoot` 的时候会调用 `createContainer` 创建 [FiberRoot](/react-code-read/home.html#fiberroot)，在后期调度更新的过程中这个节点非常重要 这两个数据结构看[这里](/react-code-read/home.html#fiberroot)
 
-```ts
+```ts {16,21,27}
 function legacyCreateRootFromDOMContainer(container, forceHydrate) {
   // SSR 相关
   const shouldHydrate = forceHydrate || shouldHydrateDueToLegacyHeuristic(container)
@@ -143,7 +143,7 @@ document.getElementById('root')._reactRootContainer
 
 定位到 `packages/react-reconciler/src/ReactFiberRoot.js`
 
-```ts
+```ts {2}
 export function createFiberRoot(containerInfo, isConcurrent, hydrate) {
   const uninitializedFiber = createHostRootFiber(isConcurrent)
   let root
@@ -165,7 +165,7 @@ export function createFiberRoot(containerInfo, isConcurrent, hydrate) {
 
 定位到 `packages/react-reconciler/src/ReactFiber.js`
 
-```ts
+```ts {8,12}
 export function createHostRootFiber(isConcurrent: boolean): Fiber {
   let mode = isConcurrent ? ConcurrentMode | StrictMode : NoContext
 
