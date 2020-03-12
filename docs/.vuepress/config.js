@@ -71,7 +71,7 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
-      { text: 'React 原理解析', link: '/react-code-read/base' },
+      { text: 'React 原理解析', link: '/react-code-read/home' },
       { text: 'Node & HTTP', link: '/group/' },
       {
         text: '更多',
