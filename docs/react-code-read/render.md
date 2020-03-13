@@ -81,10 +81,7 @@ function legacyRenderSubtreeIntoContainer(
 
 这部分代码其实没啥好说的，唯一需要注意的是在调用 `legacyRenderSubtreeIntoContainer` 函数时写死了第四个参数 `forceHydrate` 为 `false`。表示的是服务端渲染还是客户端渲染，这里是写死调用了客户端渲染。
 
-接下来进入 `legacyRenderSubtreeIntoContainer` 函数，这部分代码分为两块来讲。
-
-- 第一部分是没有 `root` 之前我们首先需要创建一个 `root`
-- 第二部分是有 `root` 之后的渲染流程
+首先是没有 `root` 因此我们需要创建一个 `root` 对象, 进入 `legacyCreateRootFromDOMContainer(container, forceHydrate)` 方法。
 
 ## ReactRoot 对象
 
