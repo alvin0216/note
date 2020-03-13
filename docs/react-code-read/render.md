@@ -16,7 +16,15 @@ date: 2020-03-06 15:09:21
 2. 创建 `FiberRoot`和 `RootFiber`：这两个有点绕，他们两个是非常非常重要的一个知识点。
 3. 创建更新：应用进入到更新调度的阶段，更新调度是下一章的内容～进入调度之后的后续操作都是由调度器去管理的。
 
-**本章只讲 render 函数中创建 root 的过程，调度更新等请看下一章节。**，
+![](../../assets/react/ReactDOM.render.png)
+
+:::tip
+如上图（如果不清晰请打开新标签页查看，图来自于[合一大师](https://juejin.im/post/5df398f3518825125b21cbd3)）
+
+本章只讲 `render` 函数中创建 `root` 的过程，调度更新等请看下一章节。
+
+也即 `ReactDOM.render` -> `legacyRenderSubtreeIntoContainer` -> `legacyCreateRootFromDOMContainer` -> `createContainer` -> `createFiberRoot` 的过程
+:::
 
 ## ReactDOM.render
 
