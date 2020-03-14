@@ -219,6 +219,12 @@ type Fiber = {|
 
 ### Update & UpdateQueue
 
+什么是 `Update`？
+
+1. `Update` 用于记录组件状态的改变
+2. 存放在 `UpdateQueue` 中， `UpdateQueue` 是一个单向链表的结构，一次整体的更新过程当中，可能在这个 `Queue` 会存在多个 `Update`, 然后在这次的更新过程当中会根据这些 `Update` 的一个实际的结果然后算出最终的一个新的 `state` 的一个结果。
+3. 多个 `Update` 可以同时存在。比如我们在一个事件里面调用了 3 次 `setState`, 那么这 3 次 `setState` 产生 3 个 `Update` 对象，他们并不会一次 `setState` 就更新整个应用。而是会等 3 个 `setState` 执行完了，3 个 `Update` 创建完放到 `UpdateQueue` 里面，然后再进行更新操作。
+
 ```ts {22}
 export type Update<State> = {
   // 更新的过期时间

@@ -121,7 +121,7 @@ export function updateContainerAtExpirationTime(
   expirationTime: ExpirationTime,
   callback: ?Function,
 ) {
-  const current = container.current
+  const current = container.current // Fiber 对象
 
   const context = getContextForSubtree(parentComponent)
   if (container.context === null) {
@@ -157,25 +157,38 @@ function scheduleRootUpdate(
 
 首先要生成一个 [update](/react-code-read/home.html#update-updatequeue)，不管你是 `setState` 还是`ReactDOM.render` 造成的 `React` 更新，都会生成一个叫 [update](/react-code-read/home.html#update-updatequeue) 的对象，并且会赋值给 `Fiber.updateQueue`
 
-```jsx
-// update 对象的内部属性
-expirationTime: expirationTime,
-tag: UpdateState,
-// setState 的第一二个参数
-payload: null,
-callback: null,
-// 用于在队列中找到下一个节点
-next: null,
-nextEffect: null,
+```ts
+export function createUpdate(expirationTime: ExpirationTime): Update<*> {
+  return {
+    expirationTime: expirationTime, // 对应本次创建更新的一个过期时间
+
+    tag: UpdateState,
+    payload: null,
+    callback: null,
+
+    next: null,
+    nextEffect: null
+  }
+}
 ```
+
+`createUpdate` `ruturn` 一个 [update](/react-code-read/home.html#update-updatequeue) 对象。
+
+- `expirationTime`: 对应本次创建更新的一个过期时间
+- `tag`: 指定更新类型，分别对应 `UpdateState = 0` `ReplaceState = 1` `ForceUpdate = 2` `CaptureUpdate = 3`
+  - `CaptureUpdate`: 捕获更新 用于 [ErrorBoundary](https://reactjs.org/docs/error-boundaries.html)
+- `payload`: 对应实际执行的操作内容。比如 `setState` 接收的第一个参数
+- `next`: 指向下一个 `update`, `Update` 存放在 `UpdateQueue` 中， `UpdateQueue` 是一个单向链表的结构, 每个 `update` 都有一个 `next`.
+  - 在 [updatequeue](/react-code-read/home.html#update-updatequeue) 存在 `firstUpdate` `lastUpdate` 它记录的是单向链表的开头和结尾。这中间都是通过 `next` 一一串联起来的。把整个单链表结构连接起来！
 
 ## enqueueUpdate
 
-然后我们将刚才创建出来的 `update` 对象插入队列中，`enqueueUpdate` 函数内部分支较多且代码简单，函数核心作用就是创建或者获取一个队列，然后把 `update` 对象入队。
+然后我们将刚才创建出来的 `update` 对象插入队列中，`enqueueUpdate` 函数核心作用就是创建或者获取一个队列，然后把 `update` 对象入队。
 
-```ts
+```ts {7,36,38}
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
-  // Update queues are created lazily.
+  // 在Fiber树更新的过程中，每个Fiber都会有一个跟其对应的Fiber 我们称他为`current <==> workInProgress`
+  // 在渲染完成之后他们会交换位置
   const alternate = fiber.alternate
   let queue1
   let queue2
@@ -228,7 +241,35 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
     }
   }
 }
+
+export function createUpdateQueue<State>(baseState: State): UpdateQueue<State> {
+  const queue: UpdateQueue<State> = {
+    baseState,
+    firstUpdate: null,
+    lastUpdate: null,
+    firstCapturedUpdate: null,
+    lastCapturedUpdate: null,
+    firstEffect: null,
+    lastEffect: null,
+    firstCapturedEffect: null,
+    lastCapturedEffect: null
+  }
+  return queue
+}
+
+function appendUpdateToQueue<State>(queue: UpdateQueue<State>, update: Update<State>) {
+  // Append the update to the end of the list.
+  if (queue.lastUpdate === null) {
+    // Queue is empty
+    queue.firstUpdate = queue.lastUpdate = update
+  } else {
+    queue.lastUpdate.next = update
+    queue.lastUpdate = update
+  }
+}
 ```
+
+第一次 `render` 后 `alternate === null`
 
 ## scheduleWork
 
