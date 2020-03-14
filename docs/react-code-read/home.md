@@ -103,6 +103,8 @@ type BaseFiberRootProperties = {|
 2. 串联整个应用形成树结构。`Fiber` 会记录每个节点的应用并且串联起来！
    - `return` `child` `sibling`。
 
+通过 `Fiber` 我们能够将 JS 渲染的这样一个单线程语言，能够让他表现为一个多线程。在计算机厘面，无非是时间和空间上面，他们两者之间的一个妥协，舍弃时间去换取空间，使用更大的空间换取时间，这就是它的一个思路，一个实现，当然这里面借助了链表、树这些数据结构。
+
 定位到 `packages/react-reconciler/src/ReactFiber.js`
 
 ```ts
@@ -262,4 +264,36 @@ export type UpdateQueue<State> = {
   firstCapturedEffect: Update<State> | null
   lastCapturedEffect: Update<State> | null
 }
+```
+
+### effectTags
+
+React 的一个精妙的设定就是它对类型的指定，它使用的是二进制，然后按二进制的按位与、按位或这样的一个操作来去取得它最终的一个渲染类型。
+
+```ts
+export type SideEffectTag = number
+
+// Don't change these two values. They're used by React Dev Tools.
+export const NoEffect = /*              */ 0b00000000000
+export const PerformedWork = /*         */ 0b00000000001
+
+// You can change the rest (and add more).
+export const Placement = /*             */ 0b00000000010
+export const Update = /*                */ 0b00000000100
+export const PlacementAndUpdate = /*    */ 0b00000000110
+export const Deletion = /*              */ 0b00000001000
+export const ContentReset = /*          */ 0b00000010000
+export const Callback = /*              */ 0b00000100000
+export const DidCapture = /*            */ 0b00001000000
+export const Ref = /*                   */ 0b00010000000
+export const Snapshot = /*              */ 0b00100000000
+
+// Update & Callback & Ref & Snapshot
+export const LifecycleEffectMask = /*   */ 0b00110100100
+
+// Union of all host effects
+export const HostEffectMask = /*        */ 0b00111111111
+
+export const Incomplete = /*            */ 0b01000000000
+export const ShouldCapture = /*         */ 0b10000000000
 ```

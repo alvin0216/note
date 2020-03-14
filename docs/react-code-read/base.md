@@ -85,7 +85,7 @@ if (ctor.prototype && ctor.prototype.isPureReactComponent) {
 }
 ```
 
-在这里进行了浅对比。
+在这里进行了浅对比。**React 中对比一个 ClassComponent 是否需要更新，只有两个地方。一是看有没有 shouldComponentUpdate 方法，二就是这里的 PureComponent 判断**
 
 ## React.createElement
 
