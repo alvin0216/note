@@ -42,6 +42,8 @@ function Component(props, context, updater) {
   this.updater = updater || ReactNoopUpdateQueue
 }
 
+Component.prototype.isReactComponent = {}
+
 Component.prototype.setState = function(partialState, callback) {
   this.updater.enqueueSetState(this, partialState, callback, 'setState')
 }
@@ -73,7 +75,17 @@ Object.assign(pureComponentPrototype, Component.prototype)
 pureComponentPrototype.isPureReactComponent = true
 ```
 
-`PureComponent` 继承自 `Component`，继承方法使用了很典型的寄生组合式。
+`PureComponent` 继承自 `Component`，继承方法使用了很典型的寄生组合式。在 `PureComponent` 上我们还挂载了一个标示 `isPureReactComponent`. 这是用于判断是否为 `PureComponent`
+
+定位到 `packages/react-reconciler/src/ReactFiberClassComponent.js`
+
+```ts
+if (ctor.prototype && ctor.prototype.isPureReactComponent) {
+  return !shallowEqual(oldProps, newProps) || !shallowEqual(oldState, newState)
+}
+```
+
+在这里进行了浅对比。
 
 ## React.createElement
 
