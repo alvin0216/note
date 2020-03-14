@@ -185,7 +185,7 @@ export function createUpdate(expirationTime: ExpirationTime): Update<*> {
 
 然后我们将刚才创建出来的 `update` 对象插入队列中，`enqueueUpdate` 函数核心作用就是创建或者获取一个队列，然后把 `update` 对象入队。
 
-```ts {7,36,38}
+```ts {12,36,38}
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
   // 在Fiber树更新的过程中，每个Fiber都会有一个跟其对应的Fiber 我们称他为`current <==> workInProgress`
   // 在渲染完成之后他们会交换位置
@@ -241,6 +241,16 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
     }
   }
 }
+```
+
+先判断 `alternate` 是否存在, 第一次 `render` 后 `alternate === null` 执行
+
+```ts
+queue1 = fiber.updateQueue
+queue2 = null // queue 不存在 则为 null
+if (queue1 === null) {
+  queue1 = fiber.updateQueue = createUpdateQueue(fiber.memoizedState)
+}
 
 export function createUpdateQueue<State>(baseState: State): UpdateQueue<State> {
   const queue: UpdateQueue<State> = {
@@ -256,7 +266,13 @@ export function createUpdateQueue<State>(baseState: State): UpdateQueue<State> {
   }
   return queue
 }
+```
 
+`createUpdateQueue` 非常简单, 就是把所有的属性置为 `null` ，然后 `return`, 因为后续的操作需要在创建之后在这个对象上进行操作。
+
+第一次渲染，`queue`等于 `null` 执行 `appendUpdateToQueue(queue1, update)`
+
+```ts
 function appendUpdateToQueue<State>(queue: UpdateQueue<State>, update: Update<State>) {
   // Append the update to the end of the list.
   if (queue.lastUpdate === null) {
@@ -269,7 +285,8 @@ function appendUpdateToQueue<State>(queue: UpdateQueue<State>, update: Update<St
 }
 ```
 
-第一次 `render` 后 `alternate === null`
+判断 `lastUpdate` 是否存在。如果不存在 则 `Queue` 为空， `queue` 的 `firstUpdate` `lastUpdate` 都等于这个对象。
+如果 `lastUpdate` 存在， 则当前的 `lastUpdate` 的 `next` 指向这次 `update`。
 
 ## scheduleWork
 
