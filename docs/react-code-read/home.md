@@ -13,11 +13,13 @@ date: 2020-03-06 12:08:21
 
 > 阅读源码并不只是让你深入的理解一个框架的运作原理，更能让你在一些实现方案上学习到一些更优的方法
 
-## React 的调度过程
+## 流程图概览
+
+### React 的调度过程
 
 ![](../../assets/react/scheduler-fiber-scheduler.png)
 
-## React 的渲染更新的过程
+### React 的渲染更新的过程
 
 ![](../../assets/react/scheduler-render-root.png)
 

@@ -1,13 +1,11 @@
 ---
-title: React 原理解析 - API 及其他
+title: React 原理解析 - 基础
 date: 2020-03-06 12:09:21
 ---
 
 ## 前言
 
-::: tip
-这一章节可以跳过，直接看下一章节。这里主要讲了 React 部分 API 的知识
-:::
+**这一章节主要讲 React 的值得一讲的 API 和类方法， 比如 createElement、Children、Component 等等。**
 
 定位到 `packages/react/src/React.js`
 
@@ -26,48 +24,78 @@ export {
 }
 ```
 
-这里可以看到 `React` 导出了一系列的 `API` 和类，`Children`、`createRef`, `Component`...。。
+这里可以看到 `React` 导出了一系列的 `API` 和类，`Children`、`createRef`, `Component`等。
 
-让我们先看看 `React.createElement`
+先让我们看看我们最熟悉的类 `Component` & `PureComponent`
+
+## Component & PureComponent
+
+定位到 `packages/react/src/ReactBaseClasses.js`
+
+**Component**
+
+```ts
+function Component(props, context, updater) {
+  this.props = props
+  this.context = context
+  this.refs = emptyObject
+  this.updater = updater || ReactNoopUpdateQueue
+}
+
+Component.prototype.setState = function(partialState, callback) {
+  this.updater.enqueueSetState(this, partialState, callback, 'setState')
+}
+
+Component.prototype.forceUpdate = function(callback) {
+  this.updater.enqueueForceUpdate(this, callback, 'forceUpdate')
+}
+```
+
+`Component` 很简单，定义了 `props`、`context`、`refs` 还定义了 [updater](/react-code-read/home.html#update-updatequeue)
+
+另外还在 `prototype` 上挂载了两个熟知的方法 `setState` `forceUpdate`
+
+**PureComponent**
+
+```ts
+function ComponentDummy() {}
+ComponentDummy.prototype = Component.prototype
+
+function PureComponent(props, context, updater) {
+  this.props = props
+  this.context = context
+  this.refs = emptyObject
+  this.updater = updater || ReactNoopUpdateQueue
+}
+const pureComponentPrototype = (PureComponent.prototype = new ComponentDummy())
+pureComponentPrototype.constructor = PureComponent
+Object.assign(pureComponentPrototype, Component.prototype)
+pureComponentPrototype.isPureReactComponent = true
+```
+
+`PureComponent` 继承自 `Component`，继承方法使用了很典型的寄生组合式。
 
 ## React.createElement
 
-大家在写 `React` 代码的时候肯定写过 `JSX`，但是为什么一旦使用 JSX 就必须引入 `React` 呢？
+任何 `jsx` 语法都会被 `Babel` 编译为 `React.createElement` 来创建相应的 `ReactElement`。
 
-这是因为我们的 `JSX` 代码会被 `Babel` 编译为 `React.createElement` 来创建相应的 `ReactElement`，不引入 `React` 的话就不能使用 `React.createElement` 了。
+这也是为什么我们在写 `jsx` 的时候必须加上 `import React from 'react'` 的原因，否则会报错。
 
 ```jsx
 // jsx
-<div id='app'>content</div>
+;<div id='app'>content</div>
 
 // babel 会转义为
 React.createElement('div', { id: 'app' }, 'content')
-
-<div id='div'>
-  <span>hello</span>
-  <span>world</span>
-</div>
-
-// babel 会转义为
-React.createElement("div", {  id: "div"},
-  React.createElement("span", null, "hello"),
-  React.createElement("span", null, "world"))
 ```
 
 定位到 `packages/react/src/ReactElement.js`, 我们可以看到 `React.createElement` 的实现函数为
 
 ```ts
-/**
- * @param type
- *    指代这个 ReactElement 的类型, 字符串比如 div，p 代表原生 DOM，称为 HostComponent
- *    Class类型是我们继承自Component或者PureComponent的组件，称为ClassComponent
- *    方法就是functional Component
- *    原生提供的Fragment、AsyncMode等是Symbol，会被特殊处理
- *
- *
- */
 export function createElement(type, config, children) {
+  // 遍历 config 并把内建的几个属性 剔除 ref key 后将属性值赋予 props
   if (config != null) {
+    // 验证是否有 ref  key 单独提取出来
     if (hasValidRef(config)) {
       ref = config.ref
     }
@@ -77,7 +105,7 @@ export function createElement(type, config, children) {
 
     self = config.__self === undefined ? null : config.__self
     source = config.__source === undefined ? null : config.__source
-    // Remaining properties are added to a new props object
+    // 遍历 config 并把内建的几个属性 剔除 ref key 后将属性值赋予 props
     for (propName in config) {
       if (hasOwnProperty.call(config, propName) && !RESERVED_PROPS.hasOwnProperty(propName)) {
         props[propName] = config[propName]
@@ -85,8 +113,9 @@ export function createElement(type, config, children) {
     }
   }
 
-  // 首先把第二个参数之后的参数取出来，然后判断长度是否大于一。
-  // 大于一的话就代表有多个 children，这时候 props.children 会是一个数组，否则的话只是一个对象。
+  // 判断第二个参数之后的参数长度，即 children 长度
+  // 例如 <div>content</div> 会编译为 React.createElement("div", null, "content") length === 1
+  // 例如 <div><span>content</span></div> 会编译为 React.createElement("div", null, React.createElement("span", null, "content"))
   const childrenLength = arguments.length - 2
   if (childrenLength === 1) {
     props.children = children
@@ -102,9 +131,11 @@ export function createElement(type, config, children) {
 }
 ```
 
-> **这段代码对 `ref` 以及 `key` 做了个验证），然后遍历 `config` 并把内建的几个属性（比如 `ref` 和 `key`）剔除后丢到 `props` 对象中。**
+**这段代码对 `ref` 以及 `key` 做了个验证），然后遍历 `config` 并把内建的几个属性（比如 `ref` 和 `key`）剔除后丢到 `props` 对象中**
 
-### ReactElement
+type 指代这个 ReactElement 的类型，config 相当于 props， children 则是编译的组件内部的 children
+
+## ReactElement
 
 ```ts
 const ReactElement = function(type, key, ref, self, source, owner, props) {
