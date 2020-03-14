@@ -105,6 +105,8 @@ export function updateContainer(
 在 `updateContainer` 中可以看到我们计算出了两个时间 `currentTime` 和 `expirationTime` (**超时时间**)。这都和任务的优先级息息相关。
 
 现在我们只需要知道 **`expirationTime`，这个时间和优先级有关，值越大，优先级越高。并且同步是优先级最高的**， 具体的计算方式我们后面再讲。
+
+**我们在计算 expirationTime 的时候如果我们一个操作多次调用 setState，前一次调用和后一次调用即便他们的差距很小，但是他们从毫秒级别来说还是由差距的，计算出得 expirationTime 还是有可能不一样的， 意味着他们的任务优先级不一样，会导致 React 整体的更新执行多次，而导致整个应用的性能下降。**
 :::
 
 ## createUpdate
