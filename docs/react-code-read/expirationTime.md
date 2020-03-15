@@ -9,6 +9,10 @@ date: 2020-03-14 21:31:53
 
 我们在计算 expirationTime 的时候如果我们一个操作多次调用 setState，前一次调用和后一次调用即便他们的差距很小，但是他们从毫秒级别来说还是由差距的，**计算出的 expirationTime 还是有可能不一样的， 意味着他们的任务优先级不一样，会导致 React 整体的更新执行多次，而导致整个应用的性能下降。**
 
+:::tip
+expirationTime 指的就是一个任务的过期时间，React 根据任务的优先级和当前时间来计算出一个任务的执行截止时间。只要这个值比当前时间大就可以一直让 React 延后这个任务的执行，以便让更高优先级的任务执行，但是一旦过了任务的截止时间，就必须让这个任务马上执行。
+:::
+
 我们只需要知道上面一点就行了，具体的计算方式其实就是常量的一个计算方式。如果不想看，请直接阅读下一个章节 [任务调度](./scheduleWork.md)。
 
 > 那么这个时间是如何计算出来的呢？
@@ -222,3 +226,11 @@ export function computeInteractiveExpiration(currentTime: ExpirationTime) {
 现在应该很明白了吧？再解释一下吧：简单来说在这里，最终结果是以 25 为单位向上增加的，比如说我们输入 10002 - 10026 之间，最终得到的结果都是 10525，但是到了 10027 的到的结果就是 10550，这就是除以 25 取整的效果。
 
 另外一个要提的就是 msToExpirationTime 和 expirationTimeToMs 方法，他们是想换转换的关系。**有一点非常重要，那就是用来计算 expirationTime 的 currentTime 是通过 msToExpirationTime(now)得到的，也就是预先处理过的，先处以 10 再加了 2，所以后面计算 expirationTime 要减去 2 也就不奇怪了**
+
+### why
+
+React 这么设计抹相当于抹平了 25ms 内计算过期时间的误差, `LOW_PRIORITY_BATCH_SIZE` `bacth` 对应着 `batchedUpdates` , 这么做也许是为了让非常相近的两次更新得到相同的 `expirationTime`，然后在一次更新中完成，相当于一个自动的 `batchedUpdates`。
+
+finally
+
+![](https://yck-1254263422.cos.ap-shanghai.myqcloud.com/blog/2019-06-01-032003.png)
