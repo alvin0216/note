@@ -293,3 +293,63 @@ function appendUpdateToQueue<State>(queue: UpdateQueue<State>, update: Update<St
 ## scheduleWork
 
 至此，开始任务调度。开始后续的任务调度过程。
+
+## setState & forceUpdate
+
+文末补充 setState & forceUpdate 是如何更新的：
+
+定位到 `packages/react-reconciler/src/ReactFiberExpirationTime.js`
+
+```ts {4,5,6,8,15,16}
+const classComponentUpdater = {
+  isMounted,
+  enqueueSetState(inst, payload, callback) {
+    const fiber = getInstance(inst)
+    const currentTime = requestCurrentTime()
+    const expirationTime = computeExpirationForFiber(currentTime, fiber)
+
+    const update = createUpdate(expirationTime)
+    update.payload = payload
+    if (callback !== undefined && callback !== null) {
+      update.callback = callback
+    }
+
+    flushPassiveEffects()
+    enqueueUpdate(fiber, update)
+    scheduleWork(fiber, expirationTime)
+  },
+  enqueueReplaceState(inst, payload, callback) {
+    const fiber = getInstance(inst)
+    const currentTime = requestCurrentTime()
+    const expirationTime = computeExpirationForFiber(currentTime, fiber)
+
+    const update = createUpdate(expirationTime)
+    update.tag = ReplaceState
+    update.payload = payload
+
+    if (callback !== undefined && callback !== null) {
+      update.callback = callback
+    }
+
+    flushPassiveEffects()
+    enqueueUpdate(fiber, update)
+    scheduleWork(fiber, expirationTime)
+  },
+  enqueueForceUpdate(inst, callback) {
+    const fiber = getInstance(inst)
+    const currentTime = requestCurrentTime()
+    const expirationTime = computeExpirationForFiber(currentTime, fiber)
+
+    const update = createUpdate(expirationTime)
+    update.tag = ForceUpdate
+
+    if (callback !== undefined && callback !== null) {
+      update.callback = callback
+    }
+
+    flushPassiveEffects()
+    enqueueUpdate(fiber, update)
+    scheduleWork(fiber, expirationTime)
+  }
+}
+```
