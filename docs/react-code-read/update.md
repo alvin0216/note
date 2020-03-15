@@ -98,7 +98,7 @@ export function updateContainer(
 }
 ```
 
-1. 在 `render` 函数内部我们首先取出 `root`，这里的 `root` 指的是 [FiberRoot](/react-code-read/home.html#fiberroot)
+1. 在 `render` 函数内部我们首先取出 `root`，这里的 `root` 指的是 [FiberRoot](./home.md#fiberroot)
 2. 创建 `ReactWork` 的实例，这块内容我们没有必要深究，功能就是为了在组件渲染或更新后把所有传入 `ReactDom.render` 中的回调函数全部执行一遍。
 
 ::: tip
@@ -157,7 +157,7 @@ function scheduleRootUpdate(
 }
 ```
 
-首先要生成一个 [update](/react-code-read/home.html#update-updatequeue)，不管你是 `setState` 还是`ReactDOM.render` 造成的 `React` 更新，都会生成一个叫 [update](/react-code-read/home.html#update-updatequeue) 的对象，并且会赋值给 `Fiber.updateQueue`
+首先要生成一个 [update](./home.md#update-updatequeue)，不管你是 `setState` 还是`ReactDOM.render` 造成的 `React` 更新，都会生成一个叫 [update](./home.md#update-updatequeue) 的对象，并且会赋值给 `Fiber.updateQueue`
 
 ```ts
 export function createUpdate(expirationTime: ExpirationTime): Update<*> {
@@ -174,14 +174,14 @@ export function createUpdate(expirationTime: ExpirationTime): Update<*> {
 }
 ```
 
-`createUpdate` `ruturn` 一个 [update](/react-code-read/home.html#update-updatequeue) 对象。
+`createUpdate` `ruturn` 一个 [update](./home.md#update-updatequeue) 对象。
 
 - `expirationTime`: 对应本次创建更新的一个过期时间
 - `tag`: 指定更新类型，分别对应 `UpdateState = 0` `ReplaceState = 1` `ForceUpdate = 2` `CaptureUpdate = 3`
   - `CaptureUpdate`: 捕获更新 用于 [ErrorBoundary](https://reactjs.org/docs/error-boundaries.html)
 - `payload`: 对应实际执行的操作内容。比如 `setState` 接收的第一个参数
 - `next`: 指向下一个 `update`, `Update` 存放在 `UpdateQueue` 中， `UpdateQueue` 是一个单向链表的结构, 每个 `update` 都有一个 `next`.
-  - 在 [updatequeue](/react-code-read/home.html#update-updatequeue) 存在 `firstUpdate` `lastUpdate` 它记录的是单向链表的开头和结尾。这中间都是通过 `next` 一一串联起来的。把整个单链表结构连接起来！
+  - 在 [updatequeue](./home.md#update-updatequeue) 存在 `firstUpdate` `lastUpdate` 它记录的是单向链表的开头和结尾。这中间都是通过 `next` 一一串联起来的。把整个单链表结构连接起来！
 
 ## enqueueUpdate
 

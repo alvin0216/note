@@ -53,7 +53,7 @@ Component.prototype.forceUpdate = function(callback) {
 }
 ```
 
-`Component` 很简单，定义了 `props`、`context`、`refs` 还定义了 [updater](/react-code-read/home.html#update-updatequeue)
+`Component` 很简单，定义了 `props`、`context`、`refs` 还定义了 [updater](./home.md#update-updatequeue)
 
 另外还在 `prototype` 上挂载了两个熟知的方法 `setState` `forceUpdate`
 

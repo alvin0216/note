@@ -87,7 +87,7 @@ function legacyRenderSubtreeIntoContainer(
 
 > 一开始进来函数的时候肯定是没有 root 的，因此我们需要去创建一个 root。
 
-创建 `ReactRoot` 的时候会调用 `createContainer` 创建 [FiberRoot](/react-code-read/home.html#fiberroot)，在后期调度更新的过程中这个节点非常重要 这两个数据结构看[这里](/react-code-read/home.html#fiberroot)
+创建 `ReactRoot` 的时候会调用 `createContainer` 创建 [FiberRoot](./home.md#fiberroot)，在后期调度更新的过程中这个节点非常重要 这两个数据结构看[这里](./home.md#fiberroot)
 
 ```ts {16,21,27}
 function legacyCreateRootFromDOMContainer(container, forceHydrate) {
@@ -130,7 +130,7 @@ function ReactRoot(container, isConcurrent, hydrate) {
 }
 ```
 
-在 `ReactRoot` 构造函数内部就进行了一步操作，那就是创建了一个 [FiberRoot](/react-code-read/home.html#fiberroot) 对象，并挂载到了 `_internalRoot` 上。
+在 `ReactRoot` 构造函数内部就进行了一步操作，那就是创建了一个 [FiberRoot](./home.md#fiberroot) 对象，并挂载到了 `_internalRoot` 上。
 
 大家可以发现这个 `root` 对象同样也被挂载在了 `container._reactRootContainer` 上，也就是我们的 `DOM` 容器上。
 如果你手边有 `React` 项目的话，在控制台键入如下代码就可以看到这个 `root` 对象了。
@@ -164,7 +164,7 @@ export function createFiberRoot(containerInfo, isConcurrent, hydrate) {
 }
 ```
 
-在 `createFiberRoot` 函数内部，分别创建了两个 `root`，一个 `root` 叫做 [FiberRoot](/react-code-read/home.html#fiberroot)，另一个 `root` 叫做 [RootFiber](/react-code-read/home.html#fiber)，并且它们两者还是相互引用的。
+在 `createFiberRoot` 函数内部，分别创建了两个 `root`，一个 `root` 叫做 [FiberRoot](./home.md#fiberroot)，另一个 `root` 叫做 [RootFiber](./home.md#fiber)，并且它们两者还是相互引用的。
 
 ### createHostRootFiber
 
