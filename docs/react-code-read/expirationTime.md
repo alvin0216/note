@@ -21,13 +21,16 @@ date: 2020-03-14 21:31:53
 
 ## requestCurrentTime
 
-`requestCurrentTime` 初始化时:
+:::tip
+**`requestCurrentTime` 初始化时（大体流程）:**
 
-1. 初始化时间 - react 加载完成的时间点中间的一个间隔。
+1. **初始化时间 - react 加载完成的时间点中间的一个间隔。**
    - `const currentTimeMs = now() - originalStartTimeMs`
-2. 然后经过一些计算得到的一个值。
+2. **然后经过一些计算得到的一个值。**
    - `currentRendererTime = msToExpirationTime(currentTimeMs)`
    - `currentSchedulerTime = currentRendererTime`
+
+:::
 
 定位到 `packages/react-reconciler/src/ReactFiberReconciler.js`
 
@@ -45,9 +48,9 @@ export function updateContainer(
 }
 ```
 
-定位到 `packages/react-reconciler/src/ReactFiberScheduler.js`
+首先是 `currentTime`:
 
-```ts {10,20,28}
+```ts {10}
 let currentRendererTime: ExpirationTime = msToExpirationTime(originalStartTimeMs)
 function requestCurrentTime() {
   // 已经进入到渲染阶段
@@ -63,20 +66,6 @@ function requestCurrentTime() {
   }
   return currentSchedulerTime
 }
-
-let originalStartTimeMs: number = now() // 固定的值 在 react 加载后获取的 now
-function recomputeCurrentRendererTime() {
-  const currentTimeMs = now() - originalStartTimeMs // 从 js 加载完成到现在为止的时间间隔
-  currentRendererTime = msToExpirationTime(currentTimeMs)
-}
-
-// packages/react-reconciler/src/ReactFiberExpirationTime.js
-const UNIT_SIZE = 10
-const MAGIC_NUMBER_OFFSET = MAX_SIGNED_31_BIT_INT - 1
-export function msToExpirationTime(ms: number): ExpirationTime {
-  // Always add an offset so that we don't clash with the magic number for NoWork.
-  return MAGIC_NUMBER_OFFSET - ((ms / UNIT_SIZE) | 0) // | 0 是取整的意思，即去掉余数
-}
 ```
 
 如果一次 `render` 中有个任务进来了我们发现现在正处于 `rendering` 的阶段 直接返回上次 `render` 开始的时间 再去计算 `expirationTime`, 这有什么好处呢！？
@@ -88,3 +77,31 @@ if (isRendering) {
 ```
 
 就是前后计算出来的 `expirationTime` 是一样的，那这个任务就可以即时的提前进行调度，如果不理解，可以认为当前时间到 js 加载完成后的时间差经过一个计算规则算出来的就行了。
+
+### recomputeCurrentRendererTime
+
+在 `requestCurrentTime` 函数内部计算时间的最核心函数是 `recomputeCurrentRendererTime`。
+
+```ts
+function recomputeCurrentRendererTime() {
+  const currentTimeMs = now() - originalStartTimeMs // 从 js 加载完成到现在为止的时间间隔
+  currentRendererTime = msToExpirationTime(currentTimeMs)
+}
+```
+
+`now()`就是 `performance.now()`，如果你不了解这个 API 的话可以阅读下 [相关文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Performance/now)
+
+`originalStartTimeMs` 是 `React` 应用初始化时就会生成的一个变量，值也是 `performance.now()`，并且这个值不会在后期再被改变。那么这两个值相减以后，得到的结果也就是现在离 `React` 应用初始化时经过了多少时间。
+
+然后我们需要把计算出来的值再通过一个公式算一遍，这里的 `| 0` 作用是取整数，也就是说 `16 / 10 | 0 = 1`
+
+```ts
+const UNIT_SIZE = 10
+const MAGIC_NUMBER_OFFSET = MAX_SIGNED_31_BIT_INT - 1
+export function msToExpirationTime(ms: number): ExpirationTime {
+  // Always add an offset so that we don't clash with the magic number for NoWork.
+  return MAGIC_NUMBER_OFFSET - ((ms / UNIT_SIZE) | 0) // | 0 是取整的意思，即去掉余数
+}
+```
+
+## expirationTime
