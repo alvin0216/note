@@ -30,7 +30,7 @@ export default {
           let parent = img[i].parentNode
           parent.appendChild(a)
           let src = img[i].getAttribute('src')
-          a.setAttribute('data-fancybox', '')
+          a.setAttribute('data-fancybox', 'images')
           a.setAttribute('href', src)
           a.appendChild(img[i])
         }
@@ -47,9 +47,10 @@ export default {
 </script>
 
 <style lang="stylus">
-@require '../styles/wrapper.styl'
+@require '../styles/wrapper.styl';
 
-.page
-  padding-bottom 2rem
-  display block
+.page {
+  padding-bottom: 2rem;
+  display: block;
+}
 </style>
