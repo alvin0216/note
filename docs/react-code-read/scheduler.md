@@ -49,3 +49,7 @@ React 实现调度主要靠两块内容：
 9. `deadline` 超出之后，循环跳出到 `scheduleCallbackWithExpirationTime` 再次进入调度，把 `JavaScript` 执行权交给浏览器先执行动画或者用户的响应。等空出时间，在执行任务调度。最终达到的目的是把所有 root 节点的更新执行完毕为止。
 
 :::
+
+## 进入调度 scheduleWork
+
+在调度前我们先举个例子：
