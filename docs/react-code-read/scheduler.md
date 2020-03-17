@@ -50,6 +50,55 @@ React 实现调度主要靠两块内容：
 
 :::
 
-## 进入调度 scheduleWork
+## 组件进行调度的例子
 
-在调度前我们先举个例子：
+![](../../assets/react/demo.jpg)
+
+点击 `button` 在 `List` 组件进行 `setState`， 而最终加入调度的是对应的 `rootFiber` 对象！
+
+::: details 代码详情
+
+```jsx
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Input />
+        <List />
+      </div>
+    )
+  }
+}
+
+class Input extends Component {
+  render() {
+    return <input type='text' />
+  }
+}
+
+class List extends Component {
+  state = { x: 0, y: 0, z: 0 }
+  render() {
+    const { x, y, z } = this.state
+    return (
+      <>
+        <span>{x}</span>
+        <span>{y}</span>
+        <span>{z}</span>
+        <button
+          onClick={e => {
+            this.setState(prev => ({
+              x: prev.x + 1,
+              y: prev.y + 1,
+              z: prev.z + 1
+            }))
+          }}>
+          onClick
+        </button>
+      </>
+    )
+  }
+}
+```
+
+:::
