@@ -59,7 +59,7 @@ module.exports = {
         {
           title: 'React 原理解析',
           collapsable: false,
-          children: ['home', 'base', 'render', 'update', 'expirationTime', 'scheduleWork']
+          children: ['home', 'base', 'render', 'update', 'expirationTime', 'scheduler', 'scheduleWork']
         }
       ],
 

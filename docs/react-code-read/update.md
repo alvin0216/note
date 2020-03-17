@@ -187,6 +187,8 @@ export function createUpdate(expirationTime: ExpirationTime): Update<*> {
 
 然后我们将刚才创建出来的 `update` 对象插入队列中，`enqueueUpdate` 函数核心作用就是创建或者获取一个队列，然后把 `update` 对象入队。
 
+::: details code
+
 ```ts {12,36,38}
 export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
   // 在Fiber树更新的过程中，每个Fiber都会有一个跟其对应的Fiber 我们称他为`current <==> workInProgress`
@@ -245,6 +247,8 @@ export function enqueueUpdate<State>(fiber: Fiber, update: Update<State>) {
 }
 ```
 
+:::
+
 先判断 `alternate` 是否存在, 第一次 `render` 后 `alternate === null` 执行
 
 ```ts
@@ -292,7 +296,7 @@ function appendUpdateToQueue<State>(queue: UpdateQueue<State>, update: Update<St
 
 ## scheduleWork
 
-至此，开始任务调度。开始后续的任务调度过程。
+至此，开始任务调度。开始后续的[任务调度过程](./scheduleWork.md#schedulework)。
 
 ## setState & forceUpdate
 
