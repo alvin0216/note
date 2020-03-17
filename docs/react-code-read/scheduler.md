@@ -54,7 +54,7 @@ React 实现调度主要靠两块内容：
 
 ![](../../assets/react/demo.jpg)
 
-点击 `button` 在 `List` 组件进行 `setState`， 而最终加入调度的是对应的 `rootFiber` 对象！
+点击 `button` 在 `List` 组件进行 `setState`，当前的 `fiber` 为 `List`， 而最终加入调度的是对应的 `rootFiber` 对象！
 
 ::: details 代码详情
 
