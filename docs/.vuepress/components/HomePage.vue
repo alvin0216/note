@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="home-page">
     <div v-for="post of postList" :key="post.path">
       <span class="time">{{ dateFormat(post.frontmatter.date, 'YYYY/MM/DD') }}</span>
       <router-link :to="post.path">{{ post.title || post.path }}</router-link>
@@ -77,6 +77,9 @@ export default {
 </script>
 
 <style lang="css">
+.home-page {
+  height: 100%;
+}
 .time {
   display: inline-block;
   width: 90px;
