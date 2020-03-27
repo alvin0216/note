@@ -68,7 +68,7 @@ module.exports = {
         {
           title: 'HTML & CSS',
           collapsable: false,
-          children: ['BFC']
+          children: ['css-base', 'BFC']
         }
       ]
     },
