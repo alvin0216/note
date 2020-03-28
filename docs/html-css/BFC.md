@@ -9,29 +9,6 @@ date: 2020-03-01 16:42:26
 4. BFC 可以解决什么问题
 5. 这些问题还有其他解决方案吗
 
-本文主题：
-
-- 基本概念： 标准模型 + IE 模型
-- 基本模型和 IE 模型的区别：计算宽度和高度的不同
-- CSS 如何设置这两种模型（由理论转为运用）
-- JS 如何设置、获取盒模型对应的宽和高
-- 实例题（根据盒模型解释边距重叠问题） **拔高性的延伸**
-- BFC （边距重叠解决方案）**面试常考，也容易混淆的题目**
-
-## 盒模型
-
-基本概念
-
-什么是 CSS 盒模型？相信大部分人都能答出这个问题来，那就是 标准模型 + IE 模型
-
-### 标准模型
-
-![](../../assets/html&css/standard-model.png)
-
-### IE 模型
-
-![](../../assets/html&css/ie-model.png)
-
 ## 边距重叠
 
 什么是边距重叠呢?
@@ -112,18 +89,74 @@ date: 2020-03-01 16:42:26
 
 ## BFC
 
-解决上述问题的其中一个办法就是创建 `BFC`。`BFC` 的全称为 `Block Formatting Context`，即块级格式化上下文。
+在进行 css 布局时我们总会遇到各种问题。比如，明明说好每个元素都是一个打包盒，那在打包盒元素外的元素应该不会受到打包盒内的元素影响。
 
-**块格式上下文是页面 CSS 视觉渲染的一部分，用于决定块盒子的布局及浮动相互影响范围的一个区域。**
+理论上讲被包涵在父元素里的子元素是不会影响到父元素旁边的元素，但实际上并不总是如此，比如上面提到的边距重叠问题。那有没有什么办法能**让里面的元素和外部真正隔离开**呢。
+
+BFC 就是用来解决这个问题的。解决上述问题的其中一个办法就是创建 `BFC`。`BFC` 的全称为 `Block Formatting Context`，即块级格式化上下文。
+
+:::tip BFC 的目的
+**形成一个完全独立的空间，让空间中的子元素不会影响到外面的布局。**
+:::
 
 ### BFC 的创建方法
 
-1. 根元素或其它包含它的元素；
-2. 浮动 (元素的 `float` 不为 none)；
-3. 绝对定位元素 (元素的 `position` 为 `absolute` 或 `fixed)`；
-4. 行内块 `inline-blocks`(元素的 `display: inline-block`)；
-5. 表格单元格(元素的 display: table-cell，HTML 表格单元格默认属性)；
-6. `overflow` 的值不为 `visible` 的元素；
-7. 弹性盒 flex boxes (元素的 `display: flex` 或 `inline-flex`)；
+通过为元素设置一些 CSS 属性就能创建 BFC，而最常用的触发规则有 4 种。
 
-但其中，最常见的就是 `overflow:hidden`、`float:left/right`、`position:absolute`。也就是说，每次看到这些属性的时候，就代表了该元素以及创建了一个 `BFC` 了。
+1. `float` 不为 `none`
+2. `position` 不为 `relative` 和 `static`
+3. overflow 为 `auto`、 `scroll` 和 `hidden`
+4. `display` 为 `table-cell` 或 `inline-block`
+
+### 解决高度坍塌问题
+
+第一种可以解决浮动元素令父元素高度坍塌问题。假设页面有一个父元素和几个子元素，这几个子元素都设置为浮动时，就会产生高度坍塌的现象，这是因为浮动的子元素脱离了文档流。
+
+:::details 示例
+
+```html
+<div class="box">
+  <div class="d1"></div>
+  <div class="d2"></div>
+  <div class="d3"></div>
+</div>
+
+<style>
+  .box {
+    width: 500px;
+    background-color: #e7a1c5;
+  }
+  .box div {
+    width: 100px;
+    height: 100px;
+  }
+  .box div.d1 {
+    float: left;
+    background-color: #c8cdf5;
+  }
+  .box div.d2 {
+    float: left;
+    background-color: green;
+  }
+  .box div.d3 {
+    float: right;
+    background-color: red;
+  }
+</style>
+```
+
+![](../../assets/html&css/float2.png)
+
+**解决方案**
+
+```css
+overflow: auto; /* hidden、scroll */
+display: table-cell; /* inline-block table*/ /* ⚠️ flex 布局会让浮动失效 */
+position: fixed; /* absolute */
+```
+
+:::
+
+触发了 BFC 的容器就是页面上的一个完全独立隔离开的容器，容器中的子元素不会影响到容器外的元素。为了保证这个规则，触发了 `BFC` 的父元素在计算高度时，不得不让浮动的子元素参与进来，变相得实现清除内部浮动的目的。
+
+。。。等等
