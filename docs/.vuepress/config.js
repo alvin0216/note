@@ -70,6 +70,14 @@ module.exports = {
           collapsable: false,
           children: ['css-base', 'BFC']
         }
+      ],
+
+      '/http/': [
+        {
+          title: 'HTTP 系列知识',
+          collapsable: false,
+          children: ['1']
+        }
       ]
     },
     // === nav
@@ -86,7 +94,7 @@ module.exports = {
           {
             items: [
               { text: 'HTML & CSS', link: '/html-css/' },
-
+              { text: 'HTTP 系列', link: '/http/' }
             ]
           },
           {
