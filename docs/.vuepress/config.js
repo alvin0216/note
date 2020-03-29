@@ -76,7 +76,7 @@ module.exports = {
         {
           title: 'HTTP 系列知识',
           collapsable: false,
-          children: ['1']
+          children: ['model']
         }
       ]
     },
