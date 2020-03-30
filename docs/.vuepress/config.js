@@ -23,18 +23,18 @@ module.exports = {
       '/question/': ['javascript'],
 
       // node & http
-      '/group/': [
-        {
-          title: 'node',
-          collapsable: true,
-          children: ['node/node-shell', 'node/middleware']
-        },
-        {
-          title: 'HTTP',
-          collapsable: true,
-          children: ['http/cross-domain']
-        }
-      ],
+      // '/group/': [
+      //   {
+      //     title: 'node',
+      //     collapsable: true,
+      //     children: ['node/node-shell', 'node/middleware']
+      //   },
+      //   {
+      //     title: 'HTTP',
+      //     collapsable: true,
+      //     children: ['http/cross-domain']
+      //   }
+      // ],
 
       // js
       '/javascript/': [
@@ -67,7 +67,6 @@ module.exports = {
       '/html-css/': [
         {
           title: 'HTML & CSS',
-          collapsable: false,
           children: ['css-base', 'BFC']
         }
       ],
@@ -75,8 +74,14 @@ module.exports = {
       '/http/': [
         {
           title: 'HTTP 系列知识',
-          collapsable: false,
-          children: ['model', 'handshake']
+          children: ['model', 'handshake', 'cross-domain']
+        }
+      ],
+
+      '/node/': [
+        {
+          title: 'node 系列知识',
+          children: ['node-shell', 'middleware']
         }
       ]
     },
@@ -86,7 +91,8 @@ module.exports = {
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
       { text: 'React 原理解析', link: '/react-code-read/home' },
-      { text: 'Node & HTTP', link: '/group/' },
+      { text: 'HTTP', link: '/http/' },
+      { text: 'NODE', link: '/node/' },
       {
         text: '更多',
         ariaLabel: '了解更多',
@@ -94,7 +100,7 @@ module.exports = {
           {
             items: [
               { text: 'HTML & CSS', link: '/html-css/' },
-              { text: 'HTTP 系列', link: '/http/' }
+              // { text: 'HTTP 系列', link: '/http/' }
             ]
           },
           {
