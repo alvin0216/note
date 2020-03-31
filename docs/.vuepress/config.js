@@ -74,7 +74,7 @@ module.exports = {
       '/http/': [
         {
           title: 'HTTP 系列知识',
-          children: ['model', 'handshake', 'cross-domain']
+          children: ['model', 'handshake', 'cross-domain', 'cache']
         }
       ],
 
