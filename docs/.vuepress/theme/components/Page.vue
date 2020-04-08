@@ -54,7 +54,7 @@ export default {
         if (dom.innerHTML.indexOf('[x]') === 0) {
           dom.innerHTML = dom.innerHTML.replace(
             '[x]',
-            '<input type="checkbox" class="task-list-item-checkbox" checked>'
+            '<input type="checkbox" class="task-list-item-checkbox" disabled checked>'
           )
           dom.setAttribute('class', 'task-list-item')
         }
