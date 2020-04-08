@@ -41,7 +41,7 @@ module.exports = {
         {
           title: 'Javascript',
           collapsable: false,
-          children: ['new', 'bind', 'call-apply', 'this', 'throttle', 'debounce', 'skills']
+          children: ['arraybuffer', 'new', 'bind', 'call-apply', 'this', 'throttle', 'debounce', 'skills']
         }
       ],
 
