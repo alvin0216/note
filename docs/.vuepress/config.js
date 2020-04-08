@@ -67,7 +67,7 @@ module.exports = {
       '/html-css/': [
         {
           title: 'HTML & CSS',
-          children: ['css-base', 'BFC']
+          children: ['file-deal', 'css-base', 'BFC']
         }
       ],
 
@@ -83,11 +83,14 @@ module.exports = {
           title: 'node 系列知识',
           children: ['node-shell', 'middleware']
         }
-      ]
+      ],
+
+      '/schedule/': ['']
     },
     // === nav
     nav: [
       { text: '主页', link: '/' },
+      { text: '学习日程栏', link: '/schedule/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
       { text: 'React 原理解析', link: '/react-code-read/home' },

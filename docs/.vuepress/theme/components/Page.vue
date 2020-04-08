@@ -18,6 +18,16 @@ import PageNav from '@theme/components/PageNav.vue'
 export default {
   components: { PageEdit, PageNav },
   props: ['sidebarItems'],
+  watch: {
+    '$page.path': {
+      handler(path) {
+        if (path === '/schedule/') {
+          setTimeout(() => this.setTodoStyle(), 0)
+        }
+      },
+      deep: true
+    }
+  },
   methods: {
     createEditLink(repo, docsRepo, docsDir, docsBranch, path) {},
 
@@ -35,9 +45,28 @@ export default {
           a.appendChild(img[i])
         }
       }
+    },
+
+    setTodoStyle() {
+      const domList = Array.from(document.querySelectorAll('.page li'))
+      domList.forEach(dom => {
+        if (!dom) return false
+        if (dom.innerHTML.indexOf('[x]') === 0) {
+          dom.innerHTML = dom.innerHTML.replace(
+            '[x]',
+            '<input type="checkbox" class="task-list-item-checkbox" checked>'
+          )
+          dom.setAttribute('class', 'task-list-item')
+        }
+        if (dom.innerHTML.indexOf('[ ]') === 0) {
+          dom.innerHTML = dom.innerHTML.replace('[ ]', '<input type="checkbox" class="task-list-item-checkbox">')
+          dom.setAttribute('class', 'task-list-item')
+        }
+      })
     }
   },
   mounted() {
+    this.setTodoStyle()
     this.setPictureZoom()
   },
   updated() {
@@ -52,5 +81,13 @@ export default {
 .page {
   padding-bottom: 2rem;
   display: block;
+}
+
+.task-list-item {
+  list-style-type: none;
+}
+
+.task-list-item-checkbox {
+  vertical-align: text-top;
 }
 </style>
