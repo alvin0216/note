@@ -22,27 +22,23 @@ module.exports = {
       ],
       '/question/': ['javascript'],
 
-      // node & http
-      // '/group/': [
-      //   {
-      //     title: 'node',
-      //     collapsable: true,
-      //     children: ['node/node-shell', 'node/middleware']
-      //   },
-      //   {
-      //     title: 'HTTP',
-      //     collapsable: true,
-      //     children: ['http/cross-domain']
-      //   }
-      // ],
-
       // js
       '/javascript/': [
         {
-          title: 'Javascript',
+          title: '文件和二进制数据',
           collapsable: false,
-          children: ['arraybuffer', 'new', 'bind', 'call-apply', 'this', 'throttle', 'debounce', 'skills']
-        }
+          children: ['arraybuffer']
+        },
+        {
+          title: '模拟实现系列',
+          collapsable: false,
+          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce']
+        },
+        {
+          title: '其他',
+          collapsable: false,
+          children: ['this', 'skills']
+        },
       ],
 
       // react
