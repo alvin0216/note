@@ -27,7 +27,7 @@ module.exports = {
         {
           title: '文件和二进制数据',
           // collapsable: false,
-          children: ['arraybuffer']
+          children: ['blob', 'arraybuffer']
         },
         {
           title: '模拟实现系列',
