@@ -15,3 +15,5 @@ date: 2019-12-30 09:07:08
 - [ ] [文件和二进制数据的操作](../html-css/file-deal.md)
 
 ### 0409
+
+- [x] 简单了解 [ArrayBuffer 对象](../javascript/arraybuffer.md)

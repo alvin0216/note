@@ -35,6 +35,8 @@ date: 2020-04-08 21:24:27
 const buf = new ArrayBuffer(32)
 ```
 
+![](../../assets/javascript/arraybuffer.png)
+
 上面代码生成了一段 32 字节的内存区域，每个字节的值默认都是 0。可以看到，`ArrayBuffer` 构造函数的参数是所需要的内存大小（单位字节）。
 
 为了读写这段内容，需要为它指定视图。`DataView` 视图的创建，需要提供 `ArrayBuffer` 对象实例作为参数。
@@ -74,7 +76,7 @@ typedArray // [5, 1, 2]
 
 上面代码使用 `TypedArray` 视图的 `Uint8Array` 构造函数，新建一个不带符号的 8 位整数视图。可以看到，`Uint8Array` 直接使用普通数组作为参数，对底层内存的赋值同时完成。
 
-### ArrayBuffer.prototype.byteLength
+- **`ArrayBuffer.prototype.byteLength`**
 
 `ArrayBuffer` 实例的 `byteLength` 属性，返回所分配的内存区域的字节长度。
 
@@ -93,7 +95,7 @@ if (buffer.byteLength === n) {
 }
 ```
 
-### ArrayBuffer.prototype.slice()
+- **`ArrayBuffer.prototype.slice()`**
 
 `ArrayBuffer` 实例有一个 `slice` 方法，允许将内存区域的一部分，拷贝生成一个新的 `ArrayBuffer` 对象。
 
@@ -108,7 +110,7 @@ const newBuffer = buffer.slice(0, 3)
 
 除了 `slice` 方法，`ArrayBuffer` 对象不提供任何直接读写内存的方法，只允许在其上方建立视图，然后通过视图读写。
 
-### ArrayBuffer.isView()
+- **`ArrayBuffer.isView()`**
 
 `ArrayBuffer` 有一个静态方法 `isView`，返回一个布尔值，表示参数是否为 `ArrayBuffer` 的视图实例。这个方法大致相当于判断参数，是否为 `TypedArray` 实例或 `DataView` 实例。
 
@@ -126,71 +128,18 @@ ArrayBuffer.isView(v) // true
 
 `ArrayBuffer` 有两种视图，一种是 `TypedArray` 视图，另一种是 `DataView` 视图。前者的数组成员都是同一个数据类型，后者的数组成员可以是不同的数据类型。
 
-目前，`TypedArray` 视图一共包括 9 种类型，每一种视图都是一种构造函数。
+更多详见 [阮一峰 es6 ArrayBuffer](https://es6.ruanyifeng.com/#docs/arraybuffer)
 
-| 数据类型 | 字节长度 | 含义                             | 对应的 C 语言类型 |
-| -------- | -------- | -------------------------------- | ----------------- |
-| Int8     | 1        | 8 位带符号整数                   | signed char       |
-| Uint8    | 1        | 8 位不带符号整数                 | unsigned char     |
-| Uint8C   | 1        | 8 位不带符号整数（自动过滤溢出） | unsigned char     |
-| Int16    | 2        | 16 位带符号整数                  | short             |
-| Uint16   | 2        | 16 位不带符号整数                | unsigned short    |
-| Int32    | 4        | 32 位带符号整数                  | int               |
-| Uint32   | 4        | 32 位不带符号的整数              | unsigned int      |
-| Float32  | 4        | 32 位浮点数                      | float             |
-| Float64  | 8        | 64 位浮点数                      | double            |
+## DataView 视图
 
-这 9 个构造函数生成的数组，统称为 `TypedArray` 视图。它们很像普通数组，都有 `length` 属性，都能用方括号运算符（[]）获取单个元素，所有数组的方法，在它们上面都能使用。普通数组与 `TypedArray` 数组的差异主要在以下方面。
+如果一段数据包括多种类型（比如服务器传来的 HTTP 数据），这时除了建立 `ArrayBuffer` 对象的复合视图以外，还可以通过 `DataView` 视图进行操作。
 
-- `TypedArray` 数组的所有成员，都是同一种类型。
-- `TypedArray` 数组的成员是连续的，不会有空位。
-- `TypedArray` 数组成员的默认值为 0。比如，new Array(10)返回一个普通数组，里面没有任何成员，只是 10 个空位；new Uint8Array(10)返回一个 - `TypedArray` 数组，里面 10 个成员都是 0。
-- `TypedArray` 数组只是一层视图，本身不储存数据，它的数据都储存在底层的 ArrayBuffer 对象之中，要获取底层对象必须使用 `buffer` 属性。
+`DataView` 视图提供更多操作选项，而且支持设定字节序。本来，在设计目的上，`ArrayBuffer` 对象的各种 TypedArray 视图，是用来向网卡、声卡之类的本机设备传送数据，所以使用本机的字节序就可以了；而 `DataView` 视图的设计目的，是用来处理网络设备传来的数据，所以大端字节序或小端字节序是可以自行设定的。
 
-### 构造函数
-
-`TypedArray` 数组提供 9 种构造函数，用来生成相应类型的数组实例。
-
-#### TypedArray(buffer, byteOffset=0, length?)
-
-同一个 `ArrayBuffer` 对象之上，可以根据不同的数据类型，建立多个视图。
+`DataView` 视图本身也是构造函数，接受一个 `ArrayBuffer` 对象作为参数，生成视图。
 
 ```js
-// 创建一个8字节的ArrayBuffer
-const b = new ArrayBuffer(8)
-
-// 创建一个指向b的Int32视图，开始于字节0，直到缓冲区的末尾
-const v1 = new Int32Array(b)
-
-// 创建一个指向b的Uint8视图，开始于字节2，直到缓冲区的末尾
-const v2 = new Uint8Array(b, 2)
-
-// 创建一个指向b的Int16视图，开始于字节2，长度为2
-const v3 = new Int16Array(b, 2, 2)
+new DataView(ArrayBuffer buffer [, 字节起始位置 [, 长度]]);
 ```
 
-上面代码在一段长度为 8 个字节的内存（`b`）之上，生成了三个视图：`v1`、`v2` 和 `v3`。
-
-视图的构造函数可以接受三个参数：
-
-1. 第一个参数（必需）：视图对应的底层 `ArrayBuffer` 对象。
-2. 第二个参数（可选）：视图开始的字节序号，默认从 0 开始。
-3. 第三个参数（可选）：视图包含的数据个数，默认直到本段内存区域结束。
-
-因此，`v1`、`v2` 和 `v3` 是重叠的：`v1[0]`是一个 32 位整数，指向字节 0 ～字节 3；`v2[0]`是一个 8 位无符号整数，指向字节 2；`v3[0]`是一个 16 位整数，指向字节 2 ～字节 3。只要任何一个视图对内存有所修改，就会在另外两个视图上反应出来。
-
-注意，`byteOffset` 必须与所要建立的数据类型一致，否则会报错。
-
-```js
-const buffer = new ArrayBuffer(8)
-const i16 = new Int16Array(buffer, 1)
-// Uncaught RangeError: start offset of Int16Array should be a multiple of 2
-```
-
-上面代码中，新生成一个 8 个字节的 `ArrayBuffer` 对象，然后在这个对象的第一个字节，建立带符号的 16 位整数视图，结果报错。因为，带符号的 16 位整数需要两个字节，所以 `byteOffset` 参数必须能够被 2 整除。
-
-如果想从任意字节开始解读 `ArrayBuffer` 对象，必须使用 `DataView` 视图，因为 `TypedArray` 视图只提供 9 种固定的解读格式。
-
-# 文末
-
-转自 [阮一峰 es6 ArrayBuffer](https://es6.ruanyifeng.com/#docs/arraybuffer)
+更多详见 [阮一峰 es6 ArrayBuffer](https://es6.ruanyifeng.com/#docs/arraybuffer)

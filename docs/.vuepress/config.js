@@ -26,7 +26,7 @@ module.exports = {
       '/javascript/': [
         {
           title: '文件和二进制数据',
-          collapsable: false,
+          // collapsable: false,
           children: ['arraybuffer']
         },
         {
@@ -36,7 +36,7 @@ module.exports = {
         },
         {
           title: '其他',
-          collapsable: false,
+          // collapsable: false,
           children: ['this', 'skills']
         },
       ],
