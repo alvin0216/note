@@ -12,7 +12,7 @@ date: 2019-12-30 09:07:08
 
 - [x] 搭建 `schedule` 专栏
 - [ ] [ArrayBuffer 对象](../javascript/arraybuffer.md)
-- [ ] [文件和二进制数据的操作](../html-css/file-deal.md)
+- [ ] [Blob 与 FileReader](../javascript/blob.md)
 
 ### 0409
 

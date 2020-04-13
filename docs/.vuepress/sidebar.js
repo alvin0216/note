@@ -13,7 +13,7 @@ module.exports = {
     {
       title: '文件和二进制数据',
       // collapsable: false,
-      children: ['blob', 'large-file-upload', 'arraybuffer']
+      children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
     },
     {
       title: '模拟实现系列',
@@ -49,7 +49,7 @@ module.exports = {
   '/html-css/': [
     {
       title: 'HTML & CSS',
-      children: ['file-deal', 'css-base', 'BFC']
+      children: ['css-base', 'BFC']
     }
   ],
 
