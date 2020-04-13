@@ -17,7 +17,7 @@ module.exports = {
     },
     {
       title: '模拟实现系列',
-      collapsable: false,
+      // collapsable: false,
       children: ['new', 'bind', 'call-apply', 'throttle', 'debounce']
     },
     {
