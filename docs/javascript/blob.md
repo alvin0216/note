@@ -1,9 +1,9 @@
 ---
-title: Blob 与 FileAPI
+title: Blob 与 FileReader
 date: 2020-04-09 22:38:19
 ---
 
-## Blob
+## Blob 基本语法
 
 在一般的 Web 开发中，很少会用到 `Blob`，但 `Blob` 可以满足一些场景下的特殊需求。`Blob`，`Binary Large Object` 的缩写，代表二进制类型的大对象。
 
@@ -13,6 +13,8 @@ date: 2020-04-09 22:38:19
 
 ```js
 Blob(blobParts[, options])
+// example
+let blob = new Blob(['hello world'], { type: 'text/plain' })
 ```
 
 - `blobParts`: 第一个参数，必选，是一个数组。数组中的每一项连接起来构成 `Blob` 对象的数据，数组中的每项元素可以是 `ArrayBuffer`, `ArrayBufferView`, `Blob`, `DOMString` 。
@@ -42,6 +44,8 @@ const b6 = new Blob(['a', 'b']) // Blob {size: 2, type: ""}
 
 ### slice 方法
 
+> `Blob.prototype.slice` 多用于大文件的分片上传。
+
 `Blob` 对象有一个 `slice` 方法，返回一个新的 `Blob` 对象，包含了源 `Blob` 对象中指定范围内的数据。
 
 ```js
@@ -61,7 +65,7 @@ console.log(blob1) //输出：Blob {size: 6, type: ""}
 console.log(blob2) //输出：Blob {size: 3, type: ""}
 ```
 
-## Blob 使用场景
+## Blob 应用场景
 
 ### 文件下载
 
@@ -114,7 +118,7 @@ window.URL.revokeObjectURL(objectURL)
 
 在每次调用 `createObjectURL()` 方法时，都会创建一个新的 `URL` 对象，即使你已经用相同的对象作为参数创建过。当不再需要这些 URL 对象时，每个对象必须通过调用 `URL.revokeObjectURL()` 方法来释放。浏览器会在文档退出的时候自动释放它们，但是为了获得最佳性能和内存使用状况，你应该在安全的时机主动释放掉它们。
 
-### 上传图片预览
+### 上传图片、视频预览
 
 有时我们通过 `input` 上传图片文件之前，会希望可以预览一下图片，这个时候就可以通过前面所学到的东西实现，而且非常简单。
 
@@ -136,7 +140,115 @@ window.URL.revokeObjectURL(objectURL)
 
 这样一个图片上传预览就实现了，同样这个方法也适用于上传视频的预览。
 
-## FileAPI
+### 大文件上传和断点续传
+
+详见 [大文件上传和断点续传](./large-file-upload.md)
+
+## FileReader
+
+> `FileReader` 对象允许 Web 应用程序异步读取存储在用户计算机上的文件或原始数据缓冲区）的内容，使用 `File` 或 `Blob` 对象指定要读取的文件或数据。
+
+其中 `File` 对象可以是来自用户在一个 `input` 元素上选择文件后返回的 `FileList` 对象,也可以来自拖放操作生成的 `DataTransfer` 对象,还可以是来自在一个 `HTMLCanvasElement` 上执行 `mozGetAsFile()`方法后返回结果。
+
+```js
+let reader = new FileReader()
+```
+
+`FileReader` 接口有 4 个方法，其中 3 个用来读取文件，另一个用来中断读取。无论读取成功或失败，方法并不会返回读取结果，这一结果存储在 `result` 属性中。
+
+**方法**
+
+|       方法名       |      参数       |          描述          |
+| :----------------: | :-------------: | :--------------------: |
+| readAsBinaryString |      file       | 将文件读取为二进制编码 |
+|     readAsText     | file,[encoding] |    将文件读取为文本    |
+|   readAsDataURL    |      file       |  将文件读取为 DataURL  |
+|       abort        |     (none)      |      终端读取操作      |
+
+**事件处理程序**
+
+| 事件        | 调用时机                                                                          |
+| ----------- | --------------------------------------------------------------------------------- |
+| onabort     | 当读取操作被中止时调用                                                            |
+| onerror     | 当读取操作发生错误时调用                                                          |
+| onload      | 当读取操作成功完成时调用                                                          |
+| onloadend   | 当读取操作完成时调用,不管是成功还是失败.该处理程序在 onload 或者 onerror 之后调用 |
+| onloadstart | 当读取操作将要开始之前调用                                                        |
+| onprogress  | 在读取数据过程中周期性调用                                                        |
+
+### 读取文本
+
+对于 `type="file"`的 `input` 元素，用户选择文件上传后会生成一个 `FileList` 对象，结构如下：
+
+```json
+{
+  0: {
+    lastModified: 1482289489971，
+    lastModifiedDate: Wed Dec 21 2016 11:04:49 GMT+0800，
+    name: "index.html"，
+    size: 1325，
+    type: "text/html"，
+  },
+  1: {
+    ...
+  },
+  length: 2
+}
+```
+
+我们从中可以获取文件名、修改时间、大小和文件类型等信息，文件内容也是包含在里面的，不过需要 FileReader 的读取文件方法才能获取，对于纯文本，我们使用 `readAsText` 方法，如下：
+
+```js
+//FileReader读取文件内容
+const reader = new FileReader()
+reader.readAsText(files[0], 'UTF-8')
+reader.onload = function(e) {
+  const urlData = this.result // urlData就是对应的文件内容
+}
+```
+
+**代码**
+
+```html
+<input id="upload" type="file" accept="text/javascript, text/plain, application/json" />
+
+<script>
+  const input = document.querySelector('#upload')
+  input.onchange = e => {
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsText(file)
+    reader.onload = function() {
+      console.log(reader.result)
+    }
+  }
+</script>
+```
+
+### 图片预览
+
+`FileReader` 的另一个文件读取方法 `readAsDataURL`，可以将图片文件转换为 `base64` 编码。可以实现本地图片预览。
+
+```html
+<input id="upload" type="file" />
+<img id="preview" src="" alt="预览" />
+<script>
+  const input = document.querySelector('#upload')
+  const img = document.querySelector('#preview')
+  input.onchange = e => {
+    const file = e.target.files[0]
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = function() {
+      img.src = reader.result
+    }
+  }
+</script>
+```
+
+## URL.createObjectURL 和 FileReader 实现图片预览的比较
+
+`readAsDataURL` 将图片文件转换为 `base64` 编码，当文件过大时，生成的 64 位编码过长可能会导致浏览器崩溃。总体来说 `URL.createObjectURL` 更加推荐使用。
 
 ## 参考
 
@@ -146,3 +258,6 @@ window.URL.revokeObjectURL(objectURL)
 - [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)
 - [createObjectURL](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/createObjectURL)
 - [revokeObjectURL](https://developer.mozilla.org/zh-CN/docs/Web/API/URL/revokeObjectURL)
+- [FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
+- [在 web 应用程序中使用文件](https://developer.mozilla.org/zh-CN/docs/Web/API/File/Using_files_from_web_applications)
+- [使用 FileReader 进行文件读取](https://dumengjie.github.io/2017/07/13/%E4%BD%BF%E7%94%A8FileReader%E8%BF%9B%E8%A1%8C%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96)
