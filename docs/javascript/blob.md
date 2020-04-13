@@ -42,7 +42,7 @@ const b6 = new Blob(['a', 'b']) // Blob {size: 2, type: ""}
 
 :::
 
-### slice 方法
+### Blob.prototype.slice <Badge text="大文件上传" type="success"/>
 
 > `Blob.prototype.slice` 多用于大文件的分片上传。
 
