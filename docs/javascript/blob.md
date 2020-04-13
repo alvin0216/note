@@ -7,7 +7,7 @@ date: 2020-04-09 22:38:19
 
 在一般的 Web 开发中，很少会用到 `Blob`，但 `Blob` 可以满足一些场景下的特殊需求。`Blob`，`Binary Large Object` 的缩写，代表二进制类型的大对象。
 
-在 Web 中，`Blob` 类型的对象表示不可变的类似文件对象的原始数据，通俗点说，就是 `Blob` 对象是二进制数据，但它是类似文件对象的二进制数据，因此可以像操作 `File` 对象一样操作 `Blob` 对象，实际上，`File` 继承自 `Blob`。
+> 在 Web 中，`Blob` 类型的对象表示不可变的类似文件对象的原始数据，通俗点说，就是 `Blob` 对象是二进制数据，但它是类似文件对象的二进制数据，因此可以像操作 `File` 对象一样操作 `Blob` 对象，**实际上，`File` 继承自 `Blob`。**
 
 ### 创建 blob 实例
 
@@ -61,3 +61,5 @@ console.log(blob2) //输出：Blob {size: 3, type: ""}
 
 - [blob](https://developer.mozilla.org/zh-CN/docs/Web/API/Blob)
 - [细说 Web API 中的 Blob](https://juejin.im/post/59e35d0e6fb9a045030f1f35)
+- [为什么视频网站的视频链接地址是 blob？](https://juejin.im/post/5d1ea7a8e51d454fd8057bea)
+- [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)
