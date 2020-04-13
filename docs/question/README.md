@@ -4,9 +4,11 @@
 
 以下哪些值是假值
 
-```js
+```ts
 0
-new Number(0)('')(' ')
+new Number(0)
+''
+' '
 new Boolean(false)
 undefined
 ```
@@ -18,9 +20,9 @@ undefined
 
 :::details 答案与解析
 
-> A, `javascript` 中有 6 个假值
-> `undefined` `null` `NaN` `0` `''` `false`
+> A, `javascript`  中有  6  个假值
+>  `undefined` `null` `NaN` `0` `''` `false`
 >
-> 函数构造函数 `new Number` `new Boolean` 都是真值  
+> 函数构造函数  `new Number` `new Boolean`  都是真值
 
 :::
