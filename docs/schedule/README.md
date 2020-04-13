@@ -29,4 +29,4 @@ date: 2019-12-30 09:07:08
 ### 0413
 
 - [x] 完成 [Blob 与 FileReader](../javascript/blob.md)
-- [x] [题 1](../question/README.md#题-1-假值)
+- [x] 30 道基础练习题
