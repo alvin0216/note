@@ -15,21 +15,39 @@ date: 2020-04-13 17:28:17
 
 ### 什么是 multipart/form-data?
 
-> `multipart` 互联网上的混合资源，就是资源由多种元素组成，[form-data](https://developer.mozilla.org/zh-CN/docs/Web/API/FormData) 表示可以使用 `HTML Forms` 和 `POST` 方法上传文件，具体的定义可以参考 RFC 7578。
+> Since file-upload is a feature that will benefit many applications, this proposes an extension to HTML to allow information providers to express file upload requests uniformly, and a MIME compatible representation for file upload responses.
 
-### 请求体
+由于文件上传功能将使许多应用程序受益，因此建议对 `HTML` 进行扩展，以允许信息提供者统一表达文件上传请求，并提供文件上传响应的 `MIME` 兼容表示。
 
-看下 `http` 请求的消息体
+总结就是原先的规范不满足啦，我要扩充规范了。
+
+### 文件上传为什么要用 multipart/form-data？
+
+> The encoding type application/x-www-form-urlencoded is inefficient for sending large quantities of binary data or text containing non-ASCII characters. Thus, a new media type,multipart/form-data, is proposed as a way of efficiently sending the values associated with a filled-out form from client to server.
+
+1867 文档中也写了为什么要新增一个类型，而不使用旧有的 `application/x-www-form-urlencoded`：因为此类型不适合用于传输大型二进制数据或者包含非 `ASCII` 字符的数据。平常我们使用这个类型都是把表单数据使用 `url` 编码后传送给后端，二进制文件当然没办法一起编码进去了。所以 `multipart/form-data` 就诞生了，专门用于有效的传输文件。
+
+#### 也许你有疑问？那可以用 `application/json` 吗?
+
+我们知道了文件是以二进制的形式存在，`application/json` 是以文本形式进行传输，那么某种意义上我们确实可以将文件转成例如文本形式的 `Base64` 形式。但是呢，你转成这样的形式，后端也需要按照你这样传输的形式，做特殊的解析。并且文本在传输过程中是相比二进制效率低的，那么对于我们动辄几十 M 几百 M 的文件来说是速度是更慢的。
+
+### multipart/form-data 规范是什么？
+
+先看看一个文件上传的 `http` 请求了解一下
 
 ![](../../assets/javascript/upload.png)
 
-#### `Request Headers`
+#### 首先是请求体，请求类型为
 
 ```yml
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJT5
 ```
 
-上面的字段表示本次请求要上传文件， 其中 `boundary` 表示分隔符，如果要上传多个表单项，就要使用 `boundary` 分割，每个表单项由`———XXX` 开始，以`———XXX` 结尾。
+请求类型，然后是一个 `boundary` （分割符），这个东西是干啥的呢？
+
+其实看名字就知道，分隔符，当时分割作用，因为可能有多文件多字段，每个字段文件之间，我们无法准确地去判断这个文件哪里到哪里为截止状态。因此需要有分隔符来进行划分。
+
+每个表单项由`———XXX` 开始，以`———XXX` 结尾。
 
 #### 消息体 - `Form Data` 部分
 
@@ -38,7 +56,57 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJ
 - `Content-Disposition`: `form-data` 为固定值，表示一个表单元素，`name` 表示表单元素的 名称，回车换行后面就是 `name` 的值，如果是上传文件就是文件的二进制内容。
 - `Content-Type`：表示当前的内容的 `MIME` 类型，是图片还是文本还是二进制数据。
 
-## 代码
+### 浏览器文件上传总结
+
+对于浏览器端的文件上传，可以归结出一个套路，所有东西核心思路就是构造出 `File` 对象。然后观察请求 `Content-Type`，再看请求体是否有信息缺失。而以上这些二进制数据类型的转化可以看以下表。
+
+![](../../assets/javascript/upload-chart.png)
+
+## form 表单上传文件
+
+```html
+<form method="post" action="http://localhost:8100/upload" enctype="multipart/form-data">
+  <input type="file" name="file" />
+  <!--  input 必须设置 name 属性，否则数据无法发送 -->
+
+  <button type="submit" id="btn-submit">上 传</button>
+</form>
+```
+
+后端代码详见：[服务端接收文件代码](#服务端接收文件代码)
+
+这种方式上传文件，不需要 `js` ，而且没有兼容问题，所有浏览器都支持，就是体验很差，导致页面刷新，页面其他数据丢失。
+
+ps 多文件上传只需要一个标签加个属性就搞定了,file 标签开启 `multiple`。
+
+```html
+<input type="file" name="file" multiple />
+```
+
+## 借助 iframe 实现无刷新上传
+
+页面内放一个隐藏的 `iframe`，或者使用 js 动态创建，指定 `form` 表单的 `target` 属性值为 `iframe` 标签 的 `name` 属性值，这样 `form` 表单的 `shubmit` 行为的跳转就会在 `iframe` 内完成，整体页面不会刷新。
+
+```html
+<form target="upload-iframe" action="http://localhost:8100/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" />
+  <button type="submit" id="btn-submit">上 传</button>
+</form>
+
+<iframe id="upload-iframe" name="upload-iframe" style="display: none;"></iframe>
+
+<script>
+  const iframe = document.getElementById('upload-iframe')
+  iframe.addEventListener('load', function() {
+    const result = iframe.contentWindow.document.body.innerText
+    alert(result)
+  })
+</script>
+```
+
+## ajax 实现无刷新上传
+
+`XMLHttpRequest` 可以读取和上传二进制数据, 使用 `FormData` 对象管理表单数据
 
 ```html
 <input type="file" multiple id="input-upload" />
@@ -55,18 +123,21 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJ
       const file = fileList[i]
       formData.append('file', file)
     }
+
     const xhr = new XMLHttpRequest()
     xhr.open('POST', 'http://localhost:8100/upload', true)
     xhr.send(formData)
     xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
-        const text = JSON.parse(xhr.responseText) //返回值
-        alert(`成功上传, ${text.filter(Boolean).join(', ')}`)
+        const result = JSON.parse(xhr.responseText) //返回值
+        alert(result)
       }
     }
   }
 </script>
 ```
+
+## 服务端接收文件代码
 
 ```js
 const Koa = require('koa')
@@ -128,8 +199,13 @@ app.listen(PORT, () => {
 })
 ```
 
+## 实现上传进度监听
+
+借助 `XMLHttpRequest2` 的能力，实现多个文件或者一个文件的上传进度条的显示。
+
 ## 参考文章
 
+- [一文了解文件上传全过程](https://juejin.im/post/5e80511f51882573793e6428)
 - [写给新手前端的各种文件上传攻略，从小图片到大文件断点续传](https://juejin.im/post/5da14778f265da5bb628e590)
 - [前端大文件上传](https://juejin.im/post/5cf765275188257c6b51775f)
 - [字节跳动面试官，我也实现了大文件上传和断点续传](https://juejin.im/post/5e367f6951882520ea398ef6)

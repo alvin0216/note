@@ -220,3 +220,23 @@ for (const item of arr) {
 > - 通过 `for-of` 循环，我们可以迭代可迭代对象(包括 `Array`，`Map`， `Set`， `String`， `arguments` 等) 。当我们迭代数组时，在每次迭代中，不同属性的值将被分配给变量 `item`, 因此输出 a, b, c
 
 :::
+
+### 题 11 - const | var
+
+```js
+const name = 'hello'
+age = 18
+
+console.log(delete name)
+console.log(delete age)
+```
+
+::: details 答案与解析
+
+> `false`, `true`
+>
+> `delete` 操作符返回一个布尔值，true 指删除成功，false 失败。 通过 `var`、`let`、`const` 声明的变量无法用 `delete` 操作符删除。
+>
+> `name` 变量由 `const` 声明，所以删除失败。`age = 18` ，我们实际上添加了一个名为 `age` 的属性给全局变量，对象中的属性是可以删除的。全局对象也是如此。所以 `delete age` 返回 `true`
+
+:::
