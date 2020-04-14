@@ -160,8 +160,63 @@ var arr = [1, 2]
 ({ item: arr[2] } = { item: 3 })
 ```
 
+`arr` 输出什么
+
 ::: details 答案与解析
 
 > arr: `[1, 2, 3]`
+
+:::
+
+### 题 8 - 扩展符
+
+```js
+const obj = { name: 'hello', age: 11 }
+
+function fun(...params) {
+  console.log(params)
+}
+
+fun(obj)
+```
+
+::: details 答案与解析
+
+> [ { name: 'hello', age: 11 } ]
+
+:::
+
+### 题 9 - Array.push
+
+```js
+let newList = [1, 2, 3].push(4)
+console.log(newList.push(5))
+```
+
+::: details 答案与解析
+
+> `Error` : `.push` 方法返回数组的长度，而不是数组本身！
+
+:::
+
+### 题 10 - for-of | for in
+
+```js
+const arr = ['a', 'b', 'c']
+
+for (const item in arr) {
+  console.log(item)
+}
+
+for (const item of arr) {
+  console.log(item)
+}
+```
+
+::: details 答案与解析
+
+> - 通过 `for-in` 循环，我们可以遍历一个对象自有的、继承的、可枚举的、非 `Symbol` 的属性。在数组中， 可枚举属性是数组元素的“键”，即它们的索引。 类似于 下面这个对象: `{0: 'a'，1: 'b', 2: 'c'}`, 其中键则是可枚举属性，因此输出 0，1，2
+>
+> - 通过 `for-of` 循环，我们可以迭代可迭代对象(包括 `Array`，`Map`， `Set`， `String`， `arguments` 等) 。当我们迭代数组时，在每次迭代中，不同属性的值将被分配给变量 `item`, 因此输出 a, b, c
 
 :::
