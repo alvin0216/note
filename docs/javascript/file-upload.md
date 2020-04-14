@@ -203,6 +203,73 @@ app.listen(PORT, () => {
 
 借助 `XMLHttpRequest2` 的能力，实现多个文件或者一个文件的上传进度条的显示。
 
+在 `chrome` 的 `developer tools` 的 `console` 里 `new` 一个 `XHR` 对象，调用点运算符就可以看到智能提示出来一个 `onprogress` 事件监听器，那是不是我们只要绑定 `XHR` 对象的 `progress` 事件就可以了呢？
+
+很接近了，但是 `XHR` 对象的直属 `progress` 事件并不是用来监听上传资源的进度的。`XHR` 对象还有一个属性 `upload`, 它返回一个 [XMLHttpRequestUpload](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest/upload) 对象，这个对象拥有下列下列方法：
+
+| 事件        | 相应属性的信息类型               |
+| ----------- | -------------------------------- |
+| onloadstart | 获取开始                         |
+| onprogress  | 数据传输进行中                   |
+| onabort     | 获取操作终止                     |
+| onerror     | 获取失败                         |
+| onload      | 获取成功                         |
+| ontimeout   | 获取操作在用户规定的时间内未完成 |
+| onloadend   | 获取完成（不论成功与否）         |
+
+其中 `onprogress` 事件回调方法可用于跟踪资源上传的进度，它的 `event` 参数对象包含两个重要的属性 `loaded` 和 `total`。分别代表当前已上传的字节数（`number of bytes`）和文件的总字节数。比如我们可以这样计算进度百分比：
+
+```js
+xhr.upload.onprogress = function(event) {
+  if (event.lengthComputable) {
+    var percentComplete = (event.loaded / event.total) * 100
+    // 对进度进行处理
+  }
+}
+```
+
+其中事件的 `lengthComputable` 属性代表文件总大小是否可知。如果 `lengthComputable` 属性的值是 `false`，那么意味着总字节数是未知并且 `total` 的值为零。
+
+```html
+<input type="file" multiple id="input-upload" />
+<button id="btn-submit">上传</button>
+<br />
+
+<progress id="progress" value="0" max="100"></progress>
+
+<script>
+  const input = document.getElementById('input-upload')
+  const button = document.getElementById('btn-submit')
+  const progress = document.getElementById('progress')
+
+  button.onclick = function() {
+    const fileList = input.files
+    const formData = new FormData()
+    for (let i = 0; i < fileList.length; i++) {
+      const file = fileList[i]
+      formData.append('file', file)
+    }
+
+    const xhr = new XMLHttpRequest()
+    xhr.onprogress = function(event) {
+      if (event.lengthComputable) {
+        const completedPercent = ((event.loaded / event.total) * 100).toFixed(2)
+        progress.value = completedPercent
+      }
+    }
+
+    xhr.open('POST', 'http://localhost:8100/upload', true)
+    xhr.send(formData)
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        const result = JSON.parse(xhr.responseText) //返回值
+        alert(result)
+      }
+    }
+  }
+</script>
+```
+
 ## 参考文章
 
 - [一文了解文件上传全过程](https://juejin.im/post/5e80511f51882573793e6428)
