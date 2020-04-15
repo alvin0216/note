@@ -139,68 +139,6 @@ ps 多文件上传只需要一个标签加个属性就搞定了,file 标签开�
 </script>
 ```
 
-## 服务端接收文件代码
-
-```js
-const Koa = require('koa')
-const koaBody = require('koa-body')
-const Router = require('koa-router')
-const koaStatic = require('koa-static')
-
-const fs = require('fs')
-const path = require('path')
-
-const PORT = 8100
-const uploadDir = path.resolve(__dirname, './static/uploads')
-
-const app = new Koa()
-const router = new Router()
-
-app.use(
-  koaBody({
-    multipart: true, // 开启文件上传，默认是关闭
-    formidable: {
-      keepExtensions: true, //保留原始的文件后缀
-      maxFileSize: 2000 * 1024 * 1024 // 设置上传文件大小最大限制，默认20M
-    }
-  })
-)
-
-app.use(router.routes()).use(router.allowedMethods())
-
-//开启静态文件访问
-app.use(koaStatic(path.resolve(__dirname, './static')))
-
-router.post('/upload', async ctx => {
-  !fs.existsSync(uploadDir) && fs.mkdirSync(uploadDir)
-  const file = ctx.request.files.file // 获取上传文件
-
-  const saveFile = file => {
-    return new Promise((resolve, reject) => {
-      try {
-        const reader = fs.createReadStream(file.path) // 创建可读流
-        const fileName = file.name
-        const filePath = `${uploadDir}/${fileName}`
-        const upStream = fs.createWriteStream(filePath)
-        reader.pipe(upStream)
-        reader.on('end', () => {
-          resolve(fileName) // 上传成功
-        })
-      } catch (error) {
-        reject(error)
-      }
-    })
-  }
-  const fileList = Array.isArray(file) ? file : [file]
-  const uploadList = await Promise.all(fileList.map(saveFile))
-  ctx.body = uploadList
-})
-
-app.listen(PORT, () => {
-  console.log(`server listen on: http://localhost:${PORT}`)
-})
-```
-
 ## 实现上传进度监听
 
 借助 `XMLHttpRequest2` 的能力，实现多个文件或者一个文件的上传进度条的显示。
@@ -273,6 +211,225 @@ xhr.upload.onprogress = function(event) {
 ```
 
 ![](../../assets/javascript/upload-progress.gif)
+
+## 多文件上传 + 进度 + 取消上传
+
+> - 利用 `xhr.abort` 取消上传请求，达到停止上传的目的。
+> - 利用 `xhr.upload.onprogress` `(event.loaded / event.total) * 100` 得到上传进度
+> - 利用 `window.URL.createObjectURL` 可以获取预览地址
+
+:::details 代码
+
+```html {68,75}
+<style>
+  #img-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  #img-box > div {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ccc;
+  }
+  #img-box div img {
+    width: 100%;
+    height: 160px;
+  }
+</style>
+
+<input type="file" multiple id="input-upload" />
+<button id="btn-submit">上传</button>
+<br />
+
+<div id="img-box"></div>
+
+<script>
+  const input = document.getElementById('input-upload')
+  const button = document.getElementById('btn-submit')
+  const imgBox = document.getElementById('img-box')
+
+  let uploadList = []
+
+  input.onchange = function(e) {
+    const fileList = e.target.files
+    imgBox.innerHTML = ''
+    uploadList = []
+    for (let i = 0; i < fileList.length; i++) {
+      const file = fileList[i]
+      const div = document.createElement('div')
+      const img = document.createElement('img')
+      img.src = window.URL.createObjectURL(file)
+      img.onload = function() {
+        window.URL.revokeObjectURL(this.src)
+      }
+      const subDiv = document.createElement('div')
+      subDiv.innerHTML = '<progress value="0" max="100"></progress><button>停止</button>'
+
+      div.appendChild(img)
+      div.appendChild(subDiv)
+      imgBox.appendChild(div)
+
+      uploadList.push({
+        file,
+        subDiv
+      })
+    }
+  }
+
+  function uploadFile({ file, subDiv }) {
+    const progress = subDiv.querySelector('progress')
+    const aborttButton = subDiv.querySelector('button')
+
+    const formData = new FormData()
+    formData.append('file', file)
+    const xhr = new XMLHttpRequest()
+
+    aborttButton.onclick = function(e) {
+      if (xhr && xhr.readyState !== 4) {
+        if (aborttButton.innerText === '上传成功') return false
+        //取消上传
+        xhr.abort()
+        e.target.innerText = '已手动停止'
+      }
+    }
+
+    xhr.upload.onprogress = function(event) {
+      if (event.lengthComputable) {
+        progress.value = ((event.loaded / event.total) * 100).toFixed(2)
+      }
+    }
+    xhr.open('POST', 'http://localhost:8100/upload', true)
+    xhr.send(formData)
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        const result = JSON.parse(xhr.responseText) //返回值
+        aborttButton.innerText = '上传成功'
+      }
+    }
+  }
+
+  button.onclick = function() {
+    uploadList.forEach(uploadFile)
+  }
+</script>
+```
+
+:::
+
+## 拖拽上传
+
+`html5` 的出现，让拖拽上传交互成为可能，现在这样的体验也屡见不鲜。
+
+```html
+<style>
+  .drop-box {
+    width: 300px;
+    height: 300px;
+    font-size: 20px;
+    line-height: 300px;
+    background-color: green;
+    text-align: center;
+  }
+</style>
+<div class="drop-box" id="drop-box">
+  拖动文件到这里,开始上传
+</div>
+
+<button type="button" id="btn-submit">上 传</button>
+
+<script>
+  const box = document.getElementById('drop-box')
+  const button = document.getElementById('btn-submit')
+
+  //禁用浏览器的拖放默认行为
+  document.addEventListener('drop', function(e) {
+    console.log('document drog')
+    e.preventDefault()
+  })
+
+  box.ondragover = function(e) {
+    console.log('拖动的图片在 box 移动')
+    e.preventDefault()
+  }
+
+  box.ondragleave = function(e) {
+    console.log('拖动的图片离开 box')
+    e.preventDefault()
+  }
+
+  box.ondrop = function(e) {
+    e.preventDefault() // 禁用浏览器的拖放默认行为
+    const files = e.dataTransfer.files // 获取拖拽中的文件对象
+    console.log('图片已放置，可以进行上传操作....', files)
+  }
+</script>
+```
+
+## 大文件分片上传以及断点续传
+
+见 [大文件分片上传以及断点续传](./large-file-upload.md)
+
+## 服务端接收文件代码
+
+```js
+const Koa = require('koa')
+const koaBody = require('koa-body')
+const Router = require('koa-router')
+const koaStatic = require('koa-static')
+
+const fs = require('fs')
+const path = require('path')
+
+const PORT = 8100
+const uploadDir = path.resolve(__dirname, './static/uploads')
+
+const app = new Koa()
+const router = new Router()
+
+app.use(
+  koaBody({
+    multipart: true, // 开启文件上传，默认是关闭
+    formidable: {
+      keepExtensions: true, //保留原始的文件后缀
+      maxFileSize: 2000 * 1024 * 1024 // 设置上传文件大小最大限制，默认20M
+    }
+  })
+)
+
+app.use(router.routes()).use(router.allowedMethods())
+
+//开启静态文件访问
+app.use(koaStatic(path.resolve(__dirname, './static')))
+
+router.post('/upload', async ctx => {
+  !fs.existsSync(uploadDir) && fs.mkdirSync(uploadDir)
+  const file = ctx.request.files.file // 获取上传文件
+
+  const saveFile = file => {
+    return new Promise((resolve, reject) => {
+      try {
+        const reader = fs.createReadStream(file.path) // 创建可读流
+        const fileName = file.name
+        const filePath = `${uploadDir}/${fileName}`
+        const upStream = fs.createWriteStream(filePath)
+        reader.pipe(upStream)
+        reader.on('end', () => {
+          resolve(fileName) // 上传成功
+        })
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+  const fileList = Array.isArray(file) ? file : [file]
+  const uploadList = await Promise.all(fileList.map(saveFile))
+  ctx.body = uploadList
+})
+
+app.listen(PORT, () => {
+  console.log(`server listen on: http://localhost:${PORT}`)
+})
+```
 
 ## 参考文章
 
