@@ -73,6 +73,8 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJ
 </form>
 ```
 
+![](../../assets/javascript/upload-form.gif)
+
 后端代码详见：[服务端接收文件代码](#服务端接收文件代码)
 
 这种方式上传文件，不需要 `js` ，而且没有兼容问题，所有浏览器都支持，就是体验很差，导致页面刷新，页面其他数据丢失。
@@ -251,7 +253,7 @@ xhr.upload.onprogress = function(event) {
     }
 
     const xhr = new XMLHttpRequest()
-    xhr.onprogress = function(event) {
+    xhr.upload.onprogress = function(event) {
       if (event.lengthComputable) {
         const completedPercent = ((event.loaded / event.total) * 100).toFixed(2)
         progress.value = completedPercent
@@ -269,6 +271,8 @@ xhr.upload.onprogress = function(event) {
   }
 </script>
 ```
+
+![](../../assets/javascript/upload-progress.gif)
 
 ## 参考文章
 
