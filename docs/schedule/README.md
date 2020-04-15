@@ -6,6 +6,14 @@ date: 2019-12-30 09:07:08
 
 > 记录下日常学习过程，以勉励自身。
 
+## TODO
+
+- [x] 这里仅仅列出近期学习计划
+- [ ] `http` 缓存策略 复习
+- [ ] `Proxy` 学习
+- [ ] `Symbol` 复习
+- [ ]
+
 ## 四月 <Badge text="学习 http" type="success"/> <Badge text="react 源码" type="warning" />
 
 ### 0408
