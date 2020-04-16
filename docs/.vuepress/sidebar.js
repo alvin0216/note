@@ -23,7 +23,7 @@ module.exports = {
     {
       title: '其他',
       // collapsable: false,
-      children: ['this', 'skills']
+      children: ['this', 'web-worker', 'skills']
     },
   ],
 
