@@ -10,9 +10,7 @@ date: 2019-12-30 09:07:08
 
 - [x] 这里仅仅列出近期学习计划
 - [ ] `http` 缓存策略 复习
-- [ ] `Proxy` 学习
-- [ ] `Symbol` 复习
-- [ ]
+- [ ] `web worker`
 
 ## 四月 <Badge text="学习 http" type="success"/> <Badge text="react 源码" type="warning" />
 
@@ -50,3 +48,9 @@ date: 2019-12-30 09:07:08
 - [x] 30 道基础练习题
 - [x] 文件上传细节复习
 - [ ] 大文件的断点续传和分片上传
+
+### 0416
+
+- [x] 大文件的分片上传
+- [ ] webworker ..
+- [ ] 断点续传
