@@ -264,7 +264,36 @@ app.listen(PORT, () => {
 
 :::
 
-## 接受切片
+### 接受切片
+
+```js
+router.post('/uploadChunk', async ctx => {
+  const { filename, hash } = ctx.request.body
+  const chunk = ctx.request.files.chunk
+
+  const chunkDir = `${uploadDir}/${filename}`
+  !fs.existsSync(chunkDir) && fs.mkdirSync(chunkDir)
+
+  const saveChunk = (chunk, filename, hash) => {
+    return new Promise((resolve, reject) => {
+      try {
+        const reader = fs.createReadStream(chunk.path) // 创建可读流
+        const chunkName = `${filename}-hash-${hash}`
+        const chunkPath = `${chunkDir}/${chunkName}`
+        const writeStream = fs.createWriteStream(chunkPath)
+        reader.pipe(writeStream)
+        reader.on('end', () => {
+          resolve(chunkName) // 上传成功
+        })
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+  const chunkName = await saveChunk(chunk, filename, hash)
+  ctx.body = chunkName
+})
+```
 
 ## 参考文章
 
