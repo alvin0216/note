@@ -270,8 +270,10 @@ app.listen(PORT, () => {
 router.post('/uploadChunk', async ctx => {
   const { filename, hash } = ctx.request.body
   const chunk = ctx.request.files.chunk
+  const fileExtName = path.extname(filename) // 文件扩展名
 
-  const chunkDir = `${uploadDir}/${filename}`
+  const chunkDir = `${uploadDir}/${filename.replace(fileExtName, '')}`
+
   !fs.existsSync(chunkDir) && fs.mkdirSync(chunkDir)
 
   const saveChunk = (chunk, filename, hash) => {
@@ -292,6 +294,40 @@ router.post('/uploadChunk', async ctx => {
   }
   const chunkName = await saveChunk(chunk, filename, hash)
   ctx.body = chunkName
+})
+```
+
+### 合并切片
+
+```js
+router.post('/merge', async ctx => {
+  const { filename, size } = ctx.request.body
+  const fileExtName = path.extname(filename) // 文件扩展名
+  const filePath = `${uploadDir}/${filename}` // 写入的文件路径
+
+  const chunkDir = `${uploadDir}/${filename.replace(fileExtName, '')}` // chunk 存放路径
+
+  const chunkPahtList = fs.readdirSync(chunkDir)
+  chunkPahtList.sort((x, y) => x.split('-hash-')[1] - y.split('-hash-')[1])
+
+  await Promise.all(
+    chunkPahtList.map((chunkName, index) => {
+      return new Promise(resolve => {
+        const chunkPath = `${chunkDir}/${chunkName}` // chunk 块的路径
+        const reader = fs.createReadStream(chunkPath) // 创建可读流
+        const writeStream = fs.createWriteStream(filePath, { start: index * size, end: (index + 1) * size })
+        reader.pipe(writeStream)
+        reader.on('end', () => {
+          // 写入成功 删除切片
+          fs.unlinkSync(chunkPath)
+          resolve() // resolve 异步删除成功
+        })
+      })
+    })
+  )
+
+  fs.rmdirSync(chunkDir) // 删除 chunk 目录
+  ctx.body = '合并成功'
 })
 ```
 
