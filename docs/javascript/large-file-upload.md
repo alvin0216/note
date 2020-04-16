@@ -105,7 +105,7 @@ function uploadChunks(file, chunkList) {
       formData.append('chunk', chunk)
       formData.append('filename', file.name)
       formData.append('hash', index)
-      return ajax({ url: '/uploadChunks', data: formData })
+      return ajax({ url: '/uploadChunk', data: formData })
     })
   )
 }
@@ -188,7 +188,7 @@ function uploadChunks(file, chunkList) {
         formData.append('filename', file.name)
         formData.append('hash', index)
 
-        return ajax({ url: '/uploadChunks', data: formData })
+        return ajax({ url: '/uploadChunk', data: formData })
       })
     ).then(res => {
       ajax({
