@@ -264,7 +264,17 @@ app.listen(PORT, () => {
 
 :::
 
+主要流程为
+
+- 服务端保存各段文件
+- 浏览器端所有分片上传完成，发送给服务端一个合并文件的请求
+- 服务端根据文件标识、类型、各分片顺序进行文件合并
+- 删除分片文件
+
 ### 接受切片
+
+1. 创建保存块的目录 `chunkDir`
+2. 将块文件写入目录
 
 ```js
 router.post('/uploadChunk', async ctx => {
@@ -293,11 +303,15 @@ router.post('/uploadChunk', async ctx => {
     })
   }
   const chunkName = await saveChunk(chunk, filename, hash)
-  ctx.body = chunkName
+  ctx.body = `received file chunk: ${chunkName}`
 })
 ```
 
+![](../../assets/javascript/upload-chunk.png)
+
 ### 合并切片
+
+在接收到前端发送的合并请求后，服务端将文件夹下的所有切片进行合并
 
 ```js
 router.post('/merge', async ctx => {
@@ -330,6 +344,18 @@ router.post('/merge', async ctx => {
   ctx.body = '合并成功'
 })
 ```
+
+由于前端在发送合并请求时会携带文件名，服务端根据文件名可以找到上一步创建的切片文件夹
+
+接着使用 fs.createWriteStream 创建一个可写流，可写流文件名就是**切片文件夹名 + 后缀名**组合而成
+
+随后遍历整个切片文件夹，将切片通过 `fs.createReadStream` 创建可读流，传输合并到目标文件中
+
+值得注意的是每次可读流都会传输到可写流的指定位置，这是通过 `createWriteStream` 的第二个参数 `start/end` 控制的，目的是能够并发合并多个可读流到可写流中，这样即使流的顺序不同也能传输到正确的位置，所以这里还需要让前端在请求的时候多提供一个 `size` 参数
+
+其实也可以等上一个切片合并完后再合并下个切片，这样就不需要指定位置，但传输速度会降低，所以使用了并发合并的手段，接着只要保证每次合并完成后删除这个切片，等所有切片都合并完毕后最后删除切片文件夹即可
+
+![](../../assets/javascript/upload-result.png)
 
 ## 参考文章
 
