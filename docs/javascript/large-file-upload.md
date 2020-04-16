@@ -357,6 +357,75 @@ router.post('/merge', async ctx => {
 
 ![](../../assets/javascript/upload-result.png)
 
+## 显示上传进度条
+
+`XMLHttpRequest` 原生支持上传进度的监听，只需要监听 `upload.onprogress` 即可，我们在原来的 `ajax` 基础上传入 `onProgress` 参数，给 `XMLHttpRequest` 注册监听事件
+
+```js
+/**
+ * ajax 请求
+ */
+function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e }) {
+  return new Promise(resolve => {
+    const xhr = new XMLHttpRequest()
+    xhr.open(method, url, true)
+    Object.keys(headers).forEach(key => xhr.setRequestHeader(key, headers[key]))
+    xhr.upload.onprogress = onProgress
+    xhr.send(data)
+    // 监听请求成功事件，触发后执行事件函数
+    xhr.onload = function(e) {
+      resolve(e.target.response)
+    }
+  })
+}
+```
+
+通过每个切片的 `upload.onprogress` 我们可以清楚的知道切片上传的进度。在 `uploadChunks` 添加进度监听
+
+```html
+<input type="file" id="input-upload" />
+<button id="btn-submit">上传</button>
+<progress id="progress" value="0" max="100"></progress>
+
+<script>
+  let loaded = 0
+  let progress = 0
+  const progressDom = document.getElementById('progress')
+
+  function handleChunkProgress(event, file) {
+    if (event.lengthComputable) {
+      loaded += event.loaded
+      progress = ((loaded / file.size) * 100).toFixed(2)
+      if (progress > 100) progress = 100
+      progressDom.value = progress
+    }
+  }
+
+  function uploadChunks(file, chunkList) {
+    Promise.all(
+      chunkList.map((chunk, index) => {
+        const formData = new FormData()
+        formData.append('chunk', chunk)
+        formData.append('filename', file.name)
+        formData.append('hash', index)
+
+        return ajax({
+          url: '/uploadChunk',
+          data: formData,
+          onProgress: e => handleChunkProgress(e, file)
+        })
+      })
+    ).then(res => {
+      // ...
+    })
+  }
+</script>
+```
+
+最终效果
+
+![](../../assets/javascript/upload-progress2.gif)
+
 ## 参考文章
 
 - [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)
