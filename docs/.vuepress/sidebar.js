@@ -21,7 +21,7 @@ module.exports = {
       children: ['new', 'bind', 'call-apply', 'throttle', 'debounce']
     },
     {
-      title: '其他',
+      title: '基础知识',
       // collapsable: false,
       children: ['this', 'web-worker', 'skills']
     },
