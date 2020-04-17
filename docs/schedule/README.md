@@ -11,6 +11,17 @@ date: 2019-12-30 09:07:08
 - [x] 这里仅仅列出近期学习计划
 - [ ] `http` 缓存策略 复习
 - [ ] `web worker`
+- [ ] 算法
+
+<Badge text="links to learn" type="success"/>
+
+---
+
+- [2020 年前端面试复习必读文章【超百篇文章/赠复习导图】](https://juejin.im/post/5e8b163ff265da47ee3f54a6)
+- [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://juejin.im/post/5a6547d0f265da3e283a1df7)
+- [(1.6w 字)浏览器灵魂之问，请问你能接得住几个？](https://juejin.im/post/5df5bcea6fb9a016091def69)
+- [字节跳动面试官，我也实现了大文件上传和断点续传](https://juejin.im/post/5e367f6951882520ea398ef6)
+- [JavaScript 算法与数据结构](https://github.com/trekhleb/javascript-algorithms/blob/master/README.zh-CN.md)
 
 ## 四月 <Badge text="学习 http" type="success"/> <Badge text="react 源码" type="warning" />
 
