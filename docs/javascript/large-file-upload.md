@@ -347,7 +347,7 @@ router.post('/merge', async ctx => {
 
 由于前端在发送合并请求时会携带文件名，服务端根据文件名可以找到上一步创建的切片文件夹
 
-接着使用 fs.createWriteStream 创建一个可写流，可写流文件名就是**切片文件夹名 + 后缀名**组合而成
+接着使用 `fs.createWriteStream` 创建一个可写流，可写流文件名就是**切片文件夹名 + 后缀名**组合而成
 
 随后遍历整个切片文件夹，将切片通过 `fs.createReadStream` 创建可读流，传输合并到目标文件中
 
@@ -426,6 +426,196 @@ function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e })
 
 ![](../../assets/javascript/upload-progress2.gif)
 
+## 断点续传
+
+### 生成 hash
+
+无论是前端还是服务端，都必须要生成文件和切片的 `hash`，之前我们使用文件名 + 切片下标作为切片 `hash`，这样做文件名一旦修改就失去了效果，而事实上只要文件内容不变，`hash` 就不应该变化，所以正确的做法是根据文件内容生成 `hash`，所以我们修改一下 `hash` 的生成规则
+
+这里用到另一个库 `spark-md5`，它可以根据文件内容计算出文件的 `hash` 值，另外考虑到如果上传一个超大文件，读取文件内容计算 `hash` 是非常耗费时间的，并且会引起 UI 的阻塞，导致页面假死状态，所以我们使用 `web-worker` 在 `worker` 线程计算 hash，这样用户仍可以在主界面正常的交互
+
+详见 [web-worker](./web-worker.md)
+
+新建 `static/work.js`
+
+```js
+self.importScripts('https://cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js')
+
+self.addEventListener('message', function (e) {
+
+  const { chunkList } = e.data
+  const spark = new self.SparkMD5.ArrayBuffer()
+  let percentage = 0
+  let count = 0
+
+  function calcFileHash(chunkList) {
+    let progress = 0
+    let count = 0
+
+    const loadNext = index => {
+      const reader = new FileReader()
+      reader.readAsArrayBuffer(chunkList[index])
+      reader.onload = e => {
+        count++
+        spark.append(e.target.result)
+
+        if (count === chunkList.length) {
+          self.postMessage({ chunkList, progress: 100, hash: spark.end() })
+          self.close()
+        } else {
+          progress += 100 / chunkList.length
+          self.postMessage({ progress })
+          // 递归计算下一个切片
+          loadNext(count)
+        }
+      }
+    }
+
+    loadNext(0)
+
+  }
+
+  calcFileHash(chunkList)
+
+}, false)
+```
+
+在 `worker` 线程中，接受文件切片 `fileChunkList`，利用 `FileReader` 读取每个切片的 `ArrayBuffer` 并不断传入 `spark-md5` 中，每计算完一个切片通过 `postMessage` 向主线程发送一个进度事件，全部完成后将最终的 `hash` 发送给主线程
+
+> `spark-md5` 需要根据所有切片才能算出一个 `hash` 值，不能直接将整个文件放入计算，否则即使不同文件也会有相同的 `hash`，具体可以看官方文档
+
+
+### 暂停上传
+
+断点续传顾名思义即断点 + 续传，所以我们第一步先实现“断点”，也就是暂停上传
+
+原理是使用 XMLHttpRequest 的 abort 方法，可以取消一个 xhr 请求的发送，为此我们需要将上传每个切片的 xhr 对象保存起来，我们再改造一下 request 方法
+
+这样在上传切片时传入 requestList 数组作为参数，request 方法就会将所有的 xhr 保存在数组中了
+
+每当一个切片上传成功时，将对应的 xhr 从 requestList 中删除，所以 requestList 中只保存正在上传切片的 xhr
+
+```html
+<input type="file" id="input-upload" />
+<button id="btn-submit">上传</button>
+<button id="btn-abort" disabled>暂停上传</button>
+
+<h3>计算 hash 进度</h3>
+<progress id="hash-progress" value="0" max="100"></progress>
+<span id="hash-progress-text">0%</span>
+
+<h3>上传进度</h3>
+<progress id="progress" value="0" max="100"></progress>
+<span id="progress-text">0%</span>
+
+<script>
+  const SIZE = 10 * 1024 * 1024 // 切片 10M
+  let loaded = 0
+  let progress = 0
+  let requestList = []
+  const progressDom = document.getElementById('progress')
+  const progressDomText = document.getElementById('progress-text')
+  const hashProgressDom = document.getElementById('hash-progress')
+  const hashProgressDomText = document.getElementById('hash-progress-text')
+  const input = document.getElementById('input-upload')
+  const button = document.getElementById('btn-submit')
+  const abortButton = document.getElementById('btn-abort')
+  /**
+   * ajax 请求
+   */
+  function ajax({
+    url,
+    data,
+    method = 'POST',
+    headers = {},
+    onProgress = e => e
+  }) {
+    return new Promise(resolve => {
+      const xhr = new XMLHttpRequest()
+      xhr.open(method, url, true)
+      Object.keys(headers).forEach(key =>
+        xhr.setRequestHeader(key, headers[key])
+      )
+      xhr.upload.onprogress = onProgress
+      xhr.send(data)
+      // 监听请求成功事件，触发后执行事件函数
+      xhr.onload = function(e) {
+        resolve(e.target.response)
+        const index = requestList.findIndex(item => item === xhr)
+        requestList.splice(index, 1)
+      }
+      requestList.push(xhr)
+    })
+  }
+
+  function createFileChunk(file, piece = SIZE) {
+    const chunkList = []
+    let cur = 0
+    while (cur < file.size) {
+      const blob = file.slice(cur, cur + piece)
+      chunkList.push(blob)
+      cur += piece
+    }
+    return chunkList
+  }
+
+  function uploadChunks(file, chunkList, hash) {
+    Promise.all(
+      chunkList.map((chunk, index) => {
+        const formData = new FormData()
+        formData.append('chunk', chunk)
+        formData.append('filename', file.name)
+        formData.append('hash', hash)
+        formData.append('index', index)
+
+        return ajax({
+          url: '/uploadChunk',
+          data: formData,
+          onProgress: e => handleChunkProgress(e, file)
+        })
+      })
+    ).then(res => {
+      ajax({
+        url: '/merge',
+        headers: { 'content-type': 'application/json' },
+        data: JSON.stringify({ filename: file.name, size: SIZE })
+      })
+    })
+  }
+
+  function handleChunkProgress(event, file) {
+    if (event.lengthComputable) {
+      loaded += event.loaded
+      progress = ((loaded / file.size) * 100).toFixed(2)
+      if (progress > 100) progress = 100
+      progressDom.value = progress
+      progressDomText.innerText = `${progress}%`
+    }
+  }
+
+  button.onclick = function() {
+    const file = input.files[0]
+    const chunkList = createFileChunk(file) // 创建切片数组
+
+    const worker = new Worker('work.js')
+    worker.postMessage({ chunkList })
+    worker.onmessage = function(event) {
+      const { progress, hash } = event.data
+      hashProgressDom.value = progress
+      hashProgressDomText.innerText = `${progress}%`
+      if (progress === 100) {
+        console.log('work hash', hash)
+        abortButton.removeAttribute('disabled')
+        uploadChunks(file, chunkList, hash)
+      }
+    }
+  }
+
+  abortButton.onclick = {
+    
+  }
+</script>
+```
 ## 参考文章
 
 - [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)
