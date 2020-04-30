@@ -1,11 +1,5 @@
 module.exports = {
-  '/': [
-    {
-      title: 'HTML',
-      collapsable: false,
-      children: ['/html-css/html5']
-    }
-  ],
+
   '/tools/': [
     {
       title: 'Tools',
@@ -83,6 +77,11 @@ module.exports = {
       children: ['node-shell', 'middleware']
     }
   ],
-
-  // '/schedule/': ['']
+  '/': [
+    {
+      title: 'HTML',
+      collapsable: false,
+      children: ['/html-css/html5']
+    }
+  ]
 }
