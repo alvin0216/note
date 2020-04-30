@@ -1,6 +1,6 @@
 module.exports = [
   { text: '主页', link: '/' },
-  { text: '学习日程栏', link: '/schedule/' },
+  // { text: '学习日程栏', link: '/schedule/' },
   { text: '题目', link: '/question/' },
   { text: 'Javascript', link: '/javascript/' },
   { text: 'React', link: '/react/' },
