@@ -80,7 +80,7 @@ module.exports = {
     {
       title: 'HTML',
       collapsable: false,
-      children: ['root/html5']
+      children: ['root/html5', 'root/meta']
     }
   ]
 }
