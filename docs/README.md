@@ -1,8 +1,5 @@
 ---
-sidebar: false
-date: 2019-12-30 09:07:08
+sidebar: true
 ---
 
-## recentList
-
-<HomePage />
+![](../assets/logo.jpg)

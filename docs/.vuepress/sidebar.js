@@ -1,4 +1,11 @@
 module.exports = {
+  '/': [
+    {
+      title: 'HTML',
+      collapsable: false,
+      children: ['/html-css/html5']
+    }
+  ],
   '/tools/': [
     {
       title: 'Tools',
@@ -11,6 +18,16 @@ module.exports = {
   // js
   '/javascript/': [
     {
+      title: '原型和原型链',
+      collapsable: false,
+      children: ['this']
+    },
+    {
+      title: '作用域和闭包',
+      collapsable: false,
+      children: ['this']
+    },
+    {
       title: '文件和二进制数据',
       // collapsable: false,
       children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
@@ -21,9 +38,9 @@ module.exports = {
       children: ['new', 'bind', 'call-apply', 'throttle', 'debounce']
     },
     {
-      title: '基础知识',
+      title: '补充知识',
       // collapsable: false,
-      children: ['this', 'web-worker', 'skills']
+      children: ['web-worker', 'skills']
     },
   ],
 
