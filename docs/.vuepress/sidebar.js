@@ -1,5 +1,4 @@
 module.exports = {
-
   '/tools/': [
     {
       title: 'Tools',
@@ -81,7 +80,7 @@ module.exports = {
     {
       title: 'HTML',
       collapsable: false,
-      children: ['/html-css/html5']
+      children: ['root/html5']
     }
   ]
 }
