@@ -13,7 +13,7 @@ module.exports = {
     {
       title: '原型和原型链',
       collapsable: false,
-      children: ['this']
+      children: ['prototype']
     },
     {
       title: '作用域和闭包',
