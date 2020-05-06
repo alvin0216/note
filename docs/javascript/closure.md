@@ -1,5 +1,5 @@
 ---
-title: JavaScript 中的闭包
+title: Javascript 中的闭包
 date: 2020-05-06 16:19:57
 ---
 
@@ -150,3 +150,5 @@ for (var i = 0; i < 3; i++) {
   })(i)
 }
 ```
+
+参考 [动画：什么是闭包？](https://juejin.im/post/5dc6449ae51d452bd321252c)
