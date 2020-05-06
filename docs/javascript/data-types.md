@@ -146,4 +146,4 @@ class A {}
 console.log(A instanceof Function) // true
 ```
 
-参考自 [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1)
+参考自 [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1f)
