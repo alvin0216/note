@@ -3,6 +3,25 @@ title: this 解析
 date: 2020-01-09 11:02:16
 ---
 
+## 22
+
+```js
+var value = 1
+
+var foo = {
+  value: 2,
+  bar: function() {
+    return this.value
+  }
+}
+
+console.log(foo.bar())
+// console.log((foo.bar)())
+console.log((foo.bar = foo.bar)())
+console.log((false || foo.bar)())
+console.log((foo.bar, foo.bar)())
+```
+
 `this` 是一个老生常谈的问题，也是一个容易混淆的知识点。这里再进行梳理一遍，以方便以后查阅。
 
 `this` 实际上是在函数被调用时发生的绑定，它指向什么完全取决于函数在哪里被调用（也就是函数的调用方法）。也可以理解为

@@ -11,14 +11,9 @@ module.exports = {
   // js
   '/javascript/': [
     {
-      title: '原型和原型链',
+      title: '基础',
       collapsable: false,
-      children: ['prototype']
-    },
-    {
-      title: '作用域和闭包',
-      collapsable: false,
-      children: ['this']
+      children: ['prototype', 'this']
     },
     {
       title: '文件和二进制数据',
