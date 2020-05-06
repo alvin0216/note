@@ -13,7 +13,7 @@ module.exports = {
     {
       title: '基础',
       collapsable: false,
-      children: ['prototype', 'this']
+      children: ['prototype', 'this', 'closure']
     },
     {
       title: '文件和二进制数据',
