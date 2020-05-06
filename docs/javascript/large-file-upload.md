@@ -54,7 +54,7 @@ date: 2020-04-13 15:57:04
 ```
 
 :::details 文件结构
-![](../../assets/javascript/upload-project.png)
+![](../../assets/javascript/large-file-upload/upload-project.png)
 :::
 
 ### 封装请求
@@ -307,7 +307,7 @@ router.post('/uploadChunk', async ctx => {
 })
 ```
 
-![](../../assets/javascript/upload-chunk.png)
+![](../../assets/javascript/large-file-upload/upload-chunk.png)
 
 ### 合并切片
 
@@ -355,7 +355,7 @@ router.post('/merge', async ctx => {
 
 其实也可以等上一个切片合并完后再合并下个切片，这样就不需要指定位置，但传输速度会降低，所以使用了并发合并的手段，接着只要保证每次合并完成后删除这个切片，等所有切片都合并完毕后最后删除切片文件夹即可
 
-![](../../assets/javascript/upload-result.png)
+![](../../assets/javascript/large-file-upload/upload-result.png)
 
 ## 显示上传进度条
 
@@ -424,7 +424,7 @@ function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e })
 
 最终效果
 
-![](../../assets/javascript/upload-progress2.gif)
+![](../../assets/javascript/large-file-upload/upload-progress2.gif)
 
 ## 断点续传
 
@@ -441,49 +441,49 @@ function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e })
 ```js
 self.importScripts('https://cdn.bootcss.com/spark-md5/3.0.0/spark-md5.min.js')
 
-self.addEventListener('message', function (e) {
-
-  const { chunkList } = e.data
-  const spark = new self.SparkMD5.ArrayBuffer()
-  let percentage = 0
-  let count = 0
-
-  function calcFileHash(chunkList) {
-    let progress = 0
+self.addEventListener(
+  'message',
+  function(e) {
+    const { chunkList } = e.data
+    const spark = new self.SparkMD5.ArrayBuffer()
+    let percentage = 0
     let count = 0
 
-    const loadNext = index => {
-      const reader = new FileReader()
-      reader.readAsArrayBuffer(chunkList[index])
-      reader.onload = e => {
-        count++
-        spark.append(e.target.result)
+    function calcFileHash(chunkList) {
+      let progress = 0
+      let count = 0
 
-        if (count === chunkList.length) {
-          self.postMessage({ chunkList, progress: 100, hash: spark.end() })
-          self.close()
-        } else {
-          progress += 100 / chunkList.length
-          self.postMessage({ progress })
-          // 递归计算下一个切片
-          loadNext(count)
+      const loadNext = index => {
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(chunkList[index])
+        reader.onload = e => {
+          count++
+          spark.append(e.target.result)
+
+          if (count === chunkList.length) {
+            self.postMessage({ chunkList, progress: 100, hash: spark.end() })
+            self.close()
+          } else {
+            progress += 100 / chunkList.length
+            self.postMessage({ progress })
+            // 递归计算下一个切片
+            loadNext(count)
+          }
         }
       }
+
+      loadNext(0)
     }
 
-    loadNext(0)
-
-  }
-
-  calcFileHash(chunkList)
-
-}, false)
+    calcFileHash(chunkList)
+  },
+  false
+)
 ```
 
 在 `worker` 线程中，接受文件切片 `fileChunkList`，利用 `FileReader` 读取每个切片的 `ArrayBuffer` 并不断传入 `spark-md5` 中，每计算完一个切片通过 `postMessage` 向主线程发送一个进度事件，全部完成后将最终的 `hash` 发送给主线程
 
 > `spark-md5` 需要根据所有切片才能算出一个 `hash` 值，不能直接将整个文件放入计算，否则即使不同文件也会有相同的 `hash`，具体可以看官方文档
-
 
 ### 暂停上传
 
@@ -523,19 +523,11 @@ self.addEventListener('message', function (e) {
   /**
    * ajax 请求
    */
-  function ajax({
-    url,
-    data,
-    method = 'POST',
-    headers = {},
-    onProgress = e => e
-  }) {
+  function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e }) {
     return new Promise(resolve => {
       const xhr = new XMLHttpRequest()
       xhr.open(method, url, true)
-      Object.keys(headers).forEach(key =>
-        xhr.setRequestHeader(key, headers[key])
-      )
+      Object.keys(headers).forEach(key => xhr.setRequestHeader(key, headers[key]))
       xhr.upload.onprogress = onProgress
       xhr.send(data)
       // 监听请求成功事件，触发后执行事件函数
@@ -611,11 +603,10 @@ self.addEventListener('message', function (e) {
     }
   }
 
-  abortButton.onclick = {
-    
-  }
+  abortButton.onclick = {}
 </script>
 ```
+
 ## 参考文章
 
 - [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)
