@@ -166,4 +166,6 @@ a 会一直沿着隐式原型链 `__proto__` `向上查找直到a.__proto__.__pr
 原型链中的 prototype 随时可以被改动的，改变后的值可能不存在于 object 的原型链上，instanceof 返回的值可能就返回 false。
 :::
 
+## 过滤假值
+
 参考自 [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1f)
