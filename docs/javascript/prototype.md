@@ -3,6 +3,25 @@ title: 原型和原型链
 date: 2020-05-01 10:15:33
 ---
 
+![](../../assets/javascript/prototype/5.png)
+
+:::details 总结
+
+```js
+function Person(name) {
+  console.log('run Person')
+  this.name = name
+}
+var p = new Person()
+
+// 构造函数、实例原型、和实例之间的关系
+1. Person 指代构造函数
+2. Person.prototype 指向原型对象
+3. p.__proto__ === Person.prototype 实例通过 __proto__ （原型链）指向原型
+```
+
+:::
+
 ## 构造函数
 
 我们先使用构造函数创建一个对象：
@@ -95,4 +114,106 @@ console.log(Object.getPrototypeOf(person) === Person.prototype) // true
 
 了解了构造函数、实例原型、和实例之间的关系，接下来我们讲讲实例和原型的关系：
 
-## 实例与原型
+## 实例与原型 <Badge text="读取实例的属性 instance.属性 >> 构造函数.prototype.属性"/>
+
+当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。
+
+举个例子：
+
+```js
+function Person() {}
+
+Person.prototype.name = 'Kevin'
+
+var person = new Person()
+
+person.name = 'Daisy'
+console.log(person.name) // Daisy
+
+delete person.name
+console.log(person.name) // Kevin
+```
+
+在这个例子中，我们给实例对象 `person` 添加了 `name` 属性，当我们打印 `person.name` 的时候，结果自然为 `Daisy`。
+
+但是当我们删除了 `person` 的 `name` 属性时，读取 `person.name`，从 `person` 对象中找不到 `name` 属性就会从 person 的原型也就是 `person.__proto__` ，也就是 `Person.prototype` 中查找，幸运的是我们找到了 `name` 属性，结果为 `Kevin`。
+
+但是万一还没有找到呢？原型的原型又是什么呢？
+
+## 原型的原型
+
+在前面，我们已经讲了原型也是一个对象，既然是对象，我们就可以用最原始的方式创建它，那就是：
+
+```js
+var obj = new Object()
+obj.name = 'Kevin'
+console.log(obj.name) // Kevin
+```
+
+其实原型对象就是通过 `Object` 构造函数生成的，结合之前所讲，实例的 `__proto__` 指向构造函数的 `prototype` ，所以我们再更新下关系图：
+
+![](../../assets/javascript/prototype/4.png)
+
+那 `Object.prototype` 的原型呢？
+
+`null`，我们可以打印：
+
+```js
+console.log(Object.prototype.__proto__ === null) // true
+```
+
+然而 `null` 究竟代表了什么呢？
+
+引用阮一峰老师的 [《undefined 与 null 的区别》](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html) 就是：
+
+> null 表示“没有对象”，即该处不应该有值。
+
+所以 `Object.prototype.__proto__` 的值为 `null` 跟 `Object.prototype` 没有原型，其实表达了一个意思。
+
+所以查找属性的时候查到 `Object.prototype` 就可以停止查找了。
+
+最后一张关系图也可以更新为：
+
+![](../../assets/javascript/prototype/5.png)
+
+## new 做了什么？
+
+详见 [New 的模拟实现](./new.md)
+
+```js
+function Person(name) {
+  console.log('run Person')
+  this.name = name
+}
+
+var p = new Person('guosw')
+```
+
+以上面的为例，模拟一下 new 的操作
+
+```js
+var obj = new Object() // 1. 创建一个空对象
+obj.__proto__ = Person.prototype // 2 设置原型链
+var result = Person.call(obj) // 3 让 Person 中的 this 指向 obj，并执行 Person 的函数体
+// 4 返回值是 object 类型 则直接返回这个结果 如果没有返回值或者其他 则默认返回创建的对象
+if (typeof result === 'object') {
+  return result
+} else {
+  return obj
+}
+```
+
+最终我们可以得出一些结论 `Person` 代指构造函数， `p` 代指其实例
+
+```js
+Person.prototype.constructor === Person // 原型.constructor 指向 构造函数
+p.__proto__ === Person.prototype // 实例.__proto__ 指向 原型
+/**
+ * 当获取 person.constructor 时，其实 person 中并没有 constructor 属性
+ * 当不能读取到 constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取
+ *
+ * p.__proto__ === Person.prototype
+ * p.constructor === Person.prototype.constructor === Person
+ */
+p.constructor === Person
+```
