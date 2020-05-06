@@ -146,4 +146,24 @@ class A {}
 console.log(A instanceof Function) // true
 ```
 
+假设现在有 `a instanceof b` 一条语句，则其 `instanceof` 内部实际做了如下判断：
+
+```js
+while (a.__proto__ !== null) {
+  if (a.__proto__ === b.prototype) {
+    return true
+  }
+  a.__proto__ = a.__proto__.proto__
+}
+if (a.__proto__ == null) {
+  return false
+}
+```
+
+a 会一直沿着隐式原型链 `__proto__` `向上查找直到a.__proto__.__proto__ ...... === b.prototype`为止，如果找到则返回 `true`，也就是 `a` 为 `b` 的一个实例。否则返回 `false`，`x` 不是 `b`的实例。
+
+:::warning 注意
+原型链中的 prototype 随时可以被改动的，改变后的值可能不存在于 object 的原型链上，instanceof 返回的值可能就返回 false。
+:::
+
 参考自 [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1f)
