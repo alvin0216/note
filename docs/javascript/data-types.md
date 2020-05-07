@@ -62,15 +62,7 @@ console.log(obj1.name) // 小鹿
 
 ![](../../assets/javascript/data-types/3.png)
 
-## Null
-
-### typeof null 等于 Object?
-
-> 面试官：为什么 typeof null 等于 Object?
-
-不同的对象在底层原理的存储是用二进制表示的，在 `javaScript` 中，如果二进制的前三位都为 0 的话，系统会判定为是 `Object` 类型。null 的存储二进制是 `000`，也是前三位，所以系统判定 `null` 为 `Object` 类型。
-
-### Null 和 undefined 的区别
+## Null 和 undefined 的区别
 
 ```js
 console.log(null == undefined) // true
@@ -112,23 +104,33 @@ x // undefined
 
 [阮一峰 undefined 与 null 的区别](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html)
 
-## typeof 与 instanceof 有什么区别？
+## typeof 与 instanceof
 
-`typeof` 是一元运算符，同样返回一个字符串类型。一般用来判断一个变量是否为空或者是什么类型。
-
-除了 `null` 类型以及 `Object` 类型不能准确判断外，其他数据类型都可能返回正确的类型。
+### typeof
 
 ```js
 typeof undefined // 'undefined'
-typeof '10'      // 'String'
-typeof 10        // 'Number'
-typeof false     // 'Boolean'
-typeof Symbol()  // 'Symbol'
-typeof Function  // ‘function'
-typeof null		 // ‘Object’
-typeof []        // 'Object'
-typeof {}    .   // 'Object'
+typeof '10' // 'String'
+typeof 10 // 'Number'
+typeof false // 'Boolean'
+typeof Symbol() // 'Symbol'
+typeof Function // ‘function'
+typeof null // ‘Object’
+typeof [] // 'Object'
+typeof {} // 'Object'
 ```
+
+`typeof` 一般被用于判断一个变量的类型，我们可以利用 `typeof` 来判断 `number`, `string`, `object`, `boolean`, `function`, `undefined`, `symbol` 这七种类型。这种判断能帮助我们搞定一些问题，比如在判断不是 object 类型的数据的时候，typeof 能比较清楚的告诉我们具体是哪一类的类型。但是，很遗憾的一点是，typeof 在判断一个 object 的数据的时候只能告诉我们这个数据是 object, 而不能细致的具体到是哪一种 object, 比如 👉
+
+```js
+let s = new String('abc')
+typeof s === 'object' // true
+s instanceof String // true
+```
+
+要想判断一个数据具体是哪一种 `object` 的时候，我们需要利用 `instanceof` 这个操作符来判断。
+
+### instanceof
 
 既然 `typeof` 对对象类型都返回 `Object` 类型情况的局限性，我们可以使用 `instanceof` 来进行**判断某个对象是不是另一个对象的实例**。返回值的是一个布尔类型。
 
@@ -165,6 +167,55 @@ a 会一直沿着隐式原型链 `__proto__` `向上查找直到a.__proto__.__pr
 :::warning 注意
 原型链中的 prototype 随时可以被改动的，改变后的值可能不存在于 object 的原型链上，instanceof 返回的值可能就返回 false。
 :::
+
+更多详见 [instanceof 的实现](./instanceof.md)
+
+### typeof null 等于 Object?
+
+来谈谈关于 `typeof` 的原理吧，我们可以先想一个很有意思的问题，`js` 在底层是怎么存储数据的类型信息呢？或者说，一个 `js` 的变量，在它的底层实现中，它的类型信息是怎么实现的呢？
+
+其实，js 在底层存储变量的时候，会在变量的机器码的低位 1-3 位存储其类型信息 👉
+
+- 000：对象
+- 010：浮点数
+- 100：字符串
+- 110：布尔
+- 1：整数
+
+but, 对于 `undefined` 和 `null` 来说，这两个值的信息存储是有点特殊的。
+
+`null`：所有机器码均为 0
+
+`undefined`：用 −2^30 整数来表示
+
+**不同的对象在底层原理的存储是用二进制表示的，在 `javaScript` 中，如果二进制的前三位都为 0 的话，系统会判定为是 `Object` 类型。null 的存储二进制是 `000`，也是前三位，所以系统判定 `null` 为 `Object` 类型。**
+
+然而用 `instanceof` 来判断的话 👉
+
+```js
+null instanceof null
+// TypeError: Right-hand side of 'instanceof' is not an object
+```
+
+`null` 直接被判断为不是 object，这也是 JavaScript 的历史遗留 bug，可以参考[typeof](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/typeof)
+
+因此在用 typeof 来判断变量类型的时候，我们需要注意，最好是用 typeof 来判断基本数据类型（包括 `symbol`），避免对 `null` 的判断。
+
+### Object.prototype.toString
+
+还有一个不错的判断类型的方法，就是 `Object.prototype.toString`，我们可以利用这个方法来对一个变量的类型来进行比较准确的判断
+
+```js
+Object.prototype.toString.call(1) // "[object Number]"
+Object.prototype.toString.call('hi') // "[object String]"
+Object.prototype.toString.call({ a: 'hi' }) // "[object Object]"
+Object.prototype.toString.call([1, 'a']) // "[object Array]"
+Object.prototype.toString.call(true) // "[object Boolean]"
+Object.prototype.toString.call(() => {}) // "[object Function]"
+Object.prototype.toString.call(null) // "[object Null]"
+Object.prototype.toString.call(undefined) // "[object Undefined]"
+Object.prototype.toString.call(Symbol(1)) // "[object Symbol]"
+```
 
 ## 类型转换
 
@@ -237,7 +288,7 @@ Number('10a') // NaN
 Number(undefined) // NaN
 ```
 
-## 四则运算
+## 四则运算 <Badge text="隐式类型转换" type="warning" />
 
 > 加法运算符是在运行时决定，到底是执行相加，还是执行连接。运算数的不同，导致了不同的语法行为，这种现象称为“重载”。
 
@@ -303,4 +354,9 @@ false + 'b' // ‘falseb’
 | Object == String,Number,Symbol，将 Object 转化为原始类型再比较值大小 | [1] == 1 <br /> [1] == '1' | true <br />true |
 | 其他返回 false                                                       | false                      |
 
-参考自 [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1f)
+**参考自**
+
+---
+
+- [🔥 动画：《大前端吊打面试官系列》 之原生 JavaScript 精华篇](https://juejin.im/post/5e34d19de51d4558864b1d1f)
+- [浅谈 instanceof 和 typeof 的实现原理](https://juejin.im/post/5b0b9b9051882515773ae714)
