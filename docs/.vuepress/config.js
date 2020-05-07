@@ -68,7 +68,7 @@ module.exports = {
         {
           title: '基础',
           collapsable: false,
-          children: ['data-types', 'prototype', 'this', 'closure', 'extends']
+          children: ['data-types', 'prototype', 'extends', 'this', 'closure']
         },
         {
           title: '模拟实现系列',
