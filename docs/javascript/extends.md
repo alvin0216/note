@@ -112,6 +112,37 @@ console.log(c2.arr) // [1, 2, 3]
 通过原型链实现的继承，都是复用同一个属性和方法；
 通过构造函数实现的继承，都是独立的属性和方法。于是我们大打算利用这一点，将两种方式组合起来：通过在原型上定义方法实现对**函数的复用**，通过构造函数的方式保证每个实例都有它**自己的属性**。
 
+```js {10,13}
+function Father(name) {
+  this.arr = [1, 2, 3]
+}
+
+Father.prototype.say = function() {
+  console.log(this.arr.join(', '))
+}
+
+function Child(name) {
+  Father.call(this, name)
+}
+
+Child.prototype = new Father()
+
+var c1 = new Child('foo')
+var c2 = new Child('bar')
+
+c1.arr.push(4)
+c1.say()
+c2.say()
+```
+
+- 优点：
+  - 可以继承实例属性/方法，也可以继承原型属性/方法
+  - 不存在引用属性共享问题
+  - 可传参
+  - 函数可复用
+- 缺点：
+  - 调用了两次父类构造函数，生成了两份实例
+
 ---
 
 - [JavaScript 对象封装、多态、继承](https://juejin.im/post/5e75e22951882549027687f9)
