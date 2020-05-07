@@ -68,12 +68,12 @@ module.exports = {
         {
           title: '基础',
           collapsable: false,
-          children: ['data-types', 'prototype', 'this', 'closure']
+          children: ['data-types', 'prototype', 'this', 'closure', 'extends']
         },
         {
           title: '模拟实现系列',
           collapsable: false,
-          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce']
+          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof']
         },
         {
           title: '文件和二进制数据',
