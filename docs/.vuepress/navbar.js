@@ -1,10 +1,9 @@
 module.exports = [
   { text: '主页', link: '/' },
-  // { text: '学习日程栏', link: '/schedule/' },
-  { text: '题目', link: '/question/' },
   { text: 'Javascript', link: '/javascript/' },
   { text: 'React', link: '/react/' },
   { text: 'React 原理解析', link: '/react-code-read/home' },
+  { text: '数据结构与算法', link: '/algorithm/' },
   { text: 'HTTP', link: '/http/' },
   { text: 'NODE', link: '/node/' },
   {

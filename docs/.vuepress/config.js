@@ -63,6 +63,7 @@ module.exports = {
           children: ['node-shell', 'middleware']
         }
       ],
+      '/algorithm/': [''],
       // js
       '/javascript/': [
         {
@@ -90,8 +91,14 @@ module.exports = {
         {
           title: 'HTML',
           collapsable: false,
-          children: ['root/html5', 'root/meta']
-        }
+          children: ['root/html/html5', 'root/html/meta']
+        },
+        {
+          title: 'Javascript',
+          collapsable: false,
+          children: ['root/js/question']
+        },
+
       ]
     },
     // === nav
