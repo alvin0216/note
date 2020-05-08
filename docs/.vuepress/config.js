@@ -63,7 +63,23 @@ module.exports = {
           children: ['node-shell', 'middleware']
         }
       ],
-      '/algorithm/': [''],
+      '/algorithm/': [
+        {
+          title: '数据结构与算法',
+          collapsable: false,
+          children: ['pre-knowledge']
+        },
+        {
+          title: '栈',
+          collapsable: false,
+          children: ['stack/1']
+        },
+        {
+          title: '排序算法',
+          collapsable: false,
+          children: ['sort/1']
+        },
+      ],
       // js
       '/javascript/': [
         {
