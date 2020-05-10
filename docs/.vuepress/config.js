@@ -65,14 +65,9 @@ module.exports = {
       ],
       '/algorithm/': [
         {
-          title: '数据结构与算法',
+          title: '数据结构',
           collapsable: false,
-          children: ['pre-knowledge']
-        },
-        {
-          title: '栈和队列',
-          collapsable: false,
-          children: ['stack/1']
+          children: ['pre-knowledge', 'data-structure/stack-queue']
         },
         {
           title: '排序算法',
