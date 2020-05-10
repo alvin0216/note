@@ -70,7 +70,7 @@ module.exports = {
           children: ['pre-knowledge']
         },
         {
-          title: '栈',
+          title: '栈和队列',
           collapsable: false,
           children: ['stack/1']
         },
