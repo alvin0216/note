@@ -15,9 +15,7 @@ date: 2020-05-08 15:56:33
 
 由于栈具有后入先出的特点，所以任何不在栈顶的元素都无法访问。为了得到栈底的元素，必须先拿掉上面的元素。
 
-:::details 图示
-![](../../../assets/algorithm/stack/1.png)
-:::
+![](../../../assets/algorithm/stack/2.png)
 
 ### 栈和函数
 
@@ -50,8 +48,6 @@ test()
 
 ### 栈的实现
 
-![](../../../assets/algorithm/stack/2.png)
-
 | 方法名  | 操作                                             |
 | ------- | ------------------------------------------------ |
 | push    | 栈顶添加元素                                     |
@@ -64,7 +60,6 @@ test()
 
 ```js
 // [栈底, ..... 栈顶]
-
 function Stack() {
   var items = [] // 私有【this.items 就为公有的了】
 
@@ -88,6 +83,8 @@ function Stack() {
   this.clear = function() {
     items = []
   }
+
+  this.print = () => console.log(items.toString())
 }
 ```
 
@@ -141,15 +138,16 @@ function convertTo2(number) {
 
 ![](../../../assets/algorithm/stack/5.png)
 
-### 使用数组实现队列
+### 实现队列
 
-| 方法名  | 操作             |
-| ------- | ---------------- |
-| enqueue | 入列             |
-| dequeue | 出列             |
-| front   | 查看队列头       |
-| isEmpty | 检查队列是否为空 |
-| size    | 获取队列长度     |
+| 方法名  | 操作                                                                   |
+| ------- | ---------------------------------------------------------------------- |
+| enqueue | 向队列尾部添加一个（或是多个）元素。                                   |
+| dequeue | 移除队列的第一个元素，并返回被移除的元素。                             |
+| front   | 回队列的第一个元素——最先被添加的也是最先被移除的元素。队列不做任何变动 |
+| isEmpty | 检查队列是否为空                                                       |
+| size    | 获取队列长度                                                           |
+| print   | 打印队列的元素                                                         |
 
 ```js
 function Queue() {
@@ -168,6 +166,8 @@ function Queue() {
   this.isEmpty = () => items.length === 0
 
   this.size = () => items.length
+
+  this.print = () => console.log(items.toString())
 }
 ```
 
