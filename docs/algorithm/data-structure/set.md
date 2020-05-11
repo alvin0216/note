@@ -143,6 +143,7 @@ function Set2() {
     return differenceSet
   }
 
+  // 是否为子集
   this.subset = function(otherSet) {
     var values = otherSet.values()
     // 子集的元素个数要小于 otherSet 的元素个数
@@ -156,7 +157,6 @@ function Set2() {
     }
     return isSubSet
   }
-  this.log = () => console.log(items, this.size())
 }
 ```
 

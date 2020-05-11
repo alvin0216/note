@@ -88,15 +88,16 @@ module.exports = {
           children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof']
         },
         {
+          title: 'ES6',
+          collapsable: false,
+          children: ['set-map', 'web-worker', 'skills']
+        },
+        {
           title: '文件和二进制数据',
           // collapsable: false,
           children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
         },
-        {
-          title: '补充知识',
-          // collapsable: false,
-          children: ['web-worker', 'skills']
-        },
+
       ],
       '/': [
         {
