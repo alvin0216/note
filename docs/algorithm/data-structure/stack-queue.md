@@ -3,6 +3,10 @@ title: 栈和队列
 date: 2020-05-08 15:56:33
 ---
 
+几乎所有的编程语言都原生支持数组类型，因为数组是最简单的内存数据结构。`javascript` 也有数组类型，而数组呢，其实就是一种特殊的栈或是队列，利用 `javascript` `Array` 所内置的 API 可以很方便的模拟栈和队列。
+
+我们知道，我们可以在数组的任意位置添加或是删除元素，然而，有时候我们还需要一种在添加或是删除元素的时候有更多控制的数据结构。有两种数据结构类似于数组。但在添加或是删除元素的时候更为的可控。他们就是栈和队列。
+
 ## 栈
 
 栈是一种特殊的列表，栈内的元素只能通过列表的一端访问，这一端称为栈顶。
@@ -48,14 +52,15 @@ test()
 
 ![](../../../assets/algorithm/stack/2.png)
 
-| 方法名  | 操作           |
-| ------- | -------------- |
-| push    | 栈顶添加元素   |
-| pop     | 栈顶移除元素   |
-| peek    | 查看栈顶       |
-| isEmpty | 检查栈是否为空 |
-| clear   | 移除所有元素   |
-| size    | 获取栈长度     |
+| 方法名  | 操作                                             |
+| ------- | ------------------------------------------------ |
+| push    | 栈顶添加元素                                     |
+| pop     | 移除栈顶的元素，同时返回被移除元素               |
+| peek    | 返回栈顶的元素，但并不对栈顶的元素做出任何的修改 |
+| isEmpty | 检查栈是否为空                                   |
+| clear   | 移除所有元素                                     |
+| size    | 获取栈长度                                       |
+| print   | 打印栈中的所有元素                               |
 
 ```js
 // [栈底, ..... 栈顶]
@@ -130,14 +135,13 @@ function convertTo2(number) {
 
 ## 队列
 
-
-我们已经接触了栈，接下来要说的队列和栈十分相似，他们都是线性表，元素都是有序的。队列和栈不同的是，队列遵循的是FIFO，也就是先进先出的原则。队列从尾部添加新元素，从顶部移除元素，最新添加的元素必须排列在队列的末尾。
+我们已经接触了栈，接下来要说的队列和栈十分相似，他们都是线性表，元素都是有序的。队列和栈不同的是，队列遵循的是 FIFO，也就是先进先出的原则。队列从尾部添加新元素，从顶部移除元素，最新添加的元素必须排列在队列的末尾。
 
 比如水管出水的例子
 
 ![](../../../assets/algorithm/stack/5.png)
 
-### 使用数组实现队列 
+### 使用数组实现队列
 
 | 方法名  | 操作             |
 | ------- | ---------------- |
@@ -151,11 +155,11 @@ function convertTo2(number) {
 function Queue() {
   var items = []
 
-  this.enqueue = function (element) {
+  this.enqueue = function(element) {
     items.push(element)
   }
 
-  this.dequeue = function () {
+  this.dequeue = function() {
     return items.shift()
   }
 
@@ -192,7 +196,8 @@ function game(playerList, number) {
   }
 
   while (queue.size() > 1) {
-    for (let i = 0; i < number - 1; i++) { // a,b 出列 入列（循环）
+    for (let i = 0; i < number - 1; i++) {
+      // a,b 出列 入列（循环）
       queue.enqueue(queue.dequeue())
     }
     outer = queue.dequeue() // 第三位则出列后不入列了
@@ -219,7 +224,7 @@ function PriorityQueue() {
     this.priority = priority
   }
 
-  this.enqueue = function (element, priority) {
+  this.enqueue = function(element, priority) {
     var queueItem = new QueueElement(element, priority)
     var isMinimal = true // 当前的 item 是否为最小优先级
 
@@ -237,7 +242,7 @@ function PriorityQueue() {
     }
   }
 
-  this.dequeue = function () {
+  this.dequeue = function() {
     return items.shift()
   }
 
@@ -247,7 +252,6 @@ function PriorityQueue() {
 
   this.size = () => items.length
 }
-
 
 var queue = new PriorityQueue()
 

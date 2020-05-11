@@ -3,26 +3,30 @@ title: 链表
 date: 2020-05-10 15:16:26
 ---
 
-链表存储有序的元素集合，但不同于数组，链表中的元素在内存中并不是连续放置的。每个元素由一个存储元素本事的节点和一个指向下一个元素的引用组成。相对于传统的数组，链表的一个好处在于，添加或者删除元素的时候不需要移动其他元素。然而，链表需要使用指针，因此实现链表时需要额外注意。
+## 链表简介
+
+在 [栈和队列](./stack-queue)说了栈和队列在 `javascript` 中的实现,我们运用 `javascript` 提供的 API 很容易的实现了栈和队列，**_但这种数据结构有一个很明显的缺点，因为数组大小是固定的所以我们在移除或是添加一项数据的时候成本很高。_**
+
+相比数组我们今天主角——链表就要来的随性的多，简单的理解可以是这样：在内存中，栈和队列（数组）的存在就是一个整体，如果想要对她内部某一个元素进行移除或是添加一个新元素就要动她内部所有的元素，所谓牵一发而动全身；而链表则不一样，每一个元素都是由元素本身数据和指向下一个元素的指针构成，所以添加或是移除某一个元素不需要对链表整体进行操作，只需要改变相关元素的指针指向就可以了。
+
+链表在实际生活中的例子也有很多，比如自行车的链条，环环相扣，但添加或是移除某一个环节只需要对症下药，对相关环节进行操作就 OK。再比如：火车，火车就是一个链表，每一节车厢就是元素，想要移除或是添加某一节车厢，只需要把连接车厢的链条改变一下就好了。那么，在 `javascript` 中又该怎么去实现链表结构呢？
 
 ![](../../../assets/algorithm/linkedList/1.png)
 
-## 链表的操作
+## 单项链表的实现
 
-| 方法                      | 说明                   |
-| ------------------------- | ---------------------- |
-| insert(position, element) | 插入元素               |
-| append(element)           | 尾部添加元素           |
-| indexOf(element)          | 获取元素索引           |
-| remove(element)           | 从链表移除一项         |
-| removeAt(position)        | 从链表特定位置移除一项 |
-| size                      | 返回链表的长度         |
-| toString                  | 返回                   |
-| print                     | 打印链表数据           |
+| 方法                      | 说明                                                          |
+| ------------------------- | ------------------------------------------------------------- |
+| insert(position, element) | 插入元素                                                      |
+| append(element)           | 尾部添加元素                                                  |
+| indexOf(element)          | 返回链表中某元素的索引，如果没有返回-1                        |
+| remove(element)           | 从链表移除一项                                                |
+| removeAt(position)        | 从链表特定位置移除一项                                        |
+| size                      | 返回链表的长度                                                |
+| toString                  | 重写继承自 Object 类的 toString()方法，因为我们使用了 Node 类 |
+| print                     | 打印链表数据                                                  |
 
 ![](../../../assets/algorithm/linkedList/2.png)
-
-## 单项链表的实现
 
 ### append
 
@@ -42,7 +46,7 @@ date: 2020-05-10 15:16:26
 
 ### 代码实现
 
-```js {12,27,55,78,91}
+```js
 function LinkedList() {
   var head = null // 链表头
   var length = 0 // 链表长度
@@ -57,19 +61,20 @@ function LinkedList() {
   this.append = function(element) {
     var node = new Node(element)
     if (head === null) {
-      head = node
+      head = node //第一个Node实例进入链表，之后在这个LinkedList实例中head就不再是null了
     } else {
       var current = head
       while (current.next) {
-        // 循环 找到链表尾节点
+        //循环链表知道找到最后一项，循环结束current指向链表最后一项元素
         current = current.next
       }
-      current.next = node
+      current.next = node //找到最后一项元素后，将他的next属性指向新元素node,j建立链接
     }
-    length++
+    length++ //更新链表长度
   }
 
   this.insert = function(position, element) {
+    //检查是否越界，超过链表长度或是小于0肯定不符合逻辑的
     if (position > -1 && position <= length) {
       var node = new Node(element)
 
@@ -82,6 +87,7 @@ function LinkedList() {
         var index = 0
         var previous = null
         var current = head
+        //循环链表，找到正确位置，循环完毕，previous，current分别是被添加元素的前后元素
         while (index < position) {
           previous = current
           current = current.next
@@ -91,19 +97,20 @@ function LinkedList() {
         node.next = current
       }
 
-      length++
+      length++ // 更新链表长度
       return true
     }
     return false
   }
 
   this.removeAt = function(position) {
+    // 检查是否越界，超过链表长度或是小于0肯定不符合逻辑的
     if (position > -1 && position < length) {
       if (position === 0) {
-        // 列表头移除元素
         var current = head
-        head = current.next
+        head = current.next // 移除第一项，相当于head=null
       } else {
+        // 循环链表，找到正确位置循环完毕，previous，current分别是被添加元素的前后元素
         var index = 0
         var previous = null
         var current = head
@@ -112,7 +119,8 @@ function LinkedList() {
           current = current.next
           index++
         }
-        previous.next = current.next // current 就是被移除的元素
+        //链接previous和current的下一个元素，也就是把current移除了
+        previous.next = current.next
       }
       length--
       return current.element
@@ -153,9 +161,8 @@ function LinkedList() {
     return string
   }
 
-  //获取头结点元素
-  this.getHead = function() {
-    return head.element
+  this.print = function() {
+    console.log(this.toString())
   }
 }
 
@@ -475,3 +482,7 @@ function CircularLinkedList() {
   }
 }
 ```
+
+参考
+
+- [学习 Javascript 数据结构之链表](https://blog.damonare.cn/2016/11/26/%E5%AD%A6%E4%B9%A0Javascript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/)
