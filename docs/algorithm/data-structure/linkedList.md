@@ -483,6 +483,10 @@ function CircularLinkedList() {
 }
 ```
 
+## 后记
+
+说到现在一直都是线性表，就是顺序数据结构，他们都是有顺序的，数据都是一条绳子上的蚂蚱。那么，如果数据是没有顺序的呢？那又该使用哪种数据结构呢？这个放到[数据结构——集合](./set)中学习。
+
 参考
 
 - [学习 Javascript 数据结构之链表](https://blog.damonare.cn/2016/11/26/%E5%AD%A6%E4%B9%A0Javascript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/)
