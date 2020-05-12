@@ -79,17 +79,17 @@ module.exports = {
       '/javascript/': [
         {
           title: '基础',
-          collapsable: false,
+          // collapsable: false,
           children: ['data-types', 'prototype', 'extends', 'this', 'closure']
         },
         {
           title: '模拟实现系列',
-          collapsable: false,
+          // collapsable: true,
           children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof']
         },
         {
           title: 'ES6',
-          collapsable: false,
+          // collapsable: false,
           children: ['set-map', 'web-worker', 'skills']
         },
         {
