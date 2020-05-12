@@ -67,7 +67,7 @@ module.exports = {
         {
           title: '数据结构',
           collapsable: false,
-          children: ['pre-knowledge', 'data-structure/stack-queue', 'data-structure/linkedList', 'data-structure/set']
+          children: ['pre-knowledge', 'data-structure/stack-queue', 'data-structure/linkedList', 'data-structure/set', 'data-structure/dict-hashtable']
         },
         {
           title: '排序算法',

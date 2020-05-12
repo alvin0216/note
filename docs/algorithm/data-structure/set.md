@@ -181,7 +181,7 @@ console.log(s1.subset(s2)) // false
 
 ## es6 中的 Set 和 WeakSet
 
----
+详见 [ES6 Set 和 Map](../../javascript/set-map)
 
 参考
 
