@@ -332,6 +332,13 @@ let Stack = (function() {
 一共需要七步。我们用代码描述如下：
 
 ```js
+/**
+ * @param {圆盘数：number} plates
+ * @param {起始柱子 a：string} source
+ * @param {辅助柱子 b：string} helper
+ * @param {目标柱子 c：string} dest
+ * @param {移动步骤集：Array，数组的长度就是移动的次数} moves
+ */
 function hanoi(plates, source, helper, dest, moves = []) {
   if (plates <= 0) {
     return moves
