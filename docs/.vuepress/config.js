@@ -108,7 +108,7 @@ module.exports = {
         {
           title: 'Javascript',
           collapsable: false,
-          children: ['root/js/question']
+          children: ['root/js/question', 'root/js/regexp']
         },
 
       ]
