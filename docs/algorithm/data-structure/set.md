@@ -1,5 +1,5 @@
 ---
-title: 集合
+title: 集合的实现与应用
 date: 2020-05-11 20:09:24
 ---
 
@@ -48,123 +48,99 @@ date: 2020-05-11 20:09:24
 | subset(setName)       | 子集，验证 setName 是否是本集合的子集；                         |
 
 ```js
-function Set2() {
-  var items = {}
-
-  // 检查元素是否存在
-  this.has = function(value) {
-    // hasOwnProperty 判断自身属性与继承属性
-    // 例如  Set2.prototype.num = 1 var s = new Set2() s.hasOwnProperty('num') 返回 false
-    return items.hasOwnProperty(value)
+class Set {
+  constructor() {
+    this.items = {}
   }
 
-  // 集合中添加元素
-  this.add = function(value) {
+  add(value) {
+    // 向集合中添加元素
     if (!this.has(value)) {
-      // 如果集合中不存在这个元素 才可以添加 （不重复性）
-      items[value] = value
+      this.items[value] = value
       return true
     }
     return false
   }
 
-  // 移除元素
-  this.remove = function(value) {
+  delete(value) {
+    // 从集合中删除对应的元素
     if (this.has(value)) {
-      delete items[value]
+      delete this.items[value]
       return true
     }
     return false
   }
 
-  // 集合元素的个数
-  this.size = function() {
-    var count = 0
-    for (var prop in items) {
-      if (items.hasOwnProperty(prop)) {
-        count++
-      }
-    }
-    return count // es6 Object.keys(items).length
+  has(value) {
+    // 判断给定的元素在集合中是否存在
+    return this.items.hasOwnProperty(value)
   }
 
-  // 提取集合全部值并以数组返回
-  this.values = function(params) {
-    var values = []
-    for (const key in items) {
-      if (items.hasOwnProperty(key)) {
-        values.push(key)
-      }
-    }
-    return values
+  clear() {
+    // 清空集合内容
+    this.items = {}
   }
 
-  this.clear = function() {
-    items = {}
+  size() {
+    // 获取集合的长度
+    return Object.keys(this.items).length
   }
 
-  // 并集
-  this.union = function(otherSet) {
-    var resultSet = new Set2()
-    var arr = this.values()
-    // 1 把自己的值提取出来
-    for (let i = 0; i < arr.length; i++) {
-      resultSet.add(arr[i])
-    }
-    // 2 把另一个集合的值提取出来 利用 Set 不重复性去重 可以求出并集
-    arr = otherSet.values()
-    for (let i = 0; i < arr.length; i++) {
-      resultSet.add(arr[i])
-    }
-    return resultSet
+  values() {
+    // 返回集合中所有元素的内容
+    return Object.values(this.items)
   }
 
-  //  交集
-  this.intersection = function(otherSet) {
-    var intersectionSet = new Set2()
-    var values = this.values()
-    for (let i = 0; i < values.length; i++) {
-      if (otherSet.has(values[i])) {
-        intersectionSet.add(values[i])
-      }
-    }
+  union(otherSet) {
+    let unionSet = new Set()
+    this.values().forEach(value => unionSet.add(value))
+    otherSet.values().forEach(value => unionSet.add(value))
+    return unionSet
+  }
+
+  intersection(otherSet) {
+    // 交集
+    let intersectionSet = new Set()
+    this.values().forEach(value => {
+      if (otherSet.has(value)) intersectionSet.add(value)
+    })
     return intersectionSet
   }
 
-  // 差集 [A 1, 2, 3; B 1, 4] >> [2, 3]
-  this.difference = function(otherSet) {
-    var differenceSet = new Set2()
-    var values = this.values()
-    for (let i = 0; i < values.length; i++) {
-      if (!otherSet.has(values[i])) {
-        differenceSet.add(values[i])
-      }
-    }
+  difference(otherSet) {
+    // 差集
+    let differenceSet = new Set()
+    this.values().forEach(value => {
+      if (!otherSet.has(value)) differenceSet.add(value)
+    })
     return differenceSet
   }
 
-  // 是否为子集
-  this.subset = function(otherSet) {
-    var values = otherSet.values()
-    // 子集的元素个数要小于 otherSet 的元素个数
+  subset(otherSet) {
+    // 子集
     if (this.size() > otherSet.size()) return false
-    var isSubSet = false
-    for (let i = 0; i < values.length; i++) {
-      if (!this.has(values[i])) {
-        isSubSet = true
-        break
+
+    let isSubset = true
+    this.values().every(value => {
+      if (!otherSet.has(value)) {
+        isSubset = false
+        return false
       }
-    }
-    return isSubSet
+      return true
+    })
+
+    return isSubset
   }
 }
 ```
 
+:::details 测试用例
+
 测试代码
 
 ```js
-var s1 = new Set2()
-var s2 = new Set2()
+let s1 = new Set()
+let s2 = new Set()
 
 s1.add(1)
 s1.add(2)
@@ -179,7 +155,29 @@ console.log(s1.difference(s2).values()) // ['2', '3']
 console.log(s1.subset(s2)) // false
 ```
 
+:::
+
 ## es6 中的 Set 和 WeakSet
+
+在 ES6 中，原生的 Set 类已经实现了集合的全部特性，让我们来看看它的一些使用方法：
+
+```js
+let set = new Set()
+set.add(1)
+set.add(2)
+set.add(3)
+console.log(set.values()) // [Set Iterator] { 1, 2, 3 }
+console.log(set.has(1)) // true
+console.log(set.size) // 2
+
+set.delete(1)
+console.log(set.values()) // [Set Iterator] { 2, 3 }
+
+set.clear()
+console.log(set.values()) // [Set Iterator] {  }
+```
+
+和前面我们自定义的 `Set` 类稍微有一点不同，values()方法返回的不是一个数组，而是 `Iterator` 迭代器。另一个就是这里的 `size` 是一个属性而不是方法，其它部分都和我们前面定义的 `Set` 类相同。由于 `ES6` 的 `Set` 类不包含对集合的数学运算，我们可以按照前面我们提供的方法来对其进行扩充。
 
 详见 [ES6 Set 和 Map](../../javascript/set-map)
 
