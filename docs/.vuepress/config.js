@@ -67,12 +67,12 @@ module.exports = {
         {
           title: '数据结构',
           collapsable: false,
-          children: ['pre-knowledge', 'data-structure/stack', 'data-structure/queue', 'data-structure/linkedList', 'data-structure/set', 'data-structure/dict-hashtable']
+          children: ['data-structure/stack', 'data-structure/queue', 'data-structure/linkedList', 'data-structure/set', 'data-structure/dict-hashtable']
         },
         {
           title: '排序算法',
           collapsable: false,
-          children: ['sort/1']
+          children: ['pre-knowledge', 'sort/1']
         },
       ],
       // js
