@@ -325,51 +325,86 @@ let Stack = (function() {
 > 1、一次只能移动柱子最上端的一个圆盘
 >
 > 2、小圆盘上不能放大圆盘
+>
 > 将一个圆盘从一根柱子移到另一根柱子，算移动“1 次”，那么，将若干个圆盘全部从 a 移到 c 最少需要移动几次呢?
 
 ![](../../../assets/algorithm/stack/hanno.gif)
 
-一共需要七步。我们用代码描述如下：
+#### 分析
+
+寻找规律（把所有的圆盘移动到 C）：
+
+1. 圆盘个数 === 1, sum = 1
+
+| 次数 |  动作  |  A   |  B  |   C   |
+| :--: | :----: | :--: | :-: | :---: |
+|  0   |        | [1]  | []  |  []   |
+|  1   | A -> C | `[]` | []  | `[1]` |
+
+2. 圆盘个数 === 2, sum = 3
+
+| 次数 |  动作  |   A    |   B   |    C     |
+| :--: | :----: | :----: | :---: | :------: |
+|  0   |        | [2, 1] |  []   |    []    |
+|  1   | A -> B | `[2]`  | `[1]` |    []    |
+|  2   | A -> C |  `[]`  |  [1]  |  `[2]`   |
+|  3   | B -> C |   []   | `[]`  | `[2, 1]` |
+
+3. 圆盘个数 === 3, sum = 7
+
+| 次数 |  动作  |     A     |    B     |      C      |
+| :--: | :----: | :-------: | :------: | :---------: |
+|  0   |        | [3, 2, 1] |    []    |     []      |
+|  1   | A -> C | `[3, 2]`  |    []    |    `[1]`    |
+|  2   | A -> B |   `[3]`   |  `[2]`   |     [1]     |
+|  3   | C -> B |    [3]    | `[2, 1]` |    `[1]`    |
+|  4   | A -> C |   `[]`    |  [2, 1]  |    `[3]`    |
+|  5   | B -> A |   `[1]`   |  `[2]`   |     [3]     |
+|  6   | B -> C |    [1]    |   `[]`   |  `[3, 2]`   |
+|  7   | A -> C |    []     |   `[]`   | `[3, 2, 1]` |
+
+以此类推...故不难发现规律,移动次数为：`sum = 2^n - 1`
+
+算法分析（递归）：
+
+把一堆圆盘从一个柱子移动另一根柱子，必要时使用辅助的柱子。可以把它分为三个子问题（参见圆盘个数 2）：
+
+1. 首先，移动一对圆盘中较小的圆盘到辅助柱子上，从而露出下面较大的圆盘，
+2. 其次，移动下面的圆盘到目标柱子上
+3. 最后，将刚才较小的圆盘从辅助柱子上在移动到目标柱子上
+
+把三个步骤转化为简单数学问题：
+
+```ts
+1. 把 n-1 个盘子由 A 移到 B   // 在最小下面的盘子移动到 【辅助柱】
+2. 把 第 n 个盘子由 A 移到 C  // 最小圆盘的移动到 【目标柱】
+3. 把 n-1 个盘子由 B 移到 C  // 将在最小下面的盘子从【辅助柱】移动到 【目标柱】
+```
 
 ```js
-/**
- * @param {圆盘数：number} plates
- * @param {起始柱子 a：string} source
- * @param {辅助柱子 b：string} helper
- * @param {目标柱子 c：string} dest
- * @param {移动步骤集：Array，数组的长度就是移动的次数} moves
- */
-function hanoi(plates, source, helper, dest, moves = []) {
-  if (plates <= 0) {
-    return moves
+function hanoi(disc, source, buffer, target) {
+  if (disc > 0) {
+    hanoi(disc - 1, source, target, buffer)
+    console.log('Move disc ' + disc + ' from ' + source + ' to ' + target)
+    hanoi(disc - 1, target, source, buffer)
   }
-  if (plates === 1) {
-    moves.push([source, dest])
-  } else {
-    hanoi(plates - 1, source, dest, helper, moves)
-    moves.push([source, dest])
-    hanoi(plates - 1, helper, source, dest, moves)
-  }
-  return moves
 }
 ```
 
 下面是执行结果：
 
 ```js
-console.log(hanoi(3, 'source', 'helper', 'dest'))
+hanoi(3, 'A', 'B', 'C')
 ```
 
 ```bash
-[
-  [ 'source', 'dest' ],
-  [ 'source', 'helper' ],
-  [ 'dest', 'helper' ],
-  [ 'source', 'dest' ],
-  [ 'helper', 'source' ],
-  [ 'helper', 'dest' ],
-  [ 'source', 'dest' ]
-]
+Move disc 1 from A to C
+Move disc 2 from A to B
+Move disc 1 from B to C
+Move disc 3 from A to C
+Move disc 1 from C to A
+Move disc 2 from C to B
+Move disc 1 from B to A
 ```
 
 我们在前面定义的栈的数据结构应用进来，完整的代码如下
