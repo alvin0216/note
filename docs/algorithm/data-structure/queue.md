@@ -139,6 +139,125 @@ let Queue = (function() {
 })()
 ```
 
+## 优先队列
+
+所谓优先队列，顾名思义，就是说插入到队列中的元素可以根据优先级设置先后顺序。优先级越高位置越靠前，优先级越低位置越靠后。假设优先级用数字来表示，如果数字越小表示的优先级越高，形成的队列就称之为最小优先队列，反之则称之为最大优先队列。下面是实现的代码：
+
+```js
+function PriorityQueue() {
+  let items = []
+
+  this.enqueue = function(obj) {
+    if (obj instanceof Array) {
+      // 批量入列
+      for (let i = 0; i < obj.length; i++) {
+        this.enqueue(obj[i])
+      }
+    } else {
+      // 元素入列
+      if (this.isEmpty()) {
+        items.push(obj)
+      } else {
+        let isEnqueue = false // 标志：当前的 item 是否入队
+        for (let i = 0; i < items.length; i++) {
+          if (obj.priority < items[i].priority) {
+            items.splice(i, 0, obj) // // 优先级高，即将priority值小的元素插入到队列的前面
+            isEnqueue = true
+            break
+          }
+        }
+        !isEnqueue && items.push(obj) // 没有入队则 push 到队列中
+      }
+    }
+  }
+
+  // 从队列移除元素
+  this.dequeue = function() {
+    return items.shift()
+  }
+
+  // 返回队列中的第一个元素
+  this.front = function() {
+    return items[0]
+  }
+
+  // 判断队列是否为空
+  this.isEmpty = function() {
+    return items.length === 0
+  }
+
+  // 返回队列的长度
+  this.size = function() {
+    return items.length
+  }
+
+  // 清空队列
+  this.clear = function() {
+    items = []
+  }
+
+  // 打印队列内的所有元素
+  this.print = function() {
+    items.forEach(function(item) {
+      console.log(`${item.element} - ${item.priority}`)
+    })
+  }
+}
+```
+
+可以看到，唯一有区别的只有 `enqueue` 方法。我们规定所有添加到优先队列的元素都必须满足`{element, priority}`这种 JSON 格式，以保证队列中的每一个元素都有一个 `priority` 属性来表示优先级。如果要添加的元素的优先级和队列中已有元素的优先级相同，仍然遵循队列的先进先出原则。如果队列中所有元素的优先级比要添加的元素的优先级都高，则将元素添加到队列的末尾。我们将 `print()`方法也做了一些调整，以方便查看输出结果。
+
+```TS
+let queue = new PriorityQueue()
+console.log(queue.isEmpty()) // true
+
+queue.enqueue({ element: 'John', priority: 2 })
+queue.enqueue([{ element: 'Jack', priority: 1 }, { element: 'Camila', priority: 1 }])
+queue.print(); // Jack - 1, Camila - 1, John - 2
+```
+
+## 循环队列
+
+[击鼓传花游戏](https://baike.baidu.com/item/%E5%87%BB%E9%BC%93%E4%BC%A0%E8%8A%B1/5447380?fr=aladdin)，在这个游戏中，孩子们围成一个圆圈，把花尽快的传递给旁边的人。某一时刻传花停止，这个时候花落在谁手里，谁就退出圆圈结束游戏。重复这个过程，直到只剩下一个孩子。例子如下：
+
+例：每循环到 3 则淘汰出局一位，参与者 `[a, b, c, d, e, f]`
+
+| 循环       | 状态     | 出局 |
+| ---------- | -------- | :--: |
+| 第一次循环 | a1 b2 c3 |  c   |
+| 第二次循环 | d1 e2 f3 |  f   |
+| 第三次循环 | a1 b1 d3 |  d   |
+| 第四次循环 | e1 a2 b3 |  b   |
+| 第五次循环 | e1 a2 e3 |  e   |
+| 第六次循环 | a        |  a   |
+
+使用循环队列，轻松实现整个过程：
+
+```TS
+function game(playerList, number) {
+  var queue = new Queue()
+  var outer
+
+  for (let i = 0; i < playerList.length; i++) {
+    queue.enqueue(playerList[i])
+  }
+
+  while (queue.size() > 1) { // 游戏玩家大于 1 时，循环传花
+    for (let i = 0; i < number - 1; i++) {
+      queue.enqueue(queue.dequeue()) // 当到 number 次之内时，队列头出列入列到最后一位，达到循环效果
+    }
+    outer = queue.dequeue() // 当到 number 次 出列淘汰！
+    console.log('淘汰玩家 --', outer)
+  }
+  return queue.dequeue()
+}
+
+var playerList = ['a', 'b', 'c', 'd', 'e', 'f']
+
+game(playerList, 3)
+// 淘汰玩家 -- c >> 淘汰玩家 -- f >> 淘汰玩家 -- d >> 淘汰玩家 -- b >> 淘汰玩家 -- e
+```
+
 ---
 
 参考 [JavaScript 数据结构——队列的实现与应用](https://www.cnblogs.com/jaxu/p/11268862.html)
