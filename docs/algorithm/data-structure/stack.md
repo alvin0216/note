@@ -407,44 +407,71 @@ Move disc 2 from C to B
 Move disc 1 from B to A
 ```
 
+#### 用栈实现汉诺塔
+
+例如
+
+```js
+输入： A = [3, 2, 1], B = [], C = []
+输出：C = [3, 2, 1]
+```
+
 我们在前面定义的栈的数据结构应用进来，完整的代码如下
 
 ```js
-function towerOfHanoi(plates, source, helper, dest, sourceName, helperName, destName, moves = []) {
-  if (plates <= 0) {
-    return moves
+let towerOfHanoi = function(n, from, help, to) {
+  if (n > 0) {
+    towerOfHanoi(n - 1, from, to, help) // A -> B
+
+    to.push(from.pop()) // A -> C
+
+    console.log(`MOVE：${n}`)
+    console.log('from', from.getItems(), 'help', help.getItems(), 'to', to.getItems())
+    console.log('--------') // getItems return items
+
+    towerOfHanoi(n - 1, help, from, to) // B -> C
   }
-  if (plates === 1) {
-    dest.push(source.pop())
-    const move = {}
-    move[sourceName] = source.toString()
-    move[helperName] = helper.toString()
-    move[destName] = dest.toString()
-    moves.push(move)
-  } else {
-    towerOfHanoi(plates - 1, source, dest, helper, sourceName, destName, helperName, moves)
-    dest.push(source.pop())
-    const move = {}
-    move[sourceName] = source.toString()
-    move[helperName] = helper.toString()
-    move[destName] = dest.toString()
-    moves.push(move)
-    towerOfHanoi(plates - 1, helper, source, dest, helperName, sourceName, destName, moves)
-  }
-  return moves
 }
 
 function hanoiStack(plates) {
-  const source = new Stack()
-  const dest = new Stack()
-  const helper = new Stack()
+  const from = new Stack(),
+    help = new Stack(),
+    to = new Stack()
 
   for (let i = plates; i > 0; i--) {
-    source.push(i)
+    from.push(i)
   }
 
-  return towerOfHanoi(plates, source, helper, dest, 'source', 'helper', 'dest')
+  towerOfHanoi(plates, from, help, to)
 }
+
+hanoiStack(3)
+```
+
+result:
+
+```js
+MOVE：1
+from [ 3, 2 ] help [] to [ 1 ]
+--------
+MOVE：2
+from [ 3 ] help [ 1 ] to [ 2 ]
+--------
+MOVE：1
+from [] help [ 3 ] to [ 2, 1 ]
+--------
+MOVE：3
+from [] help [ 2, 1 ] to [ 3 ]
+--------
+MOVE：1
+from [ 2 ] help [ 3 ] to [ 1 ]
+--------
+MOVE：2
+from [] help [ 1 ] to [ 3, 2 ]
+--------
+MOVE：1
+from [] help [] to [ 3, 2, 1 ]
+--------
 ```
 
 ---
