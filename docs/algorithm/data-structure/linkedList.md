@@ -30,7 +30,7 @@ date: 2020-05-10 15:16:26
 
 :::
 
-## 单向链表的实现
+## 单向链表
 
 要实现链表数据结构，关键在于保存 `head` 元素（即链表的头元素）以及每一个元素的 `next` 指针，有这两部分我们就可以很方便地遍历链表从而操作所有的元素。可以把链表想象成一条锁链，锁链中的每一个节点都是相互连接的，我们只要找到锁链的头，整条锁链就都可以找到了。让我们来看一下具体的实现方式。
 
@@ -405,161 +405,422 @@ class DoubleLinkedList extends LinkedList {
 }
 ```
 
-先来看看 `append()`方法的实现。当链表为空时，除了要将 `head` 指向当前添加的节点外，还要将 `tail` 也指向当前要添加的节点。当链表不为空时，直接将 `tail` 的 next 指向当前要添加的节点 `node`，然后修改 `node` 的 `prev` 指向旧的 `tail`，最后修改 `tail` 为新添加的节点。我们不需要从头开始遍历整个链表，而通过 `tail` 可以直接找到链表的尾部，这一点比单向链表的操作要更方便。最后将 length 的值加 1，修改链表的长度。
+### 重写 append
 
-## 循环链表
+先来看看 `append()`方法的实现。当链表为空时，除了要将 `head` 指向当前添加的节点外，还要将 `tail` 也指向当前要添加的节点。
 
-<!-- ![](../../../assets/algorithm/linkedList/8.png) -->
-
-循环链表可以像单向链表那样只有单向引用，也可以像双向链表那样有双向引用。循环链表和其他链表的区别在于最后一个元素指向下一个元素的引用不是 `null`，而是指向第一个元素（`head`）。
+当链表不为空时，直接将 `tail` 的 next 指向当前要添加的节点 `node`，然后修改 `node` 的 `prev` 指向旧的 `tail`，最后修改 `tail` 为新添加的节点。我们不需要从头开始遍历整个链表，而通过 `tail` 可以直接找到链表的尾部，这一点比单向链表的操作要更方便。最后将 length 的值加 1，修改链表的长度。
 
 ```js
-function CircularLinkedList() {
-  var head = null // 链表头
-  var length = 0 // 链表长度
+append(element) {
+  let node = new Node(element)
 
-  // 辅助类 节点
-  var Node = function(element) {
-    this.element = element
-    this.next = null
-    this.prev = null
+  // 如果链表为空，则将head和tail都指向当前添加的节点
+  if (this.head === null) {
+    this.head = node
+    this.tail = node
+  } else {
+    // 否则，将当前节点添加到链表的尾部
+    this.tail.next = node
+    node.prev = this.tail
+    this.tail = node
   }
 
-  // 链表尾添加元素
-  this.append = function(element) {
-    var node = new Node(element)
-    var current = head
-    var previous = null
+  this.length++
+}
+```
 
-    if (head === null) {
-      head = node
-    } else {
-      while (current.next !== head) {
-        //最后一个元素将是head，而不是null
+### 重写 getElementAt
 
-        current = current.next
-      }
-      current.next = node //建立连接
+由于双向链表可以从链表的尾部往前遍历，所以我们修改了 `getElementAt()`方法，对基类中单向链表的方法进行了改写。当要查找的元素的索引号大于链表长度的一半时，从链表的尾部开始遍历。
+
+```js
+getElementAt(position) {
+  if (position < 0 || position >= this.length) return null
+
+  // 从后往前遍历
+  if (position > Math.floor(this.length / 2)) {
+    let current = this.tail
+    for (let i = this.length - 1; i > position; i--) {
+      current = current.prev
     }
-    node.next = head //首尾相连起来变成一个环列表
-    length++
+    return current
   }
-
-  this.insert = function(position, element) {
-    if (position >= 0 && position <= length) {
-      var node = new Node(element)
-      var current = head
-      var previous = null
-      var index = 0
-
-      if (position === 0) {
-        // 往链表头插入元素
-        node.next = current
-        while (current.next !== head) {
-          current = current.next
-        }
-        head = node
-        current.next = head
-      } else {
-        while (index < position) {
-          previous = current
-          current = current.next
-          index++
-        }
-
-        previous.next = node //先连上添加的节点
-        node.next = current
-
-        if (node.next === null) {
-          //在最后一个元素更新
-          node.next = head
-        }
-      }
-
-      length++
-      return true
-    }
-    return false
-  }
-
-  this.removeAt = function(position) {
-    if (position > -1 && position < length) {
-      var current = head
-      var previous = null
-      var index = 0
-
-      if (position === 0) {
-        // 列表头移除元素
-        while (current.next !== head) {
-          current = current.next
-        }
-        head = head.next
-        current.next = head //更新最后一项
-      } else {
-        while (index < position) {
-          previous = current
-          current = current.next
-          index++
-        }
-        previous.next = current.next
-      }
-      length--
-      return current.element
-    }
-    return null
-  }
-
-  this.indexOf = function(element) {
-    var current = head
-    var index = -1
-
-    if (element == current.element) {
-      //检查第一项
-      return 0
-    }
-    index++
-    while (current.next !== head) {
-      //检查列表中间
-      if (element == current.element) {
-        return index
-      }
-      current = current.next
-      index++
-    }
-    if (element == current.element) {
-      //检查最后一项
-      return index
-    }
-    return -1
-  }
-
-  this.remove = function(element) {
-    var index = this.indexOf(element)
-    return this.removeAt(index)
-  }
-
-  this.isEmpty = () => length === 0
-
-  this.size = () => length
-
-  //获取头结点元素
-  this.getHead = () => head
-
-  this.toString = function() {
-    var current = head
-    var s = current.element
-    while (current.next !== head) {
-      current = current.next
-      s += ', ' + current.element
-    }
-    return s.toString()
-  }
-
-  this.print = function() {
-    console.log(this.toString())
+  // 从前往后遍历
+  else {
+    return super.getElementAt(position)
   }
 }
 ```
+
+有两种遍历方式，从前往后遍历调用的是基类单向链表里的方法，从后往前遍历需要用到节点的 `prev` 指针，用来查找前一个节点。
+
+### 重写 insert 和 removeAt
+
+我们同时还需要修改 `insert()`和 `removeAt()`这两个方法。记住，与单向链表唯一的区别就是要同时维护 `head` 和 `tail`，以及每一个节点上的 `next` 和 `prev` 指针。
+
+```js
+insert(position, element) {
+  if (position < 0 || position > this.length) return false
+
+  // 插入到尾部
+  if (position === this.length) this.append(element)
+  else {
+    let node = new Node(element)
+
+    // 插入到头部
+    if (position === 0) {
+      if (this.head === null) {
+        this.head = node
+        this.tail = node
+      } else {
+        node.next = this.head
+        this.head.prev = node
+        this.head = node
+      }
+    }
+    // 插入到中间位置
+    else {
+      let current = this.getElementAt(position)
+      let previous = current.prev
+      node.next = current
+      node.prev = previous
+      previous.next = node
+      current.prev = node
+    }
+  }
+
+  this.length++
+  return true
+}
+
+removeAt(position) {
+  // position不能超出边界值
+  if (position < 0 || position >= this.length) return null
+
+  let current = this.head
+  let previous
+
+  // 移除头部元素
+  if (position === 0) {
+    this.head = current.next
+    this.head.prev = null
+    if (this.length === 1) this.tail = null
+  }
+  // 移除尾部元素
+  else if (position === this.length - 1) {
+    current = this.tail
+    this.tail = current.prev
+    this.tail.next = null
+  }
+  // 移除中间元素
+  else {
+    current = this.getElementAt(position)
+    previous = current.prev
+    previous.next = current.next
+    current.next.prev = previous
+  }
+
+  this.length--
+  return current.element
+}
+```
+
+### 完整代码
+
+操作过程中需要判断一些特殊情况，例如链表的头和尾，以及当前链表是否为空等等，否则程序可能会在某些特殊情况下导致越界和报错。下面是一个完整的双向链表类的代码：
+
+```js
+class DoubleLinkedList extends LinkedList {
+  constructor() {
+    super()
+    this.tail = null // 指向链表尾
+  }
+
+  append(element) {
+    let node = new Node(element)
+
+    // 如果链表为空，则将head和tail都指向当前添加的节点
+    if (this.head === null) {
+      this.head = node
+      this.tail = node
+    } else {
+      // 否则，将当前节点添加到链表的尾部
+      this.tail.next = node
+      node.prev = this.tail
+      this.tail = node
+    }
+
+    this.length++
+  }
+
+  getElementAt(position) {
+    if (position < 0 || position >= this.length) return null
+
+    // 从后往前遍历
+    if (position > Math.floor(this.length / 2)) {
+      let current = this.tail
+      for (let i = this.length - 1; i > position; i--) {
+        current = current.prev
+      }
+      return current
+    }
+    // 从前往后遍历
+    else {
+      return super.getElementAt(position)
+    }
+  }
+
+  insert(position, element) {
+    if (position < 0 || position > this.length) return false
+
+    // 插入到尾部
+    if (position === this.length) this.append(element)
+    else {
+      let node = new Node(element)
+
+      // 插入到头部
+      if (position === 0) {
+        if (this.head === null) {
+          this.head = node
+          this.tail = node
+        } else {
+          node.next = this.head
+          this.head.prev = node
+          this.head = node
+        }
+      }
+      // 插入到中间位置
+      else {
+        let current = this.getElementAt(position)
+        let previous = current.prev
+        node.next = current
+        node.prev = previous
+        previous.next = node
+        current.prev = node
+      }
+    }
+
+    this.length++
+    return true
+  }
+
+  removeAt(position) {
+    // position不能超出边界值
+    if (position < 0 || position >= this.length) return null
+
+    let current = this.head
+    let previous
+
+    // 移除头部元素
+    if (position === 0) {
+      this.head = current.next
+      this.head.prev = null
+      if (this.length === 1) this.tail = null
+    }
+    // 移除尾部元素
+    else if (position === this.length - 1) {
+      current = this.tail
+      this.tail = current.prev
+      this.tail.next = null
+    }
+    // 移除中间元素
+    else {
+      current = this.getElementAt(position)
+      previous = current.prev
+      previous.next = current.next
+      current.next.prev = previous
+    }
+
+    this.length--
+    return current.element
+  }
+
+  getTail() {
+    return this.tail
+  }
+
+  clear() {
+    super.clear()
+    this.tail = null
+  }
+
+  toString() {
+    let current = this.head
+    let s = ''
+
+    while (current) {
+      let next = current.next
+      let previous = current.prev
+      next = next ? next.element : 'null'
+      previous = previous ? previous.element : 'null'
+      s += `[element: ${current.element}, prev: ${previous}, next: ${next}] `
+      current = current.next
+    }
+
+    return s
+  }
+}
+```
+
+:::details 测试用例
+
+测试代码：
+
+```js
+let doubleLinkedList = new DoubleLinkedList()
+doubleLinkedList.append(10)
+doubleLinkedList.append(15)
+doubleLinkedList.append(20)
+doubleLinkedList.append(25)
+doubleLinkedList.append(30)
+console.log(doubleLinkedList.toString())
+console.log(doubleLinkedList.getElementAt(1).element)
+console.log(doubleLinkedList.getElementAt(2).element)
+console.log(doubleLinkedList.getElementAt(3).element)
+
+doubleLinkedList.insert(0, 9)
+doubleLinkedList.insert(4, 24)
+doubleLinkedList.insert(7, 35)
+console.log(doubleLinkedList.toString())
+
+console.log(doubleLinkedList.removeAt(0))
+console.log(doubleLinkedList.removeAt(1))
+console.log(doubleLinkedList.removeAt(5))
+console.log(doubleLinkedList.toString())
+```
+
+测试结果：
+
+```js
+[element: 10, prev: null, next: 15] [element: 15, prev: 10, next: 20] [element: 20, prev: 15, next: 25] [element: 25, prev: 20, next: 30] [element: 30, prev: 25, next: null]
+15
+20
+25
+[element: 9, prev: null, next: 10] [element: 10, prev: 9, next: 15] [element: 15, prev: 10, next: 20] [element: 20, prev: 15, next: 24] [element: 24, prev: 20, next: 25] [element: 25, prev: 24, next: 30] [element: 30, prev: 25, next: 35] [element: 35, prev: 30, next: null]
+9
+15
+30
+[element: 10, prev: null, next: 20] [element: 20, prev: 10, next: 24] [element: 24, prev: 20, next: 25] [element: 25, prev: 24, next: 35] [element: 35, prev: 25, next: null]
+```
+
+:::
+
+## 循环链表
+
+顾名思义，循环链表的尾部指向它自己的头部。循环链表可以有单向循环链表，也可以有双向循环链表。下面是单向循环链表和双向循环链表的数据结构示意图：
+
+![](../../../assets/algorithm/linkedList/7.png)
+
+在实现循环链表时，需要确保最后一个元素的 `next` 指针指向 `head`。下面是单向循环链表的完整代码：
+
+```js
+class CircularLinkedList extends LinkedList {
+  constructor() {
+    super()
+  }
+
+  append(element) {
+    let node = new Node(element)
+
+    if (this.head === null) this.head = node
+    else {
+      let current = this.getElementAt(this.length - 1)
+      current.next = node
+    }
+
+    node.next = this.head // 将新添加的元素的next指向head
+    this.length++
+  }
+
+  insert(position, element) {
+    // position不能超出边界值
+    if (position < 0 || position > this.length) return false
+
+    let node = new Node(element)
+
+    if (position === 0) {
+      node.next = this.head
+      let current = this.getElementAt(this.length - 1)
+      current.next = node
+      this.head = node
+    } else {
+      let previous = this.getElementAt(position - 1)
+      node.next = previous.next
+      previous.next = node
+    }
+
+    this.length++
+    return true
+  }
+
+  removeAt(position) {
+    if (position < 0 || position >= this.length) return null
+
+    let current = this.head
+
+    if (position === 0) this.head = current.next
+    else {
+      let previous = this.getElementAt(position - 1)
+      current = previous.next
+      previous.next = current.next
+    }
+    this.length--
+
+    if (this.length > 1) {
+      let last = this.getElementAt(this.length - 1)
+      last.next = this.head
+    }
+
+    return current.element
+  }
+
+  toString() {
+    let current = this.head
+    let s = ''
+
+    for (let i = 0; i < this.length; i++) {
+      let next = current.next
+      next = next ? next.element : 'null'
+      s += `[element: ${current.element}, next: ${next}] `
+      current = current.next
+    }
+
+    return s
+  }
+}
+```
+
+:::details 测试用例
+
+测试代码：
+
+```js
+let circularLinkedList = new CircularLinkedList()
+circularLinkedList.append(10)
+circularLinkedList.append(15)
+circularLinkedList.append(20)
+
+console.log(circularLinkedList.toString())
+
+circularLinkedList.insert(0, 9)
+circularLinkedList.insert(3, 25)
+console.log(circularLinkedList.toString())
+
+console.log(circularLinkedList.removeAt(0))
+console.log(circularLinkedList.toString())
+```
+
+测试结果：
+
+```js
+[element: 10, next: 15] [element: 15, next: 20] [element: 20, next: 10]
+[element: 9, next: 10] [element: 10, next: 15] [element: 15, next: 25] [element: 25, next: 20] [element: 20, next: 9]
+9
+[element: 10, next: 15] [element: 15, next: 25] [element: 25, next: 20] [element: 20, next: 10]
+```
+
+:::
 
 ## 后记
 
@@ -567,4 +828,4 @@ function CircularLinkedList() {
 
 参考
 
-- [学习 Javascript 数据结构之链表](https://blog.damonare.cn/2016/11/26/%E5%AD%A6%E4%B9%A0Javascript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/)
+- [JavaScript 数据结构——链表的实现与应用](https://blog.damonare.cn/2016/11/26/%E5%AD%A6%E4%B9%A0Javascript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E9%93%BE%E8%A1%A8/)
