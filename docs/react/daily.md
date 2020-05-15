@@ -25,3 +25,39 @@ const App = props => {
   )
 }
 ```
+
+### 很容易采坑的写法 <badge text="子组件可能监听不到 props 变化" type="warning" />
+
+```jsx
+const App = props => {
+  const [key, setKey] = useState(-1)
+  const toolList = [
+    { key: 1, component: <Demo1 /> },
+    { key: 2, component: <Demo2 /> },
+    { key: 3, component: <Demo3 /> }
+    // MORE...
+  ]
+
+  return <div>{toolList.find(t => t.key === key).component}</div>
+}
+```
+
+在组件渲染时候，子组件可能监听不到 props 发生的变化！！！应该用**稳如老铁**的方法
+
+```jsx
+const App = props => {
+  const [key, setKey] = useState(-1)
+
+  function getToolList() {
+    return [
+      { key: 1, component: <Demo1 /> },
+      { key: 2, component: <Demo2 /> },
+      { key: 3, component: <Demo3 /> }
+      // MORE...
+    ]
+  }
+  const toolList = getToolList()
+
+  return <div>{toolList.find(t => t.key === key).component}</div>
+}
+```
