@@ -86,7 +86,6 @@ console.log(blob2) //输出：Blob {size: 3, type: ""}
 
     let blob = new Blob(['hello world'], { type: 'text/plain' })
     download(blob, '1.txt')
-    window.URL.revokeObjectURL(objectURL)
   }
 </script>
 ```
