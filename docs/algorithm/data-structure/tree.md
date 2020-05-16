@@ -42,7 +42,7 @@ date: 2020-05-16 16:43:44
 首先创建一个类来表示二叉查找树，它的内部应该有一个 `Node` 类，用来表示节点
 
 ```js
-let Node = function(key) {
+function Node(key) {
   this.key = key
   this.left = null
   this.right = null
@@ -60,9 +60,6 @@ class BinarySearchTree {
   // 向树中插入一个节点
   insert(key) {}
 
-  // 在树中查找一个节点
-  search(key) {}
-
   // 通过中序遍历方式遍历树中的所有节点
   inOrderTraverse() {}
 
@@ -77,6 +74,9 @@ class BinarySearchTree {
 
   // 返回树中的最大节点
   max() {}
+
+  // 在树中查找一个节点
+  search(key) {}
 
   // 从树中移除一个节点
   remove(key) {}
@@ -101,7 +101,7 @@ insert(key) {
 在 `insertNode()`函数中，我们需要根据新添加节点的 `key` 的大小来递归查找树的左侧子节点或者右侧子节点，因为根据我们的二叉搜索树的定义，值小的节点永远保存在左侧子节点上，值大的节点（包括值相等的情况）永远保存在右侧子节点上。下面是 `insertNode()`函数的实现代码：
 
 ```js
-function insertNode(node, newNode) {
+let insertNode = function(node, newNode) {
   if (newNode.key < node.key) {
     if (node.left === null) node.left = newNode
     else insertNode(node.left, newNode)
@@ -129,3 +129,192 @@ function insertNode(node, newNode) {
 - 后序遍历：首先遍历左子树，然后遍历右子树，最后遍历根节点，可记录为左—右—根。
 
 ![](../../../assets/algorithm/tree/4.png)
+
+下面的三个方法对应树的三种遍历方式：
+
+```js
+// 前序遍历
+let preOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    callback(node.key)
+    preOrderTraverseNode(node.left, callback)
+    preOrderTraverseNode(node.right, callback)
+  }
+}
+
+// 中序遍历
+let inOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    inOrderTraverseNode(node.left, callback)
+    callback(node.key)
+    inOrderTraverseNode(node.right, callback)
+  }
+}
+
+// 后续遍历
+let postOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    postOrderTraverseNode(node.left, callback)
+    postOrderTraverseNode(node.right, callback)
+    callback(node.key)
+  }
+}
+```
+
+可以看到，这三个函数的内容很相似，只是调整了左右子树和根节点的遍历顺序。这里的 `callback` 是一个回调函数，可以传入任何你想执行的函数，这里我们传入的函数内容是打印树的节点的 key 值。我们将 `BinarySearchTree` 类的这三个遍历方法的内容补充完整：
+
+```js
+preOrderTraverse(callback) {
+  preOrderTraverseNode(this.root, callback)
+}
+
+inOrderTraverse(callback) {
+  inOrderTraverseNode(this.root, callback)
+}
+
+postOrderTraverse(callback) {
+  postOrderTraverseNode(this.root, callback)
+}
+```
+
+#### 前序遍历分析 <Badge text="根左右" />
+
+为了构建本文一开始的那棵树，我们执行下面的代码，然后测试 `preOrderTraverse()` 方法：
+
+```js
+let tree = new BinarySearchTree()
+tree.insert(11)
+tree.insert(7)
+tree.insert(15)
+tree.insert(5)
+tree.insert(9)
+tree.insert(13)
+tree.insert(20)
+tree.insert(3)
+tree.insert(6)
+tree.insert(8)
+tree.insert(10)
+tree.insert(12)
+tree.insert(14)
+tree.insert(18)
+tree.insert(25)
+
+tree.preOrderTraverse(value => console.log(value))
+// 11, 7, 5, 3, 6, 9, 8, 10, 15, 13, 12, 14, 20, 18, 25
+```
+
+我们参照前序遍历的定义，借住下面的示意图来理解整个遍历过程：
+
+![](../../../assets/algorithm/tree/5.png)
+
+在前序遍历函数 `preOrderTraverseNode()`中，先执行 `callback(node.key)`，然后再依次递归左子树和右子树。
+
+我们将树的根节点作为第一个节点传入，首先打印的就是根节点 11，然后开始遍历左子树，这将依次打印左子树中的所有左子节点，依次是 7、5、3。当节点 3 的 `left` 为 `null` 时，递归返回，继续查找节点 3 的右子节点，此时节点 3 的 `right` 值也为 `null`，于是继续向上返回到节点 5，开始遍历节点 5 的右子节点，于是打印节点 6......最终所有的节点就按照这个递归顺序进行遍历。
+
+#### 中序遍历分析 <Badge text="左根右" />
+
+然后我们再来看看中序遍历的情况。
+
+![](../../../assets/algorithm/tree/6.png)
+
+```js
+tree.postOrderTraverse(value => console.log(value))
+// 3, 6, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11
+```
+
+在中序遍历函数 `inOrderTraverseNode()`中，先递归左子树，然后执行 `callback(node.key)`，最后再递归右子树。
+
+同样的，我们将根节点作为第一个节点传入，递归到左子树的最后一个左子节点 3，由于节点 3 的 `left` 为 `null`，所以递归返回，打印节点 3，然后继续查找节点 3 的右子节点，节点 3 的 `right` 值也为 `null`，递归返回到上一层节点 5，开始打印节点 5，之后再查找节点 5 的右子节点......最终整棵树按照这个顺序完成遍历。
+
+#### 后序遍历分析 <Badge text="左右根" />
+
+最后再来看看后序遍历的情况。
+
+```js
+tree.postOrderTraverse(value => console.log(value))
+// 3, 6, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11
+```
+
+![](../../../assets/algorithm/tree/7.png)
+
+在后序遍历函数 `postOrderTraverseNode()`中，先递归左子树，然后再递归右子树，最后执行 `callback(node.key)`。
+
+同样的，我们将根节点作为第一个节点传入，递归到左子树的最后一个左子节点 3，由于节点 3 的 `left` 为 `null`，所以递归返回，此时继续查找节点 3 的右子节点，节点 3 的 `right` 值也为 `null`，递归返回并打印节点 3，之后递归返回到上一层节点 5，开始查找节点 5 的右子节点，节点 5 的右子节点是节点 6，由于节点 6 是叶子节点，所以直接打印节点 6，然后递归返回并打印节点 5。之后递归再向上返回到节点 7 并递归节点 7 的右子节点......按照这个顺序最终完成对整棵树的遍历。
+
+### 树的搜索
+
+接下来我们再来看看对树的搜索。有三种要经常执行的搜索方式：
+
+- 搜索树中的最小值
+- 搜索树中的最大值
+- 搜索树中的特定值
+
+搜索树中的最小值和最大值比较简单，由于我们的二叉搜索树规定了值小的节点永远在左子树（左子节点）中，值大（或相等）的节点永远在右子树（右子节点）中。
+
+所以，搜索最大值我们只需要递归查找树的右子树直到叶子节点，就能找到值最大的节点。搜索最小值只需要递归查找树的左子树直到叶子节点，就能找到值最小的节点。下面是这两个函数的实现：
+
+```js
+// 返回树中的最小节点
+let minNode = function(node) {
+  let current = node
+  while (current && current.left) {
+    current = current.left
+  }
+  return current
+}
+// 返回树中的最大节点
+let maxNode = function(node) {
+  let current = node
+  while (current && current.right) {
+    current = current.right
+  }
+  return current
+}
+```
+
+第三种方式是搜索特定的值，我们需要比较要搜索的值与当前节点的值，如果要搜索的值小于当前节点的值，则从当前节点开始递归查找左子数（左子节点）。如果要搜索的值大于当前节点的值，则从当前节点开始递归查找右子树（右子节点）。按照这个逻辑，我们的 `searchNode()`函数实现如下：
+
+```js
+let searchNode = function(node, key) {
+  if (!node) return null
+  if (node.key > key) return searchNode(node.left, key)
+  else if (node.key < key) return searchNode(node.right, key)
+  else return node
+}
+```
+
+如果找到了对应的节点，就返回该节点，否则就返回 null。我们将 `BinarySearchTree` 类的这三个搜索方法的内容补充完整：
+
+```js
+min() {
+  return minNode(this.root)
+}
+
+max() {
+  return maxNode(this.root)
+}
+
+search(key) {
+  return searchNode(this.root, key)
+}
+```
+
+下面是一些测试用例及结果：
+
+```js
+console.log(tree.min().key) // 3
+console.log(tree.max().key) // 25
+
+console.log(tree.search(3)) // Node { key: 3, left: null, right: null }
+console.log(tree.search(27)) // null
+```
+
+### 移除节点
+
+最后我们再来看一下从树中移除一个节点的过程，这个过程要稍微复杂一些。先来看看删除树节点的函数 `removeNode()`的代码，稍后我们再来详细讲解整个执行过程。
+
+#### 最终代码
+
+---
+
+参考 [JavaScript 数据结构——树的实现](https://www.cnblogs.com/jaxu/p/11309385.html)
