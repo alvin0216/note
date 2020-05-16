@@ -6,7 +6,7 @@ function execute(cmd) {
     if (error) {
       console.error(error)
     } else {
-      console.log('success')
+      console.log('SUCCESS PUSH:', getDate())
     }
   })
 }
