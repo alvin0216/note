@@ -17,7 +17,7 @@ date: 2020-03-06 12:08:21
 
 ### React 的调度过程
 
-![](../../assets/react/scheduler-fiber-scheduler.png)
+![](../../../assets/react/scheduler-fiber-scheduler.png)
 
 ::: details 查看流程解析
 
@@ -41,7 +41,7 @@ date: 2020-03-06 12:08:21
 
 ### React 的渲染更新的过程
 
-![](../../assets/react/scheduler-render-root.png)
+![](../../../assets/react/scheduler-render-root.png)
 
 ## React 中的数据结构
 

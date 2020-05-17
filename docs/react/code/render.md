@@ -16,7 +16,7 @@ date: 2020-03-06 15:09:21
 2. 创建 `FiberRoot`和 `RootFiber`：这两个有点绕，他们两个是非常非常重要的一个知识点。
 3. 创建更新：应用进入到更新调度的阶段，更新调度是下一章的内容～进入调度之后的后续操作都是由调度器去管理的。
 
-![](../../assets/react/ReactDOM.render.png)
+![](../../../assets/react/ReactDOM.render.png)
 
 :::tip
 如上图（如果不清晰请打开新标签页查看，图来自于[合一大师](https://juejin.im/post/5df398f3518825125b21cbd3)）
@@ -219,7 +219,7 @@ ReactDom.render(<APP />, document.querySelector('#root'))
 
 假如说我们需要渲染出以上组件，那么它们对应的 `fiber` 树应该长这样
 
-![](../../assets/react/fiberRootTree.png)
+![](../../../assets/react/fiberRootTree.png)
 
 从图中我们可以看到，每个组件或者 DOM 节点都会对应着一个 `fiber` 对象。另外你手边有 `React` 项目的话，也可以在控制台输入如下代码，查看 `fiber` 树的整个结构。
 
@@ -232,4 +232,4 @@ const fiber = document.querySelector('#root')._reactRootContainer._internalRoot
 
 以上就是本文的全部内容了，最后通过一张流程图总结一下这篇文章的内容。
 
-![](../../assets/react/summary-render.png)
+![](../../../assets/react/summary-render.png)

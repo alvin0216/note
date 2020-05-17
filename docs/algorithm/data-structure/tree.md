@@ -313,6 +313,47 @@ console.log(tree.search(27)) // null
 
 最后我们再来看一下从树中移除一个节点的过程，这个过程要稍微复杂一些。先来看看删除树节点的函数 `removeNode()`的代码，稍后我们再来详细讲解整个执行过程。
 
+```js
+let removeNode = function(node, key) {
+  if (node === null) return null
+
+  if (key < node.key) {
+    node.left = removeNode(node.left, key)
+    return node
+  } else if (key > node.key) {
+    node.next = removeNode(node.right, key)
+    return node
+  } else {
+    // 第一种情况：一个叶子节点（没有子节点）
+    if (node.left === null && node.right === null) {
+      node = null
+      return node
+    }
+    // 第二种情况：只包含一个子节点
+    if (node.left === null) {
+      node = node.right
+      return node
+    } else if (node.right === null) {
+      node = node.left
+      return node
+    }
+
+    // 第三种情况：有两个子节点
+    let aux = minNode(node.right)
+    node.key = aux.key
+    node.right = removeNode(node.right, aux.key)
+    return node
+  }
+}
+```
+
+首先要找到树中待删除的节点，这需要进行递归遍历，从根节点开始，如果 `key` 值小于当前节点的值，则遍历左子树，如果 `key` 值大于当前节点的值，则遍历右子树。
+
+注意，在递归遍历的过程中，我们将 `node`（这里的 node 传入的是树的根节点）的 `left` 指针或 `right` 指针逐级指向下一级节点，然后返回整个 `node`。当找到要删除的节点后，我们要处理三种情况：
+
+- 该节点为叶子节点（没有子节点）
+-
+
 #### 最终代码
 
 ---

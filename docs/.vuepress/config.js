@@ -28,17 +28,13 @@ module.exports = {
       '/react/': [
         {
           title: 'React',
-          collapsable: false,
+          // collapsable: true,
           children: ['compound-component', 'redux', 'hooks', 'daily']
-        }
-      ],
-
-      // react 源码解析
-      '/react-code-read/': [
+        },
         {
-          title: 'React 原理解析',
-          collapsable: false,
-          children: ['home', 'base', 'render', 'update', 'expirationTime', 'scheduler', 'scheduleWork']
+          title: 'React 源码解读',
+          // collapsable: true,
+          children: ['code/home', 'code/base', 'code/render', 'code/update', 'code/expirationTime', 'code/scheduler', 'code/scheduleWork']
         }
       ],
 
@@ -57,11 +53,23 @@ module.exports = {
         }
       ],
 
-      '/node/': [
+      '/others/': [
+        'collect',
+        {
+          title: 'HTML-CSS',
+          collapsable: false,
+          children: ['html-css/css-base', 'html-css/BFC']
+        },
         {
           title: 'node 系列知识',
-          children: ['node-shell', 'middleware']
-        }
+          collapsable: false,
+          children: ['node/node-shell', 'node/middleware']
+        },
+        {
+          title: '服务器相关',
+          collapsable: true,
+          children: ['system/git', 'system/ssh', 'system/github-webhooks', 'system/linux', 'system/vim']
+        },
       ],
       '/algorithm/': [
         {

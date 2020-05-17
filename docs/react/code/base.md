@@ -177,7 +177,7 @@ const ReactElement = function(type, key, ref, self, source, owner, props) {
 
 从 `createElement` 到返回一个 `ReactElement` 的流程如下：
 
-![](../../assets/react/createElement.png)
+![](../../../assets/react/createElement.png)
 
 ## React.Children
 
@@ -391,4 +391,4 @@ function mapSingleChildIntoContext(bookKeeping, child, childKey) {
 
 至此，`mapChildren` 函数相关的内容已经解析完毕，还不怎么清楚的同学可以通过以下的流程图再复习一遍。
 
-![](../../assets/react/reactChildren.png)
+![](../../../assets/react/reactChildren.png)

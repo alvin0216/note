@@ -1,3 +1,0 @@
-## Node
-
-<MainIndex path='node'/>

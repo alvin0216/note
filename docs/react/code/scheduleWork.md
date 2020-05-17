@@ -16,7 +16,7 @@ date: 2020-03-17 11:14:05
 3. 如果符合条件就请求工作调度。
 
 ::: details 回顾 ReactDOM.render >> updateContainer >> scheduleWork 流程图
-![](../../assets/react/ReactDOM.render.png)
+![](../../../assets/react/ReactDOM.render.png)
 
 主要流程
 

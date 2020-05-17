@@ -2,27 +2,20 @@ module.exports = [
   { text: '主页', link: '/' },
   { text: 'Javascript', link: '/javascript/' },
   { text: 'React', link: '/react/' },
-  { text: 'React 原理解析', link: '/react-code-read/home' },
   { text: '数据结构与算法', link: '/algorithm/' },
   { text: 'HTTP', link: '/http/' },
-  { text: 'NODE', link: '/node/' },
+  { text: '杂文', link: '/others/' },
   {
     text: '更多',
     ariaLabel: '了解更多',
     items: [
-      {
-        items: [
-          { text: 'HTML & CSS', link: '/html-css/' },
-          // { text: 'HTTP 系列', link: '/http/' }
-        ]
-      },
-      {
-        items: [
-          { text: '常用配置/工具方法', link: '/tools/' },
-          { text: '收藏的链接、博文', link: '/collect/' },
-          // { text: '提问系列', link: '/question/javascript' }
-        ]
-      },
+      // {
+      //   items: [
+      //     { text: '常用配置/工具方法', link: '/tools/' },
+      //     { text: '收藏的链接、博文', link: '/collect/' },
+      //     // { text: '提问系列', link: '/question/javascript' }
+      //   ]
+      // },
       {
         items: [
           { text: 'Github', link: 'https://github.com/gershonv', target: '_self' },
