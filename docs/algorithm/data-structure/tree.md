@@ -321,7 +321,7 @@ let removeNode = function(node, key) {
     node.left = removeNode(node.left, key)
     return node
   } else if (key > node.key) {
-    node.next = removeNode(node.right, key)
+    node.right = removeNode(node.right, key)
     return node
   } else {
     // 第一种情况：一个叶子节点（没有子节点）
@@ -338,7 +338,7 @@ let removeNode = function(node, key) {
       return node
     }
 
-    // 第三种情况：有两个子节点
+    // 第三种情况：有两个子节点 替换的节点为右子树的最小节点
     let aux = minNode(node.right)
     node.key = aux.key
     node.right = removeNode(node.right, aux.key)
@@ -355,6 +355,10 @@ let removeNode = function(node, key) {
 - 该节点只有一个子节点（左子节点或右子节点）
 - 该节点有两个子节点（左右子节点都存在）
 
+1️⃣ **移除的节点的子节点均为 `null`**
+
+---
+
 我们先看第一种情况：
 
 ![](../../../assets/algorithm/tree/8.png)
@@ -364,14 +368,198 @@ let removeNode = function(node, key) {
 1. node=11，key=6，6<11，递归执行 removeNode(7, 6)
 2. node=7，key=6，6<7，递归执行 removeNode(5, 6)
 3. node=5，key=6，6>5，递归执行 removeNode(6, 6)
-4. node=6，key=6，6=6，并且节点 6 的 prev 和 next 都为 null，所以我们将节点 6 设置为 null，并且返回 null
-5. 递归返回到步骤 3，节点 5 的 next 将获取步骤 4 的返回值 null
-6. 递归返回到步骤 2，节点 7 的 prev 依然指向节点 5，保持不变
-7. 递归返回到步骤 1，节点 11 的 prev 依然指向节点 7，保持不变
+4. node=6，key=6，6=6，并且节点 6 的 `left` 和 `right` 都为 null，所以我们将节点 6 设置为 null，并且返回 null
+5. 递归返回到步骤 3，节点 5 的 `right` 将获取步骤 4 的返回值 null
+6. 递归返回到步骤 2，节点 7 的 `left` 依然指向节点 5，保持不变
+7. 递归返回到步骤 1，节点 11 的 `left` 依然指向节点 7，保持不变
 8. 最后返回节点 11
 
-#### 最终代码
+2️⃣ **移除的节点的有一个子节点**
 
 ---
+
+![](../../../assets/algorithm/tree/9.png)
+
+前面已经删除了节点 6，假设我们现在要删除节点 5，它有一个左子节点 3，我们依然传入根节点 11，来看看整个执行过程：
+
+1. node=11，key=5，5<11，递归执行 removeNode(7, 5)
+2. node=7，key=5，5<7，递归执行 removeNode(5, 5)
+3. node=5，key=5，5=5，并且节点 5 的 left=3，right=null，所以我们将节点 5 替换成它的左子节点 3，并返回节点 3
+4. 递归返回到步骤 2，节点 7 的 right 将获取步骤 3 的返回值 3
+5. 递归返回到步骤 1，节点 11 的 left 依然指向节点 7，保持不变
+6. 最后返回节点 11
+
+3️⃣ **移除的节点的有两个子节点**
+
+---
+
+![](../../../assets/algorithm/tree/10.png)
+
+前面已经删除了节点 6 和节点 5，现在我们要删除节点 15，它有左右子树，我们传入根节点 11，来看下具体执行过程：
+
+1. node=11，key=15，15>11，递归执行 removeNode(15, 15)
+2. node=15，key=15，15=15，此时我们需要找到节点 15 的右子树中的最小节点 18，将节点 15 的 key 替换成节点 18 的 key，然后将节点 15 的 `right` 节点（即节点 20）作为起始节点进行遍历，找到并删除节点 18，最后再将节点 15（此时它的 key 是 18）的 `right` 指针指向节点 20，并返回节点 15
+3. 递归返回到步骤 1，节点 11 的 `right` 依然指向节点 15，但此时节点 15 的 key 已经变成 18 了
+4. 最后返回节点 11
+
+试想一下，当删除节点 15 之后，为了保证我们的二叉搜索树结构稳定，必须用节点 15 的右子树中的最小节点来替换节点 15，如果直接将 11 的 next 指向 20，则 20 将会有三个子节点 13、18、25，这显然已经不符合我们二叉树的定义了。如果将节点 25 用来替换节点 15，节点 20 的值比节点 25 的值小，不应该出现在右子节点，这也不符合我们的二叉搜索树的定义。所以，只有按照上述过程才能既保证不破坏树的结构，又能删除节点。
+
+:::tip 总结
+移除的节点有两个子节点 替换的节点为右子树的最小节点
+:::
+
+### 最终代码
+
+我们已经完成了一开始我们定义的二叉搜索树 `BinarySearchTree` 类的所有方法，下面是它的完整代码：
+
+:::details BinarySearchTree
+
+```js
+function Node(key) {
+  this.key = key
+  this.left = null
+  this.right = null
+}
+
+let removeNode = function(node, key) {
+  if (node === null) return null
+
+  if (key < node.key) {
+    node.left = removeNode(node.left, key)
+    return node
+  } else if (key > node.key) {
+    node.right = removeNode(node.right, key)
+    return node
+  } else {
+    // 第一种情况：一个叶子节点（没有子节点）
+    if (node.left === null && node.right === null) {
+      console.log(111111111, node)
+      node = null
+      return node
+    }
+
+    // 第二种情况：只包含一个子节点
+    if (node.left === null) {
+      node = node.right
+      return node
+    } else if (node.right === null) {
+      node = node.left
+      return node
+    }
+
+    // 第三种情况：有两个子节点
+    let aux = minNode(node.right)
+    node.key = aux.key
+    node.right = removeNode(node.right, aux.key)
+    return node
+  }
+}
+
+let insertNode = function(node, newNode) {
+  if (newNode.key < node.key) {
+    if (node.left === null) node.left = newNode
+    else insertNode(node.left, newNode)
+  } else {
+    if (node.right === null) node.right = newNode
+    else insertNode(node.right, newNode)
+  }
+}
+
+// 前序遍历
+let preOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    callback(node.key)
+    preOrderTraverseNode(node.left, callback)
+    preOrderTraverseNode(node.right, callback)
+  }
+}
+
+// 中序遍历
+let inOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    inOrderTraverseNode(node.left, callback)
+    callback(node.key)
+    inOrderTraverseNode(node.right, callback)
+  }
+}
+
+// 后续遍历
+let postOrderTraverseNode = function(node, callback) {
+  if (node !== null) {
+    postOrderTraverseNode(node.left, callback)
+    postOrderTraverseNode(node.right, callback)
+    callback(node.key)
+  }
+}
+
+// 返回树中的最小节点
+let minNode = function(node) {
+  let current = node
+  while (current && current.left) {
+    current = current.left
+  }
+  return current
+}
+// 返回树中的最大节点
+let maxNode = function(node) {
+  let current = node
+  while (current && current.right) {
+    current = current.right
+  }
+  return current
+}
+
+let searchNode = function(node, key) {
+  if (!node) return null
+  if (node.key > key) return searchNode(node.left, key)
+  else if (node.key < key) return searchNode(node.right, key)
+  else return node
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null
+  }
+
+  // 向树中插入一个节点
+  insert(key) {
+    let newNode = new Node(key)
+
+    if (this.root === null) this.root = newNode
+    else insertNode(this.root, newNode)
+  }
+
+  preOrderTraverse(callback) {
+    preOrderTraverseNode(this.root, callback)
+  }
+
+  inOrderTraverse(callback) {
+    inOrderTraverseNode(this.root, callback)
+  }
+
+  postOrderTraverse(callback) {
+    postOrderTraverseNode(this.root, callback)
+  }
+
+  min() {
+    return minNode(this.root)
+  }
+
+  max() {
+    return maxNode(this.root)
+  }
+
+  search(key) {
+    return searchNode(this.root, key)
+  }
+
+  remove(key) {
+    this.root = removeNode(this.root, key)
+    return this.root
+  }
+}
+```
+
+:::
 
 参考 [JavaScript 数据结构——树的实现](https://www.cnblogs.com/jaxu/p/11309385.html)
