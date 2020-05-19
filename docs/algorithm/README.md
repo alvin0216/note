@@ -13,6 +13,7 @@ date: 2019-10-16 09:07:08
 
 ## Mark
 
+- [十大经典排序算法动画与解析，看我就够了！（配代码完全版）](https://github.com/MisterBooo/LeetCodeAnimation)
 - [手把手撕 LeetCode 题目，扒各种算法套路的裤子](https://github.com/labuladong/fucking-algorithm)
 - [前端该如何准备数据结构和算法？](https://juejin.im/post/5d5b307b5188253da24d3cd1)
 - [用 JavaScript 实现的算法和数据结构，附详细解释和刷题指南](http://www.conardli.top/docs/)

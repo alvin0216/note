@@ -80,7 +80,17 @@ module.exports = {
         {
           title: '排序算法',
           collapsable: false,
-          children: ['complexity', 'sort/bubbleSort']
+          children:
+            ['complexity',
+              'sort/bubbleSort',
+              'sort/quickSort',
+              'sort/selectionSort',
+              'sort/insertSort',
+              'sort/shellSort',
+              'sort/mergeSort',
+              'sort/heapSort',
+              'sort/countSort',
+            ]
         },
       ],
       // js
