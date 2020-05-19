@@ -80,7 +80,7 @@ module.exports = {
         {
           title: '排序算法',
           collapsable: false,
-          children: ['complexity', 'sort/1']
+          children: ['complexity', 'sort/bubbleSort']
         },
       ],
       // js
