@@ -107,6 +107,7 @@ module.exports = {
         },
 
       ],
+      '/root/interview': ['setTimeout'],
       '/': [
         {
           title: 'HTML',
@@ -118,7 +119,17 @@ module.exports = {
           collapsable: false,
           children: ['root/js/question', 'root/js/regexp']
         },
-
+        {
+          title: '笔试/面试题',
+          children: [
+            'root/interview/01',
+            'root/interview/02',
+            'root/interview/03',
+            'root/interview/04',
+            'root/interview/05',
+            'root/interview/06',
+          ]
+        }
       ]
     },
     // === nav
