@@ -15,8 +15,6 @@ module.exports = {
     sidebarDepth: 2,
     // === sidebar
     sidebar: {
-
-
       '/javascript/': [
         {
           title: '基础',
@@ -38,9 +36,7 @@ module.exports = {
           // collapsable: false,
           children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
         },
-
       ],
-
       // react
       '/react/': [
         {
@@ -54,9 +50,6 @@ module.exports = {
           children: ['code/home', 'code/base', 'code/render', 'code/update', 'code/expirationTime', 'code/scheduler', 'code/scheduleWork']
         }
       ],
-
-
-
       '/algorithm/': [
         {
           title: '数据结构',
@@ -79,14 +72,12 @@ module.exports = {
             ]
         },
       ],
-
       '/http/': [
         {
           title: 'HTTP 系列知识',
           children: ['model', 'handshake', 'cross-domain', 'cache']
         }
       ],
-
       '/others/': [
         {
           title: 'HTML-CSS',
@@ -109,9 +100,7 @@ module.exports = {
           children: ['mark/collect', 'mark/vscode']
         },
       ],
-
       // js
-
       '/': [
         {
           title: 'HTML',
