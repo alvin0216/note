@@ -112,7 +112,6 @@ module.exports = {
 
       // js
 
-      '/root/interview': ['setTimeout'],
       '/': [
         {
           title: 'HTML',
