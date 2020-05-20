@@ -75,5 +75,33 @@ function bubbleSort2(arr) {
 
 ## 第三版：双向遍历
 
+传统冒泡排序中每一趟排序操作只能找到一个最大值或最小值, 我们可以 **在每趟排序中进行正向和反向两遍冒泡** ， 一次可以得到两个最终值（最大和最小） , 从而使外排序趟数几乎减少了一半。
+
+```js
+function bubbleSort3(arr) {
+  let start = 0
+  let end = arr.length - 1
+
+  while (start < end) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[i + 1]) {
+        swap(arr, i, i + 1)
+      }
+    }
+
+    end--
+
+    for (let j = end; j > start; j--) {
+      if (arr[j - 1] > arr[j]) {
+        swap(arr, j, j - 1)
+      }
+    }
+
+    start++
+  }
+  return arr
+}
+```
+
 - 动画来源 [图解面试算法](https://github.com/MisterBooo/LeetCodeAnimation)
 - 参考 [优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)
