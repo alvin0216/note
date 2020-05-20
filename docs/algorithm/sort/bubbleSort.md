@@ -71,6 +71,9 @@ function bubbleSort2(arr) {
 ```
 
 - 如果循环一次，发现没有发生交换事件，代表数组升序，pos = 0，算法复杂度 `O(n)`
+- 只要有交换，pos 值就更新，直到没有发生交换为止。所以可以大大地简化了算法复杂度。
 
-* 动画来源 [图解面试算法](https://github.com/MisterBooo/LeetCodeAnimation)
-* 参考 [优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)
+## 第三版：双向遍历
+
+- 动画来源 [图解面试算法](https://github.com/MisterBooo/LeetCodeAnimation)
+- 参考 [优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)

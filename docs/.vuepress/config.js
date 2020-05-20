@@ -15,85 +15,8 @@ module.exports = {
     sidebarDepth: 2,
     // === sidebar
     sidebar: {
-      '/tools/': [
-        {
-          title: 'Tools',
-          collapsable: false,
-          children: ['github-webhooks', 'ssh-login-server', 'mac-quick-start', 'git', 'vim', 'command', 'awesome']
-        }
-      ],
-      '/question/': [''],
 
-      // react
-      '/react/': [
-        {
-          title: 'React',
-          // collapsable: true,
-          children: ['compound-component', 'redux', 'hooks', 'daily']
-        },
-        {
-          title: 'React 源码解读',
-          // collapsable: true,
-          children: ['code/home', 'code/base', 'code/render', 'code/update', 'code/expirationTime', 'code/scheduler', 'code/scheduleWork']
-        }
-      ],
 
-      // html & css
-      '/html-css/': [
-        {
-          title: 'HTML & CSS',
-          children: ['css-base', 'BFC']
-        }
-      ],
-
-      '/http/': [
-        {
-          title: 'HTTP 系列知识',
-          children: ['model', 'handshake', 'cross-domain', 'cache']
-        }
-      ],
-
-      '/others/': [
-        'collect',
-        {
-          title: 'HTML-CSS',
-          collapsable: false,
-          children: ['html-css/css-base', 'html-css/BFC']
-        },
-        {
-          title: 'node 系列知识',
-          collapsable: false,
-          children: ['node/node-shell', 'node/middleware']
-        },
-        {
-          title: '服务器相关',
-          collapsable: true,
-          children: ['system/git', 'system/ssh', 'system/github-webhooks', 'system/linux', 'system/vim']
-        },
-      ],
-      '/algorithm/': [
-        {
-          title: '数据结构',
-          collapsable: false,
-          children: ['data-structure/stack', 'data-structure/queue', 'data-structure/linkedList', 'data-structure/set', 'data-structure/dict-hashtable', 'data-structure/tree']
-        },
-        {
-          title: '排序算法',
-          collapsable: false,
-          children:
-            ['complexity',
-              'sort/bubbleSort',
-              'sort/quickSort',
-              'sort/selectionSort',
-              'sort/insertSort',
-              'sort/shellSort',
-              'sort/mergeSort',
-              'sort/heapSort',
-              'sort/countSort',
-            ]
-        },
-      ],
-      // js
       '/javascript/': [
         {
           title: '基础',
@@ -117,6 +40,78 @@ module.exports = {
         },
 
       ],
+
+      // react
+      '/react/': [
+        {
+          title: 'React',
+          // collapsable: true,
+          children: ['compound-component', 'redux', 'hooks', 'daily']
+        },
+        {
+          title: 'React 源码解读',
+          // collapsable: true,
+          children: ['code/home', 'code/base', 'code/render', 'code/update', 'code/expirationTime', 'code/scheduler', 'code/scheduleWork']
+        }
+      ],
+
+
+
+      '/algorithm/': [
+        {
+          title: '数据结构',
+          collapsable: false,
+          children: ['data-structure/stack', 'data-structure/queue', 'data-structure/linkedList', 'data-structure/set', 'data-structure/dict-hashtable', 'data-structure/tree']
+        },
+        {
+          title: '排序算法',
+          collapsable: false,
+          children:
+            ['complexity',
+              'sort/bubbleSort',
+              'sort/quickSort',
+              'sort/selectionSort',
+              'sort/insertSort',
+              'sort/shellSort',
+              'sort/mergeSort',
+              'sort/heapSort',
+              'sort/countSort',
+            ]
+        },
+      ],
+
+      '/http/': [
+        {
+          title: 'HTTP 系列知识',
+          children: ['model', 'handshake', 'cross-domain', 'cache']
+        }
+      ],
+
+      '/others/': [
+        {
+          title: 'HTML-CSS',
+          collapsable: false,
+          children: ['html-css/css-base', 'html-css/BFC']
+        },
+        {
+          title: 'node 系列知识',
+          collapsable: false,
+          children: ['node/node-shell', 'node/middleware']
+        },
+        {
+          title: '服务器相关',
+          collapsable: true,
+          children: ['system/git', 'system/ssh', 'system/github-webhooks', 'system/linux', 'system/vim']
+        },
+        {
+          title: 'Mark',
+          collapsable: true,
+          children: ['mark/collect', 'mark/vscode']
+        },
+      ],
+
+      // js
+
       '/root/interview': ['setTimeout'],
       '/': [
         {
