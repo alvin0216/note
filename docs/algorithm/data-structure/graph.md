@@ -63,7 +63,7 @@ date: 2020-05-21 22:30:33
 
 下面我们重点看下如何用邻接表的方式表示图。我们的 `Graph` 类的骨架如下，它用邻接表方式来实现无向图：
 
-![](../../../assets/algorithm/graph/7.png)
+![](../../../assets/algorithm/graph/5.png)
 
 就如链表里存储这 `head` 和 树存储着 `root` 结构，同样图里面可以用
 
@@ -178,20 +178,16 @@ class Graph {
 
 ```js
 let graph = new Graph()
-let myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I']
+let myVertices = ['A', 'B', 'C', 'D', 'E', 'F']
 myVertices.forEach(v => {
   graph.addVertex(v)
 })
 graph.addEdge('A', 'B')
 graph.addEdge('A', 'C')
 graph.addEdge('A', 'D')
-graph.addEdge('C', 'D')
-graph.addEdge('C', 'G')
-graph.addEdge('D', 'G')
-graph.addEdge('D', 'H')
 graph.addEdge('B', 'E')
 graph.addEdge('B', 'F')
-graph.addEdge('E', 'I')
+graph.addEdge('C', 'D')
 
 console.log(graph.toString())
 ```
@@ -201,13 +197,43 @@ console.log(graph.toString())
 ```js
 A -> B C D
 B -> A E F
-C -> A D G
-D -> A C G H
-E -> B I
+C -> A D
+D -> A C
+E -> B
 F -> B
-G -> C D
-H -> D
-I -> E
 ```
 
 可以看到，与示意图是相符合的。
+
+## 图的遍历方式
+
+和树类似，我们也可以对图进行遍历，以访问图中的所有顶点。图的遍历方式分为两种：**广度优先（Breadth-First Search，BFS）**和**深度优先（Depth-First Search，DFS）**。对图的遍历可以用来寻找特定的顶点或两个顶点之间的最短路径，以及检查图是否连通、图中是否含有环等。
+
+![](../../../assets/algorithm/graph/7.png)
+
+| 算法     | 数据结构 | 描述                                                                   |
+| -------- | -------- | ---------------------------------------------------------------------- |
+| 深度优先 | 栈       | 将图的顶点存入栈中，顶点是沿着路径被探索的，存在新的相邻顶点就去访问。 |
+| 广度优先 | 队列     | 将图的顶点存入队列中，最先入队列的顶点先被探索。                       |
+
+### 广度优先遍历 <Badge text="队列" />
+
+广度优先算法会从指定的第一个顶点开始遍历图，先访问这个顶点的所有相邻顶点，然后再访问这些相邻顶点的相邻顶点，以此类推。最终，广度优先算法会先广后深地访问图中的所有顶点。
+
+比如上面的例子。广度优先遍历会先把 A 旁边的节点全部遍历一遍。第一层遍历 A -> B -> C -> D 结束，再遍历第二层 D -> E -> F，所以相当于优先遍历图的横向，当然对于图来说没有横向的概念的，这里只是为了方便理解。
+
+在接下来要实现的算法中，我们按照如下的约定对图中的顶点进行遍历，每个顶点最多访问两次：
+
+- 白色：表示该顶点未被访问。
+- 灰色：表示该顶点被访问过，但未被探索。
+- 黑色：表示该顶点被访问并且被探索过。
+
+![](../../../assets/algorithm/graph/8.png)
+
+### 深度优先遍历<Badge text="栈" />
+
+从 A 开始的话，遍历会不断的探寻最深的一个顶点，即 A -> B -> E，然后在逐渐往回寻找近的 B -> C -> D
+
+参考
+
+[JavaScript 数据结构——图的实现](https://www.cnblogs.com/jaxu/p/11338294.html)
