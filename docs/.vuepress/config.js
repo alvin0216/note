@@ -61,7 +61,8 @@ module.exports = {
             'data-structure/set',
             'data-structure/dict-hashtable',
             'data-structure/tree',
-            'data-structure/graph'
+            'data-structure/graph',
+            'data-structure/graph-traverse',
           ]
         },
         {
