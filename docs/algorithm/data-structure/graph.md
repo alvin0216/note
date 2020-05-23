@@ -216,11 +216,19 @@ F -> B
 | 深度优先 | 栈       | 将图的顶点存入栈中，顶点是沿着路径被探索的，存在新的相邻顶点就去访问。 |
 | 广度优先 | 队列     | 将图的顶点存入队列中，最先入队列的顶点先被探索。                       |
 
+:::details 图遍历的基本思路
+
+![](../../../assets/algorithm/graph/8.png)
+
+:::
+
 ### 广度优先遍历 <Badge text="队列" />
 
 广度优先算法会从指定的第一个顶点开始遍历图，先访问这个顶点的所有相邻顶点，然后再访问这些相邻顶点的相邻顶点，以此类推。最终，广度优先算法会先广后深地访问图中的所有顶点。
 
 比如上面的例子。广度优先遍历会先把 A 旁边的节点全部遍历一遍。第一层遍历 A -> B -> C -> D 结束，再遍历第二层 D -> E -> F，所以相当于优先遍历图的横向，当然对于图来说没有横向的概念的，这里只是为了方便理解。
+
+![](../../../assets/algorithm/graph/9.png)
 
 在接下来要实现的算法中，我们按照如下的约定对图中的顶点进行遍历，每个顶点最多访问两次：
 
@@ -228,7 +236,90 @@ F -> B
 - 灰色：表示该顶点被访问过，但未被探索。
 - 黑色：表示该顶点被访问并且被探索过。
 
-![](../../../assets/algorithm/graph/8.png)
+由于我们采用邻接表的方式来存储图的数据，对于图的每个顶点，都有一个字典与之对应，字典的键值为顶点的值，字典的内容为与该顶点相邻的顶点列表。基于这种数据结构，我们可以考虑将所有顶点的邻接顶点存入队列，然后依次处理队列中的顶点。下面是具体的遍历步骤：
+
+1. 将开始顶点存入队列。
+2. 遍历开始顶点的所有邻接顶点，如果这些邻接顶点没有被访问过（颜色为白色），则将它们标记为被访问（颜色为灰色），然后加入队列。
+3. 将开始顶点标记为被处理（颜色为黑色）。
+4. 循环处理队列中的顶点，直到队列为空。
+
+```js
+let Colors = {
+  WHITE: 0,
+  GREY: 1,
+  BLACK: 2
+}
+
+let initializeColor = vertices => {
+  let color = {}
+  vertices.forEach(v => (color[v] = Colors.WHITE))
+  return color
+}
+
+let breadthFirstSearch = (graph, startVertex, callback) => {
+  let vertices = graph.getVertices()
+  let adjList = graph.getAdjList()
+  let color = initializeColor(vertices)
+  let queue = new Queue()
+
+  queue.enqueue(startVertex)
+
+  while (!queue.isEmpty()) {
+    let u = queue.dequeue()
+    adjList.get(u).forEach(n => {
+      if (color[n] === Colors.WHITE) {
+        color[n] = Colors.GREY
+        queue.enqueue(n)
+      }
+    })
+
+    color[u] = Colors.BLACK
+    if (callback) callback(u)
+  }
+}
+```
+
+`breadthFirstSearch()`方法接收一个 graph 对象，图的数据通过该对象传入。参数 `startVertex` 指定了遍历的起始顶点。回调函数 callback 规定了要如何处理被遍历到的顶点。
+
+首先通过 `initializeColor()`函数将所有的顶点标记为未被访问过（颜色为白色），这些颜色保存在以顶点值为 `key` 的 `color` 对象中。图的 `vertices` 和 `adjList` 属性可以通过 `getVertices()`和 `getAdjList(`)方法得到，然后构造一个队列 `queue`，按照上面描述的步骤对图的顶点进行遍历。
+
+在前面我们给出的测试用例的基础上，添加下面的代码，来看看 `breadthFirstSearch()`方法的执行结果：
+
+```js
+breadthFirstSearch(graph, 'A', value => console.log(`visited vertex: ${value}`))
+```
+
+参数 `graph` 为前面测试用例中 `Graph` 类的实例，也就是我们用来保存图的数据的对象，'A'被作为遍历的起始顶点，在回调函数中，打印一行文本，用来展示顶点被遍历的顺序。下面是测试结果：
+
+```js
+visited vertex: A
+visited vertex: B
+visited vertex: C
+visited vertex: D
+visited vertex: E
+visited vertex: F
+```
+
+尝试将'B'作为起始顶点，看看执行结果：
+
+```js
+visited vertex: B
+visited vertex: A
+visited vertex: E
+visited vertex: F
+visited vertex: C
+visited vertex: D
+```
+
+为了方便理解，我们将顶点 `B` 放到最上面：
+
+```js
+         B
+      /  |  \
+    A    E   F
+  /  \
+C    D
+```
 
 ### 深度优先遍历<Badge text="栈" />
 
