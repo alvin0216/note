@@ -103,5 +103,60 @@ function bubbleSort3(arr) {
 }
 ```
 
+## 第四版：结合 2&3
+
+前两种优化方式`（缓存 pos、双向遍历）`的结合：
+
+```js
+function bubbleSort4(arr) {
+  let start = 0
+  let end = arr.length - 1
+
+  while (start < end) {
+    let startPos = 0
+    let endPos = 0
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > arr[i + 1]) {
+        swap(arr, i, i + 1)
+        startPos = i
+      }
+    }
+    start = startPos
+
+    for (let j = end; j > 0; j--) {
+      if (arr[j - 1] > arr[j]) {
+        swap(arr, j, j - 1)
+        endPos = j
+      }
+    }
+    end = endPos
+  }
+  return arr
+}
+```
+
+## 蚂蚁金服面试 模拟 Array.prototype.sort
+
+来自于蚂蚁金服的一道面试题：
+
+> 对于冒泡排序来说，能不能传入第二个参数（参数为函数），来控制升序和降序？（联想一下 `array.sort()`）
+
+```js
+function bubbleSort(arr, compareFunc) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    for (let j = 0; j < i; j++) {
+      if (compareFunc(arr[j], arr[j + 1]) > 0) {
+        swap(arr, j, j + 1)
+      }
+    }
+  }
+  return arr
+}
+
+console.log(bubbleSort(array, (a, b) => a - b))
+console.log(bubbleSort(array, (a, b) => b - a))
+```
+
 - 动画来源 [图解面试算法](https://github.com/MisterBooo/LeetCodeAnimation)
 - 参考 [优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)
