@@ -319,6 +319,300 @@ distances['A'] = { A: 0, B: 1, E: 2, F: 2, C: 1, D: 1 }
 pred = { A: null, B: 'A', ... }
 ```
 
+下面是对 `breadthFirstSearch()`方法的改进，用来返回从起始顶点开始到其它所有顶点间的距离，以及所有顶点的前置顶点。
+
+```js {25,26}
+let BFS = function(graph, startVertex) {
+  let vertices = graph.getVertices()
+  let adjList = graph.getAdjList()
+  let color = initializeColor(vertices)
+  let queue = new Queue()
+
+  let distances = {}
+  let pred = {}
+
+  queue.enqueue(startVertex)
+
+  // 初始化所有顶点的距离为0，前置节点为null
+  // { A: 0, B: 0, C: 0, D: 0, E: 0, F: 0 }
+  // { A: null, B: null, C: null, D: null, E: null, F: null }
+  vertices.forEach(v => {
+    distances[v] = 0
+    pred[v] = null
+  })
+
+  while (!queue.isEmpty()) {
+    let u = queue.dequeue() // 取出当前顶点
+    adjList.get(u).forEach(n => {
+      if (color[n] === Colors.WHITE) {
+        color[n] = Colors.GREY
+        distances[n] = distances[u] + 1
+        pred[n] = u
+        queue.enqueue(n)
+      }
+    })
+
+    color[u] = Colors.BLACK
+  }
+
+  return { distances, pred }
+}
+```
+
+与 `breadthFirstSearch()`方法的逻辑类似，只不过在开始的时候将所有顶点的距离初始化为 0，前置顶点初始化为 null，然后在遍历的过程中，重新设置顶点的 `distances` 值和 `pred` 值。我们仍然将顶点 A 作为起始顶点，来看看测试结果：
+
+```js
+console.log(BFS(graph, 'A'))
+```
+
+```js
+// 遍历过程
+A: 0 B: 1 >> B 入队 { A: 0, B: 1, C: 0, D: 0, E: 0, F: 0 }
+A: 0 C: 1 >> C 入队 { A: 0, B: 1, C: 1, D: 0, E: 0, F: 0 }
+A: 0 D: 1 >> D 入队 { A: 0, B: 1, C: 1, D: 1, E: 0, F: 0 }
+B: 1 E: 2 >> E 入队 { A: 0, B: 1, C: 1, D: 1, E: 2, F: 0 }
+B: 1 F: 2 >> F 入队 { A: 0, B: 1, C: 1, D: 1, E: 2, F: 2 }
+// 结果
+{
+  distances: { A: 0, B: 1, C: 1, D: 1, E: 2, F: 2 },
+  pred: { A: null, B: 'A', C: 'A', D: 'A', E: 'B', F: 'B' }
+}
+```
+
+如你所见，`distances` 为从顶点 A 开始到其它所有顶点的最短距离（相邻顶点间的距离为 1），`pred` 记录了所有顶点的前置顶点。以 BFS()方法的返回结果为基础，通过下面的代码，我们可以得出从顶点 A 开始到其它所有顶点的最短路径：
+
+```js {8}
+const startVertex = 'A'
+const { distances, pred } = BFS(graph, startVertex)
+
+function print(from) {
+  console.log(pred)
+  myVertices.forEach(v => {
+    let path = new Stack()
+    for (let to = v; to !== from; to = pred[to]) {
+      path.push(to)
+    }
+
+    let s = from
+    while (!path.isEmpty()) {
+      s += ' -> ' + path.pop()
+    }
+
+    console.log(s)
+  })
+}
+print(startVertex)
+```
+
+结果
+
+```js
+// 回溯点 { A: null, B: 'A', C: 'A', D: 'A', E: 'B', F: 'B' }
+A
+A -> B
+A -> C
+A -> D
+A -> E -> B
+A -> F -> B
+```
+
+以上我们说的都是未加权的图，对于加权的图，广度优先算法并不是最合适的。下面给出了另外几种最短路径算法：
+
+### 寻找从指定顶点到其它所有顶点的最短路径的贪心算法
+
+<br />
+
+:::details dijkstra 代码
+
+```js
+const INF = Number.MAX_SAFE_INTEGER
+const minDistance = (dist, visited) => {
+  let min = INF
+  let minIndex = -1
+  for (let v = 0; v < dist.length; v++) {
+    if (visited[v] === false && dist[v] <= min) {
+      min = dist[v]
+      minIndex = v
+    }
+  }
+  return minIndex
+}
+const dijkstra = (graph, src) => {
+  const dist = []
+  const visited = []
+  const { length } = graph
+  for (let i = 0; i < length; i++) {
+    dist[i] = INF
+    visited[i] = false
+  }
+  dist[src] = 0
+  for (let i = 0; i < length - 1; i++) {
+    const u = minDistance(dist, visited)
+    visited[u] = true
+    for (let v = 0; v < length; v++) {
+      if (!visited[v] && graph[u][v] !== 0 && dist[u] !== INF && dist[u] + graph[u][v] < dist[v]) {
+        dist[v] = dist[u] + graph[u][v]
+      }
+    }
+  }
+  return dist
+}
+```
+
+:::
+
+### 计算图中所有最短路径的动态规划算法
+
+<br />
+
+:::details floydWarshall 代码
+
+```js
+const floydWarshall = graph => {
+  const dist = []
+  const { length } = graph
+  for (let i = 0; i < length; i++) {
+    dist[i] = []
+    for (let j = 0; j < length; j++) {
+      if (i === j) {
+        dist[i][j] = 0
+      } else if (!isFinite(graph[i][j])) {
+        dist[i][j] = Infinity
+      } else {
+        dist[i][j] = graph[i][j]
+      }
+    }
+  }
+  for (let k = 0; k < length; k++) {
+    for (let i = 0; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        if (dist[i][k] + dist[k][j] < dist[i][j]) {
+          dist[i][j] = dist[i][k] + dist[k][j]
+        }
+      }
+    }
+  }
+  return dist
+}
+```
+
+:::
+
+### 求解加权无向连通图的最小生成树（MST）的贪心算法
+
+<br />
+
+:::details kruskal
+
+```js
+const INF = Number.MAX_SAFE_INTEGER
+const find = (i, parent) => {
+  while (parent[i]) {
+    i = parent[i] // eslint-disable-line prefer-destructuring
+  }
+  return i
+}
+const union = (i, j, parent) => {
+  if (i !== j) {
+    parent[j] = i
+    return true
+  }
+  return false
+}
+const initializeCost = graph => {
+  const cost = []
+  const { length } = graph
+  for (let i = 0; i < length; i++) {
+    cost[i] = []
+    for (let j = 0; j < length; j++) {
+      if (graph[i][j] === 0) {
+        cost[i][j] = INF
+      } else {
+        cost[i][j] = graph[i][j]
+      }
+    }
+  }
+  return cost
+}
+const kruskal = graph => {
+  const { length } = graph
+  const parent = []
+  let ne = 0
+  let a
+  let b
+  let u
+  let v
+  const cost = initializeCost(graph)
+  while (ne < length - 1) {
+    for (let i = 0, min = INF; i < length; i++) {
+      for (let j = 0; j < length; j++) {
+        if (cost[i][j] < min) {
+          min = cost[i][j]
+          a = u = i
+          b = v = j
+        }
+      }
+    }
+    u = find(u, parent)
+    v = find(v, parent)
+    if (union(u, v, parent)) {
+      ne++
+    }
+    cost[a][b] = cost[b][a] = INF
+  }
+  return parent
+}
+```
+
+:::
+
+### 求解加权无向连通图的最小生成树（MST）的贪心算法
+
+<br />
+
+:::details prim
+
+```js
+const INF = Number.MAX_SAFE_INTEGER
+const minKey = (graph, key, visited) => {
+  // Initialize min value
+  let min = INF
+  let minIndex = 0
+  for (let v = 0; v < graph.length; v++) {
+    if (visited[v] === false && key[v] < min) {
+      min = key[v]
+      minIndex = v
+    }
+  }
+  return minIndex
+}
+const prim = graph => {
+  const parent = []
+  const key = []
+  const visited = []
+  const { length } = graph
+  for (let i = 0; i < length; i++) {
+    key[i] = INF
+    visited[i] = false
+  }
+  key[0] = 0
+  parent[0] = -1
+  for (let i = 0; i < length - 1; i++) {
+    const u = minKey(graph, key, visited)
+    visited[u] = true
+    for (let v = 0; v < length; v++) {
+      if (graph[u][v] && !visited[v] && graph[u][v] < key[v]) {
+        parent[v] = u
+        key[v] = graph[u][v]
+      }
+    }
+  }
+  return parent
+}
+```
+
+:::
+
 ## 深度优先遍历 - DFS <Badge text="栈" />
 
 从 A 开始的话，遍历会不断的探寻最深的一个顶点，即 A -> B -> E，然后在逐渐往回寻找近的 B -> C -> D
