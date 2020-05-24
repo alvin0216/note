@@ -615,4 +615,57 @@ const prim = graph => {
 
 ## 深度优先遍历 - DFS <Badge text="栈" />
 
-从 A 开始的话，遍历会不断的探寻最深的一个顶点，即 A -> B -> E，然后在逐渐往回寻找近的 B -> C -> D
+深度优先算法从图的第一个顶点开始，沿着这个顶点的一条路径递归查找到最后一个顶点，然后返回并探查路径上的其它路径，直到所有路径都被访问到。最终，深度优先算法会先深后广地访问图中的所有顶点。下面是深度优先遍历的示意图：
+
+![](../../../assets/algorithm/graph/11.png)
+
+我们仍然采用和广度优先算法一样的思路，一开始将所有的顶点初始化为白色，然后沿着路径递归探查其余顶点，当顶点被访问过，将颜色改为灰色，如果顶点被探索过（处理过），则将颜色改为黑色。下面是深度优先算法的具体实现：
+
+```js
+let dfsVisited = (u, color, adjList, callback) => {
+  color[u] = Colors.GREY
+  if (callback) callback(u)
+
+  adjList.get(u).forEach(n => {
+    if (color[n] === Colors.WHITE) {
+      dfsVisited(n, color, adjList, callback)
+    }
+  })
+
+  color[u] = Colors.BLACK
+}
+
+let dfs = (graph, callback) => {
+  let vertices = graph.getVertices()
+  let adjList = graph.getAdjList()
+  let color = initializeColor(vertices)
+
+  vertices.forEach(v => {
+    if (color[v] === Colors.WHITE) {
+      dfsVisited(v, color, adjList, callback)
+    }
+  })
+}
+
+dfs(graph, value => console.log(`visited vertex: ${value}`))
+```
+
+对应的测试用例及执行结果如下：
+
+```js
+visited vertex: A
+visited vertex: B
+visited vertex: E
+visited vertex: I
+visited vertex: F
+visited vertex: C
+visited vertex: D
+visited vertex: G
+visited vertex: H
+```
+
+为了便于理解，我们将整个遍历过程用下面的示意图来展示：
+
+![](../../../assets/algorithm/graph/12.png)
+
+前面说过，深度优先算法的数据结构是栈，然而这里我们并没有使用栈来存储任何数据，而是使用了函数的递归调用，其实递归也是栈的一种表现形式。另外一点，如果图是连通的（即图中任何两个顶点之间都存在路径），我们可以对上述代码中的 `dfs()`方法进行改进，只需要对图的起始顶点开始遍历一次就可以了，而不需要遍历图的所有顶点，因为从起始顶点开始的递归就可以覆盖图的所有顶点。
