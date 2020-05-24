@@ -71,8 +71,8 @@ module.exports = {
           children:
             ['complexity',
               'sort/bubbleSort',
-              'sort/quickSort',
               'sort/selectionSort',
+              'sort/quickSort',
               'sort/insertSort',
               'sort/shellSort',
               'sort/mergeSort',
@@ -80,6 +80,11 @@ module.exports = {
               'sort/countSort',
             ]
         },
+        {
+          title: '未归置',
+          collapsable: true,
+          children: ['temp/binarySearch']
+        }
       ],
       '/http/': [
         {
