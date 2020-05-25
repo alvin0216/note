@@ -24,7 +24,7 @@ module.exports = {
         {
           title: '模拟实现系列',
           // collapsable: true,
-          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof']
+          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof', 'deepClone']
         },
         {
           title: 'ES6',
