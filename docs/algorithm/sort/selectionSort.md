@@ -40,6 +40,29 @@ let arr = [4, 2, 3, 6, 5]
 console.log(selectionSort(arr)) // [ 2, 3, 4, 5, 6 ]
 ```
 
+## 第二版：找到最大值
+
+如果你想在每次内循环中找到最大值并把其交换到数组的末尾（相比较 `minIndex` 有点麻烦），以下是实现的代码：
+
+```js
+function selectionSort2(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    let maxIndex = i
+
+    for (let j = i - 1; j >= 0; j--) {
+      if (arr[j] > arr[maxIndex]) {
+        maxIndex = j
+      }
+    }
+    if (i !== maxIndex) {
+      swap(arr, i, maxIndex)
+    }
+  }
+
+  return arr
+}
+```
+
 ## 属性
 
 - 不稳定

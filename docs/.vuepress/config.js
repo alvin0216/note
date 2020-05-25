@@ -47,7 +47,15 @@ module.exports = {
         {
           title: 'React 源码解读',
           // collapsable: true,
-          children: ['code/home', 'code/base', 'code/render', 'code/update', 'code/expirationTime', 'code/scheduler', 'code/scheduleWork']
+          children: [
+            'code/home',
+            'code/base',
+            'code/render',
+            'code/update',
+            'code/expirationTime',
+            'code/scheduler',
+            'code/scheduleWork'
+          ]
         }
       ],
       '/algorithm/': [
@@ -72,8 +80,8 @@ module.exports = {
             ['complexity',
               'sort/bubbleSort',
               'sort/selectionSort',
-              'sort/quickSort',
               'sort/insertSort',
+              'sort/quickSort',
               'sort/shellSort',
               'sort/mergeSort',
               'sort/heapSort',
