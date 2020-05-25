@@ -90,12 +90,12 @@ function binarySearch(arr, maxIndex, value) {
 function insertionSort2(arr) {
   for (let i = 1, len = arr.length; i < len; i++) {
     const current = arr[i]
-    const insertIndex = binarySearch(arr, i - 1, arr[i])
+    const insertIndex = binarySearch(arr, i - 1, current) // 找到当前需要插入的 index
 
     for (let prevIndex = i - 1; prevIndex >= insertIndex; prevIndex--) {
       arr[prevIndex + 1] = arr[prevIndex]
     }
-    arr[insertIndex] = current
+    arr[insertIndex] = current // 恢复
   }
 
   return arr
@@ -119,8 +119,6 @@ console.log(insertionSort2(arr))
 
 - 高性能（特别是接近排序完毕时的数组），低开销，且稳定
 - 利用二分查找来优化
-
-动画来源
 
 ---
 

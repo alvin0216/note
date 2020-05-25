@@ -81,10 +81,10 @@ module.exports = {
               'sort/bubbleSort',
               'sort/selectionSort',
               'sort/insertSort',
-              'sort/quickSort',
               'sort/shellSort',
               'sort/mergeSort',
               'sort/heapSort',
+              'sort/quickSort',
               'sort/countSort',
             ]
         },
