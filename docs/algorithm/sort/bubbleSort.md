@@ -83,7 +83,7 @@ function bubbleSort3(arr) {
   let end = arr.length - 1
 
   while (start < end) {
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < end; i++) {
       if (arr[i] > arr[i + 1]) {
         swap(arr, i, i + 1)
       }
@@ -116,7 +116,7 @@ function bubbleSort4(arr) {
     let startPos = 0
     let endPos = 0
 
-    for (let i = 0; i < arr.length; i++) {
+    for (let i = 0; i < end; i++) {
       if (arr[i] > arr[i + 1]) {
         swap(arr, i, i + 1)
         startPos = i
