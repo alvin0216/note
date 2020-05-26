@@ -85,7 +85,7 @@ module.exports = {
               'sort/mergeSort',
               'sort/heapSort',
               'sort/quickSort',
-              'sort/countSort',
+              // 'sort/countSort',
             ]
         },
         {
