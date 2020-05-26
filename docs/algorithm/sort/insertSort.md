@@ -19,10 +19,10 @@ function insertSort(arr) {
     let prevIndex = i - 1
 
     while (arr[prevIndex] > current) {
-      arr[prevIndex + 1] = arr[prevIndex]
+      arr[prevIndex + 1] = arr[prevIndex] // 如果前一个比 current 大，则往后移动一位，prevIndex-- 继续循环
       prevIndex--
     }
-    arr[prevIndex + 1] = current // 恢复最后一项
+    arr[prevIndex + 1] = current // 插入
   }
 
   return arr
