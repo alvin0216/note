@@ -61,7 +61,7 @@ module.exports = {
       '/algorithm/': [
         {
           title: '数据结构',
-          collapsable: false,
+          collapsable: true,
           children: [
             'data-structure/stack',
             'data-structure/queue',
@@ -75,7 +75,7 @@ module.exports = {
         },
         {
           title: '排序算法',
-          collapsable: false,
+          collapsable: true,
           children:
             ['complexity',
               'sort/bubbleSort',
