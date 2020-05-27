@@ -23,7 +23,7 @@ git config --global --list
 
 # 配置用户信息
 git config --global user.name guodada
-git config --global user.email gershonv@163.com
+git config --global user.email alvin00216@163.com
 ```
 
 ## 配置 ssh
@@ -33,7 +33,7 @@ git config --global user.email gershonv@163.com
 cd ～/.ssh
 
 # 生成密钥
-ssh-keygen -t rsa -C gershonv@163.com
+ssh-keygen -t rsa -C alvin00216@163.com
 
 # 提示输入目录，目录可以不填，有默认路径，直接回车 ==>
 Enter file in which to save the key (/root/.ssh/id_rsa):
@@ -54,7 +54,7 @@ cat id_rsa.pub # 查看手动拷贝
 ```bash
 ssh -T git@github.com
 
-# 输出：Hi gershonv! You've successfully authenticated, but GitHub does not provide shell access.
+# 输出：Hi alvin00216! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 之前已经是 `https` 的链接，现在想要用 `SSH` 提交怎么办？

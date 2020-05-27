@@ -776,7 +776,7 @@ export default function connect(mapStateToProps, mapDispatchToProps) {
 
 ## 文末
 
-代码见：[实现 redux 和 react-redux](https://github.com/gershonv/guodada-code/tree/master/my-redux)
+代码见：[实现 redux 和 react-redux](https://github.com/alvin0216/guodada-code/tree/master/my-redux)
 
 - 源自于 [完全理解 redux（从零实现一个 redux](https://github.com/brickspert/blog/issues/22)
 - 借鉴于 [10 行代码看尽 redux 原理](https://juejin.im/post/5def4831e51d45584b585000#heading)

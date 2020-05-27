@@ -10,7 +10,7 @@ date: 2020-01-05 09:25:13
 cat ~/.ssh/id_rsa.pub
 
 # 如果不存在 则需要创建公钥
-ssh-keygen -t rsa -C gershonv@163.com
+ssh-keygen -t rsa -C alvin0216@163.com
 ```
 
 复制完公钥后，我们先登陆进服务器。

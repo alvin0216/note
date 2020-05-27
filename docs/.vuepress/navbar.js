@@ -18,7 +18,7 @@ module.exports = [
       // },
       {
         items: [
-          { text: 'Github', link: 'https://github.com/gershonv', target: '_self' },
+          { text: 'Github', link: 'https://github.com/alvin0216', target: '_self' },
           { text: '郭大大的博客', link: 'http://47.112.48.225:4002', target: '_self' }
         ]
       }
