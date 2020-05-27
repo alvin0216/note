@@ -92,8 +92,9 @@ module.exports = {
           title: 'leetcode',
           collapsable: true,
           children: [
-            'leetcode/01',
+            'leetcode/1',
             'leetcode/557',
+            'leetcode/696',
           ]
         }
       ],
