@@ -85,13 +85,13 @@ module.exports = {
               'sort/mergeSort',
               'sort/heapSort',
               'sort/quickSort',
-              // 'sort/countSort',
+              'temp/binarySearch'
             ]
         },
         {
-          title: '未归置',
+          title: 'leetcode',
           collapsable: true,
-          children: ['temp/binarySearch']
+          children: ['leetcode/01']
         }
       ],
       '/http/': [
