@@ -37,7 +37,7 @@ module.exports = {
           children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
         },
       ],
-      // react
+      // === react
       '/react/': [
         {
           title: 'React',
@@ -58,6 +58,7 @@ module.exports = {
           ]
         }
       ],
+      // === algorithm
       '/algorithm/': [
         {
           title: '数据结构',
@@ -105,10 +106,18 @@ module.exports = {
           ]
         }
       ],
+      // === http
       '/http/': [
         {
           title: 'HTTP 系列知识',
-          children: ['model', 'handshake', 'cross-domain', 'cache']
+          collapsable: false,
+          children: [
+            '1',
+            // 'model',
+            // 'handshake',
+            // 'cross-domain',
+            // 'cache'
+          ]
         }
       ],
       '/others/': [
