@@ -96,6 +96,13 @@ module.exports = {
             'leetcode/557',
             'leetcode/696',
           ]
+        },
+        {
+          title: '剑指 offer',
+          collapsable: true,
+          children: [
+            'offer/4',
+          ]
         }
       ],
       '/http/': [
