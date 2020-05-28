@@ -2,8 +2,8 @@ const navbar = require('./navbar')
 
 module.exports = {
   port: '4040', // 开发端口
-  title: 'guodada-note',
-  description: '郭大大的个人笔记',
+  title: "Alvin's notes",
+  description: "alvin's notes",
   head: [
     // add jquert and fancybox
     ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js' }],
