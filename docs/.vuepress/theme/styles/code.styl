@@ -1,29 +1,16 @@
 {$contentClass}
-  // code
-  //   color lighten($textColor, 20%)
-  //   padding 0.25rem 0.5rem
-  //   margin 0
-  //   font-size 0.85em
-  //   background-color rgba(27,31,35,0.05)
-  //   border-radius 3px
-  //   .token
-  //     &.deleted
-  //       color #EC5975
-  //     &.inserted
-  //       color $accentColor
-  background-color #fff
   code
-    color #ff502c
-    padding .065em .4em
+    color lighten($textColor, 20%)
+    padding 0.25rem 0.5rem
     margin 0
-    font-size .87em
-    background-color #fff5f5
+    font-size 0.85em
+    background-color rgba(27,31,35,0.05)
     border-radius 3px
     .token
       &.deleted
         color #EC5975
       &.inserted
-        color $accentColor      
+        color $accentColor
 
 {$contentClass}
   pre, pre[class*="language-"]
@@ -38,8 +25,6 @@
       padding 0
       background-color transparent
       border-radius 0
-      .token.class-name
-        color rgb(250, 200, 99)
 
 div[class*="language-"]
   position relative
@@ -52,14 +37,13 @@ div[class*="language-"]
     top 0
     left 0
     width 100%
-    line-height 1.2
+    line-height 1.4
     .highlighted
       background-color rgba(0, 0, 0, 66%)
   pre, pre[class*="language-"]
     background transparent
     position relative
     z-index 1
-    font-size 14px
   &::before
     position absolute
     z-index 3
@@ -150,5 +134,5 @@ div[class~="language-bash"]:before
 div[class~="language-php"]:before
   content "php"
 
-
+// @import '~prismjs/themes/prism-tomorrow.css'
 @import '~prismjs/themes/prism-funky.css'

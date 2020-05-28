@@ -18,12 +18,7 @@ body
   color $textColor
 
 .page
-  // min-height 'calc(100vh - %s)' % $navbarHeight 
-  // min-height 'calc(100vh - %s)' % 2rem 
-  // background-color#f4f5f5
   padding-left $sidebarWidth
-  .theme-default-content
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 20px, rgba(0, 0, 0, 0.07) 0px 6px 6px;
 
 .navbar
   position fixed
@@ -98,22 +93,13 @@ kbd
   border-radius 0.15rem
   padding 0 0.15em
 
-// blockquote
-//   font-size 1rem
-//   color #999;
-//   border-left .2rem solid #dfe2e5
-//   margin 1rem 0
-//   padding .25rem 0 .25rem 1rem
-//   background #eef0f4
-//   & > p
-//     margin 0
 blockquote
   font-size 1rem
-  color rgb(129, 145, 152)
-  border-left  6px solid rgb(220, 230, 240)
+  color #999;
+  border-left .2rem solid #dfe2e5
   margin 1rem 0
   padding .25rem 0 .25rem 1rem
-  background rgb(242, 247, 251)
+
   & > p
     margin 0
 
@@ -179,7 +165,7 @@ table
   margin 1rem 0
   display: block
   overflow-x: auto
-  
+
 tr
   border-top 1px solid #dfe2e5
 
@@ -188,7 +174,7 @@ tr
 
 th, td
   border 1px solid #dfe2e5
-  padding .2em 1em
+  padding .6em 1em
 
 .theme-container
   &.sidebar-open
@@ -212,4 +198,5 @@ th, td
     .page
       padding-left 0
 
+@require './custom'
 @require 'mobile.styl'

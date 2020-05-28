@@ -1,0 +1,52 @@
+.page
+  .theme-default-content
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 20px, rgba(0, 0, 0, 0.07) 0px 6px 6px
+
+blockquote
+  color #819198
+  border-left 6px solid #dce6f0
+  background #f2f7fb
+
+th, td
+   padding .2em 1em
+
+{$contentClass}
+  background-color #fff
+  code 
+    color #ff502c
+    padding .065em .4em
+    margin 0
+    font-size .87em
+    background-color #fff5f5
+    border-radius 3px
+    .token
+      &.deleted
+        color #EC5975
+      &.inserted
+        color $accentColor 
+
+{$contentClass}
+
+
+div[class*="language-"]
+  .highlight-lines
+    line-height 1.2
+  .token.class-name
+    color rgb(250, 200, 99)  
+  pre, pre[class*="language-"]
+    font-size 14px
+
+.custom-block
+  .custom-block-title 
+  &.details
+    border-radius 0
+    margin 0
+    padding 0
+    background-color transparent
+    summary
+      user-select none
+      color #ff5722
+
+.orange
+  color #fa8919
+  font-weight bold
