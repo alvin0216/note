@@ -66,29 +66,16 @@ ssh -T git@github.com
 
 ## 提高 github 访问速度
 
-`github` 的 `CDN` 被某墙屏了，由于网络代理商的原因，所以访问下载很慢。`ping github.com` 时，速度只有 300 多 ms。
-
-解决办法是绕过 `dns` 解析，在本地直接绑定 `host`，该方法也可加速其他因为 `CDN` 被屏蔽导致访问慢的网站。
+提升 github 访问速度的 host 文件-使用 [http://tool.chinaz.com/dns/?type=1](http://tool.chinaz.com/dns/?type=1)
 
 ```bash
 sudo vim /etc/hosts
 
 # 添加以下内容
-151.101.185.194 github.global.ssl.fastly.net
-192.30.253.112 github.com
-151.101.112.133 assets-cdn.github.com
-151.101.184.133 assets-cdn.github.com
-185.199.108.153 documentcloud.github.com
-192.30.253.118 gist.github.com
-185.199.108.153 help.github.com
-192.30.253.120 nodeload.github.com
-151.101.112.133 raw.github.com
-23.21.63.56 status.github.com
-192.30.253.1668 training.github.com
-192.30.253.112 www.github.com
-151.101.13.194 github.global.ssl.fastly.net
-151.101.12.133 avatars0.githubusercontent.com
-151.101.112.133 avatars1.githubusercontent.com
+# github
+52.74.223.119 github.com
+13.250.162.133 codeload.github.com
+69.63.184.142 github.global.ssl.fastly.net
 ```
 
 刷新 `dns`
