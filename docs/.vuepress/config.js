@@ -109,17 +109,15 @@ module.exports = {
       // === http
       '/http/': [
         {
-          title: 'HTTP 系列知识',
-          collapsable: false,
+          title: '破冰篇',
+          // collapsable: false,
           children: [
             '1',
             '2',
             '3',
             '4',
-            // 'model',
-            // 'handshake',
-            // 'cross-domain',
-            // 'cache'
+            '5',
+            '6',
           ]
         }
       ],
