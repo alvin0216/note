@@ -10,7 +10,7 @@
       <SidebarGroup
         v-if="item.type === 'group'"
         :item="item"
-        :open="i === openGroupIndex"
+        :open="openGroupIndexList.includes(i)"
         :collapsable="item.collapsable || item.collapsible"
         :depth="depth"
         @toggle="toggleGroup(i)"
@@ -42,13 +42,17 @@ export default {
 
   data () {
     return {
-      openGroupIndex: 0
+      openGroupIndex: 0,
+      openGroupIndexList: []
     }
   },
 
   watch: {
-    '$route' () {
+    '$route' (current, prev) {
       this.refreshIndex()
+      if (!current.path.includes(prev.path)) {
+        this.openGroupIndexList = []
+      }
     }
   },
 
@@ -68,7 +72,11 @@ export default {
     },
 
     toggleGroup (index) {
-      this.openGroupIndex = index === this.openGroupIndex ? -1 : index
+      if(this.openGroupIndexList.includes(index)) {
+        this.openGroupIndexList = this.openGroupIndexList.filter(i => i !== index)
+      } else {
+        this.openGroupIndexList = [...this.openGroupIndexList, index]
+      }
     },
 
     isActive (page) {
