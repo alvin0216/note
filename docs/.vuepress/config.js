@@ -111,14 +111,12 @@ module.exports = {
         {
           title: '破冰篇',
           // collapsable: false,
-          children: [
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-          ]
+          children: ['1', '2', '3', '4', '5', '6', '7']
+        },
+        {
+          title: '基础篇',
+          // collapsable: false,
+          children: ['8']
         }
       ],
       '/others/': [
