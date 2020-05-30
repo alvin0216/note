@@ -28,6 +28,7 @@
 import SidebarGroup from '@theme/components/SidebarGroup.vue'
 import SidebarLink from '@theme/components/SidebarLink.vue'
 import { isActive } from '../util'
+import bus from '../util/bus'
 
 export default {
   name: 'SidebarLinks',
@@ -50,16 +51,17 @@ export default {
   watch: {
     '$route' (current, prev) {
       this.refreshIndex()
-      if (!current.path.includes(prev.path)) {
-        this.openGroupIndexList = []
-      }
     }
   },
 
   created () {
     this.refreshIndex()
   },
-
+  mounted() {
+    bus.$on('resetSidebar', () => {
+      this.openGroupIndexList = []
+    })
+  },
   methods: {
     refreshIndex () {
       const index = resolveOpenGroupIndex(

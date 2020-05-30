@@ -16,6 +16,7 @@
       <NavLink
         v-else
         :item="item"
+        @click.native="clickLink"
       />
     </div>
 
@@ -37,6 +38,9 @@
 import DropdownLink from '@theme/components/DropdownLink.vue'
 import { resolveNavLinkItem } from '../util'
 import NavLink from '@theme/components/NavLink.vue'
+import bus from '../util/bus'
+
+let prevLink = '' // 用于记录
 
 export default {
   name: 'NavLinks',
@@ -117,6 +121,15 @@ export default {
       }
 
       return 'Source'
+    }
+  },
+
+  methods: {
+    clickLink(e) {
+      if (prevLink !== e.target.getAttribute('href')) {
+        bus.$emit('resetSidebar')
+      }
+      prevLink = this.$route.path 
     }
   }
 }
