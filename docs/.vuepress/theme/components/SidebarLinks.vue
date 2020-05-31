@@ -58,6 +58,12 @@ export default {
     this.refreshIndex()
   },
   mounted() {
+    const index = resolveOpenGroupIndex(
+      this.$route,
+      this.items
+    )
+    this.toggleGroup(index)
+    
     bus.$on('resetSidebar', () => {
       this.openGroupIndexList = []
     })
