@@ -116,7 +116,7 @@ module.exports = {
         {
           title: '基础篇',
           // collapsable: false,
-          children: ['8', '9']
+          children: ['8', '9', '10']
         }
       ],
       '/others/': [
