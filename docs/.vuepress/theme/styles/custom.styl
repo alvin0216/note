@@ -1,10 +1,12 @@
 body {
   font-family "PingFang SC", "Lantinghei SC", "Microsoft Yahei", "Hiragino Sans GB", "Microsoft Sans Serif", "WenQuanYi Micro Hei", Helvetica, sans-serif
-  color #353535
+  color #444
+  font-family "Arial,'Hiragino Sans GB',冬青黑,'Microsoft YaHei',微软雅黑,SimSun,宋体,Helvetica,Tahoma,'Arial sans-serif'"
 }
 
 .page
   .theme-default-content
+    line-height 1.8
     box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 20px, rgba(0, 0, 0, 0.07) 0px 6px 6px
 
 blockquote
@@ -23,15 +25,9 @@ table
 {$contentClass}
   background-color #fff
   code 
-    background-color transparent
     color #fa8919
-    font-weight bold
-    // color #ff502c
-    // padding .065em .4em
-    // margin 0
-    // font-size .87em
-    // background-color #fff5f5
-    // border-radius 3px
+    font-family Consolas,Monaco,'Andale Mono',monospace;
+  
     .token
       &.deleted
         color #EC5975
@@ -65,7 +61,7 @@ div[class*="language-"]
 p
   padding-bottom 4px
 strong 
-  color #000
+  font-weight: 700;
 
 .orange
   color #fa8919
