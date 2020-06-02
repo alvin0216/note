@@ -35,7 +35,7 @@ date: 2020-04-13 17:28:17
 
 先看看一个文件上传的 `http` 请求了解一下
 
-![](../../assets/javascript/file-upload/upload.png)
+![](../../../assets/javascript/file-upload/upload.png)
 
 #### 首先是请求体，请求类型为
 
@@ -60,7 +60,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJ
 
 对于浏览器端的文件上传，可以归结出一个套路，所有东西核心思路就是构造出 `File` 对象。然后观察请求 `Content-Type`，再看请求体是否有信息缺失。而以上这些二进制数据类型的转化可以看以下表。
 
-![](../../assets/javascript/file-upload/upload-chart.png)
+![](../../../assets/javascript/file-upload/upload-chart.png)
 
 ## form 表单上传文件
 
@@ -73,7 +73,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryHTefVDvk5B48iJ
 </form>
 ```
 
-![](../../assets/javascript/file-upload/upload-form.gif)
+![](../../../assets/javascript/file-upload/upload-form.gif)
 
 后端代码详见：[服务端接收文件代码](#服务端接收文件代码)
 
@@ -210,7 +210,7 @@ xhr.upload.onprogress = function(event) {
 </script>
 ```
 
-![](../../assets/javascript/file-upload/upload-progress.gif)
+![](../../../assets/javascript/file-upload/upload-progress.gif)
 
 ## 多文件上传 + 进度 + 取消上传
 

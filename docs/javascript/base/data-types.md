@@ -33,7 +33,7 @@ date: 2020-05-06 22:07:38
 
 原始类型（存在栈内存中）和对象类型（存在堆内存中）分别在内存中的存在形式如下图示：
 
-![](../../assets/javascript/data-types/1.png)
+![](../../../assets/javascript/data-types/1.png)
 
 原始类型是按值形式存放在栈中的数据段，内存空间可以自由分配，同时可以按值直接访问。
 
@@ -47,7 +47,7 @@ console.log(b) // 30值
 
 过程图示：
 
-![](../../assets/javascript/data-types/2.png)
+![](../../../assets/javascript/data-types/2.png)
 
 引用类型是存放在**堆**内存中，每个对象在堆内存中有一个引用地址，就像是每个房间都有一个房间号一样。引用类型在栈中保存的就是这个对象在堆内存的引用地址，我们所说的“房间号”。通过“房间号”可以快速查找到保存在堆内存的对象。
 
@@ -60,7 +60,7 @@ console.log(obj1.name) // 小鹿
 
 过程图示：
 
-![](../../assets/javascript/data-types/3.png)
+![](../../../assets/javascript/data-types/3.png)
 
 ## Null 和 undefined 的区别
 

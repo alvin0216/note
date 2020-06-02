@@ -3,7 +3,7 @@ title: Javascript 中的原型和原型链
 date: 2020-05-01 10:15:33
 ---
 
-![](../../assets/javascript/prototype/5.png)
+![](../../../assets/javascript/prototype/5.png)
 
 :::details 总结
 
@@ -60,7 +60,7 @@ console.log(person2.name) // Kevin
 
 让我们用一张图表示构造函数和实例原型之间的关系：
 
-![构造函数和实例原型的关系图](../../assets/javascript/prototype/1.png)
+![构造函数和实例原型的关系图](../../../assets/javascript/prototype/1.png)
 
 在这张图中我们用 `Object.prototype` 表示实例原型。
 
@@ -80,7 +80,7 @@ console.log(person.__proto__ === Person.prototype) // true
 
 于是我们更新下关系图：
 
-![实例与实例原型的关系图](../../assets/javascript/prototype/2.png)
+![实例与实例原型的关系图](../../../assets/javascript/prototype/2.png)
 
 既然实例对象和构造函数都可以指向原型，那么原型是否有属性指向构造函数或者实例呢？
 
@@ -97,7 +97,7 @@ console.log(Person === Person.prototype.constructor) // true
 
 所以再更新下关系图：
 
-![实例原型与构造函数的关系图](../../assets/javascript/prototype/3.png)
+![实例原型与构造函数的关系图](../../../assets/javascript/prototype/3.png)
 
 综上我们已经得出：
 
@@ -152,7 +152,7 @@ console.log(obj.name) // Kevin
 
 其实原型对象就是通过 `Object` 构造函数生成的，结合之前所讲，实例的 `__proto__` 指向构造函数的 `prototype` ，所以我们再更新下关系图：
 
-![](../../assets/javascript/prototype/4.png)
+![](../../../assets/javascript/prototype/4.png)
 
 那 `Object.prototype` 的原型呢？
 
@@ -174,7 +174,7 @@ console.log(Object.prototype.__proto__ === null) // true
 
 最后一张关系图也可以更新为：
 
-![](../../assets/javascript/prototype/5.png)
+![](../../../assets/javascript/prototype/5.png)
 
 ## new 做了什么？
 

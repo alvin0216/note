@@ -35,7 +35,7 @@ date: 2020-04-08 21:24:27
 const buf = new ArrayBuffer(32)
 ```
 
-![](../../assets/javascript/arraybuffer.png)
+![](../../../assets/javascript/arraybuffer.png)
 
 上面代码生成了一段 32 字节的内存区域，每个字节的值默认都是 0。可以看到，`ArrayBuffer` 构造函数的参数是所需要的内存大小（单位字节）。
 

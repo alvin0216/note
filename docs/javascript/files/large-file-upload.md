@@ -54,7 +54,7 @@ date: 2020-04-13 15:57:04
 ```
 
 :::details 文件结构
-![](../../assets/javascript/large-file-upload/upload-project.png)
+![](../../../assets/javascript/large-file-upload/upload-project.png)
 :::
 
 ### 封装请求
@@ -307,7 +307,7 @@ router.post('/uploadChunk', async ctx => {
 })
 ```
 
-![](../../assets/javascript/large-file-upload/upload-chunk.png)
+![](../../../assets/javascript/large-file-upload/upload-chunk.png)
 
 ### 合并切片
 
@@ -355,7 +355,7 @@ router.post('/merge', async ctx => {
 
 其实也可以等上一个切片合并完后再合并下个切片，这样就不需要指定位置，但传输速度会降低，所以使用了并发合并的手段，接着只要保证每次合并完成后删除这个切片，等所有切片都合并完毕后最后删除切片文件夹即可
 
-![](../../assets/javascript/large-file-upload/upload-result.png)
+![](../../../assets/javascript/large-file-upload/upload-result.png)
 
 ## 显示上传进度条
 
@@ -424,7 +424,7 @@ function ajax({ url, data, method = 'POST', headers = {}, onProgress = e => e })
 
 最终效果
 
-![](../../assets/javascript/large-file-upload/upload-progress2.gif)
+![](../../../assets/javascript/large-file-upload/upload-progress2.gif)
 
 ## 断点续传
 

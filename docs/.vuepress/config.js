@@ -18,23 +18,43 @@ module.exports = {
       '/javascript/': [
         {
           title: '基础',
-          // collapsable: false,
-          children: ['data-types', 'prototype', 'extends', 'this', 'closure']
+          children: [
+            'base/data-types',
+            'base/prototype',
+            'base/extends',
+            'base/this',
+            'base/closure'
+          ]
         },
         {
-          title: '模拟实现系列',
-          // collapsable: true,
-          children: ['new', 'bind', 'call-apply', 'throttle', 'debounce', 'instanceof', 'deepClone']
+          title: '模拟实现',
+          children: [
+            'achieve/call-apply',
+            'achieve/bind',
+            'achieve/new',
+            'achieve/throttle',
+            'achieve/debounce',
+            'achieve/curry',
+            'achieve/instanceof',
+            'achieve/deepClone'
+          ]
         },
         {
           title: 'ES6',
-          // collapsable: false,
-          children: ['set-map', 'web-worker', 'skills']
+          children: [
+            'es6/set-map',
+            'es6/web-worker',
+            'es6/skills'
+          ]
         },
         {
           title: '文件和二进制数据',
-          // collapsable: false,
-          children: ['blob', 'file-upload', 'large-file-upload', 'arraybuffer']
+          children: [
+            'files/blob',
+            'files/file-upload',
+            'files/large-file-upload',
+            'files/arraybuffer'
+          ]
         },
       ],
       // === react
