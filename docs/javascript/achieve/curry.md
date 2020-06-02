@@ -90,3 +90,19 @@ fn('a')('b', 'c') // ["a", "b", "c"]
 ```
 
 :::
+
+## 第三版
+
+```js
+function curry(fn) {
+  return function nest(...args) {
+    if (args.length === fn.length) {
+      return fn(...args)
+    } else {
+      return function(arg) {
+        return nest(...args, arg)
+      }
+    }
+  }
+}
+```
