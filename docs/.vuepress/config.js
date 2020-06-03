@@ -62,7 +62,7 @@ module.exports = {
         {
           title: 'React',
           // collapsable: true,
-          children: ['compound-component', 'redux', 'hooks', 'daily']
+          children: ['context', 'compound-component', 'redux', 'hooks', 'daily']
         },
         {
           title: 'React 源码解读',
