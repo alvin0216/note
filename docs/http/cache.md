@@ -223,7 +223,7 @@ console.log('http://127.0.0.1:3300')
 
 :::
 
-### Etag
+### Etag/If-No-Match
 
 `ETagHTTP` 响应头是资源的特定版本的标识符。`Etag` 会基于资源的内容编码生成一串唯一的标识字符串，只要内容不同，就会生成不同的 `Etag`。示例如下：
 
@@ -246,3 +246,7 @@ Etag 比 lastModified 更加严谨，如果资源发生变化，Etag 就会发�
 缓存优先级
 
 `Pragma` > `Cache-Control` > `Expires` > `ETag` > `Last-Modified`
+
+![](../../assets/http/series/cache/cache-progress.png)
+
+<!-- <img src='../../assets/http/series/cache/cache-progress.png' data-fancybox='images' height="800px" /> -->
