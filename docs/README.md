@@ -2,4 +2,4 @@
 sidebar: true
 ---
 
-![](../assets/logo.jpg)
+![xxxxx](../assets/logo.jpg)

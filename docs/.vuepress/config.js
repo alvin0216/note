@@ -131,12 +131,12 @@ module.exports = {
         {
           title: '破冰篇',
           // collapsable: false,
-          children: ['1', '2', '3', '4', '5', '6', '7']
+          children: ['http-development', 'what-is-http', 'related-concepts', 'related-protocol', 'network-model', 'dns', 'wireshark-env']
         },
         {
           title: '基础篇',
           // collapsable: false,
-          children: ['8', '9', '10', '11']
+          children: ['type-url-and-press-enter', 'tcp-connection', 'http-message', 'status-code']
         }
       ],
       '/others/': [
