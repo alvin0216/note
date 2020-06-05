@@ -1,5 +1,5 @@
 ---
-title: 重定向和跳转
+title: HTTP 重定向和跳转
 date: 2020-06-05 17:12:04
 ---
 
@@ -32,3 +32,9 @@ console.log('http://127.0.0.1:3300')
 `301` 俗称“<span class='orange'>永久重定向</span>”（Moved Permanently），意思是原 URI 已经“永久”性地不存在了，今后的所有请求都必须改用新的 URI。
 
 `302` 俗称“<span class='orange'>临时重定向</span>”（“Moved Temporarily”），意思是原 URI 处于“临时维护”状态，新的 URI 是起“顶包”作用的“临时工”。
+
+301/302 是最常用的重定向状态码，在 3×× 里剩下的几个还有：
+
+- `303 See Other`：类似 302，但要求重定向后的请求改为 GET 方法，访问一个结果页面，避免 POST/PUT 重复操作；
+- `307 Temporary Redirect`：类似 302，但重定向后请求里的方法和实体不允许变动，含义比 302 更明确；
+- `308 Permanent Redirect`：类似 307，不允许重定向后的请求变动，但它是 301“永久重定向”的含义。
