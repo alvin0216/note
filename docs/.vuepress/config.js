@@ -129,7 +129,7 @@ module.exports = {
       // === http
       '/http/': [
         {
-          title: '破冰篇',
+          title: '概念篇',
           // collapsable: false,
           children: ['http-development', 'what-is-http', 'related-concepts', 'related-protocol', 'network-model', 'dns', 'wireshark-env']
         },
@@ -137,6 +137,10 @@ module.exports = {
           title: '基础篇',
           // collapsable: false,
           children: ['type-url-and-press-enter', 'tcp-connection', 'http-message', 'status-code', 'cache', 'redirect', 'cookie-session']
+        },
+        {
+          title: '安全篇',
+          children: ['https', 'certificate']
         }
       ],
       '/others/': [
