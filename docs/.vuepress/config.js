@@ -136,7 +136,7 @@ module.exports = {
         {
           title: '基础篇',
           // collapsable: false,
-          children: ['type-url-and-press-enter', 'tcp-connection', 'http-message', 'status-code', 'cache', 'cookie-session']
+          children: ['type-url-and-press-enter', 'tcp-connection', 'http-message', 'status-code', 'cache', 'redirect', 'cookie-session']
         }
       ],
       '/others/': [
