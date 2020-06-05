@@ -139,7 +139,7 @@ module.exports = {
           children: ['type-url-and-press-enter', 'tcp-connection', 'http-message', 'status-code', 'cache', 'redirect', 'cookie-session']
         },
         {
-          title: '安全篇',
+          title: 'HTTPS',
           children: ['https', 'certificate']
         }
       ],
@@ -147,7 +147,7 @@ module.exports = {
         {
           title: 'HTML-CSS',
           collapsable: false,
-          children: ['html-css/css-base', 'html-css/BFC']
+          children: ['html-css/html-semantic', 'html-css/css-base', 'html-css/BFC']
         },
         {
           title: 'node 系列知识',
