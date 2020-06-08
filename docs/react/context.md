@@ -56,43 +56,51 @@ const App = props => {
 
 ### 结合 useReducer
 
-```js
+```TS
 import React, { useContext, useReducer } from 'react'
 
-const UserContext = React.createContext()
+const CountContext = React.createContext()
 
-let initState = {
-  name: 'alvin',
-  age: 18
-}
-
-function reducer(state, action) {
+const initialState = 0
+const reducer = (state, action) => {
   switch (action.type) {
-    case 'INCREASE':
-      state = { ...state, age: state.age + 1 }
-      return state
-
-    default:
-      return state
+    case 'increment': return state + 1
+    case 'decrement': return state - 1
+    case 'set': return action.count
+    default: throw new Error('Unexpected action')
   }
 }
 
-const Content = props => {
-  const [state, dispatch] = useContext(UserContext)
+const CountProvider = ({ children }) => {
+  const contextValue = useReducer(reducer, initialState)
+  return (
+    <CountContext.Provider value={contextValue}>
+      {children}
+    </CountContext.Provider>
+  )
+}
+
+const useCount = () => {
+  const contextValue = useContext(CountContext)
+  return contextValue
+}
+
+const Demo = props => {
+  const [count, dispatch] = useCount()
   return (
     <>
-      <h2>{state.name}</h2>
-      <h2>{state.age}</h2>
-      <button onClick={e => dispatch({ type: 'INCREASE' })}>add</button>
+      <h2>Count: {count}</h2>
+      <button onClick={e => dispatch({ type: 'increment' })}>increment</button>
+      <button onClick={e => dispatch({ type: 'decrement' })}>decrement</button>
     </>
   )
 }
 
 const App = props => {
   return (
-    <UserContext.Provider value={useReducer(reducer, initState)}>
-      <Content />
-    </UserContext.Provider>
+    <CountProvider>
+      <Demo />
+    </CountProvider>
   )
 }
 
