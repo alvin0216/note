@@ -141,11 +141,13 @@ module.exports = {
         {
           title: 'HTTPS',
           children: ['https', 'certificate', 'tsl', 'https-perf']
-        },
-        // {
-        //   title: '实操篇',
-        //   children: ['practice/cache']
-        // }
+        }
+      ],
+      '/browser/': [
+        {
+          title: '浏览器安全',
+          children: ['security/xss', 'security/https']
+        }
       ],
       '/others/': [
         {

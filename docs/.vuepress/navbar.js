@@ -4,6 +4,7 @@ module.exports = [
   { text: 'React', link: '/react/' },
   { text: '数据结构与算法', link: '/algorithm/' },
   { text: 'HTTP', link: '/http/' },
+  { text: '浏览器', link: '/browser/' },
   { text: '杂文', link: '/others/' },
   {
     text: '更多',
