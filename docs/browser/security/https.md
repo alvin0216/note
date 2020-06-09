@@ -13,7 +13,8 @@ date: 2020-06-09 13:10:34
 最终给客户端返回 证书 （包含了公钥） + server-random + 使用的密码套件 AES + ECDHE
 
 （3）Client Key Exchange 客户端收到证书后，校验证书是否有效，用本地内置的公钥+对应的摘要算法解密，查看是否证书被窜改、证书是否被吊销，域名是否一致等。最终可以拿到公钥。
-有效后生成随机数 pre-master
+有效后用 ECDHE 算法一阵算出随机数 pre-master
+
 最终给服务端返回 使用 ECDHE + 公钥 加密的 pre-master
 
 因为使用了 ECDHE，客户端可以不用等到服务器发回“Finished”确认握手完毕，立即就发出 HTTP 报文，

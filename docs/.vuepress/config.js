@@ -140,7 +140,7 @@ module.exports = {
         },
         {
           title: 'HTTPS',
-          children: ['https', 'certificate', 'tsl', 'https-perf']
+          children: ['https', 'certificate', 'tsl', 'tsl13', 'https-perf']
         }
       ],
       '/browser/': [
