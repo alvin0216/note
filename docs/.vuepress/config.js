@@ -136,7 +136,7 @@ module.exports = {
         {
           title: '基础篇',
           // collapsable: false,
-          children: ['type-url-and-press-enter', 'tcp-connection', 'http-connection', 'http-message', 'status-code', 'cache', 'proxy-cache', 'redirect', 'cookie-session']
+          children: ['type-url-and-press-enter', 'tcp-connection', 'http-connection', 'http-message', 'http-body', 'status-code', 'cache', 'proxy-cache', 'redirect', 'cookie-session']
         },
         {
           title: 'HTTPS',
@@ -172,6 +172,7 @@ module.exports = {
         },
       ],
       // js
+      '/todo/': [],
       '/': [
         {
           title: 'HTML',
