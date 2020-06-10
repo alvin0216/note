@@ -142,6 +142,10 @@ module.exports = {
         {
           title: 'HTTPS',
           children: ['https', 'certificate', 'tsl', 'tsl13', 'https-perf']
+        },
+        {
+          title: 'HTTP2',
+          children: ['http2']
         }
       ],
       '/browser/': [
