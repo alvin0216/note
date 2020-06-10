@@ -135,7 +135,18 @@ module.exports = {
         },
         {
           title: '基础篇',
-          children: ['type-url-and-press-enter', 'tcp-connection', 'http-connection', 'http-message', 'http-body', 'status-code', 'cache', 'proxy-cache', 'redirect', 'cookie-session']
+          children: [
+            'type-url-and-press-enter',
+            'tcp-connection',
+            'http-message',
+            'http-body',
+            'status-code',
+            'http-methods',
+            'http-connection',
+            'cache',
+            'proxy-cache',
+            'redirect',
+            'cookie-session']
         },
         {
           title: 'HTTPS',
@@ -147,7 +158,11 @@ module.exports = {
         },
         {
           title: '拷问篇',
-          children: []
+          children: [
+            'torture/1',
+            'torture/2',
+            'torture/3',
+          ]
         }
       ],
       '/browser/': [
