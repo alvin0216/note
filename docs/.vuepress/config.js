@@ -131,12 +131,10 @@ module.exports = {
       '/http/': [
         {
           title: '概念篇',
-          // collapsable: false,
           children: ['http-development', 'what-is-http', 'related-concepts', 'related-protocol', 'network-model', 'dns', 'wireshark-env']
         },
         {
           title: '基础篇',
-          // collapsable: false,
           children: ['type-url-and-press-enter', 'tcp-connection', 'http-connection', 'http-message', 'http-body', 'status-code', 'cache', 'proxy-cache', 'redirect', 'cookie-session']
         },
         {
@@ -145,7 +143,11 @@ module.exports = {
         },
         {
           title: 'HTTP2',
-          children: ['http2']
+          children: ['http2', 'http2-deep']
+        },
+        {
+          title: '拷问篇',
+          children: []
         }
       ],
       '/browser/': [
