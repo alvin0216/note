@@ -154,7 +154,7 @@ module.exports = {
         },
         {
           title: 'HTTP2',
-          children: ['http2', 'http2-deep']
+          children: ['http2', 'http2-deep', 'http3']
         },
         {
           title: '拷问篇',
