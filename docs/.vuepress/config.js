@@ -171,7 +171,6 @@ module.exports = {
           title: '预备知识',
           children: ['process-thread']
         },
-        // 'macro/process-thread',Browser process
         {
           title: '宏观下的浏览器',
           children: ['macro/browser-process']
