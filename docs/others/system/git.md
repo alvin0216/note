@@ -87,3 +87,33 @@ dscacheutil -flushcache
 # centos7
 systemctl restart network
 ```
+
+## git 多用户
+
+```bash
+ssh-keygen -t rsa -C xx@pvmedtech.com
+
+# Enter file in which to save the key (/Users/guosw/.ssh/id_rsa):
+# 这里输入私钥名 比如 pvmed_rsa_gitlab
+# 一路回车
+cd ~/.ssh
+
+cat pvmed_rsa_gitlab.pub
+# 添加公钥到所在 gitlab 地址
+
+# 是把专用密钥添加到ssh-agent的高速缓存中
+ssh-add ~/.ssh/pvmed_rsa_gitlab
+
+# 修改配置
+vim ~/.ssh/config
+
+# 添加
+Host pvmed #给你的host取个名字 方便自己记忆
+   User guosw #你的用户名
+   Host http://192.168.1.222 #host主机的url
+   IdentityFile ~/.ssh/pvmed_rsa_gitlab #私钥的访问路径
+   Port 8000 #host主机的端口
+
+# 测试
+ssh -T git@192.168.1.222
+```
