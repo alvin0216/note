@@ -178,4 +178,4 @@ HTTP/2 把报文切分为多种类型的二进制帧，报头里最重要的字�
 
 ---
 
-转自
+转自 [透析 HTTP](https://time.geekbang.org/column/article/113481?utm_source=pinpaizhuanqu&utm_medium=geektime&utm_campaign=guanwang&utm_term=guanwang&utm_content=0511)
