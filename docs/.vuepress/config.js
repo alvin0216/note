@@ -165,7 +165,17 @@ module.exports = {
           ]
         }
       ],
+      // === browser
       '/browser/': [
+        {
+          title: '预备知识',
+          children: ['process-thread']
+        },
+        // 'macro/process-thread',Browser process
+        {
+          title: '宏观下的浏览器',
+          children: ['macro/browser-process']
+        },
         {
           title: '浏览器安全',
           children: ['security/xss', 'security/https']
