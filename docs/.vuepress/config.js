@@ -173,7 +173,7 @@ module.exports = {
         },
         {
           title: '宏观下的浏览器',
-          children: ['macro/browser-process']
+          children: ['macro/browser-process', 'macro/url-to-display']
         },
         {
           title: '浏览器安全',
