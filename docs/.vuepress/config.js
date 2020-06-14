@@ -176,6 +176,10 @@ module.exports = {
           children: ['macro/browser-process', 'macro/url-to-display', 'macro/rendering1', 'macro/rendering2']
         },
         {
+          title: '浏览器中 Javascript 执行机制',
+          children: ['js/variable-promotion']
+        },
+        {
           title: '浏览器安全',
           children: ['security/xss', 'security/https']
         },
