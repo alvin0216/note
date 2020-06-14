@@ -177,7 +177,7 @@ module.exports = {
         },
         {
           title: '浏览器中 Javascript 执行机制',
-          children: ['js/variable-promotion']
+          children: ['js/variable-promotion', 'js/stack']
         },
         {
           title: '浏览器安全',
