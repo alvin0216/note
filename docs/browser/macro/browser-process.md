@@ -48,7 +48,7 @@ freeze()
 
 你可以先看看下面这张图，这是 2008 年 Chrome 发布时的进程架构。
 
-![](../../../assets/browser/process.png)
+![](../../../assets/browser/macro/process.png)
 
 从图中可以看出，Chrome 的页面是运行在单独的渲染进程中的，同时页面里的插件也是运行在单独的插件进程之中，而进程之间是通过 `IPC` 机制进行通信（如图中虚线部分）。
 
@@ -76,7 +76,7 @@ freeze()
 
 ## 目前多进程架构
 
-![](../../../assets/browser/current-process.png)
+![](../../../assets/browser/macro/current-process.png)
 
 从图中可以看出，最新的 Chrome 浏览器包括：1 个浏览器（Browser）主进程、1 个 GPU 进程、1 个网络（NetWork）进程、多个渲染进程和多个插件进程。
 

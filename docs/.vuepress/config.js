@@ -6,9 +6,9 @@ module.exports = {
   description: "alvin's notes",
   head: [
     // add jquert and fancybox
-    ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js' }],
-    ['script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js' }],
-    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css' }]
+    ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js' }],
+    ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js' }],
+    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css' }]
   ],
   themeConfig: {
     smoothScroll: true,
@@ -177,11 +177,11 @@ module.exports = {
         },
         {
           title: '浏览器中 Javascript 执行机制',
-          children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain']
+          children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain', 'js/this']
         },
         {
           title: 'v8 工作原理',
-          children: ['v8/run-the-code']
+          children: ['v8/ram', 'v8/run-the-code']
         },
         {
           title: '浏览器安全',
@@ -194,23 +194,23 @@ module.exports = {
       ],
       '/others/': [
         {
-          title: 'HTML-CSS',
-          collapsable: false,
-          children: ['html-css/html-semantic', 'html-css/css-base', 'html-css/BFC']
+          title: 'HTML',
+          children: ['html-css/html-semantic']
+        },
+        {
+          title: 'CSS',
+          children: ['css/rem', 'html-css/css-base', 'html-css/BFC']
         },
         {
           title: 'node 系列知识',
-          collapsable: false,
           children: ['node/node-shell', 'node/middleware']
         },
         {
           title: '服务器相关',
-          collapsable: true,
           children: ['system/git', 'system/ssh', 'system/github-webhooks', 'system/linux', 'system/vim']
         },
         {
           title: 'Mark',
-          collapsable: true,
           children: ['mark/collect', 'mark/vscode']
         },
       ],
