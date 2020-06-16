@@ -3,7 +3,7 @@ title: HTTPS 让数据传输更安全
 date: 2020-06-09 13:10:34
 ---
 
-![](../../../assets/browser/https.png)
+![](../../../assets/browser/security/https.png)
 
 ## 概述
 

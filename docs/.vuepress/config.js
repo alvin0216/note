@@ -181,7 +181,7 @@ module.exports = {
         },
         {
           title: 'v8 工作原理',
-          children: ['v8/ram', 'v8/run-the-code']
+          children: ['v8/ram', 'v8/gc', 'v8/run-the-code']
         },
         {
           title: '浏览器安全',
