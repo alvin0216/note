@@ -177,7 +177,6 @@ module.exports = {
         },
         {
           title: '浏览器中 Javascript 执行机制',
-          // children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/stack', 'js/var-let-const']
           children: ['js/variable-promotion', 'js/context-stack', 'js/scope']
         },
         {
