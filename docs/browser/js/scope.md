@@ -49,15 +49,13 @@ console.log(myname)
 
 `myname` 在全局执行上下文和 `showName` 函数的执行上下文中都存在。在函数执行过程中，**JavaScript 会优先从当前的执行上下文中查找变量**，由于变量提升，当前的执行上下文中就包含了变量 `myname`，而值是 `undefined`，所以获取到的 `myname` 的值就是 `undefined`。
 
-## 作用域
+## 块级作用域：解决变量提升问题
+
+上面我们介绍了变量提升而带来的一系列问题，为了解决这些问题，ES6 引入了 `let` 和 `const` 关键字，从而使 JavaScript 也能像其他语言一样拥有了**块级作用域**。
 
 为什么 JavaScript 中会存在变量提升这个特性，而其他语言似乎都没有这个特性呢？要讲清楚这个问题，我们就得先从作用域讲起。
 
-作用域是指程序源代码中定义变量的区域：作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。
-
-### 块级作用域
-
-上面我们介绍了变量提升而带来的一系列问题，为了解决这些问题，ES6 引入了 `let` 和 `const` 关键字，从而使 JavaScript 也能像其他语言一样拥有了**块级作用域**。
+作用域是指程序源代码中定义变量的区域：作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。
 
 在 ES6 之前，ES 的作用域只有两种：全局作用域和函数作用域。
 
@@ -96,65 +94,6 @@ function showName() {
 }
 showName()
 ```
-
-### JavaScript 采用静态作用域（补充）
-
-词法作用域也即静态作用域，而与词法作用域相对的是动态作用域，函数的作用域是在函数调用的时候才决定的。
-
-我们看个例子了解一下：
-
-```js
-var value = 1
-
-function foo() {
-  console.log(value)
-}
-
-function bar() {
-  var value = 2
-  foo()
-}
-
-bar() // 1
-```
-
-假设 JavaScript 采用静态作用域，让我们分析下执行过程：
-
-执行 foo 函数，先从 foo 函数内部查找是否有局部变量 value，如果没有，就根据书写的位置，查找上面一层的代码，也就是 value 等于 1，所以结果会打印 1。
-
-假设 JavaScript 采用动态作用域，让我们分析下执行过程：
-
-执行 foo 函数，依然是从 foo 函数内部查找是否有局部变量 value。如果没有，就从调用函数的作用域，也就是 bar 函数内部查找 value 变量，所以结果会打印 2。
-
-前面我们已经说了，JavaScript 采用的是静态作用域，所以这个例子的结果是 1。
-
-最后，让我们看一个《JavaScript 权威指南》中的例子：
-
-```js
-var scope = 'global scope'
-function checkscope() {
-  var scope = 'local scope'
-  function f() {
-    return scope
-  }
-  return f()
-}
-checkscope()
-```
-
-```js
-var scope = 'global scope'
-function checkscope() {
-  var scope = 'local scope'
-  function f() {
-    return scope
-  }
-  return f
-}
-checkscope()()
-```
-
-因为 JavaScript 采用的是词法作用域，函数的作用域基于函数创建的位置。两段代码都会打印：local scope
 
 ## JavaScript 是如何支持块级作用域的 ✨
 

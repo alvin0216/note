@@ -177,7 +177,7 @@ module.exports = {
         },
         {
           title: '浏览器中 Javascript 执行机制',
-          children: ['js/variable-promotion', 'js/context-stack', 'js/scope']
+          children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain']
         },
         {
           title: 'v8 工作原理',
