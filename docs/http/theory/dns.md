@@ -55,7 +55,7 @@ DNS 的核心系统是一个三层的树状、分布式服务，基本对应域�
 2. 顶级域名服务器（Top-level DNS Server）：管理各自域名下的权威域名服务器，比如 com 顶级域名服务器可以返回 apple.com 域名服务器的 IP 地址；
 3. 权威域名服务器（Authoritative DNS Server）：管理自己域名下主机的 IP 地址，比如 apple.com 权威域名服务器可以返回 www.apple.com 的 IP 地址。
 
-![](../../assets/http/series/dns.png)
+![](../../../assets/http/series/dns.png)
 
 在这里根域名服务器是关键，它必须是众所周知的，否则下面的各级服务器就无从谈起了。目前全世界共有 13 组根域名服务器，又有数百台的镜像，保证一定能够被访问到。
 
@@ -83,7 +83,7 @@ DNS 的核心系统是一个三层的树状、分布式服务，基本对应域�
 
 下面的这张图比较完整地表示了现在的 DNS 架构
 
-![](../../assets/http/series/dns2.png)
+![](../../../assets/http/series/dns2.png)
 
 在 Nginx 里有这么一条配置指令“resolver”，它就是用来配置 DNS 服务器的，如果没有它，那么 Nginx 就无法查询域名对应的 IP，也就无法反向代理到外部的网站。
 

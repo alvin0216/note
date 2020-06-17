@@ -11,7 +11,7 @@ date: 2020-05-31 14:25:08
 
 ## TCP 报文
 
-TCP 报文是 TCP 层传输的数据单元，也叫报文段。![](../../assets/http/tcp-msg.png)
+TCP 报文是 TCP 层传输的数据单元，也叫报文段。![](../../../assets/http/tcp-msg.png)
 
 1. 序号（`sequence number`）: Seq 序号，占 32 位，用来标识从 TCP 源端向目的端发送的字节流，发起方发送数据时对此进行标记。
 2. 确认号（`acknowledgement number`）：Ack 序号，占 32 位，只有 ACK 标志位为 1 时，确认序号字段才有效，`Ack=Seq+1`。
@@ -30,13 +30,13 @@ TCP 报文是 TCP 层传输的数据单元，也叫报文段。![](../../assets/
 
 :::
 
-抓包图：![](../../assets/http/series/tcp2.png)
+抓包图：![](../../../assets/http/series/tcp2.png)
 
 ## 三次握手
 
 进行三次握手的主要作用就是为了确认双方的接收能力和发送能力是否正常、指定自己的初始化序列号为后面的可靠性传送做准备。实质上其实就是连接服务器指定端口，建立 TCP 连接，并同步连接双方的序列号和确认号，交换 TCP 窗口大小信息。
 
-![](../../assets/http/shake-hand.png)
+![](../../../assets/http/shake-hand.png)
 
 刚开始客户端处于 <span class='orange'>Closed</span> 的状态，服务端处于 <span class='orange'>Listen</span> 状态。 进行三次握手：
 
@@ -115,7 +115,7 @@ netstat -n -p TCP | grep SYN_RECV
 
 四次挥手即终止 TCP 连接，就是指断开一个 TCP 连接时，需要客户端和服务端总共发送 4 个包以确认连接的断开。
 
-![](../../assets/http/wave.png)
+![](../../../assets/http/wave.png)
 
 假设客户端发起关闭连接请求
 

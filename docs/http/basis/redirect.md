@@ -27,7 +27,7 @@ http
 console.log('http://127.0.0.1:3300')
 ```
 
-![](../../assets/http/series/redirect.png)
+![](../../../assets/http/series/redirect.png)
 
 `301` 俗称“<span class='orange'>永久重定向</span>”（Moved Permanently），意思是原 URI 已经“永久”性地不存在了，今后的所有请求都必须改用新的 URI。
 

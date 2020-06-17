@@ -7,7 +7,7 @@ date: 2020-06-09 10:26:57
 
 https 通信完整流程图：
 
-![](../../assets/http/https/certificate1.png)
+![](../../../assets/http/https/certificate1.png)
 
 ## 第一层（安全传输数据）
 
@@ -35,7 +35,7 @@ https 通信完整流程图：
 
 考虑如下方式：
 
-![](../../assets/http/https/certificate2.png)
+![](../../../assets/http/https/certificate2.png)
 
 分析一下上面步骤的可行性：
 
@@ -44,7 +44,7 @@ https 通信完整流程图：
 
 因为还可能存在一种"中间人攻击"的情况，如下图：
 
-![](../../assets/http/https/certificate3.png)
+![](../../../assets/http/https/certificate3.png)
 
 这种情况下，客户端和服务器之间通信的数据就完全被坏人破解了。
 
@@ -54,7 +54,7 @@ https 通信完整流程图：
 
 那就得引入数字证书了，数字证书是服务器主动去权威机构申请的，证书中包含了上一个图中的加密过的 A 公钥和权威机构的信息，所以服务器只需要给客户端下发数字证书即可。现在流程图如下：
 
-![](../../assets/http/https/certificate4.png)
+![](../../../assets/http/https/certificate4.png)
 
 那数字证书中的 A 公钥是如何加密的呢？
 

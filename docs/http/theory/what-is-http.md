@@ -25,7 +25,7 @@ date: 2020-05-28 23:55:45
 
 先看一下 HTTP 的名字：“超文本传输协议”，它可以拆成三个部分，分别是：“**超文本**”“**传输**”和“**协议**”。我们从后往前来逐个解析，理解了这三个词，我们也就明白了什么是 HTTP。
 
-![](../../assets/http/series/http-protocol.png)
+![](../../../assets/http/series/http-protocol.png)
 
 ### 协议
 

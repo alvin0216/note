@@ -34,6 +34,7 @@ module.exports = {
             'achieve/new',
             'achieve/throttle',
             'achieve/debounce',
+            'achieve/promise',
             'achieve/curry',
             'achieve/instanceof',
             'achieve/deepClone'
@@ -131,30 +132,38 @@ module.exports = {
       '/http/': [
         {
           title: '概念篇',
-          children: ['http-development', 'what-is-http', 'related-concepts', 'related-protocol', 'network-model', 'dns', 'wireshark-env']
+          children: [
+            'theory/http-development',
+            'theory/what-is-http',
+            'theory/related-concepts',
+            'theory/related-protocol',
+            'theory/network-model',
+            'theory/dns',
+            'theory/wireshark-env'
+          ]
         },
         {
           title: '基础篇',
           children: [
-            'type-url-and-press-enter',
-            'tcp-connection',
-            'http-message',
-            'http-methods',
-            'status-code',
-            'http-body',
-            'cache',
-            'proxy-cache',
-            'http-connection',
-            'redirect',
-            'cookie-session']
+            'basis/type-url-and-press-enter',
+            'basis/tcp-connection',
+            'basis/http-message',
+            'basis/http-methods',
+            'basis/status-code',
+            'basis/http-body',
+            'basis/cache',
+            'basis/proxy-cache',
+            'basis/http-connection',
+            'basis/redirect',
+            'basis/cookie-session']
         },
         {
           title: 'HTTPS',
-          children: ['https', 'certificate', 'tsl', 'tsl13', 'https-perf']
+          children: ['https/https', 'https/certificate', 'https/tsl', 'https/tsl13', 'https/https-perf']
         },
         {
           title: 'HTTP2',
-          children: ['http2', 'http2-deep', 'http3']
+          children: ['http2/http2', 'http2/http2-deep', 'http2/http3']
         },
         {
           title: '拷问篇',

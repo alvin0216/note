@@ -29,7 +29,7 @@ Google 在推 SPDY 的时候就已经意识到了这个问题，于是就又发�
 
 这里先贴一下 HTTP/3 的协议栈图，让你对它有个大概的了解。
 
-![](../../assets/http/http2/http3.png)
+![](../../../assets/http/http2/http3.png)
 
 ## QUIC 协议
 

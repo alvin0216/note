@@ -3,7 +3,7 @@ title: HTTP 的请求方法
 date: 2020-06-10 22:21:25
 ---
 
-![](../../assets/http/http-methods.jpg)
+![](../../../assets/http/http-methods.jpg)
 
 ## HTTP 的请求方法和作用
 

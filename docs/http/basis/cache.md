@@ -61,8 +61,8 @@ node 跑这个文件，打开页面，60 秒内刷新一次。则得到如下结
 
 <div class='flex-img'>
 
-![](../../assets/http/series/cache/expires1.png)
-![](../../assets/http/series/cache/expires2.png)
+![](../../../assets/http/series/cache/expires1.png)
+![](../../../assets/http/series/cache/expires2.png)
 
 </div>
 
@@ -138,7 +138,7 @@ console.log('http://127.0.0.1:3300')
 
 它其实是发了一个 “`Cache-Control: no-cache`”，含义和“`max-age=0`”基本一样，就看后台的服务器怎么理解，通常两者的效果是相同的。
 
-<img src='../../assets/http/series/cache/cache-control.png' width='300'>
+<img src='../../../assets/http/series/cache/cache-control.png' width='300'>
 
 :::
 
@@ -211,8 +211,8 @@ console.log('http://127.0.0.1:3300')
 
 <div class='flex-img'>
 
-![](../../assets/http/series/cache/if-modified.jpg)
-![](../../assets/http/series/cache/if-modified-since.jpg)
+![](../../../assets/http/series/cache/if-modified.jpg)
+![](../../../assets/http/series/cache/if-modified-since.jpg)
 
 </div>
 
@@ -247,6 +247,6 @@ Etag 比 lastModified 更加严谨，如果资源发生变化，Etag 就会发�
 
 `Pragma` > `Cache-Control` > `Expires` > `ETag` > `Last-Modified`
 
-![](../../assets/http/series/cache/cache-progress.png)
+![](../../../assets/http/series/cache/cache-progress.png)
 
-<!-- <img src='../../assets/http/series/cache/cache-progress.png' data-fancybox='images' height="800px" /> -->
+<!-- <img src='../../../assets/http/series/cache/cache-progress.png' data-fancybox='images' height="800px" /> -->
