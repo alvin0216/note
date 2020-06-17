@@ -184,6 +184,10 @@ module.exports = {
           children: ['v8/ram', 'v8/gc', 'v8/run-the-code']
         },
         {
+          title: 'EventLoop',
+          children: ['event-loop/thread-queue', 'event-loop/macrotask-microtask', 'event-loop/browser-event-loop', 'event-loop/node-event-loop', 'event-loop/exercises']
+        },
+        {
           title: '浏览器安全',
           children: ['security/xss', 'security/https']
         },
