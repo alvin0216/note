@@ -172,6 +172,12 @@ module.exports = {
             'torture/2',
             'torture/3',
           ]
+        },
+        {
+          title: 'nginx',
+          children: [
+            'nginx/1',
+          ]
         }
       ],
       // === browser
