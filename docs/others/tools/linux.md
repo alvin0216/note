@@ -1,5 +1,5 @@
 ---
-title: Linux 常用命令
+title: linux
 date: 2019-12-30 09:07:08
 ---
 

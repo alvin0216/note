@@ -200,11 +200,11 @@ module.exports = {
       '/others/': [
         {
           title: 'HTML',
-          children: ['html-css/html-semantic']
+          children: ['html/html-semantic']
         },
         {
           title: 'CSS',
-          children: ['css/rem', 'html-css/css-base', 'html-css/BFC']
+          children: ['css/rem', 'css/css-base', 'css/BFC']
         },
         {
           title: 'node',
@@ -216,7 +216,15 @@ module.exports = {
         },
         {
           title: 'tools & command',
-          children: ['system/ssh', 'system/linux', 'system/vim', 'mark/vscode', 'mark/collect']
+          children: [
+            'tools/ssh',
+            'tools/homebrew',
+            'tools/linux',
+            'tools/vim',
+            'mark/vscode',
+            'mark/collect'
+            //
+          ]
         }
       ],
       // js
