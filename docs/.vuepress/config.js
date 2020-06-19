@@ -8,7 +8,14 @@ module.exports = {
     // add jquert and fancybox
     ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js' }],
     ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js' }],
-    ['link', { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css' }]
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        type: 'text/css',
+        href: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css'
+      }
+    ]
   ],
   themeConfig: {
     smoothScroll: true,
@@ -18,13 +25,7 @@ module.exports = {
       '/javascript/': [
         {
           title: '基础',
-          children: [
-            'base/data-types',
-            'base/prototype',
-            'base/extends',
-            'base/this',
-            'base/closure'
-          ]
+          children: ['base/data-types', 'base/prototype', 'base/extends', 'base/this', 'base/closure']
         },
         {
           title: '模拟实现',
@@ -42,22 +43,12 @@ module.exports = {
         },
         {
           title: 'ES6',
-          children: [
-            'es6/symbol',
-            'es6/set-map',
-            'es6/web-worker',
-            'es6/skills'
-          ]
+          children: ['es6/symbol', 'es6/set-map', 'es6/web-worker', 'es6/skills']
         },
         {
           title: '文件和二进制数据',
-          children: [
-            'files/blob',
-            'files/file-upload',
-            'files/large-file-upload',
-            'files/arraybuffer'
-          ]
-        },
+          children: ['files/blob', 'files/file-upload', 'files/large-file-upload', 'files/arraybuffer']
+        }
       ],
       // === react
       '/react/': [
@@ -93,39 +84,33 @@ module.exports = {
             'data-structure/dict-hashtable',
             'data-structure/tree',
             'data-structure/graph',
-            'data-structure/graph-traverse',
+            'data-structure/graph-traverse'
           ]
         },
         {
           title: '排序算法',
           collapsable: true,
-          children:
-            ['complexity',
-              'sort/bubbleSort',
-              'sort/selectionSort',
-              'sort/insertSort',
-              'sort/shellSort',
-              'sort/mergeSort',
-              'sort/heapSort',
-              'sort/quickSort',
-              'temp/binarySearch'
-            ]
+          children: [
+            'complexity',
+            'sort/bubbleSort',
+            'sort/selectionSort',
+            'sort/insertSort',
+            'sort/shellSort',
+            'sort/mergeSort',
+            'sort/heapSort',
+            'sort/quickSort',
+            'temp/binarySearch'
+          ]
         },
         {
           title: 'leetcode',
           collapsable: true,
-          children: [
-            'leetcode/1',
-            'leetcode/557',
-            'leetcode/696',
-          ]
+          children: ['leetcode/1', 'leetcode/557', 'leetcode/696']
         },
         {
           title: '剑指 offer',
           collapsable: true,
-          children: [
-            'offer/4',
-          ]
+          children: ['offer/4']
         }
       ],
       // === http
@@ -155,7 +140,8 @@ module.exports = {
             'basis/proxy-cache',
             'basis/http-connection',
             'basis/redirect',
-            'basis/cookie-session']
+            'basis/cookie-session'
+          ]
         },
         {
           title: 'HTTPS',
@@ -167,18 +153,11 @@ module.exports = {
         },
         {
           title: '拷问篇',
-          children: [
-            'torture/1',
-            'torture/2',
-            'torture/3',
-          ]
+          children: ['torture/1', 'torture/2', 'torture/3']
         },
         {
           title: 'nginx',
-          children: [
-            'nginx/1',
-            'nginx/2',
-          ]
+          children: ['nginx/1', 'nginx/2']
         }
       ],
       // === browser
@@ -201,7 +180,13 @@ module.exports = {
         },
         {
           title: 'EventLoop',
-          children: ['event-loop/thread-queue', 'event-loop/macrotask-microtask', 'event-loop/browser-event-loop', 'event-loop/node-event-loop', 'event-loop/exercises']
+          children: [
+            'event-loop/thread-queue',
+            'event-loop/macrotask-microtask',
+            'event-loop/browser-event-loop',
+            'event-loop/node-event-loop',
+            'event-loop/exercises'
+          ]
         },
         {
           title: '浏览器安全',
@@ -222,20 +207,19 @@ module.exports = {
           children: ['css/rem', 'html-css/css-base', 'html-css/BFC']
         },
         {
-          title: 'node 系列知识',
+          title: 'node',
           children: ['node/node-shell', 'node/middleware']
         },
         {
-          title: '服务器相关',
-          children: ['system/git', 'system/ssh', 'system/github-webhooks', 'system/linux', 'system/vim']
+          title: 'git',
+          children: ['git/base', 'git/webhook']
         },
         {
-          title: 'Mark',
-          children: ['mark/collect', 'mark/vscode']
-        },
+          title: 'tools & command',
+          children: ['system/ssh', 'system/linux', 'system/vim', 'mark/vscode', 'mark/collect']
+        }
       ],
       // js
-      '/todo/': [],
       '/': [
         {
           title: 'HTML',
@@ -255,13 +239,13 @@ module.exports = {
             'root/interview/03',
             'root/interview/04',
             'root/interview/05',
-            'root/interview/06',
+            'root/interview/06'
           ]
         }
       ]
     },
     // === nav
-    nav: navbar,
+    nav: navbar
   },
   plugins: ['@vuepress/back-to-top']
 }

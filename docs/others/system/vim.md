@@ -1,5 +1,5 @@
 ---
-title: Vim
+title: vim
 date: 2019-12-31 10:51:03
 ---
 
