@@ -1,7 +1,31 @@
 ---
-title: homebrew
-date: 2020-06-19 10:57:57
+title: mac
+date: 2020-01-05 09:25:13
 ---
+
+## 系统命令
+
+```bash
+lsof -i:4040 # 查看 4040 端口占用情况
+kill pid # 释放进程
+```
+
+## 配置别名
+
+```bash
+vim ~/.bash_profile
+
+alias dev='npm run dev'
+alias start='npm run start'
+alias ip="ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p"
+```
+
+## 切换 bash 与 zsh
+
+- 切换 bash：chsh -s /bin/bash
+- 切换 zsh：chsh -s /bin/zsh
+
+## homebrew
 
 ```bash
 # 安装

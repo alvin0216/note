@@ -217,12 +217,12 @@ module.exports = {
         {
           title: 'tools & command',
           children: [
-            'tools/ssh',
-            'tools/homebrew',
-            'tools/linux',
+            'tools/mac',
             'tools/vim',
+            'tools/linux',
             'mark/vscode',
-            'mark/collect'
+            'mark/collect',
+            'tools/ssh'
             //
           ]
         }
