@@ -157,7 +157,7 @@ module.exports = {
         },
         {
           title: 'nginx',
-          children: ['nginx/1', 'nginx/2']
+          children: ['nginx/1', 'nginx/2', 'certificate']
         }
       ],
       // === browser
