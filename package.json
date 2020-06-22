@@ -12,10 +12,10 @@
     "push": "node ./utils/push"
   },
   "dependencies": {
-    "vuepress": "^1.5.1"
+    "vuepress": "^1.5.2",
+    "vuepress-plugin-medium-zoom": "^1.1.8"
   },
   "devDependencies": {
-    "@vuepress/plugin-back-to-top": "^1.2.0",
     "chalk": "^3.0.0",
     "commander": "^4.1.0",
     "inquirer": "^7.0.3",
