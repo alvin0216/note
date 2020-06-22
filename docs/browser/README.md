@@ -29,7 +29,3 @@ date: 2019-10-16 09:07:08
 
 - 摘自 [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
 - 知识源自 [浏览器工作原理与实践](https://time.geekbang.org/column/intro/216?utm_source=pinpaizhuanqu&utm_medium=geektime&utm_campaign=guanwang&utm_term=guanwang&utm_content=0511)
-
-## 列表
-
-<MainIndex path='browser' />

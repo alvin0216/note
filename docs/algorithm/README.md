@@ -7,10 +7,6 @@ date: 2019-10-16 09:07:08
 
 ![](../../assets/algorithm/complexity/sort.png)
 
-## 算法
-
-<MainIndex path='algorithm' />
-
 ## Mark
 
 - [用动画的形式呈现解 LeetCode 题目的思路 十大经典排序算法动画与解析，看我就够了！（配代码完全版）](https://github.com/MisterBooo/LeetCodeAnimation)

@@ -20,6 +20,31 @@ module.exports = {
   themeConfig: {
     smoothScroll: true,
     sidebarDepth: 2,
+    // === nav
+    nav: [
+      { text: '主页', link: '/' },
+      { text: 'Javascript', link: '/javascript/' },
+      { text: 'React', link: '/react/' },
+      { text: '数据结构与算法', link: '/algorithm/' },
+      { text: 'HTTP', link: '/http/' },
+      { text: '浏览器', link: '/browser/' },
+      { text: '其他', link: '/others/' },
+      {
+        text: '更多',
+        ariaLabel: '了解更多',
+        items: [
+          {
+            items: [{ text: 'todo list', link: '/todo/' }]
+          },
+          {
+            items: [
+              { text: 'Github', link: 'https://github.com/alvin0216', target: '_self' },
+              { text: "Alvin's blog", link: 'http://47.112.48.225:4002', target: '_self' }
+            ]
+          }
+        ]
+      }
+    ],
     // === sidebar
     sidebar: {
       '/javascript/': [
@@ -251,9 +276,18 @@ module.exports = {
           ]
         }
       ]
-    },
-    // === nav
-    nav: navbar
+    }
   },
-  plugins: ['@vuepress/back-to-top']
+  plugins: [
+    'vuepress-plugin-medium-zoom',
+    {
+      selector: '.page .theme-default-content img',
+      delay: 1000,
+      options: {
+        margin: 24,
+        background: '#BADA55',
+        scrollOffset: 0
+      }
+    }
+  ]
 }

@@ -1,0 +1,60 @@
+table
+  font-size 14px
+  thead tr
+    background #87bae6
+    line-height 2
+  th, td
+   padding .2em 1em
+
+.page
+  .theme-default-content
+    code
+      color #f83929
+    .highlight-lines .highlighted
+      background-color #abefa8  
+    div[class*="language-"]
+      background-color #f6f8fa  
+      font-size 92%
+      pre code
+        color #24292e
+        .token.function
+          color rgb(111, 66, 193)
+         .token.punctuation
+          color #999
+        .token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol
+          color #005cc5
+        .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin
+          color #032f62
+        .token.comment, .token.prolog, .token.doctype, .token.cdata
+          color #6a737d;    
+        .token.atrule, .token.attr-value, .token.keyword
+          color #d73a49  
+        .token.class-name
+          color #e36209
+        .token.operator, .token.entity, .token.url, .language-css .token.string, .token.variable, .token.inserted
+          color #005cc5  
+// 自定义
+.flex-img 
+  p
+    display flex
+    a:not(:last-child)
+      margin-right 20px
+    img
+      border: 1px solid 
+
+.orange
+  color #fa8919
+  font-weight bold
+
+blockquote.box
+  border 2px solid #e0dfcc
+  background-color #f6f7fb
+  border-radius 1em
+  padding 1em
+  color #111
+  p:not(:first-child), li:not(:first-child)
+    margin-top 1em
+  ul > li > ul > li:not(:first-child)
+    margin-top 0
+  div[class*="language-"]
+    background-color #ececec  

@@ -7,10 +7,6 @@ date: 2019-10-16 09:07:08
 
 ![](../../assets/http/series/http-overview.png)
 
-## link
-
-<MainIndex path='http' />
-
 ![](../../assets/http/load.png)
 
 ## 知识来源
