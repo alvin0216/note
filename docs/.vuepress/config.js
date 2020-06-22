@@ -1,5 +1,3 @@
-const navbar = require('./navbar')
-
 module.exports = {
   port: '4040', // 开发端口
   title: "Alvin's notes",
