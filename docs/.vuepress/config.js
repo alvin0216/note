@@ -2,19 +2,6 @@ module.exports = {
   port: '4040', // 开发端口
   title: "Alvin's notes",
   description: "alvin's notes",
-  head: [
-    // add jquert and fancybox
-    ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js' }],
-    ['script', { src: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js' }],
-    [
-      'link',
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: 'https://cdn.bootcdn.net/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css'
-      }
-    ]
-  ],
   themeConfig: {
     smoothScroll: true,
     sidebarDepth: 2,
@@ -226,7 +213,7 @@ module.exports = {
         },
         {
           title: 'CSS',
-          children: ['css/rem', 'css/css-base', 'css/BFC']
+          children: ['css/note', 'css/rem', 'css/css-base', 'css/BFC']
         },
         {
           title: 'node',

@@ -5,7 +5,7 @@ date: 2020-06-06 00:21:55
 
 ## HTML
 
-![](../../../assets/others/html-csss/html5-layout.png)
+![](../../../assets/others/html/html5-layout.png)
 
 ```html
 <head>
