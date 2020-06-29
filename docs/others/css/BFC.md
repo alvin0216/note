@@ -3,19 +3,13 @@ title: 边距重叠与BFC
 date: 2020-03-01 16:42:26
 ---
 
-1. 为什么会有 BFC
-2. BFC 是什么
-3. 如何触发 BFC
-4. BFC 可以解决什么问题
-5. 这些问题还有其他解决方案吗
-
 ## 边距重叠
 
 什么是边距重叠呢?
 
 边界重叠是指两个或多个盒子(可能相邻也可能嵌套)的相邻边界(其间没有任何非空内容、补白、边框)重合在一起而形成一个单一边界。
 
-### 父子元素的边界重叠
+### 父子元素边界重叠 [高度坍塌]
 
 ```html {8}
 <style>
@@ -28,9 +22,9 @@ date: 2020-03-01 16:42:26
     margin-top: 10px;
   }
 </style>
-<section class="parent">
-  <article class="child"></article>
-</section>
+<div class="parent">
+  <div class="child"></div>
+</div>
 ```
 
 效果：
@@ -39,10 +33,8 @@ date: 2020-03-01 16:42:26
 
 在这里父元素的高度不是 110px，而是 100px，在这里发生了**高度坍塌**。
 
-原因是如果块元素的 `margin-top` 与它的第一个子元素的 `margin-top` 之间没有 `border`、`padding`、`inline content`、 `clearance` 来分隔，
-或者块元素的`margin-bottom` 与它的最后一个子元素的`margin-bottom` 之间没有 `border`、`padding`、`inline content`、`height`、`min-height`、 `max-height` 分隔那么外边距会塌陷。子元素多余的外边距会被父元素的外边距截断。
 
-### 兄弟元素的边界重叠
+### 兄弟元素边界重叠 [取最大边距]
 
 ```html
 <style>
@@ -67,7 +59,7 @@ date: 2020-03-01 16:42:26
 
 可以看到 1 和 2,2 和 3 之间的间距不是 50px，发生了**边距重叠是取了它们之间的最大值** 30px。
 
-### 空元素的边界重叠
+### 空元素边界重叠 [取空元素最大边距]
 
 ```html {8}
 <style>
@@ -159,4 +151,72 @@ position: fixed; /* absolute */
 
 触发了 BFC 的容器就是页面上的一个完全独立隔离开的容器，容器中的子元素不会影响到容器外的元素。为了保证这个规则，触发了 `BFC` 的父元素在计算高度时，不得不让浮动的子元素参与进来，变相得实现清除内部浮动的目的。
 
-。。。等等
+### 清除内部浮动
+
+```html
+<style>
+  #float {
+    background: #fec68b;
+  }
+  #float .float {
+    float: left;
+  }
+</style>
+<section id="float">
+  <div class="float">我是浮动元素</div>
+</section>
+```
+
+父元素`#float` 的高度为 0，解决方案为为父元素`#float` 创建 BFC，这样浮动子元素的高度也会参与到父元素的高度计算：
+
+```css
+#float {
+  background: #fec68b;
+  overflow: hidden; /*这里也可以用float:left*/
+}
+```
+
+![](https://user-gold-cdn.xitu.io/2019/3/11/1696b9ae93ffa9fd?w=568&h=32&f=png&s=1710)
+
+### 自适应两栏布局
+
+```html
+<section id="layout">
+  <style>
+    #layout {
+      background: red;
+    }
+    #layout .left {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: pink;
+    }
+    #layout .right {
+      height: 110px;
+      background: #ccc;
+    }
+  </style>
+  <!--左边宽度固定，右边自适应-->
+  <div class="left">左</div>
+  <div class="right">右</div>
+</section>
+```
+
+在这里设置右边的高度高于左边，可以看到左边超出的部分跑到右边去了，这是由于由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样导致的。
+
+![](https://user-gold-cdn.xitu.io/2019/3/11/1696b9aea81c65df?w=578&h=119&f=png&s=1211)
+
+解决方案为给右侧元素创建一个 BFC，原理是 BFC 不会与 float 元素发生重叠。
+
+```css
+#layout .right {
+  height: 110px;
+  background: #ccc;
+  overflow: auto;
+}
+```
+
+![](https://user-gold-cdn.xitu.io/2019/3/11/1696b9ae95507f27?w=581&h=119&f=png&s=1197)
+
+参考 [边距重叠与 BFC](https://segmentfault.com/a/1190000012265930)
