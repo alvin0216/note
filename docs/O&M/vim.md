@@ -1,5 +1,5 @@
 ---
-title: vim
+title: Vim 常用命令
 date: 2019-12-31 10:51:03
 ---
 
@@ -33,5 +33,3 @@ N # 移动光标至上一个匹配
 :%s/old/new/g # 替换全部 比如 :/我/这是被替换的文本/g
 :%s/old/new/gc # 逐个替换
 ```
-
-![](../../../assets/others/vim.png)

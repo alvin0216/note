@@ -95,7 +95,7 @@ flex: flex-grow, flex-shrink, flex-basis;
 </style>
 ```
 
-![](../../../assets/others/css/flex-demo1.png)
+![](../../assets/css/flex/flex-demo1.png)
 
 ### 垂直水平居中对齐
 
@@ -113,7 +113,7 @@ flex: flex-grow, flex-shrink, flex-basis;
 - `justify-content: center`: 水平对齐
 - `align-items: center`: 居中对齐
 
-## 左边固定右边自适应
+### 左边固定右边自适应
 
 ```css
 .box {

@@ -13,13 +13,15 @@ module.exports = {
       { text: '数据结构与算法', link: '/algorithm/' },
       { text: 'HTTP', link: '/http/' },
       { text: '浏览器', link: '/browser/' },
-      { text: '其他', link: '/others/' },
       {
         text: '更多',
         ariaLabel: '了解更多',
         items: [
           {
-            items: [{ text: 'todo list', link: '/todo/' }]
+            items: [
+              { text: 'todo list', link: '/todo/' },
+              { text: 'mark list', link: '/mark/' }
+            ]
           },
           {
             items: [
@@ -206,58 +208,28 @@ module.exports = {
           children: ['torture/process', 'torture/rendering']
         }
       ],
-      '/others/': [
-        {
-          title: 'HTML',
-          children: ['html/html-semantic']
-        },
-        {
-          title: 'CSS',
-          children: ['css/note', 'css/rem', 'css/BFC', 'css/flex', 'css/flex-examples']
-        },
-        {
-          title: 'node',
-          children: ['node/node-shell', 'node/middleware']
-        },
-        {
-          title: 'git',
-          children: ['git/base', 'git/webhook']
-        },
-        {
-          title: 'tools & command',
-          children: [
-            'tools/mac',
-            'tools/vim',
-            'tools/linux',
-            'mark/vscode',
-            'mark/collect',
-            'tools/ssh'
-            //
-          ]
-        }
-      ],
       // js
       '/': [
         {
           title: 'HTML',
-          collapsable: false,
-          children: ['root/html/html5', 'root/html/meta']
+          children: ['html/semantic']
+        },
+
+        {
+          title: 'CSS',
+          children: ['css/note', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/rem']
         },
         {
-          title: 'Javascript',
-          collapsable: false,
-          children: ['root/js/question', 'root/js/regexp']
+          title: 'GIT & 运维',
+          children: ['/git/base', '/git/webhook', 'O&M/mac', 'O&M/linux', 'O&M/vim', 'O&M/vscode', 'O&M/ssh']
         },
         {
-          title: '笔试/面试题',
-          children: [
-            'root/interview/01',
-            'root/interview/02',
-            'root/interview/03',
-            'root/interview/04',
-            'root/interview/05',
-            'root/interview/06'
-          ]
+          title: 'Node',
+          children: ['/node/middleware', 'node/node-shell']
+        },
+        {
+          title: 'Question',
+          children: ['question/01', 'question/02', 'question/03', 'question/04', 'question/05', 'question/06']
         }
       ]
     }

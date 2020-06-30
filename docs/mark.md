@@ -1,21 +1,22 @@
 ---
-title: mark
+title: 一些收藏
 date: 2020-01-05 09:25:13
 ---
 
 ## 工具
 
-- [BootCDN](https://www.bootcdn.cn/)
+- [CDN](https://www.bootcdn.cn/)
 - [fancybox 图片预览插件](https://github.com/fancyapps/fancybox)
-- [收集非常好用的 Mac 应用程序、软件以及工具(2019)](https://segmentfault.com/a/1190000020314856)
-- [vscode 思维导图](https://juejin.im/post/5dde739b5188256ed06fb58f)
 
-## 优秀
+## 优秀博主
 
 - [冴羽的博客](https://github.com/mqyqingfeng/Blog)
 - [木易杨：每日一题](https://muyiy.cn/question/)
 - [前端小智](https://github.com/qq449245884/xiaozhi)
 - [RayJune](https://www.rayjune.me/archives/)
+
+## 博文&系列
+
 - [React 328 道最全面试题(持续更新)](https://juejin.im/post/5d310e8bf265da1bd261259d)
 - [饥人谷 2019 前端押题](https://juejin.im/post/5c91bbc96fb9a070c9759a64)
 - [字节跳动面试官：请你实现一个大文件上传和断点续传](https://juejin.im/post/5dff8a26e51d4558105420ed)

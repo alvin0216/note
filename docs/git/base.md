@@ -1,5 +1,5 @@
 ---
-title: 基本操作
+title: GIT 基本操作
 date: 2020-06-19 09:44:39
 ---
 
@@ -58,7 +58,7 @@ git co dev # 快速切换到 dev 分支
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ```
 
-效果：![](../../../assets/others/git/log.png)
+效果：![](../../assets/git/log.png)
 
 ## 配置 ssh
 

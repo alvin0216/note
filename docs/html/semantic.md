@@ -1,11 +1,9 @@
 ---
-title: Web 语义化
+title: H5 语义化标签
 date: 2020-06-06 00:21:55
 ---
 
-## HTML
-
-![](../../../assets/others/html/html5-layout.png)
+![](../../assets/html/html5-layout.png)
 
 ```html
 <head>

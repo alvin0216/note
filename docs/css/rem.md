@@ -6,7 +6,7 @@ date: 2020-06-16 17:42:44
 - [关于移动端适配，你必须要知道的](https://juejin.im/post/5cddf289f265da038f77696c)
 - [web 移动端布局的那些事儿](https://juejin.im/post/5b6575b0518825196b01fd85)
 
-## <span class='orange'>r</span>em 和 em 的差别
+## rem 和 em 的差别
 
 很明显多了一个 `r`，可以理解为 `root` 也即根。理解一下，
 
