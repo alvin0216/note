@@ -213,7 +213,7 @@ module.exports = {
         },
         {
           title: 'CSS',
-          children: ['css/note', 'css/rem', 'css/BFC', 'css/flex']
+          children: ['css/note', 'css/rem', 'css/BFC', 'css/flex', 'css/flex-examples']
         },
         {
           title: 'node',

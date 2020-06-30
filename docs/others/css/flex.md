@@ -57,6 +57,10 @@ date: 2020-06-29 22:32:40
 
 ## 设置项目
 
+推荐
+
+- [深入理解 flex-grow、flex-shrink、flex-basis](https://juejin.im/post/5dedb28ef265da33b12e98cd)
+
 ### order [项目排列顺序]
 
 order 属性定义项目的排列顺序。数值越小，排列越靠前，默认为 0。
@@ -182,3 +186,5 @@ flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩�
 
 - [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 - [一篇文章弄懂 flex 布局](https://www.cnblogs.com/echolun/p/11299460.html)
+- [深入理解 flex-grow、flex-shrink、flex-basis](https://juejin.im/post/5dedb28ef265da33b12e98cd)
+- [flex 实战](./flex-examples.md)
