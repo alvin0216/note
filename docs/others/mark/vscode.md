@@ -16,6 +16,16 @@ E+N 代表N是E的同级元素。
 E^N 代表N是E的上级元素。
 ```
 
+```html
+<!-- ul>li{list $}*3 -->
+
+<ul>
+  <li>list 1</li>
+  <li>list 2</li>
+  <li>list 3</li>
+</ul>
+```
+
 - [VsCode 中使用 Emmet 神器快速编写 HTML 代码](https://www.cnblogs.com/summit7ca/p/6944215.html)
 - [VSCode 快速生成代码](https://segmentfault.com/a/1190000018615760?utm_source=tag-newest)
 

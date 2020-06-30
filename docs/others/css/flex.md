@@ -3,26 +3,48 @@ title: flex 布局
 date: 2020-06-29 22:32:40
 ---
 
+Flex 容器属性
+
 ```css
-.box {
-  /* 项目的排列方向 默认 row */
-  flex-direction: row | row-reverse | column | column-reverse;
+主轴方向：水平排列（默认）|水平反向排列|垂直排列 | 垂直反向排列
+flex-direction: row | row-reverse | column | column-reverse;
 
-  /* 换行方式：默认不换行 */
-  flex-wrap: nowrap | wrap | wrap-reverse;
+换行：不换行（默认）|换行|反向换行(第一行在最后面)
+flex-wrap: nowrap | wrap | wrap-reverse;
 
-  /* flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。 */
-  flex-flow: <flex-direction> || <flex-wrap>;
+flex-direction属性和flex-wrap属性的简写形式，默认值为rownowrapflex-flow: <flex-direction> || <flex-wrap>;
 
-  /* 项目在主轴上的对齐方式 默认 flex-start */
-  justify-content: flex-start | flex-end | center | space-between | space-around;
+主轴对齐方式：起点对齐（默认）|终点对齐|居中对齐 | 两端对齐 | 分散对齐
+justify-content: flex-start | flex-end | center | space-between | space-around;
 
-  /* 项目在交叉轴上如何对齐 默认 flex-start */
-  align-items: flex-start | flex-end | center | baseline | stretch;
+交叉轴对齐方式：拉伸对齐（默认）|起点对齐|终点对齐 | 居中对齐 | 第一行文字的基线对齐
+align-items: stretch | flex-start | flex-end | center | baseline;
 
-  /* 多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用 */
-  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
-}
+多根轴线对齐方式：拉伸对齐（默认）|起点对齐|终点对齐 | 居中对齐 | 两端对齐 | 分散对齐
+align-content: stretch | flex-start | flex-end | center | space-between | space-around;
+```
+
+Flex 项目属性
+
+```css
+顺序：数值越小越靠前，默认为0
+order: <number>;
+
+放大比例：默认为0，如果有剩余空间也不放大，值为1则放大，2是1的双倍大小，以此类推
+flex-grow: <number>;
+
+缩小比例：默认为1，如果空间不足则会缩小，值为0不缩小
+flex-shrink: <number>;
+
+项目自身大小：默认auto，为原来的大小，可设置固定值 50px/50%
+flex-basis: <length> | auto;
+
+flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto
+两个快捷值：auto (1 1 auto) 和 none (0 0 auto)
+flex:none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+
+项目自身对齐：继承父元素（默认） | 起点对齐 | 终点对齐 | 居中对齐 | 基线对齐 | 拉伸对齐
+align-self: auto | flex-start | flex-end | center | baseline | stretch;
 ```
 
 ## 父容器
@@ -184,6 +206,7 @@ flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩�
 
 参考
 
+- [一劳永逸的搞定 flex 布局](https://juejin.im/post/58e3a5a0a0bb9f0069fc16bb)
 - [Flex 布局教程：语法篇](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)
 - [一篇文章弄懂 flex 布局](https://www.cnblogs.com/echolun/p/11299460.html)
 - [深入理解 flex-grow、flex-shrink、flex-basis](https://juejin.im/post/5dedb28ef265da33b12e98cd)
