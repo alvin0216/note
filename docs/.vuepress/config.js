@@ -26,7 +26,7 @@ module.exports = {
           {
             items: [
               { text: 'Github', link: 'https://github.com/alvin0216', target: '_self' },
-              { text: "Alvin's blog", link: 'http://47.112.48.225:4002', target: '_self' }
+              { text: "Alvin's blog", link: 'https://blog.alvin.run', target: '_self' }
             ]
           }
         ]
@@ -212,7 +212,7 @@ module.exports = {
       '/': [
         {
           title: 'HTML',
-          children: ['html/semantic']
+          children: ['html/semantic', 'html/defer-async']
         },
 
         {
