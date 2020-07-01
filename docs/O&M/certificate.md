@@ -7,6 +7,8 @@ date: 2020-06-21 20:32:24
 
 方式 acme.sh + Let's Encrypt
 
+## 申请证书
+
 1. 获取 acme.sh
 
 ```bash
@@ -40,7 +42,9 @@ acme.sh --issue --dns dns_ali -d alvin.run -d '*.alvin.run'
 
 生成的证书放在该目录下: `~/acme.sh/alvin.run/`
 
-配置 nginx，在 `conf.d` 新建一个配置文件
+## 配置 nginx
+
+在 `conf.d` 新建一个配置文件，这里我命名为 `443.conf`
 
 ```yml
 server {
@@ -57,8 +61,8 @@ server {
     ssl_ciphers  HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers  on;
 
-    root /work/4001-note/docs/.vuepress/dist; # 目录
 
+    root /work/note/docs/.vuepress/dist; # 项目地址
     location / {
         try_files $uri $uri/ /index.html;
     }
@@ -72,9 +76,65 @@ server {
 }
 ```
 
-`nginx -s reload`...
+如果要配置多个，可以新增配置文件或者直接在一个文件写多个 `server`, 比如这里
 
-注意要开启 `443` 端口。
+:::details 点击查看配置
+
+```yml {10}
+server {
+    listen       443 http2 ssl; # 443 端口 http2 ssl
+    server_name  alvin.run;
+    #... 这是是上面的配置
+}
+
+server {
+    # 这里是新的配置
+    listen       443 http2 ssl; # 443 端口 http2 ssl
+    server_name  blog.alvin.run; # 配置二级域名
+
+    ssl_certificate      /root/.acme.sh/alvin.run/fullchain.cer; # Nginx所需要ssl_certificate文件
+    ssl_certificate_key  /root/.acme.sh/alvin.run/alvin.run.key; #
+    ssl_trusted_certificate /root/.acme.sh/alvin.run/ca.cer; #
+
+    ssl_session_cache    shared:SSL:1m;
+    ssl_session_timeout  5m;
+
+    ssl_ciphers  HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers  on;
+
+
+    root /work/4002-react-blog/build;
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+      proxy_pass http://localhost:6002/; # proxy_pass 转发服务
+    }
+
+    gzip on; # 开启压缩
+    gzip_buffers 32 4k; # 设置用于处理请求压缩的缓冲区数量和大小
+    gzip_comp_level 6; # 设置gzip压缩级别，级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大
+    gzip_min_length 100; # 当返回内容大于此值时才会使用gzip进行压缩,以K为单位,当值为0时，所有页面都进行压缩。
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_vary on;
+}
+```
+
+:::
+
+## http 重定向到 https
+
+在 `conf.d` 新建一个配置文件，这里我命名为 `80.conf`
+
+```bash
+server {
+  listen 80;
+  return 301 https://$server_name$request_uri;
+}
+```
+
+最终 `nginx -s reload`。记得开启 `443` 端口
 
 ---
 

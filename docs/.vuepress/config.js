@@ -169,7 +169,7 @@ module.exports = {
         },
         {
           title: 'nginx',
-          children: ['nginx/1', 'nginx/2', 'certificate']
+          children: ['nginx/1', 'nginx/2']
         }
       ],
       // === browser
@@ -217,11 +217,20 @@ module.exports = {
 
         {
           title: 'CSS',
-          children: ['css/note', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/rem']
+          children: ['css/note', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
         },
         {
           title: 'GIT & 运维',
-          children: ['/git/base', '/git/webhook', 'O&M/mac', 'O&M/linux', 'O&M/vim', 'O&M/vscode', 'O&M/ssh']
+          children: [
+            '/git/base',
+            '/git/webhook',
+            'O&M/mac',
+            'O&M/linux',
+            'O&M/vim',
+            'O&M/vscode',
+            'O&M/ssh',
+            'O&M/certificate'
+          ]
         },
         {
           title: 'Node',
