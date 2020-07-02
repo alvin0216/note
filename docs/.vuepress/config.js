@@ -220,6 +220,10 @@ module.exports = {
           children: ['css/note', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
         },
         {
+          title: 'Browser',
+          children: ['root/network']
+        },
+        {
           title: 'GIT & 运维',
           children: [
             '/git/base',
@@ -229,7 +233,8 @@ module.exports = {
             'O&M/vim',
             'O&M/vscode',
             'O&M/ssh',
-            'O&M/certificate'
+            'O&M/certificate',
+            'coding/nginx-gzip'
           ]
         },
         {

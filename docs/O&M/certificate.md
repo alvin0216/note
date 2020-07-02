@@ -71,7 +71,7 @@ server {
     gzip_buffers 32 4k; # 设置用于处理请求压缩的缓冲区数量和大小
     gzip_comp_level 6; # 设置gzip压缩级别，级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大
     gzip_min_length 100; # 当返回内容大于此值时才会使用gzip进行压缩,以K为单位,当值为0时，所有页面都进行压缩。
-    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
     gzip_vary on;
 }
 ```
@@ -116,7 +116,7 @@ server {
     gzip_buffers 32 4k; # 设置用于处理请求压缩的缓冲区数量和大小
     gzip_comp_level 6; # 设置gzip压缩级别，级别越底压缩速度越快文件压缩比越小，反之速度越慢文件压缩比越大
     gzip_min_length 100; # 当返回内容大于此值时才会使用gzip进行压缩,以K为单位,当值为0时，所有页面都进行压缩。
-    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
     gzip_vary on;
 }
 ```

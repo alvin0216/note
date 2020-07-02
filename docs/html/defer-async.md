@@ -48,7 +48,7 @@ alert(1)
 
 可见，执行到 `script` html 会暂停解析，下载脚本，执行脚本，所以先弹出 1，然后继续解析 html，渲染出 hello.
 
-:::details 同理，script 放在 body 底部，会先渲染出 hello，然后再下载执行脚本。
+**即使 script 放在 body 底部，结果也是一样**：先弹出 1，然后继续解析 html，渲染出 hello.
 
 ```html
 <body>
@@ -57,19 +57,7 @@ alert(1)
 </body>
 ```
 
-:::
-
-## 阻塞渲染
-
-前面已经了解了 js 会阻塞渲染，造成白屏问题。接下来讲一下 CSS 如何阻塞渲染。
-
-<!-- :::details 简单概述浏览器是如何将 HTML、CSS、Javascript 解析到页面
-
-![](../../assets/browser/macro/render.png)
-
-::: -->
-
----
+## JS 的阻塞渲染
 
 相关链接
 
