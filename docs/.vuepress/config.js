@@ -2,6 +2,7 @@ module.exports = {
   port: '4040', // 开发端口
   title: "Alvin's notes",
   description: "alvin's notes",
+  head: [['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }]],
   themeConfig: {
     smoothScroll: true,
     sidebarDepth: 2,
@@ -217,11 +218,15 @@ module.exports = {
 
         {
           title: 'CSS',
-          children: ['css/note', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
+          children: ['css/note', 'css/text', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
         },
         {
           title: 'Browser',
-          children: ['root/network']
+          children: ['root/network', 'root/performance']
+        },
+        {
+          title: 'Coding',
+          children: ['coding/oAuth2']
         },
         {
           title: 'GIT & 运维',
@@ -234,7 +239,7 @@ module.exports = {
             'O&M/vscode',
             'O&M/ssh',
             'O&M/certificate',
-            'coding/nginx-gzip'
+            'O&M/nginx-gzip'
           ]
         },
         {
