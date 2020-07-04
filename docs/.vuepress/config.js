@@ -226,7 +226,7 @@ module.exports = {
         },
         {
           title: 'Coding',
-          children: ['coding/oAuth2']
+          children: ['coding/oAuth2', 'coding/oAuth2-github']
         },
         {
           title: 'GIT & 运维',

@@ -148,7 +148,123 @@ redirect_uri?code=xxxxxxx
 
 (D). 客户端(Client)在通过在 URL 中取出授权码之后，就可以在后端向 github 请求令牌
 
-相关链接
+| 字段          | 描述                                                   |
+| ------------- | ------------------------------------------------------ |
+| client_id     | 必须，客户端在 github 注册的唯一标识                   |
+| client_secret | 必须，客户端在 github 注册时返回的密钥                 |
+| grant_type    | 必须，authorization_code/refresh_code                  |
+| code          | 必须，上一步中取出的授权码                             |
+| redirect_uri  | 必须，完成授权之后的回调地址，与在 github 注册时的一致 |
+
+(E). github 给 redirect_uri 指定的地址返回 AccessToken，通过 JSON 格式返回
+
+```js
+{
+  "access_token":"xxxxxxx",
+  "token_type":"bearer",
+  "expires_in":3600,
+  "refresh_token":"xxxxxxx"
+}
+```
+
+客户端就可以在后端取到 `access_token`,在这段 json 中，还返回了一个 `refresh_token`，这个 `refresh_token` 表示用于访问下一次的更新令牌，`refresh_token` 的时效性比 `access_token` 长，当 `access_token` 过期时，可以使用 `refresh_token` 换取新的 `access_token`。
+
+详情请见 [github 授权登录](./oAuth2-github.md)
+
+### 简化模式
+
+简化模式主要针对没有后端的纯前端应用，在这种情况下，因为没有后端，所以就不能采用授权码模式的这种流程了，必须要把 access_token 存在前端。
+
+```js
+ +----------+
+ | Resource |
+ |  Owner   |
+ |          |
+ +----------+
+      ^
+      |
+     (B)
+ +----|-----+          Client Identifier     +---------------+
+ |         -+----(A)-- & Redirection URI --->|               |
+ |  User-   |                                | Authorization |
+ |  Agent  -|----(B)-- User authenticates -->|     Server    |
+ |          |                                |               |
+ |          |<---(C)--- Redirection URI ----<|               |
+ |          |          with Access Token     +---------------+
+ |          |            in Fragment
+ |          |                                +---------------+
+ |          |----(D)--- Redirection URI ---->|   Web-Hosted  |
+ |          |          without Fragment      |     Client    |
+ |          |                                |    Resource   |
+ |     (F)  |<---(E)------- Script ---------<|               |
+ |          |                                +---------------+
+ +-|--------+
+   |    |
+  (A)  (G) Access Token
+   |    |
+   ^    v
+ +---------+
+ |         |
+ |  Client |
+ |         |
+ +---------+
+```
+
+主要是 B 这个步骤，页面跳转到 github 网站，用户同意给予客户端授权。github 就会把令牌作为 URL 参数，跳转回到 redirect_uri 的这个回调地址。
+
+```js
+回调地址#token=xxxxxx
+```
+
+注意，令牌的位置是 URL 锚点（fragment），而不是查询字符串（querystring），这是因为 OAuth 2.0 允许跳转网址是 HTTP 协议，因此存在"中间人攻击"的风险，而浏览器跳转时，锚点不会发到服务器，就减少了泄漏令牌的风险。
+
+### 密码模式
+
+如果你高度信任某个应用，RFC 6749 也允许用户把用户名和密码，直接告诉该应用。该应用就使用你的密码，申请令牌，这种方式称为"密码式"（password）。
+
+```js
++----------+
+ | Resource |
+ |  Owner   |
+ |          |
+ +----------+
+      v
+      |    Resource Owner
+     (A) Password Credentials
+      |
+      v
+ +---------+                                  +---------------+
+ |         |>--(B)---- Resource Owner ------->|               |
+ |         |         Password Credentials     | Authorization |
+ | Client  |                                  |     Server    |
+ |         |<--(C)---- Access Token ---------<|               |
+ |         |    (w/ Optional Refresh Token)   |               |
+ +---------+                                  +---------------+
+
+        Figure 5: Resource Owner Password Credentials Flow
+```
+
+密码模式就是用户向客户端提供自己的账号和密码，客户端使用这些信息去向我们的服务提供商去索要一个授权。
+
+### 客户端模式
+
+客户端以自己的名义，而不是用户的名义，向“服务提供商”进行认证，如微信公众号以此 access_token 来拉取所有已关注用户的信息，docker 到 dockerhub 拉取镜像等。
+
+```js
+ +---------+                                  +---------------+
+ |         |                                  |               |
+ |         |>--(A)- Client Authentication --->| Authorization |
+ | Client  |                                  |     Server    |
+ |         |<--(B)---- Access Token ---------<|               |
+ |         |                                  |               |
+ +---------+                                  +---------------+
+
+                 Figure 6: Client Credentials Flow
+```
+
+客户端模式，顾名思义就是指客户端以自己的名义而不是用户的名义去向服务的提供商去做一个认证，严格来说，这种模式并不是 oAuth 框架要解决的问题，在这种客户端模式下呢，它是直接通过客户端的密钥和 id 去获取一个 access_token 的，不需要用户去参与。
+
+## 相关链接
 
 - [阮一峰 OAuth 2.0 的一个简单解释](http://www.ruanyifeng.com/blog/2019/04/oauth_design.html)
 - [阮一峰 OAuth 2.0 的四种方式](http://www.ruanyifeng.com/blog/2019/04/oauth_design.html)

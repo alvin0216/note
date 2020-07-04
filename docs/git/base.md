@@ -19,6 +19,9 @@ git push origin -d dev
 # 软回滚一个版本,可以理解为撤销最近一次的 commit
 git reset --soft HEAD~1
 
+# 撤销远程修改
+git push -f origin HEAD:master # 同步到远程仓库
+
 # set-url
 # 代码库迁移或者你的 git 为 https 想切换为 ssh
 git remote set-url origin git@github.com:alvin0216/xxx.git
