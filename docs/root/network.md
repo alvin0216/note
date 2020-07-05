@@ -90,3 +90,5 @@ date: 2020-07-02 22:03:47
 通过下载信息概要面板，你可以查看触发这两个事件所花费的时间。
 
 ![](../../assets/browser/chrome/network-summary.png)
+
+参考 [Chrome 开发者工具：利用网络面板做性能分析](https://time.geekbang.org/column/article/138844?code=NiCoaK-xsW6tErzSr6ZGB3jwgne3Pqg7v1UPGf9ApOI)

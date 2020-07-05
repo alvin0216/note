@@ -20,7 +20,7 @@ date: 2020-07-02 01:20:07
 
 > 缩短白屏时长：将一些不需要在解析 HTML 阶段使用的 JavaScript 标记上 `sync` 或者 `defer`。
 
-## 白屏问题
+<h2>白屏问题</h2>
 
 在渲染引擎内部，有一个叫 **HTML 解析器**（HTMLParser）的模块，它的职责就是负责将 HTML 字节流转换为 DOM 结构。
 
@@ -56,8 +56,6 @@ alert(1)
   <script src="./1.js"></script>
 </body>
 ```
-
-## JS 的阻塞渲染
 
 相关链接
 
