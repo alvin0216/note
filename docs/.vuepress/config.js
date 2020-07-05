@@ -222,7 +222,7 @@ module.exports = {
         },
         {
           title: 'Browser',
-          children: ['root/network', 'root/performance']
+          children: ['root/css-block', 'root/network', 'root/performance']
         },
         {
           title: 'Coding',
