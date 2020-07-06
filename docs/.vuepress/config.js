@@ -71,6 +71,10 @@ module.exports = {
           children: ['context', 'compound-component', 'redux', 'hooks', 'daily']
         },
         {
+          title: 'React 原理',
+          children: ['principle/requestIdleCallback']
+        },
+        {
           title: 'React 源码解读',
           // collapsable: true,
           children: [
