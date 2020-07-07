@@ -72,7 +72,11 @@ module.exports = {
         },
         {
           title: 'React 原理',
-          children: ['principle/requestIdleCallback']
+          children: [
+            'principle/requestIdleCallback',
+            //
+            'principle/updateQueue'
+          ]
         },
         {
           title: 'React 源码解读',
