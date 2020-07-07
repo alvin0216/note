@@ -3,6 +3,8 @@ title: requestIdleCallback
 date: 2020-07-06 22:36:49
 ---
 
+![](https://gitee.com/alvin0216/pv-client/raw/master/public/img/icons/android-chrome-192x192.png)
+
 ## 概述
 
 在执行优先级较低的任务时，可以考虑使用 `window.requestIdleCallback()`，意为交予任务给浏览器，浏览器有空闲的时候执行而不是立即执行这些任务。

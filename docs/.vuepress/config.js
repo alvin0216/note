@@ -243,6 +243,7 @@ module.exports = {
             'O&M/vscode',
             'O&M/ssh',
             'O&M/certificate',
+            'O&M/charles',
             'O&M/nginx-gzip'
           ]
         },
