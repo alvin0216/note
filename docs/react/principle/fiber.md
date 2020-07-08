@@ -3,7 +3,9 @@ title: 实现 fiber
 date: 2020-07-08 22:31:45
 ---
 
-element.js
+## vdom-tree
+
+生成结构 如下：
 
 ```js
 /**
@@ -31,7 +33,7 @@ C1.sibling = C2
 module.exports = A1
 ```
 
-fiber.js
+## Fiber
 
 ```js
 /**
@@ -104,7 +106,7 @@ function beginWork(fiber) {
 - 开始 A1 ,B1 ,C1 ,C2 ,B2
 - 结束 C1 ,C2 ,B1 ,B2 ,A1
 
-结合 `requestIdleCallback`:
+## 结合 requestIdleCallback
 
 ```js
 /**
@@ -153,7 +155,7 @@ function completeUnitOfWork(fiber) {
 }
 
 function beginWork(fiber) {
-  // console.log(`开始：${fiber.key}`)
+  console.log(`开始：${fiber.key}`)
 }
 
 nextUnitOfWork = rootFiber

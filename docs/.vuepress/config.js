@@ -76,6 +76,7 @@ module.exports = {
             'principle/requestIdleCallback',
             //
             'principle/updateQueue',
+            'principle/react-fiber',
             'principle/fiber'
           ]
         },
