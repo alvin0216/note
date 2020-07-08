@@ -75,7 +75,8 @@ module.exports = {
           children: [
             'principle/requestIdleCallback',
             //
-            'principle/updateQueue'
+            'principle/updateQueue',
+            'principle/fiber'
           ]
         },
         {
