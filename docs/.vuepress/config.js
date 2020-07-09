@@ -92,6 +92,10 @@ module.exports = {
             'code/scheduler',
             'code/scheduleWork'
           ]
+        },
+        {
+          title: 'SSR',
+          children: ['ssr/ssr-csr']
         }
       ],
       // === algorithm

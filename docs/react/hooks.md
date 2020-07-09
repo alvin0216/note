@@ -96,7 +96,7 @@ function Counter() {
 1. 首先 `state` 是 `Immutable` `的，setState` 后一定会生成一个全新的 state 引用。
 2. 但 `Class Component` 通过 `this.state` 方式读取 `state`，这导致了每次代码执行都会拿到最新的 `state` 引用，所以快速点击三次的结果是 `3 3 3`。
 
-## useEffect
+## useEffect & useLayoutEffect
 
 ```jsx
 import React, { useState, useEffect } from 'react'
@@ -147,6 +147,10 @@ if (count > 0) {
 > hooks 是根据 hook 的顺序来确定每次值的变化，一旦改变了就会发生不可预期的错误
 
 `count > 0` 后会增加多了一个 `hooks` 所以会报错
+
+<span class='orange'>useLayoutEffect</span>
+
+这个是用在处理 DOM 的时候,当你的 useEffect 里面的操作需要处理 DOM,并且会改变页面的样式,就需要用这个,否则可能会出现出现`闪屏问题`, useLayoutEffect 里面的 callback 函数会在 DOM 更新完成后立即执行,但是会在浏览器进行任何绘制之前运行完成,阻塞了浏览器的绘制。
 
 ## useRef
 
