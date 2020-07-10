@@ -1,7 +1,7 @@
 module.exports = {
   port: '4040', // 开发端口
   title: "Alvin's notes",
-  description: "alvin's notes",
+  description: "alvin's notes, front-end, react, javascript, vue, algorithm, alvin 的博客，前端开发",
   head: [['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }]],
   themeConfig: {
     smoothScroll: true,
@@ -95,7 +95,7 @@ module.exports = {
         },
         {
           title: 'SSR',
-          children: ['ssr/ssr-csr']
+          children: ['ssr/ssr-csr', 'ssr/isomorphism']
         }
       ],
       // === algorithm
