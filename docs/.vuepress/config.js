@@ -227,7 +227,7 @@ module.exports = {
       '/': [
         {
           title: 'HTML',
-          children: ['html/semantic', 'html/defer-async', 'html/meta']
+          children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href']
         },
 
         {
