@@ -77,7 +77,8 @@ module.exports = {
             //
             'principle/updateQueue',
             'principle/react-fiber',
-            'principle/fiber'
+            'principle/fiber',
+            'principle/vdom'
           ]
         },
         {
