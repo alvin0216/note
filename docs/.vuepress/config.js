@@ -244,6 +244,10 @@ module.exports = {
           children: ['coding/oAuth2', 'coding/oAuth2-github']
         },
         {
+          title: 'Webpack',
+          children: ['webpack/basic-environment']
+        },
+        {
           title: 'GIT & 运维',
           children: [
             '/git/base',
