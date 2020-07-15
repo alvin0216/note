@@ -221,7 +221,7 @@ module.exports = {
         },
         {
           title: '浏览器安全',
-          children: ['security/xss', 'security/csrf', 'security/https']
+          children: ['security/cross-domain', 'security/xss', 'security/csrf', 'security/https']
         },
         {
           title: '拷问篇',
