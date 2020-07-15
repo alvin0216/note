@@ -12,6 +12,7 @@ date: 2019-10-16 09:07:08
 - [用动画的形式呈现解 LeetCode 题目的思路 十大经典排序算法动画与解析，看我就够了！（配代码完全版）](https://github.com/MisterBooo/LeetCodeAnimation)
 - [【labuladong】 手把手撕 LeetCode 题目，扒各种算法套路的裤子](https://github.com/labuladong/fucking-algorithm)
 - [【ConardLi】 前端该如何准备数据结构和算法？](https://juejin.im/post/5d5b307b5188253da24d3cd1)
+- [【ConardLi】 awesome-coding-js](http://www.conardli.top/docs/dataStructure/)
 - [【前端瓶子君】 10 问 10 答，带你快速入门前端算法](https://juejin.im/post/5e92f8bcf265da47f60eb3b1)
 - [【神三元】 (1.8w 字)负重前行，前端工程师如何系统练习数据结构和算法？【上】](https://juejin.im/post/5e2f88156fb9a02fdd38a184)
 - [【神三元】 前端算法系统练习指南](http://47.98.159.95/leetcode-js/nav/)

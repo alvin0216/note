@@ -107,7 +107,6 @@ module.exports = {
       '/algorithm/': [
         {
           title: '数据结构',
-          collapsable: true,
           children: [
             'data-structure/stack',
             'data-structure/queue',
@@ -121,7 +120,6 @@ module.exports = {
         },
         {
           title: '排序算法',
-          collapsable: true,
           children: [
             'complexity',
             'sort/bubbleSort',
@@ -130,19 +128,12 @@ module.exports = {
             'sort/shellSort',
             'sort/mergeSort',
             'sort/heapSort',
-            'sort/quickSort',
-            'temp/binarySearch'
+            'sort/quickSort'
           ]
         },
         {
-          title: 'leetcode',
-          collapsable: true,
-          children: ['leetcode/1', 'leetcode/557', 'leetcode/696']
-        },
-        {
-          title: '剑指 offer',
-          collapsable: true,
-          children: ['offer/4']
+          title: 'Tree 专题',
+          children: ['tree/binarySearch', 'tree/rebuild-binary-tree']
         }
       ],
       // === http
@@ -271,9 +262,13 @@ module.exports = {
           children: ['/node/middleware', 'node/node-shell']
         },
         {
-          title: 'Question',
-          children: ['question/01', 'question/02', 'question/03', 'question/04', 'question/05', 'question/06']
+          title: '性能优化',
+          children: ['performance/lazyload-img']
         }
+        // {
+        //   title: 'Question',
+        //   children: ['question/01', 'question/02', 'question/03', 'question/04', 'question/05', 'question/06']
+        // }
       ]
     }
   },
