@@ -64,7 +64,7 @@ module.exports = {
         },
         {
           title: '设计模式',
-          children: ['design-patterns/event-emitter']
+          children: ['design-patterns/event-emitter', 'design-patterns/proxy']
         }
       ],
       // === react
