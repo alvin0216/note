@@ -61,6 +61,10 @@ module.exports = {
         {
           title: '文件和二进制数据',
           children: ['files/blob', 'files/file-upload', 'files/large-file-upload', 'files/arraybuffer']
+        },
+        {
+          title: '设计模式',
+          children: ['design-patterns/event-emitter']
         }
       ],
       // === react
