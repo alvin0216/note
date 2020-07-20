@@ -63,7 +63,7 @@ var element = React.createElement(
 用 create-react-app 创建的项目后，修改 index.js
 
 ```js
-import React from './react.js'
+import React from './react'
 const element = (
   <div id='A1'>
     A1

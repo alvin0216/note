@@ -183,7 +183,7 @@ react-dom.js
 
 ```js
 function render(vdom, container) {
-  const dom = vdom.type === 'TEXT' ? document.createTextNode('') : document.createElement(vdom.type)
+  const dom = vdom.type === 'TEXT' ? document.createTextNode(vdom.props.text) : document.createElement(vdom.type)
 
   Object.keys(vdom.props)
     .filter(key => key !== 'children')
