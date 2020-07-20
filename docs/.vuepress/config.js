@@ -81,8 +81,10 @@ module.exports = {
             //
             'principle/updateQueue',
             'principle/react-fiber',
-            'principle/fiber',
-            'principle/vdom'
+            'principle/jsx-to-vdom',
+            'principle/vdom-to-fiber',
+            'principle/render',
+            'principle/mini-react'
           ]
         },
         {
