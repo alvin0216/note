@@ -165,7 +165,7 @@ export default ReactDOM
 
 render 组装了 `rootFiber` 对象，使用 `scheduleRoot` 调度任务
 
-## scheduler
+## scheduleWork
 
 定义好/引入常量
 
@@ -470,6 +470,60 @@ function reconcileChildren(currentFiber, newChildren) {
     }
     prevSibling = newFiber
     index++
+  }
+}
+```
+
+### completeUnitOfWork
+
+`completeUnitOfWork` 就是处理一些 effact tag，他会一直往上返回直到 root 节点或者在某一个节点发现有 sibling 兄弟节点为止。如果到了 root 那么他的返回也是 null，代表整棵树的遍历已经结束了，可以 commit 了，如果遇到兄弟节点就返回该节点，因为这个节点可能也会存在子节点，需要通过 beginWork 进行操作。
+
+```js
+function performUnitOfWork(currentFiber) {
+  beginWork(currentFiber) // updateHostRoot -> reconcileChildren 生成了 children 的 fiber 关系链
+
+  if (currentFiber.child) {
+    return currentFiber.child // 有 child 则返回 child 作为下一个执行单元
+  }
+
+  while (currentFiber) {
+    completeUnitOfWork(currentFiber)
+    if (currentFiber.sibling) return currentFiber.sibling // 有兄弟节点 返回兄弟节点
+    currentFiber = currentFiber.return // 无 child 和 兄弟节点，返回 “叔叔” 节点，层层递进
+  }
+}
+
+// 在完成的时候收集有副作用的 fiber、组成 effect list
+// 遍历规则 先儿子后兄弟后弟弟
+// 完成规则 所有儿子全完成 自己完成
+// effect 等同于完成链
+function completeUnitOfWork(currentFiber) {
+  let returnFiber = currentFiber.return
+  console.log('收集副作用：', currentFiber.tag, currentFiber.stateNode)
+  if (returnFiber) {
+    // ? 这一段是把自己儿子的 effect 链挂到父亲身上
+    if (!returnFiber.firstEffect) {
+      returnFiber.firstEffect = currentFiber.firstEffect
+    }
+
+    if (currentFiber.lastEffect) {
+      if (returnFiber.lastEffect) {
+        returnFiber.lastEffect.nextEffect = currentFiber.firstEffect
+      }
+      returnFiber.lastEffect = currentFiber.lastEffect
+    }
+
+    // ? 把自己挂在父亲身上
+    const effectTag = currentFiber.effectTag
+
+    if (effectTag) {
+      if (returnFiber.lastEffect) {
+        returnFiber.lastEffect.nextEffect = currentFiber
+      } else {
+        returnFiber.firstEffect = currentFiber
+      }
+      returnFiber.lastEffect = currentFiber
+    }
   }
 }
 ```
