@@ -302,30 +302,34 @@ React.memo(SubComponent, (prevProps, nextProps) => prevProps.name === nextProps.
 demo 如下
 
 ```jsx
-function Child(props) {
-  console.log('render')
-  return <h2>{props.count}</h2>
+const Child = () => {
+  console.log('child render')
+  return null
 }
 
-const ChildMemo = React.memo(Child)
-
-function App(props) {
+const App = () => {
   const [count, setCount] = useState(0)
-  const [num, setNum] = useState(0)
+
+  const addCount = () => setCount(count + 1)
 
   return (
-    <div>
-      <ChildMemo count={count} addClick={setCount} />
-      <button onClick={e => setCount(prev => prev + 1)}>addCount</button>
-      <button onClick={e => setNum(prev => prev + 1)}>addNum</button>
-    </div>
+    <>
+      {count}
+      <button onClick={addCount}>add</button>
+      <Child />
+    </>
   )
 }
 ```
 
-没有套 `React.memo` 我们发现改变 `num` 之后，`Child` 组件会重新 `render` 这不是我们所期望的，因为 `count` 值并未改变。
+点击 add，child 会重新 render，优化如下
 
-套上 `React.memo` 发现点击 `addNumb` 就不会重新执行 `render` 了！
+```js
+const Child = React.memo(() => {
+  console.log('child render')
+  return null
+})
+```
 
 ### useMemo
 
