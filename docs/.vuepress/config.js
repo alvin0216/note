@@ -78,12 +78,12 @@ module.exports = {
           title: 'React 原理',
           children: [
             'principle/requestIdleCallback',
-            //
             'principle/updateQueue',
             'principle/react-fiber',
             'principle/jsx-to-vdom',
             'principle/vdom-to-fiber',
-            'principle/mini-react'
+            'principle/mini-react',
+            'principle/hooks'
           ]
         },
         {
