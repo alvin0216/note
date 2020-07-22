@@ -84,7 +84,8 @@ module.exports = {
             'principle/vdom-to-fiber',
             'principle/mini-react',
             'principle/hooks',
-            'principle/key'
+            'principle/key',
+            'principle/vdom-diff'
           ]
         },
         {
