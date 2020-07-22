@@ -85,7 +85,8 @@ module.exports = {
             'principle/mini-react',
             'principle/hooks',
             'principle/key',
-            'principle/vdom-diff'
+            'principle/vdom-diff',
+            'principle/react-diff'
           ]
         },
         {
@@ -183,7 +184,7 @@ module.exports = {
         },
         {
           title: 'nginx',
-          children: ['nginx/1', 'nginx/2']
+          children: ['nginx/1', 'nginx/2', 'nginx/gzip']
         }
       ],
       // === browser
@@ -256,8 +257,7 @@ module.exports = {
             'O&M/vscode',
             'O&M/ssh',
             'O&M/certificate',
-            'O&M/charles',
-            'O&M/nginx-gzip'
+            'O&M/charles'
           ]
         },
         {

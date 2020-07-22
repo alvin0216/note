@@ -614,3 +614,39 @@ function commitDeletion(currentFiber, domReturn) {
   }
 }
 ```
+
+## useState
+
+```js
+export function useReducer(reducer, initialValue) {
+  let newHook =
+    workingProgressFiber.alternate &&
+    workingProgressFiber.alternate.hooks &&
+    workingProgressFiber.alternate.hooks[hookIndex]
+
+  if (newHook) {
+    // 第二次渲染
+    newHook.state = newHook.updateQueue.forceUpdate(newHook.state)
+  } else {
+    newHook = {
+      state: initialValue,
+      updateQueue: new UpdateQueue()
+    }
+  }
+
+  const dispatch = action => {
+    // {type: 'ADD'}
+    let payload = reducer ? reducer(newHook.state, action) : action
+    newHook.updateQueue.enqueueUpdate(new Update(payload))
+    scheduleRoot()
+  }
+
+  workingProgressFiber.hooks[hookIndex] = newHook
+
+  return [newHook.state, dispatch]
+}
+
+export function useState(initialValue) {
+  return useReducer(null, initialValue)
+}
+```
