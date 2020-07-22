@@ -83,7 +83,8 @@ module.exports = {
             'principle/jsx-to-vdom',
             'principle/vdom-to-fiber',
             'principle/mini-react',
-            'principle/hooks'
+            'principle/hooks',
+            'principle/key'
           ]
         },
         {
