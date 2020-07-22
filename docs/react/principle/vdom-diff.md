@@ -247,6 +247,10 @@ function diffChildren(oldChildren, newChildren, patches) {
 export default diff
 ```
 
+所有都基于一个序号来实现，mountIndex 用于标识， from：
+
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/update-dom.png)
+
 ### patch.js ✨
 
 ```js
