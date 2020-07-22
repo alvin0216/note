@@ -57,3 +57,7 @@ ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p
 这样，就可以使用 Charles 中抓包 iPhone 发出的 HTTPS 请求并预览明文数据了。
 
 [iOS Charles 抓包](https://juejin.im/post/5c4ed14f6fb9a049ed3142cc)
+
+## 另外也推荐 whistle
+
+[【MAC 工具】手机抓包工具之 —— whistle](https://blog.csdn.net/weixin_42534940/article/details/88783455)
