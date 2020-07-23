@@ -18,6 +18,7 @@ date: 2019-10-16 09:07:08
 - [【神三元】 前端算法系统练习指南](http://47.98.159.95/leetcode-js/nav/)
 - [【Jaxu】 JavaScript 数据结构](https://www.cnblogs.com/jaxu/tag/JavaScript%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/)
 - [【RayJune】优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)
+- [写给前端的算法进阶指南，我是如何两个月零基础刷 200 题](https://juejin.im/post/5f05087cf265da22d466f60f)
 
 ## 排序算法复杂度速查
 

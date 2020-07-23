@@ -136,6 +136,10 @@ module.exports = {
           ]
         },
         {
+          title: '栈和链表',
+          children: ['stack-linkList/valid-parentheses']
+        },
+        {
           title: 'Tree 专题',
           children: ['tree/binarySearch', 'tree/rebuild-binary-tree']
         }
