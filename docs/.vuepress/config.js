@@ -137,7 +137,7 @@ module.exports = {
         },
         {
           title: '栈和链表',
-          children: ['stack-linkList/valid-parentheses']
+          children: ['stack-linkList/valid-parentheses', 'stack-linkList/reverseList']
         },
         {
           title: 'Tree 专题',
