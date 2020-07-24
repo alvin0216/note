@@ -71,6 +71,64 @@ const map = {
 <!-- 在遍历的过程中会寻找新的节点的 key 是否存在于这个 map 中，存在即可复用，不存在就只能创建一个新的了-->
 ```
 
+### diff
+
+#### 节点移动
+
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/diff-move.png)
+
+如图，新集合的 B D 不发生移动，只移动 A， C
+
+图示：
+
+| index | 节点 | oldIndex | maxIndex | 操作                                                                              |
+| ----- | ---- | -------- | -------- | --------------------------------------------------------------------------------- |
+| 0     | B    | 1        | 0        | oldIndex(1)>maxIndex(0),maxIndex=oldIndex，maxIndex 变为 1                        |
+| 1     | A    | 0        | 1        | <span class='orange'>oldIndex(0)<maxIndex(1),节点 A 移动至 index(1)的位置 </span> |
+| 2     | D    | 3        | 1        | oldIndex(3)>maxIndex(1),maxIndex=oldIndex，maxIndex 变为 3                        |
+| 3     | C    | 2        | 3        | <span class='orange'>oldIndex(2)<maxIndex(3),节点 C 移动至 index(3)的位置</span>  |
+
+- index： 新集合的遍历下标。
+- oldIndex：当前节点在老集合中的下标。
+- maxIndex：在新集合访问过的节点中，其在老集合的最大下标值。
+
+操作一栏中只比较 oldIndex 和 maxIndex：
+
+- 当 oldIndex>maxIndex 时，将 oldIndex 的值赋值给 maxIndex
+- 当 oldIndex=maxIndex 时，不操作
+- 当 oldIndex<maxIndex 时，将当前节点移动到 index 的位置
+
+#### 新增节点
+
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/diff-add.png)
+
+| index | 节点 | oldIndex | maxIndex | 操作                                                        |
+| ----- | ---- | -------- | -------- | ----------------------------------------------------------- |
+| 0     | B    | 1        | 0        | oldIndex(1)>maxIndex(0)，maxIndex=oldIndex，maxIndex 变为 1 |
+| 1     | E    | -        | 1        | oldIndex 不存在，添加节点 E 至 index(1)的位置               |
+| 2     | C    | 2        | 1        | oldIndex(2)>maxIndex(1),maxIndex=oldIndex，maxIndex 变为 2  |
+| 3     | A    | 0        | 2        | oldIndex(0)<maxIndex(2),节点 A 移动至 index(3)的位置        |
+
+最后还需要对旧集合进行循环遍历，找出新集合中没有的节点，此时发现存在这样的节点 D，因此删除节点 D，到此 diff 操作全部完成。
+
+#### 移动尾节点到头部
+
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/diff-unshift.png)
+
+实际我们只需对 D 执行移动操作，然而由于 D 在旧集合中的位置是最大的，导致其他节点的 oldIndex < maxIndex，造成 D 没有执行移动操作，而是 A、B、C 全部移动到 D 节点后面的现象。针对这种情况，官方建议：
+
+> 在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作。当节点数量过大或更新操作过于频繁时，这在一定程度上会影响 React 的渲染性能。
+
+## 总结
+
+- 如果是跨层级，只有新建节点和删除节点的操作，推荐尽量不要跨层级，跨层级可用 css display: none 等手段完成。
+- 在开发过程中，尽量减少类似将最后一个节点移动到列表首部的操作。
+
+---
+
+参考
+
+- [React 源码剖析系列 － 不可思议的 react diff](https://zhuanlan.zhihu.com/p/20346379)
 - [谈谈 React 中 Diff 算法的策略及实现](https://segmentfault.com/a/1190000016539430)
 - [浅谈 React 中的 diff](https://blog.csdn.net/sexy_squirrel/article/details/79801940)
 - [React 源码之 Diff 算法](https://segmentfault.com/a/1190000010686582)
