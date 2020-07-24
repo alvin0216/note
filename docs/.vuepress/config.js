@@ -103,6 +103,10 @@ module.exports = {
           ]
         },
         {
+          title: 'React router',
+          children: ['router/history-location']
+        },
+        {
           title: 'SSR',
           children: ['ssr/ssr-csr', 'ssr/isomorphism']
         }
