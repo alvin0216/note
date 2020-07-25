@@ -10,7 +10,9 @@ lsof -i:4040 # 查看 4040 端口占用情况
 kill pid # 释放进程
 ```
 
-## 配置别名
+## 终端
+
+### 配置别名
 
 ```bash
 vim ~/.bash_profile
@@ -20,10 +22,26 @@ alias start='npm run start'
 alias ip="ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p"
 ```
 
-## 切换 bash 与 zsh
+### 切换 bash 与 zsh
 
 - 切换 bash：chsh -s /bin/bash
 - 切换 zsh：chsh -s /bin/zsh
+
+如何安装 `zsh` + `oh-my-zsh` + `autojump` 自行百度
+
+### autojump
+
+```js
+j --stat // 查看权重
+
+改变权重值：
+j -i [权重] // 增加
+j -d [权重] // 减少
+
+j --purge // 去除不存在的路径
+
+jco c // 在文件管理器中打开一个子目录
+```
 
 ## homebrew
 
