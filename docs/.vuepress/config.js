@@ -104,7 +104,7 @@ module.exports = {
         },
         {
           title: 'React router',
-          children: ['router/history-location']
+          children: ['router/history-location', 'router/hash-router']
         },
         {
           title: 'SSR',
