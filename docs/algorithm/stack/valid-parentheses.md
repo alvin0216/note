@@ -1,5 +1,5 @@
 ---
-title: 有效的括号
+title: 栈-有效的括号
 date: 2020-05-08 15:27:10
 ---
 
@@ -27,7 +27,7 @@ leetcode [20. 有效的括号](https://leetcode-cn.com/problems/valid-parenthese
 输出: false
 ```
 
-::: details 答案与解析
+:::tip
 
 利用栈。
 

@@ -65,6 +65,10 @@ module.exports = {
         {
           title: '设计模式',
           children: ['design-patterns/event-emitter', 'design-patterns/proxy']
+        },
+        {
+          title: '补充篇',
+          children: ['others/bit-operation']
         }
       ],
       // === react
@@ -141,7 +145,11 @@ module.exports = {
         },
         {
           title: '栈和链表',
-          children: ['stack-linkList/valid-parentheses', 'stack-linkList/reverseList']
+          children: [
+            'stack/convertToBase', // 进制转换
+            'stack/valid-parentheses',
+            'linkList/reverseList'
+          ]
         },
         {
           title: 'Tree 专题',
