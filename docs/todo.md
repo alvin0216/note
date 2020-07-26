@@ -2,11 +2,14 @@
 # sidebar: false
 ---
 
-- React Fiber Learning
-  - from muke
-- React SSR Learning
-  - [React SSR 服务端渲染原理解析与同构实践](https://juejin.im/book/5d8ae0c2f265da5bb065c6f4)
-- Browser principle
-  - [极客时间 浏览器工作原理与实践](https://time.geekbang.org/column/article/151370?utm_source=pinpaizhuanqu&utm_medium=geektime&utm_campaign=guanwang&utm_term=guanwang&utm_content=0511)
-- webpack in-depth
-- oAuth2 原理
+- 阅读 react 源码
+- 深入学习 ssr
+- 再实现一版自己的项目（spa 首屏加载过慢、不利于 seo）
+  - 自己对 node 的掌握只是简单的业务流程
+- 工程方面
+  - webpak 的原理的理解 更细致的打包优化
+  - nginx （只是会用）
+- typescript 学习以及熟练掌握
+- 对 css 掌握不够系统
+- 性能优化！！！对网络性能，高并发的把控、浏览器原理
+- 单元测试，集成等..

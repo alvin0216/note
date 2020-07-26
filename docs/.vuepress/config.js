@@ -231,6 +231,7 @@ module.exports = {
           children: ['torture/process', 'torture/rendering']
         }
       ],
+      '/interviews/': ['', 'promise', 'less-sass', 'closure', 'react-vue'],
       // js
       '/': [
         {
