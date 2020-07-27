@@ -264,7 +264,6 @@ module.exports = {
           children: [
             'webpack/webpack-module',
             // ...
-            'webpack/module',
             'webpack/basic-environment'
           ]
         },
