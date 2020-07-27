@@ -261,7 +261,12 @@ module.exports = {
         },
         {
           title: 'Webpack',
-          children: ['webpack/module', 'webpack/basic-environment']
+          children: [
+            'webpack/webpack-module',
+            // ...
+            'webpack/module',
+            'webpack/basic-environment'
+          ]
         },
         {
           title: 'GIT & 运维',
