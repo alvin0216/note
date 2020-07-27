@@ -257,7 +257,7 @@ module.exports = {
         },
         {
           title: 'Coding',
-          children: ['coding/oAuth2', 'coding/oAuth2-github']
+          children: ['coding/oAuth2', 'coding/oAuth2-github', 'coding/axios-cancel']
         },
         {
           title: 'Webpack',
