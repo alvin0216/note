@@ -149,7 +149,8 @@ module.exports = {
             'stack/convertToBase', // 进制转换
             'stack/valid-parentheses',
             'queue/933',
-            'linkList/reverseList'
+            'linkList/reverseList',
+            'linkList/2'
           ]
         },
         {
