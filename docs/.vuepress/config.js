@@ -148,6 +148,7 @@ module.exports = {
           children: [
             'stack/convertToBase', // 进制转换
             'stack/valid-parentheses',
+            'queue/933',
             'linkList/reverseList'
           ]
         },
@@ -263,7 +264,8 @@ module.exports = {
           title: 'Webpack',
           children: [
             'webpack/webpack-module',
-            // ...
+            'webpack/static',
+            //
             'webpack/basic-environment'
           ]
         },
