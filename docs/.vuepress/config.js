@@ -150,7 +150,8 @@ module.exports = {
             'stack/valid-parentheses',
             'queue/933',
             'linkList/reverseList',
-            'linkList/2'
+            'linkList/2',
+            'linkList/141'
           ]
         },
         {
