@@ -209,3 +209,220 @@ new MiniCssExtractPlugin({
 ```
 
 注意要关闭 `HotModuleReplacementPlugin`, 这是生产环境而不是开发环境。
+
+### 删除冗杂代码(tree-shaking)
+
+```js
+/*
+  tree shaking：去除无用代码
+    前提：1. 必须使用ES6模块化  2. 开启production环境
+    作用: 减少代码体积
+
+    在package.json中配置 
+      "sideEffects": false 所有代码都没有副作用（都可以进行tree shaking）
+        问题：可能会把css / @babel/polyfill （副作用）文件干掉
+      "sideEffects": ["*.css", "*.less"]
+*/
+```
+
+<span class='pink'>demo</span>
+
+```js
+// test.js
+export const add = (a, b) => a + b
+export const minus = (a, b) => a - b
+
+// index.js
+import { add } from './test'
+console.log(add(1, 2))
+```
+
+这里使用 使用 ES6 模块化，开启 `production` 环境打包后会发现效果出来了。`tree-shaking` 的知识下次再单独研究，因为有很多值得思考的地方。
+
+相关链接：
+
+- [Tree-Shaking 性能优化实践 - 原理篇](https://juejin.im/post/5a4dc842518825698e7279a9)
+- [Tree-Shaking 性能优化实践 - 实践篇](https://juejin.im/post/5a4dca1d518825128654fa78)
+- [如何使用 Tree-shaking 减少代码构建体积](https://juejin.im/post/5e54d5e7e51d4526c932b60f)
+
+### 代码分割(code split)
+
+常用有拆包
+
+```js
+/*
+  1. 可以将node_modules中代码单独打包一个chunk最终输出
+  2. 自动分析多入口chunk中，有没有公共的文件。如果有会打包成单独一个chunk
+*/
+optimization: {
+  splitChunks: {
+    chunks: 'all'
+  }
+}
+```
+
+什么作用呢？比如 `index.js` 引入 `jquery`
+
+```js
+import $ from 'jquery'
+
+console.log($)
+console.log(123)
+```
+
+```js
+// 不加 splitChunks
+main.0d1a4b0979.js   88.9 KiB
+
+// 加了 splitChunks
+main.35ad2e97e5.js           1.6 KiB
+vendors~main.17b2d7e07c.js   87.9 KiB
+```
+
+<span class='pink'>如果要让某个文件被单独打包成一个 chunk</span>
+
+```js
+/*
+  通过js代码，让某个文件被单独打包成一个chunk
+  import动态导入语法：能将某个文件单独打包
+*/
+import(/* webpackChunkName: 'test' */ './test')
+  .then(({ mul, count }) => {
+    // 文件加载成功~
+    console.log(mul(2, 5))
+  })
+  .catch(() => {
+    console.log('文件加载失败~')
+  })
+```
+
+### 懒加载/预加载
+
+```js
+// import { mul } from './test'
+
+document.getElementById('btn').onclick = function() {
+  // 懒加载~：当文件需要使用时才加载~
+  // 预加载 prefetch：会在使用之前，提前加载js文件
+  // 正常加载可以认为是并行加载（同一时间加载多个文件）
+  // 预加载 prefetch：等其他资源加载完毕，浏览器空闲了，再偷偷加载资源
+  import(/* webpackChunkName: 'test', webpackPrefetch: true */ './test').then(({ mul }) => {
+    console.log(mul(4, 5))
+  })
+}
+```
+
+### 多进程打包
+
+下载 `thead-loader`，打包 js
+
+```js
+{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: [
+    /*
+      开启多进程打包。
+      进程启动大概为600ms，进程通信也有开销。
+      只有工作消耗时间比较长，才需要多进程打包
+    */
+    {
+      loader: 'thread-loader',
+      options: {
+        workers: 2 // 进程2个
+      }
+    },
+    {
+      loader: 'babel-loader',
+      options: {
+        // 开启babel缓存
+        // 第二次构建时，会读取之前的缓存
+        cacheDirectory: true
+      }
+    }
+  ]
+}
+```
+
+相关文章：[Webpack 升级优化小记：happyPack+dll 初体验](https://juejin.im/post/5bfa696d51882579117f7d26)
+
+### externals
+
+比如我们用了 `jquery` 模块，但是这个 `jquery` 是通过 `cdn` 引入的。所以不希望 `webpack` 也将 `jquery` 打包进来。就需要加 `externals`
+
+```JSX
+// index.html
+<script src='https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js'></script>
+
+// index.js
+import $ from 'jquery'
+
+console.log($)
+```
+
+`webpack` 配置：
+
+```js
+externals: {
+  // 拒绝jQuery被打包进来
+  jquery: 'jQuery'
+}
+```
+
+### 打包第三方库(dll)
+
+项目中难免会使用一些第三方的库，除非版本升级，一般情况下，这些库的代码不会发生较大变动，这也就意味着这些库没有必要每次都参与到构建和 rebuild 的过程中。如果能把这部分代码提取出来并提前构建好，那么在构建项目的时候就可以直接跳过第三方库，进一步提升效率。
+
+<span class='pink'>换言之即清理不必要打包的文件</span>
+
+1. `新建 webpack.dll.js`
+
+```js
+/*
+  使用dll技术，对某些库（第三方库：jquery、react、vue...）进行单独打包
+    当你运行 webpack 时，默认查找 webpack.config.js 配置文件
+    需求：需要运行 webpack.dll.js 文件
+      --> webpack --config webpack.dll.js
+*/
+
+const { resolve } = require('path')
+const webpack = require('webpack')
+
+module.exports = {
+  entry: {
+    // 最终打包生成的[name] --> jquery
+    // ['jquery'] --> 要打包的库是jquery
+    jquery: ['jquery']
+  },
+  output: {
+    filename: '[name].js',
+    path: resolve(__dirname, 'dll'),
+    library: '[name]_[hash]' // 打包的库里面向外暴露出去的内容叫什么名字
+  },
+  plugins: [
+    // 打包生成一个 manifest.json --> 提供和jquery映射
+    new webpack.DllPlugin({
+      name: '[name]_[hash]', // 映射库的暴露的内容名称
+      path: resolve(__dirname, 'dll/manifest.json') // 输出文件路径
+    })
+  ],
+  mode: 'production'
+}
+```
+
+打包好 dll 文件，通过 `add-asset-html-webpack-plugin'` 引入：
+
+```js
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin')
+
+plugins: [
+  // 告诉webpack哪些库不参与打包，同时使用时的名称也得变~
+  new webpack.DllReferencePlugin({
+    manifest: resolve(__dirname, 'dll/manifest.json')
+  }),
+  // 将某个文件打包输出去，并在html中自动引入该资源
+  new AddAssetHtmlWebpackPlugin({
+    filepath: resolve(__dirname, 'dll/jquery.js')
+  })
+]
+```
