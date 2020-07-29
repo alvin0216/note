@@ -152,7 +152,7 @@ module.exports = {
             'linkList/reverseList',
             'linkList/2',
             'linkList/141',
-            'linkList/use'
+            'linkList/summary'
           ]
         },
         {
