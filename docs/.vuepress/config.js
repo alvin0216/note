@@ -266,7 +266,8 @@ module.exports = {
           title: 'Webpack',
           children: [
             'webpack/webpack-module',
-            'webpack/dev-env'
+            'webpack/dev-env',
+            'webpack/optimization'
             //
           ]
         },
