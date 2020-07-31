@@ -292,7 +292,7 @@ module.exports = {
         },
         {
           title: '性能优化',
-          children: ['performance/lazyload-img']
+          children: ['performance/keyword', 'performance/lazyload-img']
         }
         // {
         //   title: 'Question',
