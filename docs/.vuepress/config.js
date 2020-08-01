@@ -268,7 +268,8 @@ module.exports = {
           children: [
             'webpack/webpack-module',
             'webpack/dev-env',
-            'webpack/optimization'
+            'webpack/optimization',
+            'webpack/commonjs'
             //
           ]
         },
