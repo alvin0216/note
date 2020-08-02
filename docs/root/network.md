@@ -5,7 +5,7 @@ date: 2020-07-02 22:03:47
 
 ## 网络面板
 
-![](../../assets/browser/chrome/network.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/network.png)
 
 ## 查看 Timing
 
@@ -13,7 +13,7 @@ date: 2020-07-02 22:03:47
 
 先看看 HTTP 的请求流程：
 
-![](../../assets/browser/chrome/http.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/http.png)
 
 发起一个 HTTP 请求之后，浏览器首先查找缓存，如果缓存没有命中，那么继续发起 DNS 请求获取 IP 地址，然后利用 IP 地址和服务器端建立 TCP 连接，再发送 HTTP 请求，等待服务器响应；不过，如果服务器响应头中包含了重定向的信息，那么整个流程就需要重新再走一遍。这就是在浏览器中一个 HTTP 请求的基础流程。
 
@@ -24,8 +24,8 @@ date: 2020-07-02 22:03:47
 
 <div class='flex-img'>
 
-![](../../assets/browser/chrome/timing.png)
-![](../../assets/browser/chrome/timing2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing2.png)
 
 </div>
 
@@ -89,6 +89,6 @@ date: 2020-07-02 22:03:47
 
 通过下载信息概要面板，你可以查看触发这两个事件所花费的时间。
 
-![](../../assets/browser/chrome/network-summary.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/network-summary.png)
 
 参考 [Chrome 开发者工具：利用网络面板做性能分析](https://time.geekbang.org/column/article/138844?code=NiCoaK-xsW6tErzSr6ZGB3jwgne3Pqg7v1UPGf9ApOI)

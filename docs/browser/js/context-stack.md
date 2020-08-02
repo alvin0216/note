@@ -38,7 +38,7 @@ addAll(3, 6)
 
 JS 执行代码后产生的执行上下文栈如图所示：
 
-![](../../../assets/browser/js/stack/6.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/stack/6.png)
 
 <blockquote class='box'>
 
@@ -104,10 +104,10 @@ ECStack.pop()
 
 1. **打断点**
 
-![](../../../assets/browser/js/stack/9.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/stack/9.png)
 
 2. **console.trace**
 
 使用 console.trace() 来输出当前的函数调用关系：
 
-![](../../../assets/browser/js/stack/10.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/stack/10.png)

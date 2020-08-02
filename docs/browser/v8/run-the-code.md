@@ -18,7 +18,7 @@ date: 2020-06-15 21:54:36
 let myName = '极客时间'
 ```
 
-![](../../../assets/browser/v8/9.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/9.png)
 
 即解析成了四个 token，这就是词法分析的作用。
 
@@ -39,7 +39,7 @@ myName = 'geektime'
 foo()
 ```
 
-![](../../../assets/browser/v8/10.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/10.png)
 
 当生成了 AST 之后，编译器/解释器后续的工作都要依靠 AST 而不是源代码。
 
@@ -59,7 +59,7 @@ AST 是非常重要的一种数据结构，在很多项目中有着广泛的应�
 
 和原来不同的是，现在不用一次性将全部的字节码都转换成机器码，而是通过解释器来逐行执行字节码，省去了生成二进制文件的操作，这样就大大降低了内存的压力。
 
-![](../../../assets/browser/v8/11.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/11.png)
 
 从图中可以看出，机器码所占用的空间远远超过了字节码，所以使用字节码可以减少系统的内存使用。
 
@@ -71,7 +71,7 @@ AST 是非常重要的一种数据结构，在很多项目中有着广泛的应�
 
 你可以结合下图看看 JIT 的工作过程：
 
-![](../../../assets/browser/v8/jit.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/jit.png)
 
 ---
 

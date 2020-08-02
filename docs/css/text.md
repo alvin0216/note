@@ -73,7 +73,7 @@ date: 2020-07-03 11:02:26
 
 效果
 
-<img src='../../assets/css/note/word-break.png' class='small center' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/word-break.png' class='small center' />
 
 <span class='orange'>white-space</span> 属性设置如何处理元素内的空白
 

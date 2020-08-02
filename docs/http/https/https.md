@@ -25,7 +25,7 @@ HTTPS 就是为了解决这三大风险而设计的。希望达到
 
 HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套多了一层 `SSL/TSL` 协议。
 
-![](../../../assets/http/series/https.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/https.png)
 
 :::tip SSL/TSL
 
@@ -40,7 +40,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 - 篡改：通过摘要算法生成唯一值，只要有修改立马就可以发现。
 - 身份证书：则是通过数字签名和 CA 证书。
 
-![](../../../assets/http/series/ssl.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/ssl.png)
 
 ## 防窃听 <Badge text='不让黑客知道报文里面有什么信息' />
 
@@ -52,7 +52,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面是一个通过 `AES` 算法加密的传输过程：
 
-![](../../../assets/http/https/symmetric-encryption.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/symmetric-encryption.png)
 
 这样黑客截获了密文后也无法得知里面的内容，除非他也有密钥。
 
@@ -80,7 +80,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面是非对称加密的过程：
 
-![](../../../assets/http/https/asymmetric.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/asymmetric.png)
 
 由于黑客不知道后面的密钥是什么，所以也解密不出来。但是非对称加密也面临着风险：
 
@@ -95,7 +95,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面也是一个混合加密的例子：
 
-![](../../../assets/http/https/hybrid-encryption.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/hybrid-encryption.png)
 
 1. 客户端索要公钥
 2. 服务端返回公钥
@@ -133,7 +133,7 @@ HTTPS 第二个目的是对网站服务器进行真实身份认证
 
 其实最后还有一个很关键的点是 我们刚刚所有的假设都基于 客户端的公钥是服务器传递过来的 那如果攻击者伪造了服务器的公钥怎么办呢
 
-![](../../../assets/http/https/attack.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/attack.png)
 
 解决上述身份验证问题的关键是确保获取的公钥途径是合法的，能够验证服务器的身份信息，为此需要引入权威的第三方机构 CA。
 
@@ -151,7 +151,7 @@ HTTPS 第二个目的是对网站服务器进行真实身份认证
 
 数字证书和 CA 就是用来解决：**让客户端拿到真正的公钥**！
 
-![](../../../assets/http/https/ca.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/ca.png)
 
 1. 服务方 S 向第三方机构 CA 提交公钥、组织信息、个人信息(域名)等信息并申请认证;
 2. CA 通过线上、线下等多种手段验证申请者提供信息的真实性，如组织是否存在、企业是否合法，是否拥有域名的所有权等;
@@ -174,7 +174,7 @@ HTTPS 第二个目的是对网站服务器进行真实身份认证
 
 ### 整个流程
 
-![](../../../assets/http/https/ca2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/ca2.png)
 
 参考
 

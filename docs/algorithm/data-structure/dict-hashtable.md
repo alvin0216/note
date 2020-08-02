@@ -146,7 +146,7 @@ console.log(es6Map.entries()) // [Map Iterator] { [ A: 'A.com' ], [ C: 'C.com' ]
 
 下面是散列表的数据结构示意图：
 
-![](../../../assets/algorithm/dict-hashtable/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/dict-hashtable/1.png)
 
 下面是我们散列函数 `loseloseHashCode()` 的实现代码：
 
@@ -269,7 +269,7 @@ hash.put('Nathan', 'nathan@email.com')
 
 所谓分离链接，就是将原本存储在哈希表中的值改成`链表`，这样在哈希表的同一个位置上，就可以存储多个不同的值。链表中的每一个元素，同时存储了 `key` 和 `value`。示意图如下：
 
-![](../../../assets/algorithm/dict-hashtable/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/dict-hashtable/2.png)
 
 这样，当不同的 `key` 通过散列函数计算出相同的 `hash` 值时，我们只需要找到数组中对应的位置，然后往其中的链表添加新的节点即可，从而有效地避免了散列冲突。为了实现这种数据结构，我们需要定义一个新的辅助类 `ValuePair`，它的内容如下：
 
@@ -555,7 +555,7 @@ true
 
 避免散列冲突的另一种方法是线性探查。当向哈希数组中添加某一个新元素时，如果该位置上已经有数据了，就继续尝试下一个位置，直到对应的位置上没有数据时，就在该位置上添加数据。我们将上面的例子改成线性探查的方式，存储结果如下图所示：
 
-![](../../../assets/algorithm/dict-hashtable/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/dict-hashtable/3.png)
 
 现在我们不需要单向链表 `LinkedList` 类了，但是 `ValuePair` 类仍然是需要的。同样的，我们的 `HashTableLinearProbing` 类继承自 `HashTable` 类，完整的代码如下：
 

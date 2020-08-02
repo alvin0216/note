@@ -7,7 +7,7 @@ date: 2020-05-29 11:24:17
 
 今天要讲的则是比较偏向于理论的各种 HTTP 相关协议，重点是 TCP/IP、DNS、URI、HTTPS 等，希望能够帮你理清楚它们与 HTTP 的关系。
 
-![](../../../assets/http/series/http-overview3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-overview3.png)
 
 ## TCP/IP
 

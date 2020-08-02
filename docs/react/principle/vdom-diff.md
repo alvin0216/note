@@ -22,9 +22,9 @@ patch(el, patches) // 打补丁 --> 更新 dom
 
 最开始经典的<span class='orange'>深度优先遍历 DFS 算法</span>，其复杂度为 `O(n^3)`，存在高昂的 `diff` 成本，这意味着 1000 个节点就要进行数 10 亿次的比较，这是非常消耗性能的。react 大胆的将 diff 的复杂度从 O(n^3)降到了 O(n)，
 
-| 深度优先遍历的方式                                                     | 广度优先遍历的方式                                                       | DFS & BFS                                  |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------ |
-| ![](https://gitee.com/alvin0216/cdn/raw/master/img/react/dfs-diff.png) | ![](https://gitee.com/alvin0216/cdn/raw/master/img/react/react-diff.png) | ![](../../../assets/algorithm/graph/7.png) |
+| 深度优先遍历的方式                                                     | 广度优先遍历的方式                                                       | DFS & BFS                                                                 |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------- |
+| ![](https://gitee.com/alvin0216/cdn/raw/master/img/react/dfs-diff.png) | ![](https://gitee.com/alvin0216/cdn/raw/master/img/react/react-diff.png) | ![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/7.png) |
 
 react 采用了同级的比较:
 

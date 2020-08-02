@@ -5,7 +5,7 @@ date: 2020-06-10 16:01:15
 
 下面的这张图对比了 HTTP/1、HTTPS 和 HTTP/2 的协议栈，你可以清晰地看到，HTTP/2 是建立在“HPack”“Stream”“TLS1.2”基础之上的，比 HTTP/1、HTTPS 复杂了一些。
 
-![](../../../assets/http/http2/http2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/http2.png)
 
 虽然 HTTP/2 的底层实现很复杂，但它的“语义”还是简单的 HTTP/1，之前学习的知识不会过时，仍然能够用得上。
 
@@ -39,7 +39,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n
 
 下面的这个表格列出了“**静态表**”的一部分，这样只要查表就可以知道字段名和对应的值，比如数字“2”代表“GET”，数字“8”代表状态码 200。
 
-![](../../../assets/http/http2/hpack.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/hpack.png)
 
 但如果表里只有 Key 没有 Value，或者是自定义字段根本找不到该怎么办呢？
 
@@ -47,7 +47,7 @@ PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n
 
 比如说，第一次发送请求时的“user-agent”字段长是一百多个字节，用**哈夫曼压缩编码**发送之后，客户端和服务器都更新自己的动态表，添加一个新的索引号“65”。那么下一次发送的时候就不用再重复发那么多字节了，只要用一个字节发送编号就好。
 
-![](../../../assets/http/http2/dynamic-Table.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/dynamic-Table.png)
 
 你可以想象得出来，随着在 HTTP/2 连接上发送的报文越来越多，两边的“字典”也会越来越丰富，最终每次的头部字段都会变成一两个字节的代码，原来上千字节的头用几十个字节就可以表示了，压缩效果比 gzip 要好得多。
 
@@ -59,7 +59,7 @@ HTTP/2 的帧结构有点类似 TCP 的段或者 TLS 里的记录，但报头很
 
 二进制的格式也保证了不会有歧义，而且使用位运算能够非常简单高效地解析。
 
-![](../../../assets/http/http2/binary-frame.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/binary-frame.png)
 
 帧开头是 3 个字节的**长度**（但不包括头的 9 个字节），默认上限是 2^14，最大是 2^24，也就是说 HTTP/2 的帧通常不超过 16K，最大是 16M。
 
@@ -75,7 +75,7 @@ HTTP/2 总共定义了 10 种类型的帧，但一个字节可以表示最多 25
 
 好了，把二进制头理清楚后，我们来看一下 Wireshark 抓包的帧实例：
 
-![](../../../assets/http/http2/wireshark-frame.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/wireshark-frame.png)
 
 在这个帧里，开头的三个字节是“00010a”，表示数据长度是 266 字节。
 
@@ -97,7 +97,7 @@ HTTP/2 总共定义了 10 种类型的帧，但一个字节可以表示最多 25
 
 比如在这次的 Wireshark 抓包里，就有“0、1、3”一共三个流，实际上就是分配了三个流 ID 号，把这些帧按编号分组，再排一下队，就成了流。
 
-![](../../../assets/http/http2/http-wireshark.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/http2/http-wireshark.png)
 
 在概念上，一个 HTTP/2 的流就等同于一个 HTTP/1 里的“请求 - 应答”。在 HTTP/1 里一个“请求 - 响应”报文来回是一次 HTTP 通信，在 HTTP/2 里一个流也承载了相同的功能。
 

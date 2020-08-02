@@ -33,7 +33,7 @@ var bar = function() {
 
 为了直观理解，你可以参考下图：
 
-![](../../../assets/browser/js/function-promotion.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/function-promotion.png)
 
 好了，理解了声明和赋值操作，那接下来我们就可以聊聊什么是变量提升了。
 
@@ -68,7 +68,7 @@ myname = '极客时间'
 
 为了模拟变量提升的效果，我们对代码做了以下调整，如下图：
 
-![](../../../assets/browser/js/simulation-variable-promotion.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/simulation-variable-promotion.png)
 
 从图中可以看出，对原来的代码主要做了两处调整：
 
@@ -85,7 +85,7 @@ myname = '极客时间'
 
 一段 JavaScript 代码在执行之前需要被 JavaScript 引擎编译，编译完成之后，才会进入执行阶段。大致流程你可以参考下图：
 
-![](../../../assets/browser/js/run.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/run.png)
 
 以这段代码为例
 
@@ -121,7 +121,7 @@ myname = '极客时间'
 
 下面我们就可以把 JavaScript 的执行流程细化，如下图所示:
 
-![](../../../assets/browser/js/compile.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/compile.png)
 
 从上图可以看出，输入一段代码，经过编译后，会生成两部分内容：**执行上下文（Execution context）**和**可执行代码**。
 

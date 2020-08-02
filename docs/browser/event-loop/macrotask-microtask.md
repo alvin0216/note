@@ -31,7 +31,7 @@ setTimeout(timerCallback, 0)
 
 但实际情况是我们不能控制的，比如在你调用 `setTimeout` 来设置回调任务的间隙，消息队列中就有可能被插入很多系统级的任务。你可以打开 `Performance` 工具，来记录下这段任务的执行过程，也可参考文中我记录的图片：
 
-![](../../../assets/browser/eventloop/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/1.png)
 
 `setTimeout` 函数触发的回调函数都是宏任务，如图中，左右两个黄色块就是 `setTimeout` 触发的两个定时器任务。
 
@@ -73,8 +73,8 @@ setTimeout(timerCallback, 0)
 
 为了直观地理解什么是微任务，你可以参考下面的示意图:
 
-![](../../../assets/browser/eventloop/2.png)
-![](../../../assets/browser/eventloop/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/3.png)
 
 该示意图是在执行一个 ParseHTML 的宏任务，在执行过程中，遇到了 JavaScript 脚本，那么就暂停解析流程，进入到 JavaScript 的执行环境。从图中可以看到，全局上下文中包含了微任务列表。
 

@@ -29,7 +29,7 @@ date: 2020-03-01 16:42:26
 
 效果：
 
-![](../../assets/css/bfc/bfc1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/bfc/bfc1.png)
 
 在这里父元素的高度不是 110px，而是 100px，在这里发生了**高度坍塌**。
 
@@ -54,7 +54,7 @@ date: 2020-03-01 16:42:26
 </section
 ```
 
-![](../../assets/css/bfc/bfc2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/bfc/bfc2.png)
 
 可以看到 1 和 2,2 和 3 之间的间距不是 50px，发生了**边距重叠是取了它们之间的最大值** 30px。
 
@@ -76,7 +76,7 @@ date: 2020-03-01 16:42:26
 <p>3</p>
 ```
 
-![](../../assets/css/bfc/bfc3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/bfc/bfc3.png)
 
 ## BFC
 
@@ -136,7 +136,7 @@ BFC 就是用来解决这个问题的。解决上述问题的其中一个办法�
 </style>
 ```
 
-![](../../assets/css/bfc/float2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/bfc/float2.png)
 
 **解决方案**
 

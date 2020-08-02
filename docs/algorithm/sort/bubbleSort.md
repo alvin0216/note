@@ -12,7 +12,7 @@ date: 2020-05-19 15:05:55
 - 针对所有的元素重复以上的步骤，除了最后一个。
 - 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
 
-![](../../../assets/algorithm/sort/bubbleSort.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/sort/bubbleSort.png)
 
 ## 第一版：基本实现
 

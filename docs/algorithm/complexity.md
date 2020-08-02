@@ -151,6 +151,6 @@ function fn(n) {
 
 ## 内容小节
 
-![](../../assets/algorithm/complexity/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/complexity/1.png)
 
 用一张图来表示各个复杂度随着数据量的增长趋势，让我们能更直观的感受到不同算法之间的性能差异。一些基本的算法基本上复杂度都是图上的这几个。在看代码的时候，多思考，也可以多想想自己现在写的代码时间空间复杂度是多少，是否能够降低，长此以往，能够大大提升自己的代码质量和代码性能。

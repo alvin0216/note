@@ -29,7 +29,7 @@ c1.say()
 
 我们可以看到子类的实例 `c1.__proto` 可以访问到父类原型上的方法。
 
-![](../../../assets/javascript/extends/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/extends/1.png)
 
 :::warning 缺点
 
@@ -144,7 +144,7 @@ c2.say() // 1, 2, 3
 
 打印实例 `c1`:
 
-![](../../../assets/javascript/extends/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/extends/2.png)
 
 我们发现 `Child.prototype` 和 `c1` 都有一个熟悉 `arr`, 这就造成重复调用了。
 

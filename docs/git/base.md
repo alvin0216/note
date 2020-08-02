@@ -61,7 +61,7 @@ git co dev # 快速切换到 dev 分支
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 ```
 
-效果：![](../../assets/git/log.png)
+效果：![](https://gitee.com/alvin0216/cdn/raw/master/img/git/log.png)
 
 ## 配置 ssh
 

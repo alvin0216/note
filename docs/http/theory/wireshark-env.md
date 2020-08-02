@@ -7,7 +7,7 @@ date: 2020-05-31 00:51:06
 
 软件开始界面：
 
-![](../../../assets/http/series/wireshark.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/wireshark.png)
 
 ## 抓取本地数据
 
@@ -15,4 +15,4 @@ date: 2020-05-31 00:51:06
 
 使用 `http-server` 开一个静态服务器, 打开端口
 
-![](../../../assets/http/series/wireshark2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/wireshark2.png)

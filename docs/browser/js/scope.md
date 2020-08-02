@@ -131,7 +131,7 @@ LexicalEnvironment:
   b -> undefined
 ```
 
-![](../../../assets/browser/js/scope/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/3.png)
 
 通过上图，我们可以得出以下结论：
 
@@ -155,7 +155,7 @@ LexicalEnvironment:
   b -> 2
 ```
 
-![](../../../assets/browser/js/scope/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/4.png)
 
 从图中可以看出，当进入函数的作用域块时，作用域块中通过 let 声明的变量，会被存放在词法环境的一个单独的区域中，这个区域中的变量并不影响作用域块外面的变量，比如在作用域外面声明了变量 b，在该作用域块内部也声明了变量 b，当执行到作用域内部时，它们都是独立的存在。
 
@@ -165,7 +165,7 @@ LexicalEnvironment:
 
 这样一个变量查找过程就完成了，你可以参考下图：
 
-![](../../../assets/browser/js/scope/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/5.png)
 
 从上图你可以清晰地看出变量查找流程，不过要完整理解查找变量或者查找函数的流程，就涉及到作用域链了，这个我们会在下篇文章中做详细介绍。
 

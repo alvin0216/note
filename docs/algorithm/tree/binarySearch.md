@@ -57,7 +57,7 @@ const mid = Math.floor(min + (max - min) / 2)
 
 我们可以简单推导一下：
 
-![](../../../assets/algorithm/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/2.png)
 
 代码更新为
 
@@ -127,15 +127,13 @@ function binarySearch(arr, target) {
  * @param {number} target
  * @return {number[]}
  */
-var searchRange = function(nums, target) {
-}
+var searchRange = function(nums, target) {}
 ```
-
 
 :::details 答案
 
 ```js
-var searchRange = function (nums, target) {
+var searchRange = function(nums, target) {
   let min = 0,
     max = nums.length - 1
 
@@ -157,4 +155,5 @@ var searchRange = function (nums, target) {
   return [-1, -1]
 }
 ```
+
 :::

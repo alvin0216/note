@@ -5,7 +5,7 @@ date: 2020-05-06 16:19:57
 
 ## 写在前面
 
-![](../../../assets/javascript/closure/0.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/closure/0.png)
 
 ## 什么是闭包？
 
@@ -45,7 +45,7 @@ function Fn() {
 }
 ```
 
-![](../../../assets/javascript/closure/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/closure/1.png)
 
 比如在函数中定义一个变量，只能在函数这个私有作用域中使用（也就是封闭空间）。只要超出了这个作用域，就找不到该变量了。
 
@@ -55,7 +55,7 @@ function Fn() {
 
 内存回收机制就是不在用到的内存，我们系统就自动进行回收从而清理出空间供其他程序使用。那回收的规则是什么？
 
-![](../../../assets/javascript/closure/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/closure/2.png)
 
 内部函数引用着外部的函数的变量，外部的函数尽管执行完毕，作用域也不会销毁。从而形成了一种不销毁的私有作用域。
 
@@ -78,7 +78,7 @@ function Fn() {
 
 动画实现：
 
-![](../../../assets/javascript/closure/3.gif)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/javascript/closure/3.gif)
 
 ## 闭包的应用
 

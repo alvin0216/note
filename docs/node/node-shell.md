@@ -7,7 +7,7 @@ date: 2020-01-09 09:50:33
 
 需求：执行 `node` 文件，在控制台输入 文章标题、文章分类、以及文件名后自动创建 `MD` 文件。实现的功能如下：
 
-![](../../assets/node/node-shell.gif)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/node/node-shell.gif)
 
 创建的内容如下：
 

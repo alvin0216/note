@@ -7,7 +7,7 @@ date: 2020-05-08 15:56:34
 
 队列遵循的是 FIFO，也就是先进先出的原则。队列从尾部添加新元素，从顶部移除元素，最新添加的元素必须排列在队列的末尾。
 
-![](../../../assets/algorithm/stack/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/stack/5.png)
 
 :::details 队列的方法
 

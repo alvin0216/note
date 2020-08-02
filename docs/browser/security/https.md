@@ -3,7 +3,7 @@ title: HTTPS 让数据传输更安全
 date: 2020-06-09 13:10:34
 ---
 
-![](../../../assets/browser/security/https.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/security/https.png)
 
 ## 概述
 

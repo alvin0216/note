@@ -90,7 +90,7 @@ function performUnitOfWork() {
 
 <details>
   <summary>注意 requestIdleCallback 兼容性较差，因此 React 专门写了一套任务调度来实现这个 API。</summary>
-  <img src='../../../assets/browser/requestIdleCallback.png' />
+  <img src='https://gitee.com/alvin0216/cdn/raw/master/img/browser/requestIdleCallback.png' />
 </details>
 
 ## 页面流畅与 FPS

@@ -12,13 +12,13 @@ Flex 容器属性
 
 flex-direction属性和flex-wrap属性的简写形式，默认值为rownowrapflex-flow: <flex-direction> || <flex-wrap>;
 
-主轴对齐方式：起点对齐（默认）|终点对齐|居中对齐|两端对齐| 分散对齐
+主轴对齐方式：起点对齐（默认）|终点对齐|居中对齐|两端对齐|分散对齐
 justify-content: flex-start | flex-end | center | space-between | space-around;
 
-交叉轴对齐方式：拉伸对齐（默认）|起点对齐|终点对齐|居中对齐| 第一行文字的基线对齐
+交叉轴对齐方式：拉伸对齐（默认）|起点对齐|终点对齐|居中对齐|第一行文字的基线对齐
 align-items: stretch | flex-start | flex-end | center | baseline;
 
-多根轴线对齐方式：拉伸对齐（默认）|起点对齐|终点对齐|居中对齐| 两端对齐 | 分散对齐
+多根轴线对齐方式：拉伸对齐（默认）|起点对齐|终点对齐|居中对齐|两端对齐 | 分散对齐
 align-content: stretch | flex-start | flex-end | center | space-between | space-around;
 ```
 
@@ -128,7 +128,7 @@ flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩�
 </style>
 ```
 
-![](../../assets/css/flex/flex-grow1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/flex/flex-grow1.png)
 
 假设只有第一个项目默认为 0，后面两个项目 flex-grow 均为 1，那么后两个项目平分剩余空间。
 
@@ -139,7 +139,7 @@ flex-grow 属性定义项目的放大比例，默认为 0，即如果存在剩�
 }
 ```
 
-![](../../assets/css/flex/flex-grow2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/flex/flex-grow2.png)
 
 同理。。。
 

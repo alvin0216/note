@@ -11,7 +11,7 @@ date: 2020-06-05 15:37:34
 
 > `HTTP Cookie` 是服务器发送到用户浏览器并保存在本地的一小块数据
 
-![](../../../assets/http/series/cookie.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/cookie.png)
 
 第一次访问网站的时候，浏览器发出请求，服务器响应请求后，会将 `cookie` 放入到响应请求中，在浏览器第二次发请求的时候，会把 `cookie` 带过去，服务端会辨别用户身份，当然服务器也可以修改 `cookie` 内容
 
@@ -54,7 +54,7 @@ response.writeHead(200, {
 })
 ```
 
-![](../../../assets/http/series/cookie2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/cookie2.png)
 
 而且下次请求时 HTTP 的 request header 也会带上 `Cookie: id=123; age=18`
 
@@ -89,7 +89,7 @@ session 是基于 cookie 实现的，session 存储在服务器端，sessionId �
 
 session 认证流程：
 
-![](../../../assets/http/series/session.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/session.png)
 
 用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建创建对应的 Session ，请求返回时将此 Session 的唯一标识信息 `SessionID` 返回给浏览器，浏览器接收到服务器返回的 `SessionID` 信息后，会将此信息存入到 Cookie 中，同时 Cookie 记录此 `SessionID` 属于哪个域名。
 

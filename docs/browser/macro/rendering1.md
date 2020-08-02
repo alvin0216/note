@@ -7,7 +7,7 @@ date: 2020-06-13 14:52:01
 
 渲染模块就是我们今天要讨论的主题。为了能更好地理解下文，你可以先结合下图快速抓住 HTML、CSS 和 JavaScript 的含义：
 
-![](../../../assets/browser/macro/html-css-js.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/html-css-js.png)
 
 从上图可以看出，**HTML 的内容是由标记和文本组成**。标记也称为**标签**，每个标签都有它自己的语义，浏览器会根据标签的语义来正确展示 HTML 内容。比如上面的
 标签是告诉浏览器在这里的内容需要创建一个新段落，中间的文本就是段落中需要显示的内容。
@@ -20,7 +20,7 @@ date: 2020-06-13 14:52:01
 
 由于渲染机制过于复杂，所以渲染模块在执行过程中会被划分为很多子阶段，输入的 HTML 经过这些子阶段，最后输出像素。我们把这样的一个处理流程叫做**渲染流水线**，其大致流程如下图所示：
 
-![](../../../assets/browser/macro/rendering.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/rendering.png)
 
 按照渲染的时间顺序，流水线可分为如下几个子阶段：构建 DOM 树、样式计算、布局阶段、分层、绘制、分块、光栅化和合成。内容比较多，我会用两篇文章来为你详细讲解这各个子阶段。接下来，在介绍每个阶段的过程中，你应该重点关注以下三点内容：
 
@@ -34,13 +34,13 @@ date: 2020-06-13 14:52:01
 
 为什么要构建 DOM 树呢？这是因为**浏览器无法直接理解和使用 HTML，所以需要将 HTML 转换为浏览器能够理解的结构——DOM 树**。
 
-![](../../../assets/browser/macro/dom-tree.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/dom-tree.png)
 
 从图中可以看出，构建 DOM 树的输入内容是一个非常简单的 HTML 文件，然后经由 HTML 解析器解析，最终输出树状结构的 DOM。
 
 为了更加直观地理解 DOM 树，你可以打开 Chrome 的“开发者工具”，选择“Console”标签来打开控制台，然后在控制台里面输入“document”后回车，这样你就能看到一个完整的 DOM 树结构，如下图所示：
 
-<img src='../../../assets/browser/macro/dom-tree2.png' class='smaller center' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/dom-tree2.png' class='smaller center' />
 
 图中的 document 就是 DOM 结构，你可以看到，DOM 和 HTML 内容几乎是一样的，但是和 HTML 不同的是，DOM 是保存在内存中树状结构，可以通过 JavaScript 来查询或修改其内容。
 
@@ -52,7 +52,7 @@ date: 2020-06-13 14:52:01
 
 那 CSS 样式的来源主要有哪些呢？你可以先参考下图：
 
-![](../../../assets/browser/macro/calc-css.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/calc-css.png)
 
 从图中可以看出，CSS 样式来源主要有三种：
 
@@ -87,7 +87,7 @@ div {color:red; }
 
 那标准化后的属性值是什么样子的？
 
-![](../../../assets/browser/macro/standardized-css.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/standardized-css.png)
 
 从图中可以看到，2em 被解析成了 32px，red 被解析成了 rgb(255,0,0)，bold 被解析成了 700……
 
@@ -101,13 +101,13 @@ div {color:red; }
 
 以上面的为例 最终应用到 DOM 节点的效果如下图所示：
 
-![](../../../assets/browser/macro/css-tree.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/css-tree.png)
 
 从图中可以看出，所有子节点都继承了父节点样式。比如 body 节点的 font-size 属性是 20，那 body 节点下面的所有节点的 font-size 都等于 20。
 
 为了加深你对 CSS 继承的理解，你可以打开 Chrome 的“开发者工具”，选择第一个“element”标签，再选择“style”子标签，你会看到如下界面：
 
-![](../../../assets/browser/macro/css-extends.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/css-extends.png)
 
 总之，样式计算阶段的目的是为了计算出 DOM 节点中每个元素的具体样式，在计算过程中需要遵守 CSS 的继承和层叠两个规则。这个阶段最终输出的内容是每个 DOM 节点的样式，并被保存在 ComputedStyle 的结构内。
 
@@ -123,7 +123,7 @@ Chrome 在布局阶段需要完成两个任务：创建布局树和布局计算�
 
 我们结合下图来看看布局树的构造过程：
 
-![](../../../assets/browser/macro/layout-tree.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/layout-tree.png)
 
 从上图可以看出，DOM 树中所有不可见的节点都没有包含到布局树中。为了构建布局树，浏览器大体上完成了下面这些工作：
 
@@ -140,7 +140,7 @@ Chrome 在布局阶段需要完成两个任务：创建布局树和布局计算�
 
 ## 总结
 
-![](../../../assets/browser/macro/rendering2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/macro/rendering2.png)
 
 从图中可以看出，本节内容我们介绍了渲染流程的前三个阶段：DOM 生成、样式计算和布局。要点可大致总结为如下：
 

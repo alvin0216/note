@@ -36,7 +36,7 @@ acme.sh --issue --dns dns_ali -d alvin.run -d '*.alvin.run'
 
 成功的结果：
 
-![](../../assets/http/certificate.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/certificate.png)
 
 到了这一步大功告成，撒花
 

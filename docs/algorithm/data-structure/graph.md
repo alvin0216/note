@@ -12,7 +12,7 @@ date: 2020-05-21 22:30:33
 
 下图表示了一个图的结构：
 
-![](../../../assets/algorithm/graph/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/1.png)
 
 在介绍如何用 `JavaScript` 实现图之前，我们先介绍一些和图相关的术语。
 
@@ -25,13 +25,13 @@ date: 2020-05-21 22:30:33
 
 下图所示为有向图：
 
-![](../../../assets/algorithm/graph/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/2.png)
 
 在有向图中，如果两个顶点间在双向上都存在路径，则称这两个顶点是**强连通**的，如上图中 C 和 D 是强连通的，而 A 和 B 是非强连通的。如果有向图中的任何两个顶点间在双向上都存在路径，则该有向图是**强连通**的，非强连通的图也称为**稀疏图**。
 
 此外，图还可以是**加权的**。前面我们看到的图都是**未加权的**，下图为一个加权的图：
 
-![](../../../assets/algorithm/graph/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/3.png)
 
 可以想象一下，前面我们介绍的`树`和`链表`也属于图的一种特殊形式。图在计算机科学中的应用十分广泛，例如我们可以搜索图中的一个特定顶点或一条特定的边，或者寻找两个顶点间的路径以及最短路径，检测图中是否存在环等等。
 
@@ -43,7 +43,7 @@ date: 2020-05-21 22:30:33
 
 在邻接矩阵中，我们用一个二维数组来表示图中顶点之间的连接，如果两个顶点之间存在连接，则这两个顶点对应的二维数组下标的元素的值为 1，否则为 0。下图是用邻接矩阵方式表示的图：
 
-![](../../../assets/algorithm/graph/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/4.png)
 
 如果是加权的图，我们可以将邻接矩阵中二维数组里的值 1 改成对应的加权数。邻接矩阵方式存在一个缺点，如果图是非强连通的，则二维数组中会有很多的 0，这表示我们使用了很多的存储空间来表示根本不存在的边。另一个缺点就是当图的顶点发生改变时，对于二维数组的修改会变得不太灵活。
 
@@ -51,19 +51,19 @@ date: 2020-05-21 22:30:33
 
 图的另外一种实现方式是邻接表，它是对邻接矩阵的一种改进。邻接表由图中每个顶点的相邻顶点列表所组成。如下图所示，我们可以用数组、链表、字典或散列表来表示邻接表。
 
-![](../../../assets/algorithm/graph/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/5.png)
 
 ### 关联矩阵
 
 我们还可以用关联矩阵来表示图。在关联矩阵中，矩阵的行表示顶点，列表示边。关联矩阵通常用于边的数量比顶点多的情况下，以节省存储空间。如下图所示为关联矩阵方式表示的图：
 
-![](../../../assets/algorithm/graph/6.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/6.png)
 
 ## 用邻接表方式实现图结构
 
 下面我们重点看下如何用邻接表的方式表示图。我们的 `Graph` 类的骨架如下，它用邻接表方式来实现无向图：
 
-![](../../../assets/algorithm/graph/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/graph/5.png)
 
 就如链表里存储这 `head` 和 树存储着 `root` 结构，同样图里面可以用
 

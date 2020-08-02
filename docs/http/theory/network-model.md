@@ -19,7 +19,7 @@ TCP/IP 当初的设计者真的是非常聪明，创造性地提出了“**分�
 
 你应该对 TCP/IP 的协议栈有所了解吧，这里我再贴一下层次图。
 
-![](../../../assets/http/series/http-layer.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-layer.png)
 
 TCP/IP 协议总共有四层，就像搭积木一样，每一层需要下层的支撑，同时又支撑着上层，任何一层被抽掉都可能会导致整个协议栈坍塌。
 
@@ -51,7 +51,7 @@ TCP/IP 发明于 1970 年代，当时除了它还有很多其他的网络协议�
 
 OSI 模型分成了七层，部分层次与 TCP/IP 很像，从下到上分别是：
 
-![](../../../assets/http/series/http-layer2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-layer2.png)
 
 - 第一层：物理层，网络的物理形式，例如电缆、光纤、网卡、集线器等等；
 - 第二层：数据链路层，它基本相当于 TCP/IP 的链接层；
@@ -77,7 +77,7 @@ OSI 模型分成了七层，部分层次与 TCP/IP 很像，从下到上分别�
 
 好在 OSI 在设计之初就参考了 TCP/IP 等多个协议，可以比较容易但不是很精确地实现对应关系。
 
-![](../../../assets/http/series/http-layer3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-layer3.png)
 
 - 第一层：物理层，TCP/IP 里无对应；
 - 第二层：数据链路层，对应 TCP/IP 的链接层；
@@ -121,7 +121,7 @@ HTTP 协议的传输过程就是这样通过协议栈逐层向下，每一层都
 
 但下层的传输过程对于上层是完全“透明”的，上层也不需要关心下层的具体实现细节，所以就 HTTP 层次来看，它不管下层是不是 TCP/IP 协议，看到的只是一个可靠的传输链路，只要把数据加上自己的头，对方就能原样收到。
 
-![](../../../assets/http/series/transport.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/transport.png)
 
 ## 小结
 

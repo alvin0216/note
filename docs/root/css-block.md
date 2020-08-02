@@ -7,7 +7,7 @@ date: 2020-07-05 21:15:58
 2. CSS 加载会阻塞 DOM 树的渲染
 3. CSS 加载会阻塞后面 JS 语句的执行
 
-![](../../assets/browser/render.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/render.png)
 
 先看宏观下的浏览器渲染过程。
 

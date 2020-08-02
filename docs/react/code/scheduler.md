@@ -26,7 +26,7 @@ React 实现调度主要靠两块内容：
 
 ## 总体流程概览
 
-![](../../../assets/react/scheduler-fiber-scheduler.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/scheduler-fiber-scheduler.png)
 
 主要代码位于 `packages/react-reconciler/src/ReactFiberScheduler.js`
 
@@ -52,7 +52,7 @@ React 实现调度主要靠两块内容：
 
 ## 组件进行调度的例子
 
-![](../../../assets/react/demo.jpg)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/demo.jpg)
 
 点击 `button` 在 `List` 组件进行 `setState`，当前的 `fiber` 为 `List`， 而最终加入调度的是对应的 `rootFiber` 对象！
 

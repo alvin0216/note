@@ -95,7 +95,7 @@ flex: flex-grow, flex-shrink, flex-basis;
 </style>
 ```
 
-![](../../assets/css/flex/flex-demo1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/css/flex/flex-demo1.png)
 
 ### 垂直水平居中对齐
 

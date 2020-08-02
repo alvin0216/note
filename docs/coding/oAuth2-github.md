@@ -16,7 +16,7 @@ date: 2020-07-04 22:15:04
 
 时序图如下：
 
-![](../../assets/others/vscode/github-login.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/github-login.png)
 
 接下来就实现它。这里后端是 koa
 
@@ -30,15 +30,15 @@ date: 2020-07-04 22:15:04
 
 <span class='orange'>点击 OAuth Apps , Register a new application 或者 New OAuth App 。</span>
 
-![](../../assets/others/oauth2/github-new-auth-app.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/others/oauth2/github-new-auth-app.png)
 
 <span class='orange'>填写资料</span>
 
-<img src='../../assets/others/oauth2/github-app.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/others/oauth2/github-app.png' class='small' />
 
 <span class='orange'>拿到应用信息，如 client_secret 、client_id</span>
 
-<img src='../../assets/others/oauth2/github-app-info.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/others/oauth2/github-app-info.png' class='small' />
 
 ## 前端授权登录
 
@@ -188,7 +188,7 @@ app.listen(3000, () => {
 
 效果图：
 
-![](../../assets/others/oauth2/github-oauth2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/others/oauth2/github-oauth2.png)
 
 ## 代码仓库
 

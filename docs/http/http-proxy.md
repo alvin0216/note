@@ -9,7 +9,7 @@ date: 2020-06-04 21:50:44
 
 引入 HTTP 代理后，原来简单的双方通信就变复杂了一些，加入了一个或者多个中间人，但整体上来看，还是一个有顺序关系的链条，而且链条里相邻的两个角色仍然是简单的一对一通信，不会出现越级的情况。
 
-![](../../assets/http/series/proxy.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/proxy.png)
 
 链条的起点还是客户端（也就是浏览器），中间的角色被称为代理服务器（`proxy server`），链条的终点被称为源服务器（`origin server`），意思是数据的“源头”“起源”。
 
@@ -27,7 +27,7 @@ date: 2020-06-04 21:50:44
 
 代理最基本的一个功能是`负载均衡`。因为在面向客户端时屏蔽了源服务器，客户端看到的只是代理服务器，源服务器究竟有多少台、是哪些 IP 地址都不知道。于是代理服务器就可以掌握请求分发的“大权”，决定由后面的哪台服务器来响应请求。
 
-<img src='../../assets/http/series/reverse-proxy.png' height='210px' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/http/series/reverse-proxy.png' height='210px' />
 
 代理中常用的负载均衡算法你应该也有所耳闻吧，比如轮询、一致性哈希等等，这些算法的目标都是尽量把外部的流量合理地分散到多台源服务器，提高系统的整体资源利用率和性能。
 

@@ -5,9 +5,9 @@ date: 2019-10-16 09:07:08
 
 ## 概览图
 
-![](../../assets/http/series/http-overview.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-overview.png)
 
-![](../../assets/http/load.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/load.png)
 
 ## 知识来源
 

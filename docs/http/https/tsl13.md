@@ -39,7 +39,7 @@ HTTPS 建立连接时除了要做 TCP 握手，还要做 TLS 握手，在 1.2 �
 
 ### 握手提升
 
-![](../../../assets/http/https/tsl-13.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/tsl-13.png)
 
 <blockquote class='box'>
 

@@ -11,7 +11,7 @@ date: 2020-06-17 16:21:16
 
 浏览器线程采用的**消息队列**，也就是说先来的先执行任务，排成一队有序的执行。
 
-![](../../../assets/browser/eventloop/queue.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/queue.png)
 
 代码模拟实现如下：
 
@@ -40,7 +40,7 @@ void MainTherad(){
 
 通过使用消息队列，我们实现了线程之间的消息通信。在 Chrome 中，跨进程之间的任务也是频繁发生的，那么如何处理其他进程发送过来的任务？你可以参考下图：
 
-![](../../../assets/browser/eventloop/queue2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/queue2.png)
 
 渲染主线程会频繁接收到来自于 IO 线程的一些任务，接收到这些任务之后，渲染进程就需要着手处理，比如接收到资源加载完成的消息后，渲染进程就要着手进行 DOM 解析了；接收到鼠标点击的消息后，渲染主线程就要开始执行相应的 JavaScript 脚本来处理该点击事件。
 
@@ -68,6 +68,6 @@ void MainTherad(){
 
 因为所有的任务都是在单线程中执行的，所以每次只能执行一个任务，而其他任务就都处于等待状态。如果其中一个任务执行时间过久，那么下一个任务就要等待很长时间。可以参考下图：
 
-![](../../../assets/browser/eventloop/queue3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/eventloop/queue3.png)
 
 从图中你可以看到，如果在执行动画过程中，其中有个 JavaScript 任务因执行时间过久，占用了动画单帧的时间，这样会给用户制造了卡顿的感觉，这当然是极不好的用户体验。针对这种情况，JavaScript 可以通过回调功能来规避这种问题，也就是让要执行的 JavaScript 任务滞后执行。至于浏览器是如何实现回调功能的，我们在后面的章节中再详细介绍。

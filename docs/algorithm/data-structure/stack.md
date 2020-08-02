@@ -11,13 +11,13 @@ date: 2020-05-08 15:56:33
 
 在计算机编程中，栈是一种很常见的数据结构，它遵从**后进先出**（`LIFO——Last In First Out`）原则，新添加或待删除的元素保存在栈的同一端，称作栈顶，另一端称作栈底。在栈中，新元素总是靠近栈顶，而旧元素总是接近栈底。
 
-栈 示意图 >> ![栈 示意图](../../../assets/algorithm/stack/2.png)
+栈 示意图 >> ![栈 示意图](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/stack/2.png)
 
 ## 栈和函数
 
 在讲述一个概念，让我们加深对栈的认识，莫过于 JavaScript 函数的调用
 
-![](../../../assets/algorithm/stack/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/stack/4.png)
 
 执行顺序
 
@@ -314,7 +314,7 @@ let Stack = (function() {
 入栈 0 0 0 1
 出栈 1 0 0 0
 
-![](../../../assets/algorithm/stack/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/stack/3.png)
 
 ### 汉诺塔
 
@@ -328,7 +328,7 @@ let Stack = (function() {
 >
 > 将一个圆盘从一根柱子移到另一根柱子，算移动“1 次”，那么，将若干个圆盘全部从 a 移到 c 最少需要移动几次呢?
 
-![](../../../assets/algorithm/stack/hanno.gif)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/stack/hanno.gif)
 
 #### 分析
 

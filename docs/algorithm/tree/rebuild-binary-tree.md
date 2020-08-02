@@ -46,7 +46,7 @@ var buildTree = function(preorder, inorder) {}
 
 ::: details 答案
 
-![](../../../assets/algorithm/tree/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/4.png)
 
 假设有二叉树如下：
 

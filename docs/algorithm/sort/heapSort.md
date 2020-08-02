@@ -13,7 +13,7 @@ date: 2020-05-19 15:05:55
 
 不一样的是堆排序利用堆这种近似完全二叉树的良好的数据结构来实现排序，本质上使用了二分的思想。
 
-![](../../../assets/algorithm/sort/heapSort.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/sort/heapSort.png)
 
 ## 算法步骤
 

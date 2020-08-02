@@ -44,7 +44,7 @@ date: 2020-07-02 01:20:07
 alert(1)
 ```
 
-![渲染图](../../assets/html/browser-render.gif)
+![渲染图](https://gitee.com/alvin0216/cdn/raw/master/img/html/browser-render.gif)
 
 可见，执行到 `script` html 会暂停解析，下载脚本，执行脚本，所以先弹出 1，然后继续解析 html，渲染出 hello.
 

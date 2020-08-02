@@ -11,7 +11,7 @@ date: 2020-05-30 21:28:02
 
 第三步，在 Chrome 浏览器的地址栏里输入 http://127.0.0.1:8080 再按下回车键，等欢迎页面显示出来后 Wireshark 里就会有捕获的数据包，如下图所示。
 
-![](../../../assets/http/series/wireshark2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/wireshark2.png)
 
 你应该知道 HTTP 协议是运行在 TCP/IP 基础上的，依靠 TCP/IP 协议来实现数据的可靠传输。所以浏览器要用 HTTP 协议收发数据，<span class='orange'>首先要做的就是建立 TCP 连接</span>。
 
@@ -35,7 +35,7 @@ Web 服务器收到报文后在内部就要处理这个请求。同样也是依�
 
 至此，“键入网址再按下回车”的全过程就结束了。
 
-![](../../../assets/http/series/tcp.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/tcp.png)
 
 再简要叙述一下这次最简单的浏览器 HTTP 请求过程：
 
@@ -63,7 +63,7 @@ ps 这里可以选择用 `nginx` 代理域名
 
 刚好，里面有一行映射关系“127.0.0.1 www.chrono.com”，于是浏览器就知道了域名对应的 IP 地址，就可以愉快地建立 TCP 连接发送 HTTP 请求了。
 
-![](../../../assets/http/series/dns3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/dns3.png)
 
 ## 真实的网络世界
 
@@ -73,7 +73,7 @@ ps 这里可以选择用 `nginx` 代理域名
 
 真实的互联网世界要比这两个场景要复杂的多，我利用下面的这张图来做一个详细的说明。
 
-![](../../../assets/http/series/network.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/network.png)
 
 如果你用的是电脑台式机，那么你可能会使用带水晶头的双绞线连上网口，由交换机接入固定网络。如果你用的是手机、平板电脑，那么你可能会通过蜂窝网络、WiFi，由电信基站、无线热点接入移动网络。
 

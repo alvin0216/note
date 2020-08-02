@@ -25,7 +25,7 @@ foo()
 
 通过前面几篇文章的学习，想必你已经知道了如何通过执行上下文来分析代码的执行流程了。那么当这段代码执行到 bar 函数内部时，其调用栈的状态图如下所示：
 
-![](../../../assets/browser/js/scope/6.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/6.png)
 
 比如上面那段代码在查找 myName 变量时，如果在当前的变量环境中没有查找到，那么 JavaScript 引擎会继续在 outer 所指向的执行上下文中查找。
 
@@ -101,7 +101,7 @@ foo()
 
 ES6 是支持块级作用域的，当执行到代码块时，如果代码块中有 let 或者 const 声明的变量，那么变量就会存放到该函数的词法环境中。对于上面这段代码，当执行到 bar 函数内部的 if 语句块时，其调用栈的情况如下图所示：
 
-![](../../../assets/browser/js/scope/7.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/7.png)
 
 首先是在 bar 函数的执行上下文中查找，但因为 bar 函数的执行上下文中没有定义 test 变量，所以根据词法作用域的规则，下一步就在 bar 函数的外部作用域中查找，也就是全局作用域。最终找到 test = 1。
 
@@ -143,11 +143,11 @@ console.log(bar.getName())
 
 首先我们看看当执行到 foo 函数内部的 return innerBar 这行代码时调用栈的情况，你可以参考下图：
 
-![](../../../assets/browser/js/scope/8.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/8.png)
 
 **根据词法作用域的规则，内部函数 getName 和 setName 总是可以访问它们的外部函数 foo 中的变量**，所以当 innerBar 对象返回给全局变量 bar 时，虽然 foo 函数已经执行结束，但是 getName 和 setName 函数依然可以使用 foo 函数中的变量 myName 和 test1。所以当 foo 函数执行完成之后，其整个调用栈的状态如下图所示：
 
-![](../../../assets/browser/js/scope/9.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/9.png)
 
 从上图可以看出，foo 函数执行完成之后，其执行上下文从栈顶弹出了，但是由于返回的 setName 和 getName 方法中使用了 foo 函数内部的变量 myName 和 test1，所以这两个变量依然保存在内存中。这像极了 setName 和 getName 方法背的一个专属背包，无论在哪里调用了 setName 和 getName 方法，它们都会背着这个 foo 函数的专属背包。
 
@@ -161,13 +161,13 @@ console.log(bar.getName())
 
 那这些闭包是如何使用的呢？当执行到 bar.setName 方法中的 myName = "极客邦"这句代码时，JavaScript 引擎会沿着“当前执行上下文–>foo 函数闭包–> 全局执行上下文”的顺序来查找 myName 变量，你可以参考下面的调用栈状态图：
 
-![](../../../assets/browser/js/scope/10.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/10.png)
 
 从图中可以看出，setName 的执行上下文中没有 myName 变量，foo 函数的闭包中包含了变量 myName，所以调用 setName 时，会修改 foo 闭包中的 myName 变量的值。
 
 你也可以通过“开发者工具”来看看闭包的情况，打开 Chrome 的“开发者工具”，在 bar 函数任意地方打上断点，然后刷新页面，可以看到如下内容：
 
-![](../../../assets/browser/js/scope/11.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/js/scope/11.png)
 
 从图中可以看出来，当调用 bar.getName 的时候，右边 Scope 项就体现出了作用域链的情况：Local 就是当前的 getName 函数的作用域，Closure(foo) 是指 foo 函数的闭包，最下面的 Global 就是指全局作用域，从“Local–>Closure(foo)–>Global”就是一个完整的作用域链。
 

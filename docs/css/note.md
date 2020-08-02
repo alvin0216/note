@@ -58,7 +58,7 @@ li 尾部跟随着不为 p 标签
 </style>
 ```
 
-<img src='../../assets/css/note/div-img.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/div-img.png' class='small' />
 
 这种现象产生的原因是 img 是行内元素，浏览器为下行字符（如：g、y、j、p、q）留下的一些空间，这些字符是会比其他字符多占据底部一些空间（具体以当前字体大小有关），这种规则会影响行内元素 img 标签（其默认垂直对齐方式是依照基线来的，即 vertical-align: baseline），
 
@@ -66,7 +66,7 @@ li 尾部跟随着不为 p 标签
 
 ## 自动填充密码会有背景色
 
-<img src='../../assets/css/note/autofill.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/autofill.png' class='small' />
 
 即当浏览器（chrome）给输入框自动填充内容后，也会自动给输入框带上背景（黄或灰蓝），该问题是由于 chrome 会默认给自动填充的 `input`、`select`、`textarea` 等加上:`-webkit-autofill` 私有伪属性造成的，比较好的解决方案就是做样式覆盖，代码如下：
 
@@ -103,7 +103,7 @@ textarea:-webkit-autofill {
 </style>
 ```
 
-<img src='../../assets/css/note/brother-select.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/brother-select.png' class='small' />
 
 虽然可以通过 `:not` + `:last-of-type` 实现同样的效果
 
@@ -139,7 +139,7 @@ li:not(:last-of-type) {
 
 这里混入了 `p` 标签，用类选择，看看效果：
 
-<img src='../../assets/css/note/brother-select2.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/brother-select2.png' class='small' />
 
 可以看到 `li` 和 `p` 标签直接并没有 `border` 效果。使用兄弟选择器：
 
@@ -151,7 +151,7 @@ li:not(:last-of-type) {
 
 最终效果：
 
-<img src='../../assets/css/note/brother-select3.png' class='small' />
+<img src='https://gitee.com/alvin0216/cdn/raw/master/img/css/note/brother-select3.png' class='small' />
 
 ## 收藏
 

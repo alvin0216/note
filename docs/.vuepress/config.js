@@ -2,7 +2,11 @@ module.exports = {
   port: '4040', // 开发端口
   title: "Alvin's notes",
   description: "alvin's notes, front-end, react, javascript, vue, algorithm, alvin 的博客，前端开发",
-  head: [['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }]],
+  head: [
+    ['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    ['meta', { 'http-equiv': 'x-dns-prefetch-control', content: 'on' }],
+    ['link', { rel: 'dns-prefetch', href: 'https://gitee.com/alvin0216/cdn' }]
+  ],
   themeConfig: {
     smoothScroll: true,
     sidebarDepth: 2,

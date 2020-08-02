@@ -3,7 +3,7 @@ title: H5 语义化标签
 date: 2020-06-06 00:21:55
 ---
 
-![](../../assets/html/html5-layout.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/html/html5-layout.png)
 
 ```html
 <head>

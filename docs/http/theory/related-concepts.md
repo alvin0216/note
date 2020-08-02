@@ -7,7 +7,7 @@ date: 2020-05-29 10:20:13
 
 :::details 回顾大图
 
-![](../../../assets/http/series/http-overview.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-overview.png)
 
 :::
 
@@ -15,7 +15,7 @@ date: 2020-05-29 10:20:13
 
 因为那张图比较大，所以我会把左右两部分拆开来分别讲，今天先讲右边的部分，也就是与 HTTP 相关的各种应用，着重介绍互联网、浏览器、Web 服务器等常见且重要的概念。
 
-![](../../../assets/http/series/http-overview2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-overview2.png)
 
 ## 网络世界
 
@@ -37,7 +37,7 @@ date: 2020-05-29 10:20:13
 
 上网就要用到浏览器，常见的浏览器有 Google 的 Chrome、Mozilla 的 Firefox、Apple 的 Safari、Microsoft 的 IE 和 Edge，还有小众的 Opera 以及国内的各种“换壳”的“极速”“安全”浏览器。
 
-![](../../../assets/http/series/browser.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/browser.png)
 
 那么你想过没有，所谓的“浏览器”到底是个什么东西呢？
 

@@ -25,4 +25,4 @@ date: 2019-10-16 09:07:08
 - [复杂度分析(上):如何分析、统计算法的执行效率和资源消耗?](https://juejin.im/post/5cefa484f265da1bd1463cae)
 - [复杂度分析(下):浅析最好、最坏、平均、均摊时间复杂度](https://juejin.im/post/5cf3560c6fb9a07ebb051c03)
 
-![](../../assets/algorithm/complexity/sort.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/complexity/sort.png)

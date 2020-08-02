@@ -11,7 +11,7 @@ date: 2020-05-16 16:43:44
 
 树是一种非顺序的数据结构。下图展示了树的定义：
 
-![](../../../assets/algorithm/tree/1.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/1.png)
 
 这里介绍有关树的术语:
 
@@ -37,7 +37,7 @@ date: 2020-05-16 16:43:44
 
 下面是二叉搜索树的数据结构示意图：
 
-![](../../../assets/algorithm/tree/2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/2.png)
 
 首先创建一个类来表示二叉查找树，它的内部应该有一个 `Node` 类，用来表示节点
 
@@ -114,7 +114,7 @@ let insertNode = function(node, newNode) {
 
 所有新节点只能作为叶子节点被添加到树中。在本文一开始给出的树的结构图中，如果要添加节点 2，对应的操作步骤如下：
 
-![](../../../assets/algorithm/tree/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/3.png)
 
 我们传入树的根节点，依次进行递归，找到对应的叶子节点，然后修改节点的左子节点或右子节点指针，使其指向新添加的节点。
 
@@ -128,7 +128,7 @@ let insertNode = function(node, newNode) {
 - 中序遍历：首先访问左子树，然后访问根节点，最后遍历右子树，可记录为左—根—右；
 - 后序遍历：首先遍历左子树，然后遍历右子树，最后遍历根节点，可记录为左—右—根。
 
-![](../../../assets/algorithm/tree/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/4.png)
 
 下面的三个方法对应树的三种遍历方式：
 
@@ -205,7 +205,7 @@ tree.preOrderTraverse(value => console.log(value))
 
 我们参照前序遍历的定义，借住下面的示意图来理解整个遍历过程：
 
-![](../../../assets/algorithm/tree/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/5.png)
 
 在前序遍历函数 `preOrderTraverseNode()`中，先执行 `callback(node.key)`，然后再依次递归左子树和右子树。
 
@@ -215,7 +215,7 @@ tree.preOrderTraverse(value => console.log(value))
 
 然后我们再来看看中序遍历的情况。
 
-![](../../../assets/algorithm/tree/6.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/6.png)
 
 ```js
 tree.postOrderTraverse(value => console.log(value))
@@ -235,7 +235,7 @@ tree.postOrderTraverse(value => console.log(value))
 // 3, 6, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11
 ```
 
-![](../../../assets/algorithm/tree/7.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/7.png)
 
 在后序遍历函数 `postOrderTraverseNode()`中，先递归左子树，然后再递归右子树，最后执行 `callback(node.key)`。
 
@@ -361,7 +361,7 @@ let removeNode = function(node, key) {
 
 我们先看第一种情况：
 
-![](../../../assets/algorithm/tree/8.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/8.png)
 
 假设我们要删除节点 6，传入根节点 11，整个执行过程如下：
 
@@ -378,7 +378,7 @@ let removeNode = function(node, key) {
 
 ---
 
-![](../../../assets/algorithm/tree/9.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/9.png)
 
 前面已经删除了节点 6，假设我们现在要删除节点 5，它有一个左子节点 3，我们依然传入根节点 11，来看看整个执行过程：
 
@@ -393,7 +393,7 @@ let removeNode = function(node, key) {
 
 ---
 
-![](../../../assets/algorithm/tree/10.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/tree/10.png)
 
 前面已经删除了节点 6 和节点 5，现在我们要删除节点 15，它有左右子树，我们传入根节点 11，来看下具体执行过程：
 

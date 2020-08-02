@@ -25,7 +25,7 @@ date: 2020-06-08 21:40:01
 
 如图：
 
-![](../../../assets/http/https/tsl-connect2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/tsl-connect2.png)
 
 <blockquote class='box'>
 
@@ -97,7 +97,7 @@ Handshake Protocol: Client Key Exchange
 
 第二个，因为使用了 ECDHE，客户端可以不用等到服务器发回“Finished”确认握手完毕，立即就发出 HTTP 报文，省去了一个消息往返的时间浪费。这个叫“TLS False Start”，意思就是“抢跑”，和“TCP Fast Open”有点像，都是不等连接完全建立就提前发应用数据，提高传输的效率。
 
-![](../../../assets/http/https/tsl-rsa.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/tsl-rsa.png)
 
 大体的流程没有变，只是“Pre-Master”不再需要用算法生成，而是客户端直接生成随机数，然后用服务器的公钥加密，通过“Client Key Exchange”消息发给服务器。服务器再用私钥解密，这样双方也实现了共享三个随机数，就可以生成主密钥。
 

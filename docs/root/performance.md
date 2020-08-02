@@ -3,7 +3,7 @@ title: performance 分析页面加载过程
 date: 2020-07-02 15:23:35
 ---
 
-![](../../assets/browser/performance/preview.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/preview.png)
 
 ## Main 指标
 
@@ -49,7 +49,7 @@ date: 2020-07-02 15:23:35
 
 首先生成报告页，再观察报告页中的 Main 指标
 
-![](../../assets/browser/performance/main.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/main.png)
 
 通过上面的图形我们可以看出，加载过程主要分为三个阶段，它们分别是：
 
@@ -71,7 +71,7 @@ date: 2020-07-02 15:23:35
 
 回顾了导航流程之后，我们接着来分析第一个阶段的任务图形，最终效果如下图所示：
 
-![](../../assets/browser/performance/receive-html.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/receive-html.png)
 
 - 该任务的第一个子过程就是 Send request，该过程表示网络请求已被发送。然后该任务进入了等待状态。
 - 接着由网络进程负责下载资源，当接收到响应头的时候，该任务便执行 Receive Respone 过程，该过程表示接收到 HTTP 的响应头了。
@@ -84,7 +84,7 @@ date: 2020-07-02 15:23:35
 
 导航阶段结束之后，就进入到了**解析 HTML 数据阶段**了，这个阶段的主要任务就是通过解析 HTML 数据、解析 CSS 数据、执行 JavaScript 来生成 DOM 和 CSSOM。
 
-![](../../assets/browser/performance/parse-html.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/parse-html.png)
 
 - 在 ParserHTML 的过程中，如果解析到了 script 标签，那么便进入了脚本执行过程，也就是图中的 Evalute Script。
 
@@ -103,7 +103,7 @@ DOM 生成之后，ParserHTML 过程继续计算样式表，也就是 Reculate S
 
 生成了 DOM 和 CSSOM 之后，就进入了第三个阶段：生成页面上的位图。通常这需要经历 <span class='orange'>布局 (Layout)、分层、绘制、合成</span> 等一系列操作，如下图所示：
 
-![](../../assets/browser/performance/paint.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/paint.png)
 
 结合上图，我们可以发现，在生成完了 DOM 和 CSSOM 之后，渲染主线程首先执行了一些 DOM 事件，诸如 readyStateChange、load、pageshow。具体地讲，如果你使用 JavaScript 监听了这些事件，那么这些监听的函数会被渲染主线程依次调用。
 
@@ -119,7 +119,7 @@ DOM 生成之后，ParserHTML 过程继续计算样式表，也就是 Reculate S
 
 走到了 Composite Layers 这步，主线程的任务就完成了，接下来主线程会将合成的任务完全教给合成线程来执行，下面是具体的过程，你也可以对照着 Composite、Raster 和 GPU 这三个指标来分析，参考下图：
 
-![](../../assets/browser/performance/composite.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/performance/composite.png)
 
 结合渲染流水线和上图，我们再来梳理下最终图像是怎么显示出来的。
 

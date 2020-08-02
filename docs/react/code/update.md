@@ -5,7 +5,7 @@ date: 2020-03-10 09:24:41
 
 ## 前言
 
-![](../../../assets/react/ReactDOM.render.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/react/ReactDOM.render.png)
 
 紧接着[上一章节](/react-code-read/render)我们可以了解到 `ReactDOM.render` 方法创建 `ReactFiberRoot` 的过程。
 

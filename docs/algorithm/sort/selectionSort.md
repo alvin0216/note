@@ -9,7 +9,7 @@ date: 2020-05-19 15:05:55
 - 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
 - 重复第二步，直到所有元素均排序完毕。
 
-![](../../../assets/algorithm/sort/selectionSort.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/sort/selectionSort.png)
 
 ## 第一版：基本实现
 

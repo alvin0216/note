@@ -22,7 +22,7 @@ foo()
 
 当执行完 showName 函数时，其调用栈和堆空间状态图如下所示：
 
-![](../../../assets/browser/v8/3.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/3.png)
 
 **ESP：记录当前执行状态的指针**
 
@@ -52,7 +52,7 @@ foo()
 
 V8 中会把堆分为`新生代`和`老生代`两个区域，新生代就是临时分配的内存，存活时间短， 老生代是常驻内存，存活的时间长。V8 的堆内存，也就是两个内存之和。
 
-![](../../../assets/browser/v8/4.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/4.png)
 
 根据这两种不同种类的堆内存，V8 采用了不同的回收策略，来根据不同的场景做针对性的优化。
 
@@ -62,7 +62,7 @@ V8 中会把堆分为`新生代`和`老生代`两个区域，新生代就是临�
 
 首先将新生代内存空间一分为二:
 
-![](../../../assets/browser/v8/5.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/5.png)
 
 其中 From 部分表示正在使用的内存，To 是目前闲置的内存。
 
@@ -74,13 +74,13 @@ V8 中会把堆分为`新生代`和`老生代`两个区域，新生代就是临�
 
 From 内存是不按顺序放置的，在 To 内存中按照顺序从头放置的。不直接回收是为了应对：
 
-![](../../../assets/browser/v8/6.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/6.png)
 
 深色的小方块代表存活对象，白色部分表示待分配的内存，由于堆内存是连续分配的，这样零零散散的空间可能会导致稍微大一点的对象没有办法进行空间分配，这种零散的空间也叫做`内存碎片`。刚刚介绍的新生代垃圾回收算法也叫 `Scavenge` 算法。
 
 `Scavenge` 算法主要就是解决内存碎片的问题，在进行一顿复制之后，To 空间变成了这个样子:
 
-![](../../../assets/browser/v8/7.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/7.png)
 
 是不是整齐了许多？这样就大大方便了后续连续空间的分配
 
@@ -105,7 +105,7 @@ From 内存是不按顺序放置的，在 To 内存中按照顺序从头放置�
 
 第二步，整理内存碎片。V8 的解决方式非常简单粗暴，在清除阶段结束后，把存活的对象全部往一端靠拢。
 
-![](../../../assets/browser/v8/8.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/v8/8.png)
 
 由于是移动对象，它的执行速度不可能很快，事实上也是整个过程中最耗时间的部分。
 

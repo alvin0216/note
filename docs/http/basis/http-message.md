@@ -19,7 +19,7 @@ HTTP 协议在规范文档里详细定义了报文的格式，规定了组成部
 
 有了这个附加的 TCP 头，数据包才能够正确传输，到了目的地后把头部去掉，就可以拿到真正的数据。
 
-![](../../../assets/http/series/http-packet.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-packet.png)
 
 HTTP 协议也是与 TCP/UDP 类似，同样也需要在实际传输的数据前附加一些头数据，不过与 TCP/UDP 不同的是，它是一个“**纯文本**”的协议，所以头数据都是 ASCII 码的文本，可以很容易地用肉眼阅读，不用借助程序解析也能够看懂。
 
@@ -35,7 +35,7 @@ HTTP 协议规定报文必须有 header，但可以没有 body，而且在 heade
 
 所以，一个完整的 HTTP 报文就像是下图的这个样子，注意在 header 和 body 之间有一个“空行”。
 
-![](../../../assets/http/series/http-packet2.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-packet2.png)
 
 ## 请求行
 
@@ -43,7 +43,7 @@ HTTP 协议规定报文必须有 header，但可以没有 body，而且在 heade
 
 看一下我们之前用 Wireshark 抓的包
 
-![](../../../assets/http/series/http-wireshark.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/http-wireshark.png)
 
 在这个浏览器发出的请求报文里，第一行“GET / HTTP/1.1”就是请求行，而后面的“Host”“Connection”等等都属于 header，报文的最后是一个空白行结束，没有 body。
 
@@ -53,7 +53,7 @@ HTTP 协议规定报文必须有 header，但可以没有 body，而且在 heade
 - 请求目标：通常是一个 URI，标记了请求方法要操作的资源；
 - 版本号：表示报文使用的 HTTP 协议版本。
 
-![](../../../assets/http/series/request-line.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/request-line.png)
 
 还是用 Wireshark 抓包的数据来举例：
 
@@ -72,7 +72,7 @@ GET / HTTP/1.1
 - 状态码：一个三位数，用代码的形式表示处理的结果，比如 200 是成功，500 是服务器错误；
 - 原因：作为数字状态码补充，是更详细的解释文字，帮助人理解原因。
 
-![](../../../assets/http/series/status-line.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/status-line.png)
 
 看一下上一讲里 Wireshark 抓包里的响应报文，状态行是：
 
@@ -94,14 +94,14 @@ HTTP/1.1 404 Not Found
 
 <div class='flex-img'>
 
-![](../../../assets/http/series/response-header.png)
-![](../../../assets/http/series/response-header.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/response-header.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/response-header.png)
 
 </div>
 
 请求头和响应头的结构是基本一样的，唯一的区别是起始行，所以我把请求头和响应头里的字段放在一起介绍。
 
-![](../../../assets/http/series/chrome-newwork.png)
+![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/chrome-newwork.png)
 
 ### 通用头部
 
