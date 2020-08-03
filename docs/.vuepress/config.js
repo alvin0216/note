@@ -273,7 +273,8 @@ module.exports = {
             'webpack/webpack-module',
             'webpack/dev-env',
             'webpack/optimization',
-            'webpack/commonjs'
+            'webpack/commonjs',
+            'webpack/babel'
             //
           ]
         },

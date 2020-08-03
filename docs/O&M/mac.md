@@ -20,6 +20,29 @@ vim ~/.bash_profile
 alias dev='npm run dev'
 alias start='npm run start'
 alias ip="ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p"
+alias taobao="echo --registry=https://registry.npm.taobao.org" # 输出淘宝镜像
+# h 也即 help 的意思
+alias h='
+echo alvin 的帮助文档
+
+echo \\n
+echo scp 命令
+echo 拷贝文件目录到服务器 scp -r \<filepath\> \<remote:filePath\>
+echo 拷贝文件到服务器 scp \<filepath\> \<remote:filePath\>
+echo demo: scp /Users/guosw/Desktop/a.js guosw:/code/a.js
+echo 备注：拷贝服务端到本地 只需要调换 filePath 即可
+echo \\n
+
+echo linux 命令
+echo 关闭端口占用 1. lsof -i:端口号 2. kill -9 PID
+echo 查看某个进程 ps | grep -i mysql
+echo 压缩解压
+echo "  压缩 test文件夹为 test.gz:  tar zcvf ./test.gz ./test"
+echo "  解压 test.gz 到当前目录:  tar zxvf test.gz"
+'
+
+# 修改后
+source .bash_profile
 ```
 
 ### 切换 bash 与 zsh
