@@ -274,7 +274,8 @@ module.exports = {
             'webpack/dev-env',
             'webpack/optimization',
             'webpack/commonjs',
-            'webpack/babel'
+            'webpack/babel',
+            'webpack/babel-ast'
             //
           ]
         },
