@@ -35,9 +35,229 @@ date: 2020-08-04 01:04:00
 一句话描述：`input string` -> `@babel/parser parser` -> `AST` -> `@babel/traverse transformer[s]` -> `AST` -> `@babel/generator` -> `output string`
 这一点也可以在后文的 简易的 `babel` 代码解析 中看见
 
-## 抽象语法树
+### Visitor
 
-![](https://gitee.com/alvin0216/cdn/raw/master/img/webpack/ast.png)
+当 `Babel` 处理一个节点时，是以访问者的形式获取节点信息，并进行相关操作，这种方式是通过一个 `visitor` 对象来完成的，在 `visitor` 对象中定义了对于各种节点的访问函数，这样就可以针对不同的节点做出不同的处理。我们编写的 `Babel` 插件其实也是通过定义一个实例化 `visitor` 对象处理一系列的 AST 节点来完成我们对代码的修改操作。举个栗子：
+
+我们想要处理代码中用来加载模块的 `import` 命令语句
+
+```js
+import { Ajax } from '../lib/utils'
+```
+
+那么我们的 `Babel` 插件就需要定义这样的一个 `visitor` 对象：
+
+```yml
+visitor: {
+    Program: {
+        enter(path, state) {
+            console.log('start processing this module...');
+        },
+        exit(path, state) {
+            console.log('end processing this module!');
+        }
+    },
+    ImportDeclaration (path, state) {
+    	console.log('processing ImportDeclaration...');
+    	// do something
+    }
+}
+```
+
+当把这个插件用于遍历中时，每当处理到一个 import 语句，即 ImportDeclaration 节点时，都会自动调用 ImportDeclaration()方法，这个方法中定义了处理 import 语句的具体操作。ImportDeclaration()都是在进入 ImportDeclaration 节点时调用的，我们也可以让插件在退出节点时调用方法进行处理。
+
+```yml
+visitor: {
+  ImportDeclaration: {
+      enter(path, state) {
+          console.log('start processing ImportDeclaration...');
+          // do something
+      },
+      exit(path, state) {
+          console.log('end processing ImportDeclaration!');
+          // do something
+      }
+  },
+}
+```
+
+当进入 ImportDeclaration 节点时调用 enter()方法，退出 ImportDeclaration 节点时调用 exit()方法。上面的 Program 节点（Program 节点可以通俗地解释为一个模块节点）也是一样的道理。值得注意的是，AST 的遍历采用深度优先遍历，所以上述 import 代码块的 AST 遍历的过程如下：
+
+```js
+─ Program.enter()
+  ─ ImportDeclaration.enter()
+  ─ ImportDeclaration.exit()
+─ Program.exit()
+```
+
+所以当创建访问者时你实际上有两次机会来访问一个节点。
+
+### Path
+
+从上面的 visitor 对象中，可以看到每次访问节点方法时，都会传入一个 path 参数，这个 path 参数中包含了节点的信息以及节点和所在的位置，以供对特定节点进行操作。
+
+具体来说 Path 是表示两个节点之间连接的对象。这个对象不仅包含了当前节点的信息，也有当前节点的父节点的信息，同时也包含了添加、更新、移动和删除节点有关的其他很多方法。具体地，Path 对象包含的属性和方法主要如下：
+
+```js
+── 属性
+  - node   当前节点
+  - parent  父节点
+  - parentPath 父path
+  - scope   作用域
+  - context  上下文
+  - ...
+── 方法
+  - get   当前节点
+  - findParent  向父节点搜寻节点
+  - getSibling 获取兄弟节点
+  - replaceWith  用AST节点替换该节点
+  - replaceWithMultiple 用多个AST节点替换该节点
+  - insertBefore  在节点前插入节点
+  - insertAfter 在节点后插入节点
+  - remove   删除节点
+  - ...
+```
+
+具体可以看 [babel-traverse](https://github.com/babel/babel/tree/master/packages/babel-traverse/src/path)
+
+这里我们继续上面的例子，看看 path 参数的 node 属性包含哪些信息：
+
+```js
+visitor: {
+	ImportDeclaration (path, state) {
+	   console.log(path.node);
+	   // do something
+	}
+}
+```
+
+打印结果如下：
+
+```js
+Node {
+  type: 'ImportDeclaration',
+  start: 5,
+  end: 41,
+  loc:
+   SourceLocation {
+     start: Position { line: 2, column: 4 },
+     end: Position { line: 2, column: 40 } },
+  specifiers:
+   [ Node {
+       type: 'ImportSpecifier',
+       start: 14,
+       end: 18,
+       loc: [SourceLocation],
+       imported: [Node],
+       local: [Node] } ],
+  source:
+   Node {
+     type: 'StringLiteral',
+     start: 26,
+     end: 40,
+     loc: SourceLocation { start: [Position], end: [Position] },
+     extra: { rawValue: '../lib/utils', raw: '\'../lib/utils\'' },
+     value: '../lib/utils'
+    }
+}
+```
+
+可以发现除了 type、start、end、loc 这些常规字段，ImportDeclaration 节点还有 specifiers 和 source 这两个特殊字段，specifiers 表示 import 导入的变量组成的节点数组，source 表示导出模块的来源节点。
+
+这里再说一下 specifier 中的 imported 和 local 字段，imported 表示从导出模块导出的变量，local 表示导入后当前模块的变量，还是有点费解，我们把 import 命令语句修改一下：
+
+```js
+import { Ajax as ajax } from '../lib/utils'
+```
+
+然后继续打印 specifiers 第一个元素的 local 和 imported 字段：
+
+```js
+Node {
+  type: 'Identifier',
+  start: 22,
+  end: 26,
+  loc:
+   SourceLocation {
+     start: Position { line: 2, column: 21 },
+     end: Position { line: 2, column: 25 },
+     identifierName: 'ajax' },
+  name: 'ajax' }
+Node {
+  type: 'Identifier',
+  start: 14,
+  end: 18,
+  loc:
+   SourceLocation {
+     start: Position { line: 2, column: 13 },
+     end: Position { line: 2, column: 17 },
+     identifierName: 'Ajax' },
+  name: 'Ajax' }
+```
+
+这样就很明显了。如果不使用 as 关键字，那么 imported 和 local 就是表示同一个变量的节点了。
+
+### State
+
+State 是 visitor 对象中每次访问节点方法时传入的第二个参数。如果看 Babel 手册里的解释，可能还是有点困惑，简单来说，state 就是一系列状态的集合，包含诸如当前 plugin 的信息、plugin 传入的配置参数信息，甚至当前节点的 path 信息也能获取到，当然也可以把 babel 插件处理过程中的自定义状态存储到 state 对象中。
+
+### Scopes（作用域）
+
+这里的作用域其实跟 js 说的作用域是一个道理，也就是说 babel 在处理 AST 时也需要考虑作用域的问题，比如函数内外的同名变量需要区分开来，这里直接拿 Babel 手册里的一个例子解释一下。考虑下列代码：
+
+```js
+function square(n) {
+  return n * n
+}
+```
+
+我们来写一个把 n 重命名为 x 的 visitor。
+
+```js
+visitor: {
+  FunctionDeclaration(path) {
+    const param = path.node.params[0];
+    paramName = param.name;
+    param.name = "x";
+  },
+
+  Identifier(path) {
+    if (path.node.name === paramName) {
+      path.node.name = "x";
+    }
+ }
+}
+```
+
+对上面的例子代码这段访问者代码也许能工作，但它很容易被打破：
+
+```js
+function square(n) {
+  return n * n
+}
+var n = 1
+```
+
+上面的 visitor 会把函数 square 外的 n 变量替换成 x，这显然不是我们期望的。更好的处理方式是使用递归，把一个访问者放进另外一个访问者里面。
+
+```js
+visitor: {
+  FunctionDeclaration(path) {
+    const updateParamNameVisitor = {
+        Identifier(path) {
+          if (path.node.name === this.paramName) {
+            path.node.name = "x";
+          }
+        }
+      };
+    const param = path.node.params[0];
+    paramName = param.name;
+    param.name = "x";
+    path.traverse(updateParamNameVisitor, { paramName });
+  },
+}
+
+```
 
 ---
 
