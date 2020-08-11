@@ -95,7 +95,8 @@ module.exports = {
             'principle/hooks',
             'principle/key',
             'principle/vdom-diff',
-            'principle/react-diff'
+            'principle/react-diff',
+            'principle/event'
           ]
         },
         {
@@ -163,6 +164,10 @@ module.exports = {
         {
           title: 'Tree 专题',
           children: ['tree/binarySearch', 'tree/rebuild-binary-tree']
+        },
+        {
+          title: '未分类',
+          children: ['others/sliding-window']
         }
       ],
       // === http
