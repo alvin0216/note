@@ -15,6 +15,7 @@ module.exports = {
       { text: '主页', link: '/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
+      { text: 'Webpack', link: '/webpack/' },
       { text: '数据结构与算法', link: '/algorithm/' },
       { text: 'HTTP', link: '/http/' },
       { text: '浏览器', link: '/browser/' },
@@ -248,6 +249,7 @@ module.exports = {
         }
       ],
       '/interviews/': ['', 'promise', 'less-sass', 'closure', 'react-vue'],
+      '/webpack/': ['webpack-module', 'dev-env', 'optimization', 'commonjs', 'babel', 'babel-ast', 'tree-shaking'],
       // js
       '/': [
         {
@@ -266,18 +268,6 @@ module.exports = {
         {
           title: 'Coding',
           children: ['coding/oAuth2', 'coding/oAuth2-github', 'coding/axios-cancel']
-        },
-        {
-          title: 'Webpack',
-          children: [
-            'webpack/webpack-module',
-            'webpack/dev-env',
-            'webpack/optimization',
-            'webpack/commonjs',
-            'webpack/babel',
-            'webpack/babel-ast'
-            //
-          ]
         },
         {
           title: 'GIT & 运维',
