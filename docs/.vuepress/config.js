@@ -248,7 +248,7 @@ module.exports = {
           children: ['torture/process', 'torture/rendering']
         }
       ],
-      '/interviews/': ['', 'promise', 'less-sass', 'closure', 'react-vue'],
+      '/interviews/': ['01', 'react', 'promise', 'less-sass', 'closure', 'react-vue'],
       '/webpack/': ['webpack-module', 'dev-env', 'optimization', 'commonjs', 'babel', 'babel-ast', 'tree-shaking'],
       // js
       '/': [
