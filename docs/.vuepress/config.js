@@ -163,11 +163,11 @@ module.exports = {
         },
         {
           title: 'Tree 专题',
-          children: ['tree/binarySearch', 'tree/rebuild-binary-tree']
+          children: ['tree/rebuild-binary-tree']
         },
         {
           title: '未分类',
-          children: ['others/sliding-window']
+          children: ['others/sliding-window', 'others/binarySearch']
         }
       ],
       // === http
