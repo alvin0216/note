@@ -7,7 +7,7 @@ date: 2019-10-16 09:07:08
 
 - 瓶子君：[JavaScript-Algorithms](https://github.com/sisterAn/JavaScript-Algorithms)
 - conardli：[用 JavaScript 实现的算法和数据结构](http://www.conardli.top/docs/algorithm/)
-- labuladong：[手把手撕 LeetCode 题目，扒各种算法套路的裤子](https://github.com/labuladong/fucking-algorithm)
+- labuladong：[算法小抄](https://labuladong.gitbook.io/algo/)
 - 心谭博客：[算法系列汇总](https://xxoo521.com/algorithm/)
 - 小浩：[和小浩学算法](https://github.com/geekxh/hello-algorithm?utm_source=gold_browser_extension)
 - [写给前端的算法进阶指南，我是如何两个月零基础刷 200 题](https://juejin.im/post/5f05087cf265da22d466f60f)
