@@ -78,9 +78,4 @@ var buildTree = function(preorder, inorder) {
   node.right = buildTree(preorder.slice(i + 1), inorder.slice(i + 1))
   return node
 }
-
-function TreeNode(val) {
-  this.val = val
-  this.left = this.right = null
-}
 ```
