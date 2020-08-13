@@ -173,3 +173,57 @@ var minSubArrayLen = function(s, nums) {
  */
 var checkInclusion = function(s1, s2) {}
 ```
+
+:::details 答案
+
+```js
+var checkInclusion = function(s1, s2) {
+  let window = {}
+  let dictionary = {} // 字典存储
+  for (const char of s1) {
+    if (dictionary.hasOwnProperty(char)) dictionary[char]++
+    else dictionary[char] = 1
+  }
+
+  let start = 0,
+    end = 0
+
+  while (end < s2.length) {
+    const char = s2[end]
+
+    // 塞入窗口
+    if (window.hasOwnProperty(char)) window[char]++
+    else window[char] = 1
+
+    end++
+
+    // 调整窗口，判断左侧窗口是否要收缩
+    while (end - start > s1.length) {
+      let d = s2[start]
+      start++
+      window[d]--
+    }
+
+    // 判断 window 和 dictionary 是否相等
+    if (isEqual(dictionary, window)) {
+      return true
+    }
+  }
+
+  return false
+}
+
+// 以 ob1 为准
+function isEqual(obj1, obj2) {
+  for (let k in obj1) {
+    if (obj1[k] !== obj2[k]) {
+      return false
+    }
+  }
+  return true
+}
+```
+
+:::
+
+## 30 串联所有单词的子串 <Badge text='困难' type='error' />
