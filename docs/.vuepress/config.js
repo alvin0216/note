@@ -163,10 +163,10 @@ module.exports = {
         },
         {
           title: 'Tree 专题',
-          children: ['tree/rebuild-binary-tree']
+          children: ['tree/prologue', 'tree/traverse']
         },
         {
-          title: '未分类',
+          title: '一些算法思想',
           children: ['others/sliding-window', 'others/binarySearch']
         }
       ],
