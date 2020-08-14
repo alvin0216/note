@@ -49,8 +49,8 @@ module.exports = {
           title: '模拟实现',
           children: [
             'achieve/call-apply',
-            'achieve/bind',
             'achieve/new',
+            'achieve/bind',
             'achieve/throttle',
             'achieve/debounce',
             'achieve/promise',

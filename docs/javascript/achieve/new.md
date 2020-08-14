@@ -4,32 +4,18 @@ date: 2020-01-15 11:53:51
 side: true
 ---
 
-**new 运算符创建一个用户定义的对象类型的实例或具有构造函数的内置对象类型之一**
+## new 做了什么？
 
-也许有点难懂，我们在模拟 `new` 之前，先看看 `new` 实现了哪些功能。
-
-举个例子：
+我们在模拟 `new` 之前，先看看 `new` 实现了哪些功能。
 
 ```js
-function Person(name, age) {
+function Person(name) {
+  console.log('run Person')
   this.name = name
-  this.age = age
-  this.sex = '男'
 }
-
-Person.prototype.footer = 2
-
-Person.prototype.say = function() {
-  console.log('I am ' + this.name)
-}
-
-var p = new Person('guosw', 18)
-
-console.log(p.name) // guosw
-console.log(p.age) // 18
-console.log(p.footer) // 2
-
-p.say() // I am guosw
+Person.prototype.age = 18
+var p = new Person('alvin') // run Person
+console.log(p, p.age) // Person { name: 'alvin' } 18
 ```
 
 从这个例子中，我们可以看到，实例 p 可以：
@@ -37,9 +23,23 @@ p.say() // I am guosw
 1. 访问到 `Person` 构造函数里的属性
 2. 访问到 `Person.prototype` 中的属性
 
-接下来，我们可以尝试着模拟一下了。
+以上面的为例，模拟一下 new 的操作
 
-因为 `new` 是关键字，所以无法像 `bind` 函数一样直接覆盖，所以我们写一个函数，命名为 `objectFactory`，来模拟 `new` 的效果。用的时候是这样的：
+```js
+var obj = new Object() // 1. 创建一个空对象
+obj.__proto__ = Person.prototype // 2 设置原型链
+var result = Person.call(obj) // 3 让 Person 中的 this 指向 obj，并执行 Person 的函数体
+// 4 返回值是 object 类型 则直接返回这个结果 如果没有返回值或者其他 则默认返回创建的对象
+if (typeof result === 'object') {
+  return result
+} else {
+  return obj
+}
+```
+
+## new 的实现
+
+接下来就让我们使用 `objectFactory` 模拟实现 new 操作吧
 
 ```js
 function Person() {
@@ -53,123 +53,40 @@ var p = new Person(...)
 var p = objectFactory(Person, ...)
 ```
 
-## 初步实现
+使用 new 操作时会默认返回一个对象，也就是说先创建一个空对象再返回。
 
-分析：
-
-因为 `new` 的结果是一个新对象，所以在模拟实现的时候，我们也要建立一个新对象，假设这个对象叫 `obj`，因为 `obj` 会具有 `Person` 构造函数里的属性，想想经典继承的例子，我们可以使用 `Person.apply(obj, arguments)`来给 `obj` 添加新的属性。
-
-原型与原型链，我们知道实例的 `__proto__` 属性会指向构造函数的 `prototype`，也正是因为建立起这样的关系，实例可以访问原型上的属性。
-
-现在，我们可以尝试着写第一版了：
+实例 p 可以访问到 `Person` 构造函数里的属性，也即 `p.name` ，也就是说 this 会指向 p 实例
 
 ```js
-// 第一版代码
-function objectFactory() {
-  var obj = new Object()
-  var Constructor = [].shift.call(arguments) // 将第一个参数取出 相当于 arguments.shift() 只不过类数组不能用 shift 方法 此时 arguments 已经被改变
-
-  obj.__proto__ = Constructor.prototype
-
-  Constructor.apply(obj, arguments)
-
+function objectFactory(Constructor, ...args) {
+  let obj = new Object()
+  let ret = Constructor.apply(obj, args)
   return obj
 }
 ```
 
-在这一版中，我们：
+此时，p 实例还无法访问到 `Person.prototype.age` 上的属性，也即 `p.age`，那么还需要将 `obj.__proto__` 指向构造函数的原型
 
-1. 用 `new Object()` 的方式新建了一个对象 obj
-2. **[].shift.call(arguments)**: 取出第一个参数，就是我们要传入的构造函数。此外因为 `shift` 会修改原数组，所以 `arguments` 会被去除第一个参数
-3. **obj.`__proto__` = Constructor.prototype**:将 `obj` 的原型指向构造函数，这样 `obj` 就可以访问到构造函数原型中的属性
-4. **Constructor.apply(obj, arguments)**: 使用 `apply`，改变构造函数 `this` 的指向到新建的对象，这样 `obj` 就可以访问到构造函数中的属性
-5. 返回 `obj`
-
-我们做个测试：
-
-```js
-function Person(name, age) {
-  this.name = name
-  this.age = age
-  this.sex = '男'
-}
-
-Person.prototype.footer = 2
-
-Person.prototype.say = function() {
-  console.log('I am ' + this.name)
-}
-
-var p = objectFactory(Person, 'guosw', 18)
-console.log(p.name) // guosw
-console.log(p.age) // 18
-console.log(p.sex) // 男
-p.say() // I am guosw
-```
-
-[]~(￣ ▽ ￣)~\*\*
-
-## 返回值效果测试
-
-接下来我们再来看一种情况，假如构造函数有返回值，举个例子：
-
-```js
-function Person(name, age) {
-  this.name = name
-  this.age = age
-  return {
-    name,
-    sex: '男'
-  }
-}
-
-Person.prototype.say = function() {
-  console.log('I am ' + this.name)
-}
-
-var p = objectFactory(Person, 'guosw', 18)
-console.log(p.name) // guosw
-console.log(p.age) // undefined
-p.say() // I am guosw
-```
-
-在这个例子中，构造函数返回了一个对象，在实例 `person` 中只能访问返回的对象中的属性。
-
-而且还要注意一点，在这里我们是返回了一个对象，假如我们只是返回一个基本类型的值呢？
-
-```js
-function Person(name, age) {
-  this.name = name
-  this.age = age
-  return 'handsome boy'
-}
-
-var p = objectFactory(Person, 'guosw', 18)
-console.log(p.name) // guosw
-console.log(p.age) // 18
-console.log(p.sex) // undefined
-```
-
-结果完全颠倒过来，这次尽管有返回值，但是相当于没有返回值进行处理。
-
-所以我们还需要判断返回的值是不是一个对象，如果是一个对象，我们就返回这个对象，如果没有，我们该返回什么就返回什么。
-
-再来看第二版的代码，也是最后一版的代码：
-
-```js
-// 第二版的代码
-function objectFactory() {
-  var obj = new Object(),
-    Constructor = [].shift.call(arguments)
-
-  obj.__proto__ = Constructor.prototype
-
-  var ret = Constructor.apply(obj, arguments)
-
-  return typeof ret === 'object' ? ret : obj
+```diff
+function objectFactory(Constructor, ...args) {
+  let obj = new Object()
++ obj.__proto__ = Constructor.prototype // 指向原型 可以让实例访问到构造函数的原型上的属性
+  let ret = Constructor.apply(obj, args)
+  return obj
 }
 ```
 
-## 文章出处
+构造函数也有返回值，假如返回的是一个对象，则实例就是该对象，其他情况默认返回创建的原型对象
+
+```js
+function objectFactory(Constructor, ...args) {
+  let obj = new Object() // 创建一个新对象
+  obj.__proto__ = Constructor.prototype // 指向原型 可以让实例访问到构造函数的原型上的属性
+  let ret = Constructor.apply(obj, args) // 指向构造函数，并将 this 绑定到新创建的 obj 对象上
+  return typeof ret === 'object' ? ret : obj // 默认返回新对象
+}
+```
+
+大功告成
 
 [JavaScript 深入之 new 的模拟实现](https://github.com/mqyqingfeng/Blog/issues/13)
