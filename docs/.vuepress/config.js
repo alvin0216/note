@@ -51,8 +51,8 @@ module.exports = {
             'achieve/call-apply',
             'achieve/new',
             'achieve/bind',
-            'achieve/throttle',
             'achieve/debounce',
+            'achieve/throttle',
             'achieve/promise',
             'achieve/curry',
             'achieve/instanceof',
@@ -81,7 +81,7 @@ module.exports = {
         {
           title: 'React',
           // collapsable: true,
-          children: ['context', 'compound-component', 'redux', 'hooks', 'daily']
+          children: ['context', 'compound-component', 'redux', 'redux-dynamic-injection', 'hooks', 'daily']
         },
         {
           title: 'React 原理',
