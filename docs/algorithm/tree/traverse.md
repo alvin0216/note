@@ -71,12 +71,12 @@ var inorderTraversal = function(root) {
 
   while (current || stack.length > 0) {
     while (current) {
-      stack.push(current)
+      stack.push(current) // 左孩子 先入栈
       current = current.left
     }
-    current = stack.pop()
+    current = stack.pop() // 左孩子 出栈
     nums.push(current.val)
-    current = current.right
+    current = current.right // 再继续遍历右节点
   }
   return nums
 }
@@ -284,10 +284,8 @@ var buildTree = function(preorder, inorder) {
   const rootVal = preorder[0]
   const node = new TreeNode(rootVal)
 
-  let i = 0 // i有两个含义，一个是根节点在中序遍历结果中的下标，另一个是当前左子树的节点个数
-  while (inorder[i] !== rootVal) {
-    i++
-  }
+  // i有两个含义，一个是根节点在中序遍历结果中的下标，另一个是当前左子树的节点个数
+  let i = inorder.indexOf(rootVal)
 
   node.left = buildTree(preorder.slice(1, i + 1), inorder.slice(0, i))
   node.right = buildTree(preorder.slice(i + 1), inorder.slice(i + 1))
