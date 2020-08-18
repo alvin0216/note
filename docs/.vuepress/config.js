@@ -254,7 +254,21 @@ module.exports = {
         }
       ],
       '/interviews/': ['01', '02', 'react', 'promise', 'less-sass', 'closure', 'react-vue'],
-      '/webpack/': ['webpack-module', 'dev-env', 'optimization', 'commonjs', 'babel', 'babel-ast', 'tree-shaking'],
+      '/webpack/': [
+        'dev-env',
+        'optimization',
+        {
+          title: '概念',
+          children: [
+            'concept/webpack-module',
+            'concept/commonjs',
+            'concept/babel',
+            'concept/babel-ast',
+            'concept/tree-shaking',
+            'concept/engineering'
+          ]
+        }
+      ],
       // js
       '/': [
         {
