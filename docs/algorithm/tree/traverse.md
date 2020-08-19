@@ -82,6 +82,24 @@ var inorderTraversal = function(root) {
 }
 ```
 
+```js
+// 以下面为例
+      4
+    /   \
+   2     7
+  / \   / \
+ 1   3 6   9
+```
+
+- 第一次循环：入栈 `[4, 2, 1]`, left 为 null， 出栈
+  - current1：`current.right = null`, 继续出栈
+  - current2: `current.right = null`, 继续出栈
+  - current4: `current.right = 7`,
+- 第二次循环：入栈 `[7, 6]`, left 为 null， 出栈
+  - current6: `current.right = null`, 继续出栈
+  - current7: `current.right = 9`
+- 第三次循环：`current9` 结束
+
 ## 144. 二叉树的前序遍历（根左右）
 
 ```js
