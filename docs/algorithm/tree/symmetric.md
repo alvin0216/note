@@ -54,3 +54,50 @@ var isSymmetric = function(root) {
   return !root || check(root.left, root.right) // root为null也是对称的
 }
 ```
+
+## 剑指 Offer 27. 二叉树的镜像
+
+```js
+请完成一个函数，输入一个二叉树，该函数输出它的镜像。
+例如输入：
+
+     4
+   /   \
+  2     7
+ / \   / \
+1   3 6   9
+镜像输出：
+
+     4
+   /   \
+  7     2
+ / \   / \
+9   6 3   1
+
+输入：root = [4,2,7,1,3,6,9]
+输出：[4,7,2,9,6,3,1]
+
+/**
+ * TreeNode { val, left, right }
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var mirrorTree = function(root) {}
+```
+
+答案：
+
+```js
+var mirrorTree = function(root) {
+  if (root) {
+    let tempTreeNode = root.left
+    root.left = root.right
+    root.right = tempTreeNode
+    root.left && mirrorTree(root.left)
+    root.right && mirrorTree(root.right)
+    return root
+  } else {
+    return root
+  }
+}
+```
