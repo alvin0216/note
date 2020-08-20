@@ -1,5 +1,5 @@
 ---
-title: 链表 - 概览
+title: 概览
 date: 2020-08-20 11:50:33
 ---
 
@@ -9,10 +9,10 @@ date: 2020-08-20 11:50:33
 
 主要是对链表基本概念和特性的应用，如果基础概念掌握牢靠，此类问题即可迎刃而解
 
-- [从尾到头打印链表]()
-- [删除链表中的节点]()
-- [反转链表]()
-- [复杂链表的复制]()
+- [从尾到头打印链表](https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/)
+- [删除链表中的节点](https://leetcode-cn.com/problems/shan-chu-lian-biao-de-jie-dian-lcof/)
+- [反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)
+- [复杂链表的复制](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
 
 <h2>环类题目</h2>
 
@@ -43,4 +43,4 @@ date: 2020-08-20 11:50:33
 
 ---
 
-from [conardli 链表](http://www.conardli.top/docs/dataStructure/%E9%93%BE%E8%A1%A8)
+from [conardli 链表](http://www.conardli.top/docs/dataStructure/%E9%93%BE%E8%A1%A8/%E9%93%BE%E8%A1%A8.html)

@@ -150,13 +150,16 @@ module.exports = {
           ]
         },
         {
-          title: '栈和链表',
+          title: '链表',
           children: [
             'linkList/overview',
-            'stack/convertToBase', // 进制转换
-            'stack/valid-parentheses',
-            'queue/933',
+            'linkList/base-use',
             'linkList/reverseList',
+            'linkList/copyRandomList',
+
+            // 'stack/convertToBase', // 进制转换
+            // 'stack/valid-parentheses',
+            // 'queue/933',
             'linkList/2',
             'linkList/141',
             'linkList/summary'

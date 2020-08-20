@@ -1,9 +1,7 @@
 ---
-title: 链表-反转链表
+title: 反转链表
 date: 2020-07-23 11:55:25
 ---
-
-## 简单的反转链表
 
 leetcode [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
 
@@ -39,12 +37,12 @@ var reverseList = function(head) {}
 
 ```js
 var reverseList = function(head) {
-  let p1 = head,
-    p2 = null
-  while (p1) {
-    console.log(p1.val, p2 && p2.val)
-    p2 = p1
-    p1 = p1.next
+  let cur = head,
+    prev = null
+  while (cur) {
+    console.log(cur.val, prev && prev.val)
+    prev = cur
+    cur = cur.next
   }
 }
 ```
@@ -52,26 +50,26 @@ var reverseList = function(head) {
 打印结果：
 
 ```js
-1 null
-2 1
-3 2
-4 3
+1 null // 1.next = null
+2 1    // 2.next = 1
+3 2    // 3.next = 2
+4 3    // ...
 5 4
 ```
 
-这时候，我们可以把 p1 的指针指向 p2 即可。 也即 `2 -> 1`、`3 -> 2`...
+这时候，我们可以把 prev 的指针指向 cur 即可。 也即 `2 -> 1`、`3 -> 2`...
 
 ```js
 var reverseList = function(head) {
-  let p1 = head,
-    p2 = null
-  while (p1) {
-    const next = p1.next // 保存为临时变量
-    p1.next = p2 // p1.next 指向 p2
-    p2 = p1 // 记录上一个节点
-    p1 = next // 继续下一个循环
+  let cur = head,
+    prev = null
+  while (cur) {
+    const next = cur.next // 保存为临时变量
+    cur.next = prev // cur.next 指向 prev
+    prev = cur // 记录上一个节点
+    cur = next // 继续下一个循环
   }
 
-  return p2
+  return prev
 }
 ```
