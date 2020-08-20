@@ -134,3 +134,38 @@ var kthLargest = function(root, k) {
  */
 var verifyPostorder = function(postorder) {}
 ```
+
+<h3>解题思路</h3>
+
+- 在题目没有重复数字的前提下，二叉搜索树的左子树均小于根节点，右子树均大于根节点。
+- 判断二叉搜索树的后续遍历是否合法，只需判断右子树是否均大于根节点，左子树是否均小于根节点。
+- 显然对于每个节点的操作都是一样的(问题拆解成子问题))，所以使用递归来实现。
+
+```js
+var verifyPostorder = function(postorder) {
+  const len = postorder.length
+  if (len < 2) return true
+
+  // 后序遍历的最后一个元素为根节点
+  let root = postorder[len - 1]
+
+  let i = 0
+  //  划分左/右子树
+  while (i < len - 1) {
+    if (postorder[i] > root) break
+    i++
+  }
+
+  // 判断右子树中的元素是否都大于 root
+  let res = postorder.slice(i, len - 1).every(num => num > root)
+  if (!res) return false
+  // 对左右子树进行递归调用,左右子树通过 i 进行分割
+  return verifyPostorder(postorder.slice(0, i)) && verifyPostorder(postorder.slice(i, len - 1))
+}
+```
+
+<span class='pink'>总结一下：</span>
+
+- **后序遍历，左右根，根节点是在最后一个节点的。[左子树, 右子树, root]**
+- **分割点在于在根节点之前的节点大于 root 时，[左子树, 右子树, root]**
+- **左子树均小于根节点，右子树均大于根节点**
