@@ -163,7 +163,14 @@ module.exports = {
         },
         {
           title: 'Tree 专题',
-          children: ['tree/prologue', 'tree/traverse', 'tree/symmetric', 'tree/search']
+          children: [
+            //
+            'tree/prologue',
+            'tree/traverse',
+            'tree/symmetric',
+            'tree/search',
+            'tree/depth'
+          ]
         },
         {
           title: '一些算法思想',
