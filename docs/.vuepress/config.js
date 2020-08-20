@@ -152,6 +152,7 @@ module.exports = {
         {
           title: '栈和链表',
           children: [
+            'linkList/overview',
             'stack/convertToBase', // 进制转换
             'stack/valid-parentheses',
             'queue/933',
@@ -165,11 +166,15 @@ module.exports = {
           title: 'Tree 专题',
           children: [
             //
-            'tree/prologue',
+            'tree/overview',
             'tree/traverse',
             'tree/symmetric',
             'tree/search',
-            'tree/depth'
+            'tree/depth',
+            'tree/pathSum',
+            'tree/treeToDoublyList',
+            'tree/serialize',
+            'tree/isSubStructure'
           ]
         },
         {
