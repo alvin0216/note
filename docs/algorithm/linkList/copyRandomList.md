@@ -46,3 +46,20 @@ date: 2020-08-20 21:32:26
 - -10000 <= Node.val <= 10000
 - Node.random 为空（null）或指向链表中的节点。
 - 节点数目不超过 1000 。
+
+```js
+/**
+ * // Definition for a Node.
+ * function Node(val, next, random) {
+ *    this.val = val;
+ *    this.next = next;
+ *    this.random = random;
+ * };
+ */
+
+/**
+ * @param {Node} head
+ * @return {Node}
+ */
+var copyRandomList = function(head) {}
+```

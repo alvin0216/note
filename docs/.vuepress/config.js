@@ -295,6 +295,7 @@ module.exports = {
           title: 'CSS',
           children: ['css/note', 'css/text', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
         },
+
         {
           title: 'Browser',
           children: ['root/css-block', 'root/network', 'root/performance']
@@ -304,7 +305,19 @@ module.exports = {
           children: ['coding/oAuth2', 'coding/oAuth2-github', 'coding/axios-cancel']
         },
         {
-          title: 'GIT & 运维',
+          title: 'Node',
+          children: ['/node/middleware', 'node/node-shell']
+        },
+        {
+          title: '性能优化',
+          children: ['performance/keyword', 'performance/lazyload-img']
+        },
+        {
+          title: '重学系列',
+          children: ['relearn/html', 'relearn/attack']
+        },
+        {
+          title: '开发工具',
           children: [
             '/git/base',
             '/git/webhook',
@@ -316,14 +329,6 @@ module.exports = {
             'O&M/certificate',
             'O&M/charles'
           ]
-        },
-        {
-          title: 'Node',
-          children: ['/node/middleware', 'node/node-shell']
-        },
-        {
-          title: '性能优化',
-          children: ['performance/keyword', 'performance/lazyload-img']
         }
         // {
         //   title: 'Question',
