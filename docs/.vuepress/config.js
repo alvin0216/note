@@ -3,6 +3,10 @@ module.exports = {
   title: "Alvin's notes",
   description: "alvin's notes, front-end, react, javascript, vue, algorithm, alvin 的博客，前端开发",
   head: [
+    // SEO
+    ['meta', { name: 'keywords', content: "alvin's notes, alvin 的博客, 前端开发" }],
+    ['meta', { name: 'author', content: 'Alvin, alvin00216@163.com' }],
+    // SEO end...
     ['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }],
     ['meta', { 'http-equiv': 'x-dns-prefetch-control', content: 'on' }],
     ['link', { rel: 'dns-prefetch', href: 'https://gitee.com/alvin0216/cdn' }]
@@ -46,7 +50,7 @@ module.exports = {
           children: ['base/data-types', 'base/prototype', 'base/extends', 'base/this', 'base/closure']
         },
         {
-          title: '模拟实现',
+          title: '实现',
           children: [
             'achieve/call-apply',
             'achieve/new',
@@ -70,10 +74,6 @@ module.exports = {
         {
           title: '设计模式',
           children: ['design-patterns/event-emitter', 'design-patterns/proxy']
-        },
-        {
-          title: '补充篇',
-          children: ['others/bit-operation']
         }
       ],
       // === react
@@ -124,6 +124,10 @@ module.exports = {
       // === algorithm
       '/algorithm/': [
         {
+          title: 'Math',
+          children: ['math/bit-operation', 'math/log', 'math/magnitude']
+        },
+        {
           title: '数据结构',
           children: [
             'data-structure/stack',
@@ -150,6 +154,21 @@ module.exports = {
           ]
         },
         {
+          title: '树',
+          children: [
+            //
+            'tree/overview',
+            'tree/traverse',
+            'tree/symmetric',
+            'tree/search',
+            'tree/depth',
+            'tree/pathSum',
+            'tree/treeToDoublyList',
+            'tree/serialize',
+            'tree/isSubStructure'
+          ]
+        },
+        {
           title: '链表',
           children: [
             'linkList/overview',
@@ -166,19 +185,8 @@ module.exports = {
           ]
         },
         {
-          title: 'Tree 专题',
-          children: [
-            //
-            'tree/overview',
-            'tree/traverse',
-            'tree/symmetric',
-            'tree/search',
-            'tree/depth',
-            'tree/pathSum',
-            'tree/treeToDoublyList',
-            'tree/serialize',
-            'tree/isSubStructure'
-          ]
+          title: '字符串',
+          children: ['string/isPalindrome']
         },
         {
           title: '一些算法思想',
@@ -347,6 +355,7 @@ module.exports = {
         background: '#BADA55',
         scrollOffset: 0
       }
-    }
+    },
+    'vuepress-plugin-mathjax'
   ]
 }

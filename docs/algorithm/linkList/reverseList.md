@@ -29,11 +29,11 @@ leetcode [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zh
 var reverseList = function(head) {}
 ```
 
----
+<h3>题解</h3>
 
-题解，双指针遍历：
+在翻转链表的时候，可以借助三个指针：prev、curr、next，分别代表前一个节点、当前节点和下一个节点，实现过程如下所示。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/reverseList.gif)
+![reverseList](http://s0.lgstatic.com/i/image2/M01/90/E9/CgotOV2IRJ2AYlnUACToKJcAldQ867.gif)
 
 ```js
 var reverseList = function(head) {
@@ -57,7 +57,10 @@ var reverseList = function(head) {
 5 4
 ```
 
-这时候，我们可以把 prev 的指针指向 cur 即可。 也即 `2 -> 1`、`3 -> 2`...
+1. 将 curr 指向的下一节点保存到 next 指针；
+2. curr 指向 prev，一起前进一步；
+3. 重复之前步骤，直到 k 个元素翻转完毕；
+4. 当完成了局部的翻转后，prev 就是最终的新的链表头，curr 指向了下一个要被处理的局部，而原来的头指针 head 成为了链表的尾巴。
 
 ```js
 var reverseList = function(head) {
