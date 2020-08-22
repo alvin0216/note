@@ -82,15 +82,19 @@ module.exports = {
           title: 'React',
           // collapsable: true,
           children: [
+            // ...
             'uncontrolled-components',
-            'reconciliation',
             'context',
             'compound-component',
-            'redux',
-            'redux-dynamic-injection',
             'hooks',
-            'daily'
+            'daily',
+            'reconciliation',
+            'synthetic-events'
           ]
+        },
+        {
+          title: 'Redux',
+          children: ['redux/achieve', 'redux/redux-dynamic-injection']
         },
         {
           title: 'React 原理',
