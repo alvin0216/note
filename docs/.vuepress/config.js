@@ -88,8 +88,7 @@ module.exports = {
             'compound-component',
             'hooks',
             'daily',
-            'reconciliation',
-            'synthetic-events'
+            'reconciliation'
           ]
         },
         {
