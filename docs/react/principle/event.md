@@ -96,8 +96,11 @@ document click
 ```
 
 ```js
-// 添加 false 阻止冒泡
-$button.current.addEventListener('click', () => console.log('native click'), false)
+// 原生事件 阻止冒泡
+$button.current.addEventListener('click', e => {
+   console.log('native click')
+   e.stopPropagation()
+}, false)
 
 // 结果 说明原生事件的停止冒泡，可以阻止合成事件中的冒泡
 native click
@@ -150,6 +153,37 @@ window click
 ```js
 innerClick
 document click
+```
+
+## 总结
+
+先执行原生事件，冒泡到 document 时，进入 事件池，执行合成事件。
+
+```js
+1. 原生 innerClick
+2. 原生 outerClick
+3. React innerClick
+4. React outerClick
+5. document click
+6. window click
+```
+
+原生事件停止冒泡可以阻止合成事件执行：
+
+```js
+// 原生 innerClick 停止冒泡 执行结果：
+原生 innerClick
+```
+
+合成事件中停止冒泡：
+
+```diff
+1. 原生 innerClick
+- 2. 原生 outerClick 被阻止了
+3. React innerClick
+4. React outerClick
+5. document click
+- 6. window click 被阻止了
 ```
 
 - [动画浅析 React 事件系统和源码](https://juejin.im/post/6844903704261312520)
