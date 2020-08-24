@@ -114,9 +114,10 @@ log.apply(person, [18, 'singing'])
 这里就直接给代码了：
 
 ```js
-Function.prototype.apply2 = function(context = window, ...args) {
+Function.prototype.apply2 = function(context = window, args) {
+  if (!Array.isArray(args)) throw new TypeError('apply 参数必须为数组类型')
   context.fn = this
-  let result = context.fn(args)
+  let result = context.fn(...args)
   delete context.fn
   return result
 }

@@ -47,7 +47,14 @@ module.exports = {
       '/javascript/': [
         {
           title: '基础',
-          children: ['base/data-types', 'base/prototype', 'base/extends', 'base/this', 'base/closure']
+          children: [
+            'base/data-types',
+            'base/prototype',
+            'base/this',
+            'base/closure',
+            'base/extends',
+            'base/es5-es6-extends'
+          ]
         },
         {
           title: '实现',
@@ -201,6 +208,10 @@ module.exports = {
           children: ['string/isPalindrome']
         },
         {
+          title: '动态规划',
+          children: ['dynamic-programming/overview']
+        },
+        {
           title: '一些算法思想',
           children: ['others/sliding-window', 'others/binarySearch']
         }
@@ -302,6 +313,10 @@ module.exports = {
             'concept/tree-shaking',
             'concept/engineering'
           ]
+        },
+        {
+          title: '原理',
+          children: ['principle/overview']
         }
       ],
       // js
