@@ -294,6 +294,200 @@ moduleList:
 
 不过现在的 `moduleList` 数组里的对象格式不利于后面的操作，我们希望是以文件的路径为 `key，{code，deps}` 为值的形式存储。因此，我们创建一个新的对象 `depsGraph`。
 
+```js
+const parseModules = file => {
+  //...
+  let depsGraph = {}
+  moduleList.forEach(moduleInfo => {
+    depsGraph[moduleInfo.file] = {
+      deps: moduleInfo.deps,
+      code: moduleInfo.code
+    }
+  })
+  return depsGraph
+}
+```
+
+## 处理两个关键字
+
+我们现在的目的就是要生成一个 bundle.js 文件，也就是打包后的一个文件。其实思路很简单，就是把 index.js 的内容和它的依赖模块整合起来。然后把代码写到一个新建的 js 文件。
+
+我们把这段代码格式化一下
+
+```js
+// index.js
+'use strict'
+
+var _add = _interopRequireDefault(require('./add.js'))
+var _max = _interopRequireDefault(require('./max.js'))
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj }
+}
+
+console.log((0, _add['default'])(1, 2))
+console.log((0, _max['default'])(1, 2))
+
+// add.js
+var _default = function _default(x, y) {
+  return x + y
+}
+
+exports['default'] = _default
+```
+
+但是我们现在是不能执行 `index.js` 这段代码的，因为浏览器不会识别执行 `require` 和 `exports`, 也即浏览器不支持 `commonjs` 语法.
+
+我们创建一个函数
+
+```js
+const bundle = file => {
+  const depsGraph = JSON.stringify(parseModules(file))
+}
+```
+
+我们将上一步获得的 `depsGraph` 保存起来。
+
+现在返回一个整合完整的字符串代码。
+
+怎么返回呢？更改下 `bundle` 函数
+
+```js
+const bundle = file => {
+  const depsGraph = JSON.stringify(parseModules(file))
+  return `(function (graph) {
+      function require(file) {
+          function absRequire(relPath) {
+              return require(graph[file].deps[relPath])
+          }
+          var exports = {};
+          (function (require,exports,code) {
+              eval(code)
+          })(absRequire,exports,graph[file].code)
+          return exports
+      }
+      require('${file}')
+  })(${depsGraph})`
+}
+
+const content = bundle('./src/index.js')
+```
+
+最终会打包为：
+
+```js
+;(function(graph) {
+  function require(file) {
+    function absRequire(relPath) {
+      return require(graph[file].deps[relPath])
+    }
+    var exports = {}
+    ;(function(require, exports, code) {
+      eval(code)
+    })(absRequire, exports, graph[file].code)
+    return exports
+  }
+  require('./src/index.js')
+})({
+  './src/index.js': {
+    deps: { './add.js': './src/add.js', './max.js': './src/max.js' },
+    code:
+      '"use strict";\n\nvar _add = _interopRequireDefault(require("./add.js"));\n\nvar _max = _interopRequireDefault(require("./max.js"));\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }\n\nconsole.log((0, _add["default"])(1, 2));\nconsole.log((0, _max["default"])(1, 2));'
+  },
+  './src/add.js': {
+    deps: {},
+    code:
+      '"use strict";\n\nObject.defineProperty(exports, "__esModule", {\n  value: true\n});\nexports["default"] = void 0;\n\n// add.js\nvar _default = function _default(x, y) {\n  return x + y;\n};\n\nexports["default"] = _default;'
+  },
+  './src/max.js': {
+    deps: {},
+    code:
+      '"use strict";\n\nObject.defineProperty(exports, "__esModule", {\n  value: true\n});\nexports["default"] = void 0;\n\n// max.js\nvar _default = function _default(x, y) {\n  return Math.max(x, y);\n};\n\nexports["default"] = _default;'
+  }
+})
+```
+
+## 最终代码
+
+```js
+const fs = require('fs')
+const path = require('path')
+const parser = require('@babel/parser') // str 转化为 AST
+const traverse = require('@babel/traverse').default // 遍历 AST
+const babel = require('@babel/core')
+
+const getModuleInfo = file => {
+  const body = fs.readFileSync(file, 'utf-8') // body 为主题内容
+  const ast = parser.parse(body, {
+    sourceType: 'module' // 表示解析的是 es6 模块
+  })
+
+  const deps = {}
+  traverse(ast, {
+    ImportDeclaration({ node }) {
+      const dirname = path.dirname(file)
+      const abspath = './' + path.join(dirname, node.source.value)
+      deps[node.source.value] = abspath
+    }
+  })
+
+  const { code } = babel.transformFromAst(ast, null, {
+    presets: ['@babel/preset-env']
+  })
+
+  return { file, deps, code }
+}
+
+const parseModules = file => {
+  const entry = getModuleInfo(file)
+  const moduleList = [entry]
+
+  for (let i = 0; i < moduleList.length; i++) {
+    const { deps } = moduleList[i]
+    if (deps) {
+      for (const key in deps) {
+        if (deps.hasOwnProperty(key)) {
+          moduleList.push(getModuleInfo(deps[key]))
+        }
+      }
+    }
+  }
+
+  // 新增代码
+  let depsGraph = {}
+  moduleList.forEach(moduleInfo => {
+    depsGraph[moduleInfo.file] = {
+      deps: moduleInfo.deps,
+      code: moduleInfo.code
+    }
+  })
+
+  return depsGraph
+}
+
+const bundle = file => {
+  const depsGraph = JSON.stringify(parseModules(file))
+  return `(function (graph) {
+      function require(file) {
+          function absRequire(relPath) {
+              return require(graph[file].deps[relPath])
+          }
+          var exports = {};
+          (function (require,exports,code) {
+              eval(code)
+          })(absRequire,exports,graph[file].code)
+          return exports
+      }
+      require('${file}')
+  })(${depsGraph})`
+}
+
+const content = bundle('./src/index.js')
+
+!fs.existsSync('./dist') && fs.mkdirSync('./dist')
+fs.writeFileSync('./dist/bundle.js', content)
+```
+
 ---
 
 推荐文章 [凹凸实验室- Webpack 原理浅析](https://juejin.im/post/6854818576470933512)
