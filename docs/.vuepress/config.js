@@ -213,7 +213,7 @@ module.exports = {
         },
         {
           title: '一些算法思想',
-          children: ['others/sliding-window', 'others/binarySearch']
+          children: ['others/sliding-window', 'others/binarySearch', 'others/divide']
         }
       ],
       // === http
