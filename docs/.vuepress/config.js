@@ -306,17 +306,18 @@ module.exports = {
         {
           title: '概念',
           children: [
+            'concept/engineering',
             'concept/webpack-module',
             'concept/commonjs',
             'concept/babel',
             'concept/babel-ast',
             'concept/tree-shaking',
-            'concept/engineering'
+            'concept/loader'
           ]
         },
         {
           title: '原理',
-          children: ['principle/overview']
+          children: ['principle/overview', 'principle/self-loader']
         }
       ],
       // js
