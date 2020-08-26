@@ -53,7 +53,8 @@ module.exports = {
             'base/this',
             'base/closure',
             'base/extends',
-            'base/es5-es6-extends'
+            'base/es5-es6-extends',
+            'base/curry'
           ]
         },
         {
