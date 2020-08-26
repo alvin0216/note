@@ -210,7 +210,11 @@ module.exports = {
         },
         {
           title: '动态规划',
-          children: ['dynamic-programming/overview']
+          children: [
+            //
+            'dynamic-programming/overview',
+            'dynamic-programming/climbStairs'
+          ]
         },
         {
           title: '一些算法思想',
