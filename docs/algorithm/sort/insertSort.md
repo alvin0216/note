@@ -10,7 +10,7 @@ date: 2020-05-19 15:05:55
 
 ![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/sort/insertSort.png)
 
-## 第一版：基本实现
+## 基本实现
 
 ```js
 function insertSort(arr) {
@@ -29,39 +29,7 @@ function insertSort(arr) {
 }
 ```
 
-## 二分查找算法
-
-因为对于插入排序的优化方法是二分查找优化，这里补充一下二分查找的算法的实现。
-
-核心概念是：**折半**。
-
-```js
-function binarySearch(arr, value) {
-  let min = 0
-  let max = arr.length - 1
-
-  while (min <= max) {
-    const mid = Math.floor((min + max) / 2)
-
-    if (arr[mid] === value) {
-      return mid
-    } else if (arr[mid] > value) {
-      max = mid - 1
-    } else {
-      min = mid + 1
-    }
-  }
-
-  return 'Not Found'
-}
-
-// test
-const arr = [1, 2, 3]
-console.log(binarySearch(arr, 2)) // 1
-console.log(binarySearch(arr, 4)) // Not Found
-```
-
-## 第二版：使用二分查找
+## 使用二分查找
 
 首先把二分查找算法做一点小修改，以适应我们的插入排序：
 
@@ -106,16 +74,12 @@ const arr = [91, 60, 96, 7, 35, 65, 10, 65, 9, 30, 20, 31, 77, 81, 24]
 console.log(insertionSort2(arr))
 ```
 
-## 属性
-
 - 稳定
 - 适合场景：对快要排序完成的数组时间复杂度为 O(n)
 - 非常低的开销
 - 时间复杂度 `O(n²)`
 
 > 由于它的优点（自适应，低开销，稳定，几乎排序时的 `O（n）`时间），插入排序通常用作递归基本情况（当问题规模较小时）针对较高开销分而治之排序算法， 如希尔排序或快速排序。
-
-## 核心概念
 
 - 高性能（特别是接近排序完毕时的数组），低开销，且稳定
 - 利用二分查找来优化
