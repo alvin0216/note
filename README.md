@@ -9,6 +9,8 @@
 - [HTTP](https://www.alvin.run/htt[])
 - [Browser](https://www.alvin.run/browser)
 
+![](https://static01.imgkr.com/temp/f4fd1fa88bef4cd6bbe9bac058bde14d.gif)
+
 <!--
 
 一个页面 n 个 websocket 连接导致机器很卡的话你怎么处理
