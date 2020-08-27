@@ -213,7 +213,9 @@ module.exports = {
           children: [
             //
             'dynamic-programming/overview',
-            'dynamic-programming/climbStairs'
+            'dynamic-programming/method',
+            'dynamic-programming/climbStairs',
+            'dynamic-programming/house-robber'
           ]
         },
         {

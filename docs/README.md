@@ -5,8 +5,6 @@ sidebar: true
 - [ASCIIFlow.cn：一个好用的在线纯文本流程图绘制工具](http://asciiflow.cn/)
 - [一名【合格】前端工程师的自检清单](https://juejin.im/post/5cc1da82f265da036023b628)
 
-![](https://gitee.com/alvin0216/cdn/raw/master/img/note.gif)
-
 <!--
 
 一个页面 n 个 websocket 连接导致机器很卡的话你怎么处理
