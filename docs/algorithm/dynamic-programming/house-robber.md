@@ -3,13 +3,11 @@ title: 打家劫舍
 date: 2020-08-27 09:24:38
 ---
 
-```js
-你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，
-
-如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
+你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
 
 给定一个代表每个房屋存放金额的非负整数数组，计算你 不触动警报装置的情况下 ，一夜之内能够偷窃到的最高金额。
 
+```js
 输入：[1,2,3,1]
 输出：4
 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
@@ -36,8 +34,8 @@ var rob = function(nums) {}
 
 - `length = 1` 的情况: `max = nums[0]`
 - `length = 2` 的情况: `max = Math.max(nums[0], nums[1])`
-- `length = 3` 的情况: `max = Math.max(nums[0] + nums[2], nums[1])`
-- `length = i` 的情况: `max = Math.max(nums[i - 2] + nums[i], nums[i - 1])`
+- `length = 3` 的情况: `max = Math.max(nums[0] + nums[2], nums[1])` 称之为 max3
+- `length = 4` 的情况: `max = Math.max(nums[i - 2] + nums[i], nums[i - 1])`, 依赖上一次结果
 
 状态转移方程就是 `f(i) = max(f(i – 2) + nums[i], f(i – 1))`
 
@@ -58,8 +56,6 @@ var rob = function(nums) {
     res = Math.max(dp[i], res)
   }
 
-  console.log(dp)
-
-  return res
+  return res // 或者 dp[len - 1]
 }
 ```

@@ -215,7 +215,9 @@ module.exports = {
             'dynamic-programming/overview',
             'dynamic-programming/method',
             'dynamic-programming/climbStairs',
-            'dynamic-programming/house-robber'
+            'dynamic-programming/house-robber',
+            'dynamic-programming/coinChange',
+            'dynamic-programming/minPathSum'
           ]
         },
         {
