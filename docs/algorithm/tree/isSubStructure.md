@@ -1,5 +1,5 @@
 ---
-title: TODO 树的子结构
+title: 树的子结构
 date: 2020-08-20 11:42:41
 ---
 
@@ -37,4 +37,26 @@ B是A的子结构， 即 A中有出现和B相同的结构和节点值。
  * @return {boolean}
  */
 var isSubStructure = function(A, B) {}
+```
+
+答案：
+
+```JS
+var isSubStructure = function(A, B) {
+  if (!A || !B) return false
+
+  return isSameTree(A, B) || isSubStructure(A.left, B) || isSubStructure(A.right, B)
+}
+
+var isSameTree = function(p, q) {
+  if (!q) return true // 注意 B 为空时也是判断为相同的结构
+  if (!p && !q) return true
+  if (p && q
+      && p.val === q.val
+      && isSameTree(p.left, q.left)
+      && isSameTree(p.right, q.right)) {
+    return true
+  }
+  return false
+}
 ```
