@@ -267,7 +267,7 @@ module.exports = {
         },
         {
           title: '拷问篇',
-          children: ['torture/1', 'torture/2', 'torture/3']
+          children: ['torture/1', 'torture/2', 'torture/3', 'torture/overview']
         },
         {
           title: 'nginx',
