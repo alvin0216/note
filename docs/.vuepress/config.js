@@ -185,7 +185,8 @@ module.exports = {
             'tree/pathSum',
             'tree/treeToDoublyList',
             'tree/serialize',
-            'tree/isSubStructure'
+            'tree/isSubStructure',
+            'tree/bfs-dfs'
           ]
         },
         {
@@ -217,7 +218,8 @@ module.exports = {
             'dynamic-programming/climbStairs',
             'dynamic-programming/house-robber',
             'dynamic-programming/coinChange',
-            'dynamic-programming/minPathSum'
+            'dynamic-programming/minPathSum',
+            'dynamic-programming/uniquePaths'
           ]
         },
         {
