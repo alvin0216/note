@@ -255,7 +255,8 @@ module.exports = {
             'basis/proxy-cache',
             'basis/http-connection',
             'basis/redirect',
-            'basis/cookie-session'
+            'basis/cookie-session',
+            'basis/cross-domain'
           ]
         },
         {
@@ -307,10 +308,9 @@ module.exports = {
           children: [
             //
             'security/overview',
-            'security/cross-domain',
             'security/xss',
             'security/csrf',
-            'security/https'
+            'security/clickjacking'
           ]
         },
         {
@@ -369,7 +369,7 @@ module.exports = {
         },
         {
           title: '重学系列',
-          children: ['relearn/html', 'relearn/attack']
+          children: ['relearn/html']
         },
         {
           title: '开发工具',

@@ -1,11 +1,9 @@
 ---
-title: HTTPS 让数据传输更安全
+title: 握手过程
 date: 2020-06-09 13:10:34
 ---
 
 ![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/security/https.png)
-
-## 概述
 
 <blockquote class='box'>
 

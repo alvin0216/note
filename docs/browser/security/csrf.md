@@ -1,5 +1,5 @@
 ---
-title: CSRF：跨站请求伪造
+title: CSRF 跨站请求伪造
 date: 2020-06-26 23:30:24
 ---
 
@@ -157,7 +157,7 @@ SameSite 选项通常有 Strict、Lax 和 None 三个值。
 - Lax 相对宽松一点。在跨站点的情况下，从第三方站点的链接打开和从第三方站点提交 Get 方式的表单这两种方式都会携带 Cookie。但如果在第三方站点中使用 Post 方法，或者通过 img、iframe 等标签加载的 URL，这些场景都不会携带 Cookie。
 - 而如果使用 None 的话，在任何情况下都会发送 Cookie 数据。
 
-还可以添加 `Secure`.
+还可以添加 `Secure`，cookie 只在 `https` 中传输。
 
 ### Referer、Origin
 
