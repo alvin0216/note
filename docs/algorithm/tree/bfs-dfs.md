@@ -12,8 +12,8 @@ date: 2020-08-31 09:30:59
  / \ /  \
 5  9 13 20
 
-广度: [ [ 11 ], [ 7, 15 ], [ 5, 9, 13, 20 ] ]
-深度: [11, 7, 5, 9, 15, 13, 20, 15, 13, 20 ]
+广度: [11, 7, 15, 5, 9, 13, 20]
+深度: [11, 7, 5, 9, 15, 13, 20]
 ```
 
 :::details 构建 tree
@@ -44,6 +44,25 @@ root.right.right = new TreeNode(20)
 ```js
 function bfs(root) {
   if (!root) return []
+  let queue = [root]
+  let res = []
+  while (queue.length) {
+    let node = queue.shift() // 出队
+    res.push(node.val)
+    node.left && queue.push(node.left) // 左孩子入队
+    node.right && queue.push(node.right) // 右孩子入队
+  }
+  return res
+}
+```
+
+输出：`[ [ 11 ], [ 7, 15 ], [ 5, 9, 13, 20 ] ]`
+
+:::details 代码
+
+```js
+function bfs(root) {
+  if (!root) return []
   let result = []
   let queue = [root] // 根节点入队
 
@@ -66,27 +85,23 @@ function bfs(root) {
 }
 ```
 
+:::
+
 ## 深度优先遍历
 
 ```js
 function dfs(root) {
   if (!root) return []
-  let result = []
+  let res = []
   let stack = [root] // 根节点入栈
 
-  while (root || stack.length > 0) {
-    while (root) {
-      result.push(root.val)
-      stack.push(root)
-      root = root.left
-    }
-    if (stack.length > 0) {
-      root = stack.pop()
-      root = root.right
-    }
+  while (stack.length > 0) {
+    const node = stack.pop() // 出栈
+    res.push(node.val)
+    node.right && stack.push(node.right) // 注意先入栈左孩子，栈是先进后出的
+    node.left && stack.push(node.left)
   }
-  return result
+  return res
 }
-
-// [11, 7, 5, 9, 15, 13, 20, 15, 13, 20]
+// [11, 7, 5, 9, 15, 13, 20]
 ```

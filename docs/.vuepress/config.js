@@ -156,6 +156,7 @@ module.exports = {
             'data-structure/set',
             'data-structure/dict-hashtable',
             'data-structure/tree',
+            'data-structure/avl',
             'data-structure/graph',
             'data-structure/graph-traverse'
           ]
@@ -302,8 +303,15 @@ module.exports = {
           ]
         },
         {
-          title: '浏览器安全',
-          children: ['security/cross-domain', 'security/xss', 'security/csrf', 'security/https']
+          title: 'web 安全',
+          children: [
+            //
+            'security/overview',
+            'security/cross-domain',
+            'security/xss',
+            'security/csrf',
+            'security/https'
+          ]
         },
         {
           title: '拷问篇',
