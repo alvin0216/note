@@ -310,9 +310,12 @@ module.exports = {
             'security/overview',
             'security/xss',
             'security/csrf',
+            'security/ssrf',
             'security/clickjacking',
             'security/url-phishing',
-            'security/sql'
+            'security/sql',
+            'security/file',
+            'security/ddos'
           ]
         },
         {
