@@ -116,7 +116,8 @@ module.exports = {
             'principle/key',
             'principle/vdom-diff',
             'principle/react-diff',
-            'principle/event'
+            'principle/event',
+            'principle/react-requestIdleCallback'
           ]
         },
         {
@@ -362,7 +363,13 @@ module.exports = {
         },
         {
           title: 'Coding',
-          children: ['coding/oAuth2', 'coding/oAuth2-github', 'coding/axios-cancel']
+          children: [
+            'coding/oAuth2',
+            'coding/oAuth2-github',
+            'coding/axios-cancel',
+            'coding/token',
+            'coding/comment-attack'
+          ]
         },
         {
           title: 'Node',
