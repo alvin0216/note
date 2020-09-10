@@ -51,7 +51,15 @@ module.exports = {
         },
         {
           title: 'ES6',
-          children: ['es6/class-extends', 'es6/symbol', 'es6/set-map', 'es6/web-worker', 'es6/skills']
+          children: [
+            'es6/class-extends',
+            'es6/symbol',
+            'es6/set-map',
+            'es6/generator',
+            'es6/async',
+            'es6/web-worker',
+            'es6/skills'
+          ]
         },
         {
           title: '手写',
