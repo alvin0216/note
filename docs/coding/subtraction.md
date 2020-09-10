@@ -17,7 +17,7 @@ for (let i = 0; i < 9999; i++) {
 // 方法1 O(n^2)
 allKeys.filter(key => !usedKeys.includes(key))
 
-// 方法2 利用 set，set 的查找效率是 O(1), 最终复杂度 O(n)
+// 方法2 利用 set，set 的查找效率是 O(1) ~ O(logn), 最终复杂度 O(n)
 let set = new Set(usedKeys)
 allKeys.filter(key => !set.has(key))
 
@@ -30,7 +30,7 @@ allKeys.filter(key => !hash[key])
 ```
 
 - 利用双层遍历，算法复杂度 $O(n^2)$，不可取
-- 利用 set，set 的查找效率是 O(log2N), 最终复杂度 $O(n)$
+- 利用 set，set 的查找效率是 $O(1)$ ~ $O(logn)$, 最终复杂度 $O(n)$ ~ $O(nlogn)$
 - 利用哈希表 查找效率是 O(1), 最终复杂度 $O(n)$
 
 运算结果
@@ -46,3 +46,5 @@ hash: 2.609ms
 ```
 
 总结：寻址算法最好采用 set、哈希、字典表的方式，可以有效降低算法复杂度。
+
+另外 [new Set()的时间复杂度是 O(n)吗?](https://www.lizenghai.com/archives/66278.html)
