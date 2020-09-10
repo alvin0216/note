@@ -47,18 +47,14 @@ module.exports = {
       '/javascript/': [
         {
           title: '基础',
-          children: [
-            'base/data-types',
-            'base/prototype',
-            'base/this',
-            'base/closure',
-            'base/extends',
-            'base/es5-es6-extends',
-            'base/curry'
-          ]
+          children: ['base/data-types', 'base/prototype', 'base/this', 'base/closure', 'base/extends']
         },
         {
-          title: '实现',
+          title: 'ES6',
+          children: ['es6/class-extends', 'es6/symbol', 'es6/set-map', 'es6/web-worker', 'es6/skills']
+        },
+        {
+          title: '手写',
           children: [
             'achieve/call-apply',
             'achieve/new',
@@ -70,10 +66,6 @@ module.exports = {
             'achieve/instanceof',
             'achieve/deepClone'
           ]
-        },
-        {
-          title: 'ES6',
-          children: ['es6/symbol', 'es6/set-map', 'es6/web-worker', 'es6/skills']
         },
         {
           title: '文件和二进制数据',
@@ -368,7 +360,8 @@ module.exports = {
             'coding/oAuth2-github',
             'coding/axios-cancel',
             'coding/token',
-            'coding/comment-attack'
+            'coding/comment-attack',
+            'coding/subtraction'
           ]
         },
         {

@@ -133,4 +133,5 @@ function inherit(Child, Parent) {
 inherit(Child, Parent)
 ```
 
-参考自 [JavaScript 深入之继承的多种方式和优缺点](https://github.com/mqyqingfeng/Blog/issues/16) -->
+- 参考自 [JavaScript 深入之继承的多种方式和优缺点](https://github.com/mqyqingfeng/Blog/issues/16) -->
+- 请看 [Class 的继承是怎么做的](../es6/class-extends.md)
