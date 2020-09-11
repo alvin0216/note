@@ -369,7 +369,8 @@ module.exports = {
             'coding/axios-cancel',
             'coding/token',
             'coding/comment-attack',
-            'coding/subtraction'
+            'coding/subtraction',
+            'coding/valid-requests'
           ]
         },
         {
