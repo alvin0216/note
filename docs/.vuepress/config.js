@@ -104,39 +104,44 @@ module.exports = {
           children: ['redux/achieve', 'redux/redux-dynamic-injection']
         },
         {
-          title: 'React 原理',
-          children: [
-            'principle/requestIdleCallback',
-            'principle/updateQueue',
-            'principle/react-fiber',
-            'principle/jsx-to-vdom',
-            'principle/vdom-to-fiber',
-            'principle/mini-react',
-            'principle/hooks',
-            'principle/key',
-            'principle/vdom-diff',
-            'principle/react-diff',
-            'principle/event',
-            'principle/react-requestIdleCallback'
-          ]
-        },
-        {
-          title: 'React 源码解读',
-          // collapsable: true,
-          children: [
-            'code/home',
-            'code/base',
-            'code/render',
-            'code/update',
-            'code/expirationTime',
-            'code/scheduler',
-            'code/scheduleWork'
-          ]
-        },
-        {
           title: 'React router',
           children: ['router/history-location', 'router/hash-router']
         },
+        {
+          title: 'React 进阶',
+          children: [
+            {
+              title: 'react 原理学习前置知识',
+              children: [
+                'principle/requestIdleCallback',
+                'principle/updateQueue',
+                'principle/react-fiber',
+                'principle/jsx-to-vdom',
+                'principle/vdom-to-fiber',
+                'principle/mini-react',
+                'principle/hooks',
+                'principle/key',
+                'principle/vdom-diff',
+                'principle/react-diff',
+                'principle/event',
+                'principle/react-requestIdleCallback'
+              ]
+            },
+            {
+              title: '跟着 jokcy 学源码（未完成）',
+              children: [
+                'code/home',
+                'code/base',
+                'code/render',
+                'code/update',
+                'code/expirationTime',
+                'code/scheduler',
+                'code/scheduleWork'
+              ]
+            }
+          ]
+        },
+
         {
           title: 'SSR',
           children: ['ssr/ssr-csr', 'ssr/isomorphism']
