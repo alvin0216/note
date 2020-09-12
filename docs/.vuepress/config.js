@@ -165,7 +165,7 @@ module.exports = {
         {
           title: '排序算法',
           children: [
-            'complexity',
+            'sort/overview',
             'sort/bubbleSort',
             'sort/selectionSort',
             'sort/insertSort',
@@ -226,7 +226,13 @@ module.exports = {
         },
         {
           title: '一些算法思想',
-          children: ['others/sliding-window', 'others/binarySearch', 'others/divide', 'others/shuffle']
+          children: [
+            'others/complexity',
+            'others/sliding-window',
+            'others/binarySearch',
+            'others/divide',
+            'others/shuffle'
+          ]
         }
       ],
       // === http

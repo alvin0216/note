@@ -57,3 +57,5 @@ request(urls)
 请求 `https://mockyonyoucloud.com/mock/13592/random/name` 失败，剩余有效请求次数： 0
 Error:  请求 `https://mockyonyoucloud.com/mock/13592/random/name` 失败
 ```
+
+当然还可以新增 callback 属性。具体看需求了...
