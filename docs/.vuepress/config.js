@@ -110,8 +110,13 @@ module.exports = {
         {
           title: 'React 进阶',
           children: [
+            'deep/way',
             {
-              title: 'react 原理学习前置知识',
+              title: 'React 理念',
+              children: ['deep/idea', 'deep/oldConstructure']
+            },
+            {
+              title: 'react 原理学习前置知识（零散）',
               children: [
                 'principle/requestIdleCallback',
                 'principle/updateQueue',
@@ -141,7 +146,6 @@ module.exports = {
             }
           ]
         },
-
         {
           title: 'SSR',
           children: ['ssr/ssr-csr', 'ssr/isomorphism']
