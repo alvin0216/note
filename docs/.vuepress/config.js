@@ -316,7 +316,8 @@ module.exports = {
             'event-loop/thread-queue',
             'event-loop/macrotask-microtask',
             'event-loop/browser-event-loop',
-            'event-loop/promise'
+            'event-loop/promise',
+            'event-loop/node'
           ]
         },
         {
