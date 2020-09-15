@@ -91,17 +91,18 @@ module.exports = {
           // collapsable: true,
           children: [
             {
-              title: '入门',
+              title: 'base',
               children: [
                 'record/uncontrolled-components',
                 'record/context',
                 'record/compound-component',
-                'record/reconciliation'
+                'record/reconciliation',
+                'record/setState'
               ]
             },
             {
               title: 'hooks',
-              children: ['hooks/base']
+              children: ['hooks/base', 'hooks/useState']
             },
             {
               title: 'Redux',
@@ -301,15 +302,17 @@ module.exports = {
       // === browser
       '/browser/': [
         {
-          title: '预备知识',
-          children: ['process-thread']
-        },
-        {
           title: '宏观下的浏览器',
-          children: ['macro/browser-process', 'macro/url-to-display', 'macro/rendering1', 'macro/rendering2']
+          children: [
+            'macro/process-thread',
+            'macro/browser-process',
+            'macro/url-to-display',
+            'macro/rendering1',
+            'macro/rendering2'
+          ]
         },
         {
-          title: '浏览器中 Javascript 执行机制',
+          title: 'Javascript 执行机制',
           children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain', 'js/this']
         },
         {
@@ -342,11 +345,10 @@ module.exports = {
           ]
         },
         {
-          title: '拷问篇',
-          children: ['torture/process', 'torture/rendering']
+          title: '其他',
+          children: ['others/css-block', 'others/network', 'others/performance']
         }
       ],
-      '/interviews/': ['01', '02', 'react', 'promise', 'less-sass', 'closure', 'react-vue'],
       '/webpack/': [
         'dev-env',
         'optimization',
@@ -371,7 +373,7 @@ module.exports = {
       '/': [
         {
           title: 'HTML',
-          children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href']
+          children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href', 'html/link-meta-script']
         },
 
         {
@@ -380,32 +382,39 @@ module.exports = {
         },
 
         {
-          title: 'Browser',
-          children: ['root/css-block', 'root/network', 'root/performance']
-        },
-        {
-          title: 'Coding',
-          children: [
-            'coding/oAuth2',
-            'coding/oAuth2-github',
-            'coding/axios-cancel',
-            'coding/token',
-            'coding/comment-attack',
-            'coding/subtraction',
-            'coding/valid-requests'
-          ]
-        },
-        {
           title: 'Node',
           children: ['/node/middleware', 'node/node-shell']
         },
         {
-          title: '性能优化',
-          children: ['performance/keyword', 'performance/lazyload-img']
+          title: 'Coding',
+          children: [
+            {
+              title: '汇总',
+              children: [
+                'coding/oAuth2',
+                'coding/oAuth2-github',
+                'coding/axios-cancel',
+                'coding/token',
+                'coding/comment-attack'
+              ]
+            },
+            {
+              title: '题目',
+              children: [
+                'coding/question/valid-requests',
+                'coding/question/subtraction',
+                'coding/question/promise-request1',
+                'coding/question/promise-request2',
+                'coding/question/sort',
+                'coding/question/format'
+                //
+              ]
+            }
+          ]
         },
         {
-          title: '重学系列',
-          children: ['relearn/html']
+          title: '性能优化',
+          children: ['performance/keyword', 'performance/lazyload-img']
         },
         {
           title: '开发工具',
@@ -421,10 +430,6 @@ module.exports = {
             'O&M/charles'
           ]
         }
-        // {
-        //   title: 'Question',
-        //   children: ['question/01', 'question/02', 'question/03', 'question/04', 'question/05', 'question/06']
-        // }
       ]
     }
   },
