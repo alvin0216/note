@@ -90,22 +90,28 @@ module.exports = {
           title: 'React',
           // collapsable: true,
           children: [
-            // ...
-            'uncontrolled-components',
-            'context',
-            'compound-component',
-            'hooks',
-            'daily',
-            'reconciliation'
+            {
+              title: '入门',
+              children: [
+                'record/uncontrolled-components',
+                'record/context',
+                'record/compound-component',
+                'record/reconciliation'
+              ]
+            },
+            {
+              title: 'hooks',
+              children: ['hooks/base']
+            },
+            {
+              title: 'Redux',
+              children: ['redux/achieve', 'redux/redux-dynamic-injection']
+            },
+            {
+              title: 'React router',
+              children: ['router/history-location', 'router/hash-router']
+            }
           ]
-        },
-        {
-          title: 'Redux',
-          children: ['redux/achieve', 'redux/redux-dynamic-injection']
-        },
-        {
-          title: 'React router',
-          children: ['router/history-location', 'router/hash-router']
         },
         {
           title: 'React 进阶',
