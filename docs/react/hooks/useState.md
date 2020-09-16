@@ -23,7 +23,7 @@ function App() {
 
   function increment() {
     setTimeout(() => {
-      updateNum(num + 1)
+      updateNum(num + 1) // 每次 render num 被重置为 0
     }, 1000)
   }
 
@@ -32,3 +32,5 @@ function App() {
 ```
 
 在 1 秒内快速点击 p5 次，视图上显示为几？
+
+可以 1。

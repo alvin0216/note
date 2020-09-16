@@ -308,7 +308,8 @@ module.exports = {
             'macro/browser-process',
             'macro/url-to-display',
             'macro/rendering1',
-            'macro/rendering2'
+            'macro/rendering2',
+            'macro/repaint-reflow'
           ]
         },
         {
@@ -343,6 +344,10 @@ module.exports = {
             'security/file',
             'security/ddos'
           ]
+        },
+        {
+          title: 'DOM 操作',
+          children: ['dom/overview', 'dom/capture-bubble']
         },
         {
           title: '其他',
