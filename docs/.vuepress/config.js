@@ -356,7 +356,10 @@ module.exports = {
       ],
       '/webpack/': [
         'dev-env',
-        'optimization',
+        {
+          title: '构建优化',
+          children: ['optimization/overview', 'optimization/spritesmith']
+        },
         {
           title: '概念',
           children: [
