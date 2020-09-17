@@ -386,7 +386,19 @@ module.exports = {
 
         {
           title: 'CSS',
-          children: ['css/note', 'css/text', 'css/BFC', 'css/flex', 'css/flex-examples', 'css/grid', 'css/rem']
+          children: [
+            'css/note',
+            'css/text',
+            'css/BFC',
+            'css/flex',
+            'css/flex-examples',
+            'css/grid',
+
+            {
+              title: '移动端',
+              children: ['css/mobile/flexible', 'css/mobile/1px']
+            }
+          ]
         },
 
         {
