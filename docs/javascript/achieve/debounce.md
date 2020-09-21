@@ -23,11 +23,11 @@ container.onmousemove = debounce(getUserAction, 1000)
 可以通过定时器简单实现
 
 ```js
-function debounce(func, wait) {
-  var timeout
+function debounce(func, delay) {
+  var timer
   return function() {
-    clearTimeout(timeout)
-    timeout = setTimeout(func, wait)
+    clearTimeout(timer)
+    timer = setTimeout(func, delay)
   }
 }
 ```
@@ -55,14 +55,14 @@ container.onmousemove = debounce(getUserAction, 1000) // window
 我们修改下代码：
 
 ```js
-function debounce(func, wait) {
-  var timeout
+function debounce(func, delay) {
+  let timer
   return function() {
-    let that = this
-    clearTimeout(timeout)
-    timeout = setTimeout(function() {
-      func.apply(that)
-    }, wait)
+    let ctx = this
+    clearTimeout(timer)
+    timer = setTimeout(function() {
+      func.apply(ctx)
+    }, delay)
   }
 }
 ```
@@ -81,14 +81,14 @@ function getUserAction(e) {
 我们也修改一下代码：
 
 ```js
-function debounce(func, wait) {
-  let timeout
+function debounce(func, delay) {
+  let timer
   return function(...args) {
-    let that = this
-    clearTimeout(timeout)
-    timeout = setTimeout(function() {
-      func.apply(that, args)
-    }, wait)
+    let ctx = this
+    clearTimeout(timer)
+    timer = setTimeout(function() {
+      func.apply(ctx, args)
+    }, delay)
   }
 }
 ```
@@ -101,15 +101,15 @@ function debounce(func, wait) {
 
 ```js
 function debounce(func, wait, immediate = false) {
-  let timeout
+  let timer
 
   return function(...args) {
     let that = this
-    if (timeout) clearTimeout(timeout)
+    if (timer) clearTimeout(timer)
     if (immediate) {
       func.apply(that, args)
     } else {
-      timeout = setTimeout(function() {
+      timer = setTimeout(function() {
         func.apply(that, args)
       }, wait)
     }
@@ -123,58 +123,56 @@ function debounce(func, wait, immediate = false) {
 
 我们可以这样写：
 
-```js
-function debounce(func, wait, immediate = false) {
-  let timeout
-
+```diff
+function debounce(func, delay, immediate = false) {
+  let timer
   return function(...args) {
-    let that = this
-    let result = null // 返回值
-    if (timeout) clearTimeout(timeout)
-    if (immediate) {
-      const hasRun = !!timeout // 是否执行过 immediate
-      timeout = setTimeout(function() {
-        timeout = null // 重置 timer 为 null
-      }, wait)
-      if (!hasRun) result = func.apply(that, args)
+    let ctx = this
+    if (timer) clearTimeout(timer)
++   if (immediate) {
++     let doNow = !timer
++     timer = setTimeout(() => {
++       timer = null
++     }, delay)
++     if (doNow) func.apply(ctx, args)
     } else {
-      timeout = setTimeout(function() {
-        func.apply(that, args)
-      }, wait)
+      timer = setTimeout(function() {
+        func.apply(ctx, args)
+      }, delay)
     }
-
-    return result
   }
 }
 ```
 
+立即触发。在计时器时间内不触发。。。
+
 ## 考虑到可以随时取消
 
 ```js
-function debounce(func, wait, immediate = false) {
-  let timeout, result
+function debounce(func, delay, immediate = false) {
+  let timer, result
 
   let debounced = function(...args) {
-    let that = this
-    if (timeout) clearTimeout(timeout)
+    let ctx = this
+    if (timer) clearTimeout(timer)
     if (immediate) {
-      const hasRun = !!timeout // 是否执行过 immediate
-      timeout = setTimeout(function() {
-        timeout = null // 重置 timer 为 null
-      }, wait)
-      if (!hasRun) result = func.apply(that, args)
+      let doNow = !timer
+      timer = setTimeout(function() {
+        timer = null // 重置 timer 为 null，已开启下次调用
+      }, delay)
+      if (!doNow) result = func.apply(ctx, args)
     } else {
-      timeout = setTimeout(function() {
-        func.apply(that, args)
-      }, wait)
+      timer = setTimeout(function() {
+        func.apply(ctx, args)
+      }, delay)
     }
 
     return result
   }
 
   debounced.cancel = function() {
-    clearTimeout(timeout)
-    timeout = null
+    clearTimeout(timer)
+    timer = null
   }
 
   return debounced

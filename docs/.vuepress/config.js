@@ -81,7 +81,11 @@ module.exports = {
         },
         {
           title: '设计模式',
-          children: ['design-patterns/event-emitter', 'design-patterns/proxy']
+          children: ['design-patterns/event-emitter', 'design-patterns/proxy', 'design-patterns/strategy']
+        },
+        {
+          title: '机器学习',
+          children: ['machine-learning/overview', 'machine-learning/decision-tree-id3']
         }
       ],
       // === react
