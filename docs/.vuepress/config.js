@@ -283,6 +283,7 @@ module.exports = {
             'basis/http-connection',
             'basis/redirect',
             'basis/cookie-session',
+            'basis/cookie-samesite',
             'basis/cross-domain'
           ]
         },
