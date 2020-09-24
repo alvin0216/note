@@ -101,7 +101,8 @@ module.exports = {
                 'record/context',
                 'record/compound-component',
                 'record/reconciliation',
-                'record/setState'
+                'record/setState',
+                'record/immutable'
               ]
             },
             {
@@ -420,7 +421,8 @@ module.exports = {
                 'coding/oAuth2-github',
                 'coding/axios-cancel',
                 'coding/token',
-                'coding/comment-attack'
+                'coding/comment-attack',
+                'coding/http-compression'
               ]
             },
             {
