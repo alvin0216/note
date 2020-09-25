@@ -99,6 +99,7 @@ module.exports = {
               children: [
                 'record/uncontrolled-components',
                 'record/context',
+                'record/self-hooks',
                 'record/compound-component',
                 'record/reconciliation',
                 'record/setState',
