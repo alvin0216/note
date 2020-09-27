@@ -424,7 +424,8 @@ module.exports = {
                 'coding/request/token',
                 'coding/request/optimal',
                 'coding/request/lot-of',
-
+                'coding/request/valid-requests',
+                'coding/request/queue',
                 {
                   title: 'HTTP 请求过大',
                   children: ['coding/request/compression/overview']
