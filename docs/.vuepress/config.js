@@ -394,13 +394,11 @@ module.exports = {
         {
           title: 'CSS',
           children: [
-            'css/note',
-            'css/text',
-            'css/BFC',
-            'css/flex',
-            'css/flex-examples',
-            'css/grid',
-
+            'css/overview',
+            {
+              title: '布局',
+              children: ['css/layout/BFC', 'css/layout/flex', 'css/layout/flex-examples']
+            },
             {
               title: '移动端',
               children: ['css/mobile/flexible', 'css/mobile/1px']
@@ -416,27 +414,26 @@ module.exports = {
           title: 'Coding',
           children: [
             {
-              title: '汇总',
+              title: '第三方授权',
+              children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github']
+            },
+            {
+              title: '网络请求问题',
               children: [
-                'coding/oAuth2',
-                'coding/oAuth2-github',
-                'coding/axios-cancel',
-                'coding/token',
-                'coding/comment-attack',
-                'coding/http-compression'
+                'coding/request/axios-cancel',
+                'coding/request/token',
+                'coding/request/optimal',
+                'coding/request/lot-of',
+
+                {
+                  title: 'HTTP 请求过大',
+                  children: ['coding/request/compression/overview']
+                }
               ]
             },
             {
-              title: '题目',
-              children: [
-                'coding/question/valid-requests',
-                'coding/question/subtraction',
-                'coding/question/promise-request1',
-                'coding/question/promise-request2',
-                'coding/question/sort',
-                'coding/question/format'
-                //
-              ]
+              title: '其他',
+              children: ['coding/others/comment-attack', 'coding/others/subtraction']
             }
           ]
         },
