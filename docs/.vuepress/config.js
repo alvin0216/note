@@ -91,7 +91,7 @@ module.exports = {
               children: [
                 'record/uncontrolled-components',
                 'record/context',
-                'record/self-hooks',
+
                 'record/compound-component',
                 'record/reconciliation',
                 'record/setState',
@@ -100,7 +100,7 @@ module.exports = {
             },
             {
               title: 'hooks',
-              children: ['hooks/base', 'hooks/useState']
+              children: ['hooks/base', 'hooks/render', 'hooks/self-hooks', 'hooks/useState']
             },
             {
               title: 'Redux',
