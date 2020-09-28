@@ -51,15 +51,7 @@ module.exports = {
         },
         {
           title: 'ES6',
-          children: [
-            'es6/class-extends',
-            'es6/symbol',
-            'es6/set-map',
-            'es6/generator',
-            'es6/async',
-            'es6/web-worker',
-            'es6/skills'
-          ]
+          children: ['es6/class-extends', 'es6/symbol', 'es6/set-map', 'es6/generator', 'es6/async', 'es6/web-worker']
         },
         {
           title: '手写',
@@ -427,10 +419,14 @@ module.exports = {
                 'coding/request/valid-requests',
                 'coding/request/queue',
                 {
-                  title: 'HTTP 请求过大',
+                  title: '😊TODO:HTTP 请求过大',
                   children: ['coding/request/compression/overview']
                 }
               ]
+            },
+            {
+              title: '一些实现',
+              children: ['coding/achieve/modal']
             },
             {
               title: '其他',

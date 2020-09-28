@@ -3,7 +3,7 @@ title: Javascript 中的继承
 date: 2020-05-07 16:07:38
 ---
 
-## 借用构造函数
+## 借用构造函数（创建多次函数）
 
 <span class='green'>在子类构造函数中调用 `Parent.call(this)` </span>
 
@@ -28,7 +28,7 @@ c2.log() // Kobe
 
 缺点每次都要创建一次函数，我们希望的是函数可以共享，而不是每次都为实例创建多一个属性去存储函数。
 
-## 原型链继承
+## 原型链继承（不能向子类传参）
 
 <span class='green'>子类的 prototype 指向父类的实例对象 `Child.prototype = new Parent()`</span>
 
@@ -52,7 +52,7 @@ let c2 = new Child()
 c2.nums.push(2) // c1 的 nums 属性值也受影响了
 ```
 
-## 组合继承
+## 组合继承（调用了两次父类构造函数）
 
 - **原型链继承**：继承一些函数，公用的属性值等等。
   - `Child.prototype = new Parent()`
