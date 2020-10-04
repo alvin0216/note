@@ -115,8 +115,6 @@ HTTP/3 里的帧仍然分成数据帧和控制帧两类，HEADERS 帧和 DATA �
 
 ## 小结
 
-<blockquote class='box'>
-
 HTTP/3 基于 QUIC 协议，完全解决了“队头阻塞”问题，弱网环境下的表现会优于 HTTP/2；
 
 QUIC 是一个新的传输层协议，建立在 UDP 之上，实现了可靠传输；
@@ -128,5 +126,3 @@ QUIC 的连接使用“不透明”的连接 ID，不绑定在“IP 地址 + 端
 QUIC 的流与 HTTP/2 的流很相似，但分为双向流和单向流；
 
 HTTP/3 没有指定默认端口号，需要用 HTTP/2 的扩展帧“Alt-Svc”来发现。
-
-</blockquote>

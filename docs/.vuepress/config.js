@@ -45,39 +45,22 @@ module.exports = {
     // === sidebar
     sidebar: {
       '/javascript/': [
+        'data-types',
+        'prototype',
+        'this',
+        'closure',
+        'extends',
+        'set-map',
+        'generator',
+        'async',
+        'web-worker',
         {
-          title: '基础',
-          children: ['base/data-types', 'base/prototype', 'base/this', 'base/closure', 'base/extends']
-        },
-        {
-          title: 'ES6',
-          children: ['es6/class-extends', 'es6/symbol', 'es6/set-map', 'es6/generator', 'es6/async', 'es6/web-worker']
-        },
-        {
-          title: '手写',
-          children: [
-            'achieve/call-apply',
-            'achieve/new',
-            'achieve/bind',
-            'achieve/debounce',
-            'achieve/throttle',
-            'achieve/promise',
-            'achieve/curry',
-            'achieve/instanceof',
-            'achieve/deepClone'
-          ]
-        },
-        {
-          title: '文件和二进制数据',
-          children: ['files/blob', 'files/file-upload', 'files/large-file-upload', 'files/arraybuffer']
+          title: '二进制数据',
+          children: ['binary/blob', 'binary/file-upload', 'binary/large-file-upload', 'binary/arraybuffer']
         },
         {
           title: '设计模式',
           children: ['design-patterns/event-emitter', 'design-patterns/proxy', 'design-patterns/strategy']
-        },
-        {
-          title: '机器学习',
-          children: ['machine-learning/overview', 'machine-learning/decision-tree-id3']
         }
       ],
       // === react
@@ -251,36 +234,26 @@ module.exports = {
       ],
       // === http
       '/http/': [
+        'what-is-http',
+        'network-model',
+        'dns',
         {
-          title: '概念篇',
-          children: [
-            'theory/http-development',
-            'theory/what-is-http',
-            'theory/related-concepts',
-            'theory/related-protocol',
-            'theory/network-model',
-            'theory/dns',
-            'theory/wireshark-env'
-          ]
+          title: 'TCP',
+          children: ['tcp/connection', 'tcp/wave', 'tcp/syn', 'tcp/udp', 'tcp/keep-alive']
         },
         {
-          title: '基础篇',
-          children: [
-            'basis/type-url-and-press-enter',
-            'basis/tcp-connection',
-            'basis/http-message',
-            'basis/http-methods',
-            'basis/status-code',
-            'basis/http-body',
-            'basis/cache',
-            'basis/proxy-cache',
-            'basis/http-connection',
-            'basis/redirect',
-            'basis/cookie-session',
-            'basis/cookie-samesite',
-            'basis/cross-domain'
-          ]
+          title: 'HTTP 报文',
+          children: ['structure/overview', 'structure/method', 'structure/status-code', 'structure/body']
         },
+        {
+          title: '缓存',
+          children: ['cache/overview', 'cache/proxy']
+        },
+        {
+          title: 'cookie',
+          children: ['cookie/overview', 'cookie/samesite']
+        },
+        'cross-domain',
         {
           title: 'HTTPS',
           children: ['https/https', 'https/certificate', 'https/tsl', 'https/tsl13', 'https/https-perf']
@@ -288,10 +261,6 @@ module.exports = {
         {
           title: 'HTTP2',
           children: ['http2/http2', 'http2/http2-deep', 'http2/http3']
-        },
-        {
-          title: '拷问篇',
-          children: ['torture/1', 'torture/2', 'torture/3', 'torture/overview']
         },
         {
           title: 'nginx',

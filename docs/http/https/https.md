@@ -42,7 +42,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 ![](https://gitee.com/alvin0216/cdn/raw/master/img/http/series/ssl.png)
 
-## 防窃听 <Badge text='不让黑客知道报文里面有什么信息' />
+## 防窃听
 
 那就是加密，黑客即使截获你的报文也无法知道里面的信息。
 

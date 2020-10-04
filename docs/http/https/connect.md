@@ -5,8 +5,6 @@ date: 2020-06-09 13:10:34
 
 ![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/security/https.png)
 
-<blockquote class='box'>
-
 （1）Client Hello 客户端返回 protocol (譬如 tsl1.2)+ client-random + 支持的密码套件列表
 
 （2）Server Hello 服务端收到后，确认信息。服务端收到后从支持的密码套件列表选择一个对称加密算法 比如 AES 和非对称加密 ECDHE
@@ -20,5 +18,3 @@ date: 2020-06-09 13:10:34
 因为使用了 ECDHE，客户端可以不用等到服务器发回“Finished”确认握手完毕，立即就发出 HTTP 报文，
 
 最终两端可以通过 client-random + server-random + pre-master 生成会话密钥 `master sercet`，之后通过 AES 对称加密加密报文。
-
-</blockquote>

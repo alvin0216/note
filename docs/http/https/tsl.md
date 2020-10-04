@@ -9,8 +9,6 @@ date: 2020-06-08 21:40:01
 
 握手阶段分成五步。
 
-<blockquote class='box'>
-
 第一步，客户端给出协议版本号、一个客户端生成的随机数（Client random），以及客户端支持的加密方法。
 
 第二步，服务端确认双方使用的加密方法，并给出数字证书、以及一个服务器生成的随机数（Server random）。
@@ -21,13 +19,9 @@ date: 2020-06-08 21:40:01
 
 第五步，客户端和服务端根据约定的加密方法，使用前面的三个随机数，生成"对话密钥"（session key），用来加密接下来的整个对话过程。
 
-</blockquote>
-
 如图：
 
 ![](https://gitee.com/alvin0216/cdn/raw/master/img/http/https/tsl-connect2.png)
-
-<blockquote class='box'>
 
 1. 在 TCP 建立连接之后，浏览器会首先发一个“**Client Hello**”消息，也就是跟服务器“打招呼”。里面有客户端的 TSL 版本号、支持的密码套件，还有一个随机数（**Client Random**），用于后续生成会话密钥。
 
@@ -86,8 +80,6 @@ Handshake Protocol: Client Key Exchange
 现在客户端和服务器手里都拿到了密钥交换算法的两个参数（**Client Params、Server Params**），就用 ECDHE 算法一阵算，算出了一个新的东西，叫“**Pre-Master**”，其实也是一个随机数。
 
 现在客户端和服务器手里有了三个随机数：**Client Random**、**Server Random** 和 **Pre-Master**。用这三个作为原始材料，就可以生成用于加密会话的主密钥，叫“**Master Secret**”。而黑客因为拿不到“**Pre-Master**”，所以也就得不到主密钥。
-
-</blockquote>
 
 ## 传统 RSA 握手
 

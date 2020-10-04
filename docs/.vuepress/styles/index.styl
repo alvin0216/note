@@ -1,54 +1,14 @@
-table
-  font-size 14px
-  thead tr
-    background #87bae6
-    line-height 2
-  th, td
-   padding .2em 1em
-  img
-   width 15rem
+body
+  font-family -apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol
+  font-variant tabular-nums
+  font-feature-settings "tnum","tnum","tnum"
+  color #454d64
+  font-size 15px
 
 .page
   .theme-default-content
-    code
-      color #f83929
-    .highlight-lines .highlighted
-      // background-color #abefa8  
     div[class*="language-"]
-      background-color #2b3a42  
       font-size 92%
-    //   pre code
-    //     color #24292e
-    //     .token.function
-    //       color rgb(111, 66, 193)
-    //      .token.punctuation
-    //       color #999
-    //     .token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol
-    //       color #005cc5
-    //     .token.selector, .token.attr-name, .token.string, .token.char, .token.builtin
-    //       color #032f62
-    //     .token.comment, .token.prolog, .token.doctype, .token.cdata
-    //       color #6a737d;    
-    //     .token.atrule, .token.attr-value, .token.keyword
-    //       color #d73a49  
-    //     .token.class-name
-    //       color #e36209
-    //     .token.operator, .token.entity, .token.url, .language-css .token.string, .token.variable, .token.inserted
-    //       color #005cc5  
-    //     .token.property
-    //       color #e60c0c
-// 自定义
-.flex-img 
-  p
-    display flex
-    width 100%
-    justify-content space-between
-    > img 
-      flex 1
-      width 100px
-      border 1px solid #ccc
-    > img + img
-      margin-left 2rem
 
 .orange
   color #fa8919
@@ -64,30 +24,6 @@ table
   padding 3px
   background-color pink
 
-
-blockquote:not(.box)
-  background-color #DCF2FD
-  color #618ca0
-  border-left none
-  border-radius 3px
-  padding 14px
-  font-style italic
-  font-size 14px
-  strong 
-    color #000
-blockquote.box
-  border 2px solid #e0dfcc
-  background-color #f6f7fb
-  border-radius 1em
-  padding 1em
-  color #111
-  p:not(:first-child), li:not(:first-child)
-    margin-top 1em
-  ul > li > ul > li:not(:first-child)
-    margin-top 0
-  div[class*="language-"]
-    background-color #ececec  
-
 .MathJax 
   font-weight bold
 
@@ -97,11 +33,32 @@ blockquote.box
   display block
   background #f7f7f7
 
+.mgreen 
+  background-color #25c2a0;
+  border-radius 2px;
+  color #fff;
+  padding 0.2rem;
 
-.custom-block.details
-  background-color transparent
-  padding 0
-.custom-block.details[open] 
-  margin 1.6em 0
-  padding 1.6em
-  background-color #eee
+
+aside.sidebar 
+  width 19rem
+  .collapsable > p
+    display flex
+    justify-content space-between
+    align-items: center
+  .sidebar-heading:hover
+    background-color #f2f2f2  
+  .collapsable .sidebar-group.is-sub-group > .sidebar-heading:not(.clickable)
+    opacity 1
+  > .sidebar-links
+    padding 0.5rem 0
+  > .sidebar-links > li > a.sidebar-link
+    font-size: inherit
+    line-height: inherit
+    font-weight: inherit
+  > .sidebar-links > li:not(:first-child)
+    margin 0
+  .sidebar-heading
+    font-size inherit
+  .arrow  
+    position static
