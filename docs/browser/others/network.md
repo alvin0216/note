@@ -22,12 +22,9 @@ date: 2020-07-02 22:03:47
 1. 选中 http 包，在右侧就有 timing 信息
 2. 鼠标移动到 http 包且当前行是 Waterfail （在上图的 Size -> Time -> Waterfail）时，悬停显示
 
-<div class='flex-img'>
-
-![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing.png)
-![](https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing2.png)
-
-</div>
+| pic1                                                                                   | pic2                                                                                    |
+| -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <img src='https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing.png' /> | <img src='https://gitee.com/alvin0216/cdn/raw/master/img/browser/chrome/timing2.png' /> |
 
 上面两个都是单个请求的 timing，DOMContentLoaded 代表的是该文件下载完成。
 
