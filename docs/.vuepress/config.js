@@ -345,7 +345,13 @@ module.exports = {
       '/': [
         {
           title: '技术漫谈',
-          children: ['talk/performance']
+          children: [
+            'talk/performance',
+            {
+              title: '机器学习',
+              children: ['talk/machine-learning/overview', 'talk/machine-learning/decision-tree-id3']
+            }
+          ]
         },
         {
           title: 'HTML',
