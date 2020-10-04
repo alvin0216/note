@@ -3,7 +3,7 @@ title: 学习路线
 date: 2020-09-13 10:41:20
 ---
 
-<span class='orange'>了解 react 设计理念</span>
+<p class='mgreen'>了解 react 设计理念</p>
 
 将 react 的调用栈按功能划分，可以分为三个部分。
 
@@ -17,11 +17,11 @@ react 为什么要这么架构呢？我们就需要了解 react 的设计理念:
 
 就是用**可中断的并发**的更新模式代替现在**的同步的更新**模式。
 
-<span class='orange'>那么为什么 react 会推出 fiber 架构呢</span>
+<p class='mgreen'>那么为什么 react 会推出 fiber 架构呢</p>
 
 这是因为 react15 无法实现可中断的并发更新，我们还需要了解 `react v15` 的架构对比 `v16` 的不同在哪
 
-<span class='orange'>fiber 怎么去实现可中断的同步更新的</span>
+<p class='mgreen'>fiber 怎么去实现可中断的同步更新的</p>
 
 在了解完 fiber 之后，可以探讨一下 fiber 是如何运作的，以及 hooks 的理念和实现原理
 

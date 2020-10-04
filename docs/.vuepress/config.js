@@ -425,6 +425,9 @@ module.exports = {
     }
   },
   plugins: [
+    ['container', { type: 'note', defaultTitle: 'NOTE' }],
+    ['container', { type: 'info', defaultTitle: 'INFO' }],
+    ['container', { type: 'danger', defaultTitle: 'DANGER' }],
     'vuepress-plugin-medium-zoom',
     {
       selector: '.page .theme-default-content img',

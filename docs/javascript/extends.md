@@ -5,7 +5,7 @@ date: 2020-05-07 16:07:38
 
 ## 借用构造函数（创建多次函数）
 
-<span class='green'>在子类构造函数中调用 `Parent.call(this)` </span>
+<span class='mgreen'>在子类构造函数中调用 `Parent.call(this)` </span>
 
 ```js
 function Parent(name) {
@@ -30,7 +30,7 @@ c2.log() // Kobe
 
 ## 原型链继承（不能向子类传参）
 
-<span class='green'>子类的 prototype 指向父类的实例对象 `Child.prototype = new Parent()`</span>
+<span class='mgreen'>子类的 prototype 指向父类的实例对象 `Child.prototype = new Parent()`</span>
 
 ```js
 function Parent() {}
@@ -93,7 +93,7 @@ Parent.call(this, name)
 
 ## 寄生组合继承
 
-<span class='green'>实现 Child.prototype -> Parent.prototype</span>
+<span class='mgreen'>实现 Child.prototype -> Parent.prototype</span>
 
 思路就是建立一个临时的函数，函数原型指向父类原型，然后子类原型指向该函数的实例。
 

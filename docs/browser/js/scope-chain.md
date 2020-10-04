@@ -151,7 +151,7 @@ console.log(bar.getName())
 
 从上图可以看出，foo 函数执行完成之后，其执行上下文从栈顶弹出了，但是由于返回的 setName 和 getName 方法中使用了 foo 函数内部的变量 myName 和 test1，所以这两个变量依然保存在内存中。这像极了 setName 和 getName 方法背的一个专属背包，无论在哪里调用了 setName 和 getName 方法，它们都会背着这个 foo 函数的专属背包。
 
-之所以是<span class='orange'>专属背包</span>，是因为除了 setName 和 getName 函数之外，**其他任何地方都是无法访问该背包的**，我们就可以把这个背包称为 foo 函数的闭包。
+之所以是 `专属背包`，是因为除了 setName 和 getName 函数之外，**其他任何地方都是无法访问该背包的**，我们就可以把这个背包称为 foo 函数的闭包。
 
 <blockquote class='box'>
 
