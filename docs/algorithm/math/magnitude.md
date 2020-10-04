@@ -45,7 +45,7 @@ Math.log10(1400) >> 0 // 3， 1400 数量级为 3
 10 ** (Math.log10(1400) >> 0) // 1000, 最高位 1000
 ```
 
-<span class='pink'>ok，最普遍的应用</span>
+<span class='mgreen'>ok，最普遍的应用</span>
 
 求 2406 的首位（千分位），个位数
 

@@ -3,14 +3,14 @@ title: 概览
 date: 2020-07-29 06:56:27
 ---
 
-<span class='pink'>开发环境性能优化</span>
+<span class='mgreen'>开发环境性能优化</span>
 
 - 优化打包构建速度
   - HMR
 - 优化代码调试
   - source-map
 
-<span class='pink'>生产环境性能优化</span>
+<span class='mgreen'>生产环境性能优化</span>
 
 - 优化打包构建速度
   - oneOf
@@ -79,14 +79,14 @@ if (module.hot) {
 
 内联 和 外部的区别：1. 外部生成了文件，内联没有 2. 内联构建速度更快
 
-<span class='pink'>开发环境：速度快，调试更友好</span>
+<span class='mgreen'>开发环境：速度快，调试更友好</span>
 
 - 速度快(eval>inline>cheap>...): `eval-cheap-source-map` `eval-source-map`
 - 调试更友好: `source-map` `cheap-module-source-map` `cheap-source-map`
 
 推荐 --> `eval-source-map` / `eval-cheap-module-source-map`
 
-<span class='pink'>生产环境：源代码要不要隐藏? 调试要不要更友好</span>
+<span class='mgreen'>生产环境：源代码要不要隐藏? 调试要不要更友好</span>
 
 内联会让代码体积变大，所以在生产环境不用内联
 
@@ -170,7 +170,7 @@ rules: [
 */
 ```
 
-<span class='pink'>babel 缓存</span>
+<span class='mgreen'>babel 缓存</span>
 
 我们写代码的时候，会经常写 js 代码，结构和样式相对少一点。
 
@@ -193,7 +193,7 @@ rules: [
 }
 ```
 
-<span class='pink'>文件缓存</span>
+<span class='mgreen'>文件缓存</span>
 
 ```js
 output: {
@@ -225,7 +225,7 @@ new MiniCssExtractPlugin({
 */
 ```
 
-<span class='pink'>demo</span>
+<span class='mgreen'>demo</span>
 
 ```js
 // test.js
@@ -279,7 +279,7 @@ main.35ad2e97e5.js           1.6 KiB
 vendors~main.17b2d7e07c.js   87.9 KiB
 ```
 
-<span class='pink'>如果要让某个文件被单独打包成一个 chunk</span>
+<span class='mgreen'>如果要让某个文件被单独打包成一个 chunk</span>
 
 ```js
 /*
@@ -373,7 +373,7 @@ externals: {
 
 项目中难免会使用一些第三方的库，除非版本升级，一般情况下，这些库的代码不会发生较大变动，这也就意味着这些库没有必要每次都参与到构建和 rebuild 的过程中。如果能把这部分代码提取出来并提前构建好，那么在构建项目的时候就可以直接跳过第三方库，进一步提升效率。
 
-<span class='pink'>换言之即清理不必要打包的文件</span>
+<span class='mgreen'>换言之即清理不必要打包的文件</span>
 
 1. `新建 webpack.dll.js`
 

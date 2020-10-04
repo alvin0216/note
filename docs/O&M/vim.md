@@ -1,5 +1,5 @@
 ---
-title: Vim 常用命令
+title: vim command
 date: 2019-12-31 10:51:03
 ---
 

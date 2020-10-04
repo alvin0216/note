@@ -88,11 +88,11 @@ browserify main.js -o bundle.js
 
 通过 `module.exports` 和 `require`。
 
-<span class='pink'>【0】缓存加载</span>
+<span class='mgreen'>【0】缓存加载</span>
 
 再展开介绍 `require()`方法的标识符分析之前，需要知道，与前端浏览器会缓存静态脚本文件以提高性能一样，Node 对引入过的模块都会进行缓存，以减少二次引入时的开销。不同的地方在于，浏览器仅仅缓存文件，而 Node 缓存的是编译和执行之后的对象
 
-<span class='pink'>【1】标识符分析</span>
+<span class='mgreen'>【1】标识符分析</span>
 
 `require()` 方法接受一个标识符作为参数。在 `Node` 实现中，正是基于这样一个标识符进行模块查找的。
 
@@ -104,7 +104,7 @@ require('./foo.js') // 加载相对路径下的 foo.js 文件
 // 如果不是相对路径，nodejs 会试图去加载核心模块，或 node_modules 内的模块
 ```
 
-<span class='pink'>【2】文件扩展名分析</span>
+<span class='mgreen'>【2】文件扩展名分析</span>
 
 `require()` 在分析标识符的过程中，会出现标识符中不包含文件扩展名的情况。`CommonJS` 模块规范也允许在标识符中不包含文件扩展名。如 `require('./foo')`
 
@@ -112,13 +112,13 @@ require('./foo.js') // 加载相对路径下的 foo.js 文件
 
 在尝试的过程中，需要调用 `fs` 模块同步阻塞式地判断文件是否存在。因为 `Node` 是单线程的，所以这里是一个会引起性能问题的地方。小诀窍是：如果是 `.node` 和 `.json` 文件，在传递给 `require()` 的标识符中带上扩展名，会加快一点速度。另一个诀窍是：同步配合缓存，可以大幅度缓解 `Node` 单线程中阻塞式调用的缺陷
 
-<span class='pink'>【3】目录分析和包</span>
+<span class='mgreen'>【3】目录分析和包</span>
 
 ```js
 require('./foo') // foo.js >> foo.json >> foo.node >> foo/index.js ...
 ```
 
-<span class='pink'>【4】访问变量</span>
+<span class='mgreen'>【4】访问变量</span>
 
 ```js
 console.log(module)
@@ -150,7 +150,7 @@ Module {
 
 `module.exports` 就存放模块对外输出的值。
 
-<span class='pink'>【5】模块编译</span>
+<span class='mgreen'>【5】模块编译</span>
 
 编译和执行是模块实现的最后一个阶段。定位到具体的文件后，Node 会新建一个模块对象，然后根据路径载入并编译。对于不同的文件扩展名，其载入方法也有所不同，具体如下所示
 

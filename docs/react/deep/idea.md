@@ -14,7 +14,7 @@ date: 2020-09-13 10:14:51
 
 ## 理解"速度快"
 
-<span class='pink'>当被谈到 React 和 VUE、Angular 有什么区别时，可以借鉴此段！</span>
+<span class='mgreen'>当被谈到 React 和 VUE、Angular 有什么区别时，可以借鉴此段！</span>
 
 相比于使用模版语言的 `Vue`、`Angular`，使用原生 js（JSX 仅仅是 js 的语法糖）开发 UI 的 React 在语法层面有更多灵活性。
 

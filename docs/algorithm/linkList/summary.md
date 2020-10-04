@@ -9,7 +9,7 @@ date: 2020-07-30 07:37:07
 - `Javascript` 中 `Object.__protot__` 也是一种链表结构
 - 链表常用操作：修改 next，遍历链表
 
-<span class='pink'>链表的常见应用</span>
+<span class='mgreen'>链表的常见应用</span>
 
 比如遍历 json
 

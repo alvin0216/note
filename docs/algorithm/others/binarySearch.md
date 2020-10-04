@@ -137,7 +137,7 @@ return nums[left] == target ? left : -1
 
 ## 判断条件以及区别
 
-<span class='pink'>第一个，最基本的二分查找算法：</span>
+<span class='mgreen'>第一个，最基本的二分查找算法：</span>
 
 ```js
 因为我们初始化 right = nums.length - 1
@@ -149,7 +149,7 @@ return nums[left] == target ? left : -1
 所以当 nums[mid] == target 时可以立即返回
 ```
 
-<span class='pink'>第二个，寻找左侧边界的二分查找：</span>
+<span class='mgreen'>第二个，寻找左侧边界的二分查找：</span>
 
 ```js
 因为我们初始化 right = nums.length
@@ -162,7 +162,7 @@ return nums[left] == target ? left : -1
 而要收紧右侧边界以锁定左侧边界
 ```
 
-<span class='pink'>第三个，寻找右侧边界的二分查找：</span>
+<span class='mgreen'>第三个，寻找右侧边界的二分查找：</span>
 
 ```js
 因为我们初始化 right = nums.length

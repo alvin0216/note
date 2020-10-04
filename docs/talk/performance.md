@@ -1,5 +1,5 @@
 ---
-title: 优化要点
+title: 常见性能优化
 date: 2020-07-31 16:30:33
 ---
 
@@ -25,7 +25,7 @@ CSS 的加载不阻碍 DOM-Tree 的合成，但会阻碍渲染树的形成。即
 
 ### 不写嵌套太深的选择器
 
-<span class='pink'>CSS 引擎查找样式表，对每条规则都按从右到左的顺序去匹配</span>
+<span class='mgreen'>CSS 引擎查找样式表，对每条规则都按从右到左的顺序去匹配</span>
 
 ```CSS
 #myList li {}
@@ -96,7 +96,7 @@ img.src = ''
 
 ### 不要在 HTML 中缩放图片
 
-<span class='pink'>设置图片的宽和高，以免浏览器按照「猜」的宽高给图片保留的区域和实际宽高差异，产生重绘。</span>
+<span class='mgreen'>设置图片的宽和高，以免浏览器按照「猜」的宽高给图片保留的区域和实际宽高差异，产生重绘。</span>
 
 不要使用 \<img\> 的 width、height 缩放图片，如果用到小图片，就使用相应大小的图片。如果需要
 
@@ -116,7 +116,7 @@ img.src = ''
 
 脚本会阻塞并行下载，所以一般 js 会被放在 body 的底部，以避免下载 js 阻碍 dom-tree 的构成。
 
-defer 模式下，JS 的加载是异步的，执行是被推迟的。等整个文档解析完成、<span class='pink'>DOMContentLoaded 事件即将被触发时，被标记了 defer 的 JS 文件才会开始依次执行。</span>
+defer 模式下，JS 的加载是异步的，执行是被推迟的。等整个文档解析完成、<span class='mgreen'>DOMContentLoaded 事件即将被触发时，被标记了 defer 的 JS 文件才会开始依次执行。</span>
 
 如果 js 文件并没有对 dom 进行操作，强烈推荐使用 defer
 
@@ -162,7 +162,7 @@ container.innerHTML = content
 
 ### 给 Cookie 减肥
 
-<span class='pink'>过量的 Cookie 会带来巨大的性能浪费</span>
+<span class='mgreen'>过量的 Cookie 会带来巨大的性能浪费</span>
 
 - 去除不必要的 Cookie；
 - 尽量压缩 Cookie 大小；
@@ -200,7 +200,7 @@ Chrome 一个域名最多可以并发 6 个长连接，比如我有 10 个连接
 
 ### 使用 HTTP2
 
-<span class='pink'>HTTP2 使用了头部压缩算法，多路复用、二进制分帧，解决了 解决队头阻塞问题，也加快了请求速度。</span>
+<span class='mgreen'>HTTP2 使用了头部压缩算法，多路复用、二进制分帧，解决了 解决队头阻塞问题，也加快了请求速度。</span>
 
 在 nginx 上配置也很简单：
 
@@ -220,9 +220,9 @@ listen  443 http2 ssl;
 
 ### DNS Prefetch
 
-<span class='pink'>打开 DNS Prefetch 之后，浏览器会在空闲时间提前将这些域名转化为对应的 IP 地址</span>
+<span class='mgreen'>打开 DNS Prefetch 之后，浏览器会在空闲时间提前将这些域名转化为对应的 IP 地址</span>
 
-<span class='pink'>浏览器自动解析</span>
+<span class='mgreen'>浏览器自动解析</span>
 
 浏览器引擎在解析 HTML 页面的时候，会自动获取当前页面所有的 a 标签 herf 属性当中的域名，然后进行 DNS Prefetch。这里需要注意的是如果你的页面是 HTTPS，那么浏览器为了确保安全是不会开启自动解析的，这个时候我们就需要在页面头部添加如下的 meta 标签：
 
@@ -230,7 +230,7 @@ listen  443 http2 ssl;
 <meta http-equiv="x-dns-prefetch-control" content="on" />
 ```
 
-<span class='pink'>手动解析</span>
+<span class='mgreen'>手动解析</span>
 
 直接添加如下 link 标签即可
 

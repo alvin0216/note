@@ -164,7 +164,7 @@ var verifyPostorder = function(postorder) {
 }
 ```
 
-<span class='pink'>总结一下：</span>
+<span class='mgreen'>总结一下：</span>
 
 - **后序遍历，左右根，根节点是在最后一个节点的。[左子树, 右子树, root]**
 - **分割点在于在根节点之前的节点大于 root 时，[左子树, 右子树, root]**

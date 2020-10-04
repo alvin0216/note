@@ -162,7 +162,7 @@ env 的核心目的是通过配置得知目标环境的特点，然后只做必�
 
 `babel` 默认只转换 `js` 语法，而不转换新的 `API`，比如 `Iterator`、`Generator`、`Set`、`Maps`、`Proxy`、`Reflect`、`Symbol`、`Promise` 等全局对象，以及一些定义在全局对象上的方法(比如 `Object.assign`)都不会转码。
 
-举例来说，es2015 在 Array 对象上新增了 Array.from 方法。babel 就不会转码这个方法。如果想让这个方法运行，必须使用 babel-polyfill。<span class='pink'>(内部集成了 core-js 和 regenerator)</span>
+举例来说，es2015 在 Array 对象上新增了 Array.from 方法。babel 就不会转码这个方法。如果想让这个方法运行，必须使用 babel-polyfill。<span class='mgreen'>(内部集成了 core-js 和 regenerator)</span>
 
 使用时，在所有代码运行之前增加 `require('babel-polyfill')`。
 
@@ -174,8 +174,8 @@ entry: ['babel-polyfill', './src/index.js']
 
 babel-polyfill 主要有两个缺点：
 
-1. <span class='pink'>使用 babel-polyfill 会导致打出来的包非常大</span>，因为 babel-polyfill 是一个整体，把所有方法都加到原型链上。比如我们只使用了 Array.from，但它把 Object.defineProperty 也给加上了，这就是一种浪费了。这个问题可以通过单独使用 core-js 的某个类库来解决，core-js 都是分开的。
-2. <span class='pink'>babel-polyfill 会污染全局变量</span>，给很多类的原型链上都作了修改，如果我们开发的也是一个类库供其他开发者使用，这种情况就会变得非常不可控。
+1. <span class='mgreen'>使用 babel-polyfill 会导致打出来的包非常大</span>，因为 babel-polyfill 是一个整体，把所有方法都加到原型链上。比如我们只使用了 Array.from，但它把 Object.defineProperty 也给加上了，这就是一种浪费了。这个问题可以通过单独使用 core-js 的某个类库来解决，core-js 都是分开的。
+2. <span class='mgreen'>babel-polyfill 会污染全局变量</span>，给很多类的原型链上都作了修改，如果我们开发的也是一个类库供其他开发者使用，这种情况就会变得非常不可控。
 
 因此在实际使用中，如果我们无法忍受这两个缺点(尤其是第二个)，通常我们会倾向于使用 `babel-plugin-transform-runtime`
 
@@ -194,7 +194,7 @@ babel-polyfill 主要有两个缺点：
 }
 ```
 
-<span class='pink'>@babel/plugin-transform-runtime</span>
+<span class='mgreen'>@babel/plugin-transform-runtime</span>
 
 babel 会转换 js 语法，之前已经提过了。以 async/await 举例，如果不使用这个 plugin (即默认情况)，转换后的代码大概是：
 
@@ -227,7 +227,7 @@ var _ref = _asyncToGenerator3(function*(arg1, arg2) {
 
 但在这里，我们也发现 babel-runtime 出场了，它就是这些方法的集合处，也因此，在使用 babel-plugin-transform-runtime 的时候必须把 babel-runtime 当做依赖。
 
-再说 <span class='pink'>babel-runtime</span>，它内部集成了
+再说 <span class='mgreen'>babel-runtime</span>，它内部集成了
 
 1. `core-js`: 转换一些内置类 (Promise, Symbols 等等) 和静态方法 (Array.from 等)。绝大部分转换是这里做的。自动引入。
 2. `regenerator`: 作为 core-js 的拾遗补漏，主要是 generator/yield 和 async/await 两组的支持。当代码中有使用 generators/async 时自动引入。

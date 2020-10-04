@@ -160,7 +160,7 @@ module.exports = CancelToken
 
 也就是说 `cancel` 代表的是上面的这个方法，有了这个方法，就可以在外部控制 `CancelToken` 内部的 `promise` 对象了。
 
-在 source 方法中，除了 cancel，还有一个 token，这个 token 是 CancelToken 类的一个实例，<span class='pink'>可以访问到内部的 promise</span>。
+在 source 方法中，除了 cancel，还有一个 token，这个 token 是 CancelToken 类的一个实例，<span class='mgreen'>可以访问到内部的 promise</span>。
 
 因此 CancelToken 类如此封装的主要目的就是为了能够分离 promise 和 resolve 方法，让用户可以自己调用 resolve 方法。一旦 resolve 后，就会触发 promise 的 then 方法，现在看看内部 promise 后的 then 方法是什么：
 

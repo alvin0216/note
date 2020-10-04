@@ -1,5 +1,5 @@
 ---
-title: VSCode 开发工具
+title: vscode
 date: 2020-01-05 09:25:13
 ---
 
@@ -31,14 +31,14 @@ E^N 代表N是E的上级元素。
 
 ## 快捷键
 
-| 效果                         | 快捷键                        | 效果图                                                                                                     |
-| ---------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 禅模式编程模式               | `⌘ + k` + `Z`                 | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/zen-mode.gif" class="thumbnail">    |
-| 选中当前行                   | `⌘ + L`                       |                                                                                                            |
+| 效果                         | 快捷键                        | 效果图                                                                                    |
+| ---------------------------- | ----------------------------- | ----------------------------------------------------------------------------------------- |
+| 禅模式编程模式               | `⌘ + k` + `Z`                 | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/zen-mode.gif" >    |
+| 选中当前行                   | `⌘ + L`                       |                                                                                           |
 | 选中所有找到的匹配项         | `⇧ + ⌘ + L`                   |
 | 格式化部分代码               | `⌘ + K ⌘ + F`                 |
-| 复制光标                     | `command + Option + 上下箭头` | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/copy-cursor.gif" class="thumbnail"> |
-| 在所选的每一行的末尾插入光标 | `⇧ + ⌥ + I`                   | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/cursor.gif" class="thumbnail">      |
+| 复制光标                     | `command + Option + 上下箭头` | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/copy-cursor.gif" > |
+| 在所选的每一行的末尾插入光标 | `⇧ + ⌥ + I`                   | <img src="https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/cursor.gif" >      |
 | 插入多个光标                 | Option + 点击                 |
 
 [VSCode 常用快捷键 Mac](https://blog.csdn.net/caicai1171523597/article/details/88216088)

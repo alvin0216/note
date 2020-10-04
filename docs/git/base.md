@@ -1,5 +1,5 @@
 ---
-title: GIT 基本操作
+title: git command
 date: 2020-06-19 09:44:39
 ---
 

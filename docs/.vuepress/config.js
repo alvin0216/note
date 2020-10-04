@@ -195,10 +195,6 @@ module.exports = {
             'linkList/base-use',
             'linkList/reverseList',
             'linkList/copyRandomList',
-
-            // 'stack/convertToBase', // 进制转换
-            // 'stack/valid-parentheses',
-            // 'queue/933',
             'linkList/2',
             'linkList/141',
             'linkList/summary'
@@ -348,6 +344,10 @@ module.exports = {
       // js
       '/': [
         {
+          title: '技术漫谈',
+          children: ['talk/performance']
+        },
+        {
           title: 'HTML',
           children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href', 'html/link-meta-script']
         },
@@ -394,24 +394,34 @@ module.exports = {
               ]
             },
             {
-              title: '一些实现',
-              children: ['coding/achieve/modal']
-            },
-            {
               title: '其他',
               children: ['coding/others/comment-attack', 'coding/others/subtraction']
             }
           ]
         },
         {
-          title: '性能优化',
-          children: ['performance/keyword', 'performance/lazyload-img']
+          title: '模拟实现',
+          children: [
+            'achieve/call-apply',
+            'achieve/new',
+            'achieve/bind',
+            'achieve/debounce',
+            'achieve/throttle',
+            'achieve/promise',
+            'achieve/curry',
+            'achieve/instanceof',
+            'achieve/deepClone',
+            'achieve/modal',
+            'achieve/lazyload-img'
+          ]
         },
         {
-          title: '开发工具',
+          title: 'Tools',
           children: [
-            '/git/base',
-            '/git/webhook',
+            {
+              title: 'GIT',
+              children: ['git/base', 'git/webhook']
+            },
             'O&M/mac',
             'O&M/linux',
             'O&M/vim',

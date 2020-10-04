@@ -18,17 +18,17 @@ date: 2020-08-04 01:04:00
 
 ## Babel 工作流程
 
-<span class='pink'>步骤一：解析</span>
+<span class='mgreen'>步骤一：解析</span>
 
 使用 `@babel/parser` 解析器进行语法解析，获得 `AST`
 
-<span class='pink'>步骤二：转换</span>
+<span class='mgreen'>步骤二：转换</span>
 
 使用 `@babel/traverse` 对 `AST` 进行深度遍历，处理各种 `AST` 节点
 
 遍历过程中，能对每一种节点进行处理，这里可以使用到 `@babel/types` 对节点进行增删查改，或者也可以使用 `@babel/template` 来生成大量 AST 进行修改
 
-<span class='pink'>步骤三：生成</span>
+<span class='mgreen'>步骤三：生成</span>
 
 使用 `@babel/generator` 将处理后的 `AST` 转换回正常代码
 

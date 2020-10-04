@@ -5,7 +5,7 @@ date: 2020-06-15 22:37:07
 
 简单回顾上一节所讲的内容
 
-JavaScript 代码的执行流程的第一步就是编译阶段：创建 <span class='orange'>执行上下文</span> 和 <span class='orange'>可执行代码</span>。
+JavaScript 代码的执行流程的第一步就是编译阶段：创建 `执行上下文` 和 `可执行代码`。
 
 ## 可执行代码
 
