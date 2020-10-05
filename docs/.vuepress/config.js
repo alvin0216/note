@@ -69,18 +69,13 @@ module.exports = {
           title: 'React',
           // collapsable: true,
           children: [
-            {
-              title: 'base',
-              children: [
-                'record/uncontrolled-components',
-                'record/context',
+            'uncontrolled-components',
+            'context',
 
-                'record/compound-component',
-                'record/reconciliation',
-                'record/setState',
-                'record/immutable'
-              ]
-            },
+            'compound-component',
+            'reconciliation',
+            'setState',
+            'immutable',
             {
               title: 'hooks',
               children: ['hooks/base', 'hooks/render', 'hooks/self-hooks', 'hooks/useState']
