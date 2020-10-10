@@ -45,6 +45,7 @@ module.exports = {
     // === sidebar
     sidebar: {
       '/javascript/': [
+        // 'scope',
         'data-types',
         'prototype',
         'this',
