@@ -398,7 +398,8 @@ module.exports = {
             {
               title: '其他',
               children: ['coding/others/comment-attack', 'coding/others/subtraction']
-            }
+            },
+            'coding/canvas-base64'
           ]
         },
         {
@@ -433,6 +434,10 @@ module.exports = {
             'O&M/charles',
             'O&M/wifi'
           ]
+        },
+        {
+          title: 'TypeScript',
+          children: ['typescript/overview']
         }
       ]
     }
