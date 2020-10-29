@@ -355,12 +355,14 @@ module.exports = {
               title: '机器学习',
               children: ['talk/machine-learning/overview', 'talk/machine-learning/decision-tree-id3']
             },
+
             {
               title: '未分类',
               children: ['coding/others/comment-attack', 'coding/others/subtraction', 'coding/canvas-base64']
             }
           ]
         },
+
         {
           title: '环境配置',
           children: [
@@ -373,6 +375,22 @@ module.exports = {
             'O&M/ssh',
             'O&M/certificate',
             'O&M/charles'
+          ]
+        },
+        {
+          title: '模拟实现',
+          children: [
+            'achieve/call-apply',
+            'achieve/new',
+            'achieve/bind',
+            'achieve/debounce',
+            'achieve/throttle',
+            'achieve/promise',
+            'achieve/curry',
+            'achieve/instanceof',
+            'achieve/deepClone',
+            'achieve/modal',
+            'achieve/lazyload-img'
           ]
         },
         {
@@ -398,22 +416,6 @@ module.exports = {
         {
           title: 'Node',
           children: ['/node/middleware', 'node/node-shell']
-        },
-        {
-          title: '模拟实现',
-          children: [
-            'achieve/call-apply',
-            'achieve/new',
-            'achieve/bind',
-            'achieve/debounce',
-            'achieve/throttle',
-            'achieve/promise',
-            'achieve/curry',
-            'achieve/instanceof',
-            'achieve/deepClone',
-            'achieve/modal',
-            'achieve/lazyload-img'
-          ]
         },
 
         {
