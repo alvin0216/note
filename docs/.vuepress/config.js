@@ -20,25 +20,12 @@ module.exports = {
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
       { text: 'Webpack', link: '/webpack/' },
-      { text: '数据结构与算法', link: '/algorithm/' },
-      { text: 'HTTP', link: '/http/' },
-      { text: '浏览器', link: '/browser/' },
       {
-        text: '更多',
-        ariaLabel: '了解更多',
+        text: '计算机基础',
         items: [
-          {
-            items: [
-              { text: 'todo list', link: '/todo/' },
-              { text: 'mark list', link: '/mark/' }
-            ]
-          },
-          {
-            items: [
-              { text: 'Github', link: 'https://github.com/alvin0216', target: '_self' },
-              { text: "Alvin's blog", link: 'https://blog.alvin.run', target: '_self' }
-            ]
-          }
+          { text: 'HTTP', link: '/http/' },
+          { text: 'Browser', link: '/browser/' },
+          { text: '数据结构与算法', link: '/algorithm/' }
         ]
       }
     ],
@@ -343,10 +330,49 @@ module.exports = {
           title: '技术漫谈',
           children: [
             'talk/performance',
+            'O&M/wifi',
+
+            {
+              title: '第三方授权',
+              children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github']
+            },
+            {
+              title: '网络请求问题',
+              children: [
+                'coding/request/axios-cancel',
+                'coding/request/token',
+                'coding/request/optimal',
+                'coding/request/lot-of',
+                'coding/request/valid-requests',
+                'coding/request/queue',
+                {
+                  title: '😊TODO:HTTP 请求过大',
+                  children: ['coding/request/compression/overview']
+                }
+              ]
+            },
             {
               title: '机器学习',
               children: ['talk/machine-learning/overview', 'talk/machine-learning/decision-tree-id3']
+            },
+            {
+              title: '未分类',
+              children: ['coding/others/comment-attack', 'coding/others/subtraction', 'coding/canvas-base64']
             }
+          ]
+        },
+        {
+          title: '环境配置',
+          children: [
+            'git/base',
+            'git/webhook',
+            'O&M/mac',
+            'O&M/linux',
+            'O&M/vim',
+            'O&M/vscode',
+            'O&M/ssh',
+            'O&M/certificate',
+            'O&M/charles'
           ]
         },
         {
@@ -374,35 +400,6 @@ module.exports = {
           children: ['/node/middleware', 'node/node-shell']
         },
         {
-          title: 'Coding',
-          children: [
-            {
-              title: '第三方授权',
-              children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github']
-            },
-            {
-              title: '网络请求问题',
-              children: [
-                'coding/request/axios-cancel',
-                'coding/request/token',
-                'coding/request/optimal',
-                'coding/request/lot-of',
-                'coding/request/valid-requests',
-                'coding/request/queue',
-                {
-                  title: '😊TODO:HTTP 请求过大',
-                  children: ['coding/request/compression/overview']
-                }
-              ]
-            },
-            {
-              title: '其他',
-              children: ['coding/others/comment-attack', 'coding/others/subtraction']
-            },
-            'coding/canvas-base64'
-          ]
-        },
-        {
           title: '模拟实现',
           children: [
             'achieve/call-apply',
@@ -418,23 +415,7 @@ module.exports = {
             'achieve/lazyload-img'
           ]
         },
-        {
-          title: 'Tools',
-          children: [
-            {
-              title: 'GIT',
-              children: ['git/base', 'git/webhook']
-            },
-            'O&M/mac',
-            'O&M/linux',
-            'O&M/vim',
-            'O&M/vscode',
-            'O&M/ssh',
-            'O&M/certificate',
-            'O&M/charles',
-            'O&M/wifi'
-          ]
-        },
+
         {
           title: 'TypeScript',
           children: ['typescript/overview']
