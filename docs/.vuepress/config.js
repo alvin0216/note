@@ -280,7 +280,6 @@ module.exports = {
         {
           title: 'web 安全',
           children: [
-            //
             'security/overview',
             'security/xss',
             'security/csrf',
@@ -331,7 +330,10 @@ module.exports = {
           children: [
             'talk/performance',
             'O&M/wifi',
-
+            {
+              title: 'algorithm',
+              children: ['talk/algo/pointer/fast-slow']
+            },
             {
               title: '第三方授权',
               children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github']
