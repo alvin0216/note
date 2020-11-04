@@ -104,3 +104,78 @@ function detectCycle(head) {
   return null
 }
 ```
+
+## [寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
+
+审题：数组的限制在于 **给定一个包含 n + 1 个整数的数组 nums，其数字都在 1 到 n 之间**，
+
+举个例子
+
+```JS
+[1, 3, 4, 2, 2] // n = 4, 然后数组里面的数都不大于4 符合条件
+[1, 9, 9, 2, 2] // n = 4, 9 大于 4，不符合条件
+```
+
+<h3>快慢指针解法</h3>
+
+分析这个数组的特点，索引从 0 ～ n0 ～ n ，数组项的范围是 1 ～ n1 ～ n 。值域，在索引的范围内，值可以当索引使。
+
+比如，nums 数组：`[4, 3, 1, 2, 2]`
+
+- 以 nums[0] 的值 4 作为索引，去到 nums[4]
+- 以 nums[4] 的值 2 作为索引，去到 nums[2]
+- 以 nums[2] 的值 1 作为索引，去到 nums[1]……
+
+从一项指向另一项，将 nums 抽象为一个链表：4->2->1->3->2，又指回 2——抽象成链表存在一个环。
+
+![](https://pic.leetcode-cn.com/a393fd88e07b576de4d603fcccd47539e6648273a7f6626760b95ec28d2343b7-%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200526201809.png)
+
+```js
+var findDuplicate = function(nums) {
+  let s = 0,
+    f = 0
+
+  while (true) {
+    s = nums[s]
+    f = nums[nums[f]]
+    if (s === f) {
+      let p = 0
+      while (nums[p] !== nums[s]) {
+        // 环相遇 寻找 x 的距离
+        s = nums[s]
+        p = nums[p]
+      }
+      return nums[p]
+    }
+  }
+}
+```
+
+<h3>二分法和抽屉原理</h3>
+
+:::info 抽屉原理
+
+桌上有十个苹果，要把这十个苹果放到九个抽屉里，无论怎样放，我们会发现至少会有一个抽屉里面放不少于两个苹果。
+
+:::
+
+思路是先拿出有效范围 `[left, right]` 里的中间数 mid，然后和数组中的每个元素进行比较，统计小于等于这个中间数的元素的个数 cnt。如果 cnt 大于 mid，依然根据抽屉原理，重复元素就应该在区间 `[left, mid]` 里，否则在区间 `[mid+1, right]`。
+
+```js
+var findDuplicate = function(nums) {
+  let l = 0,
+    r = nums.length - 1
+
+  while (l <= r) {
+    let mid = (l + r) >> 1
+    let cnt = 0
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] <= mid) cnt++
+    }
+    if (cnt > mid) r = mid - 1
+    else l = mid + 1
+  }
+
+  return l
+}
+```
