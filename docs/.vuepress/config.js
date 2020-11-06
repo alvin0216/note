@@ -64,6 +64,7 @@ module.exports = {
             'reconciliation',
             'setState',
             'immutable',
+            'useRef',
             {
               title: 'hooks',
               children: ['hooks/base', 'hooks/render', 'hooks/self-hooks', 'hooks/useState']
