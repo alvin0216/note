@@ -179,3 +179,31 @@ var findDuplicate = function(nums) {
   return l
 }
 ```
+
+## [删除链表的倒数第 N 个节点](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/)
+
+使用快慢指针。
+
+![](https://pic.leetcode-cn.com/cc43daa8cbb755373ce4c5cd10c44066dc770a34a6d2913a52f8047cbf5e6e56-file_1559548337458)
+
+```js
+var removeNthFromEnd = function(head, n) {
+  let s = head,
+    f = head
+
+  // 先让快指针走 N 步; 0 < N < head.length
+  for (let i = 0; i < n; i++) {
+    f = f.next
+  }
+
+  // 同时移动 类似于滑动窗口
+  while (f && f.next) {
+    s = s.next
+    f = f.next
+  }
+
+  if (!f) return head.next // 删除的是头结点
+  s.next = s.next.next
+  return head
+}
+```

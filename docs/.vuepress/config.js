@@ -332,7 +332,7 @@ module.exports = {
             'O&M/wifi',
             {
               title: 'algorithm',
-              children: ['talk/algo/pointer/fast-slow']
+              children: ['talk/algo/pointer/fast-slow', 'talk/algo/pointer/two-pointer']
             },
             {
               title: '第三方授权',
