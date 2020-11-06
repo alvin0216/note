@@ -20,6 +20,7 @@ module.exports = {
       { text: 'Javascript', link: '/javascript/' },
       { text: 'React', link: '/react/' },
       { text: 'Webpack', link: '/webpack/' },
+      { text: 'Node', link: '/node/' },
       {
         text: '计算机基础',
         items: [
@@ -324,6 +325,14 @@ module.exports = {
           children: ['principle/overview', 'principle/self-loader']
         }
       ],
+      '/node/': [
+        {
+          title: 'Nestjs',
+          children: ['nestjs/init']
+        },
+        'middleware',
+        'node-shell'
+      ],
       // js
       '/': [
         {
@@ -415,12 +424,6 @@ module.exports = {
             }
           ]
         },
-
-        {
-          title: 'Node',
-          children: ['/node/middleware', 'node/node-shell']
-        },
-
         {
           title: 'TypeScript',
           children: ['typescript/overview']
