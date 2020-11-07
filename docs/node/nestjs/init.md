@@ -19,13 +19,8 @@ nest g service modules/user # 创建 user service
 # 一键创建
 nest g module modules/user && nest g co modules/user && nest g service modules/user
 
-# 创建出的文件夹
+# 创建出的文件夹 位于 src 目录下
 .
-├── app.controller.spec.ts
-├── app.controller.ts
-├── app.module.ts
-├── app.service.ts
-├── main.ts
 └── modules
     └── user
         ├── user.controller.spec.ts
@@ -35,26 +30,53 @@ nest g module modules/user && nest g co modules/user && nest g service modules/u
         └── user.service.ts
 ```
 
-## 路由和请求处理
+## 实现增删改查
 
 点击查看 [Nest 对请求的处理](https://docs.nestjs.cn/7/controllers?id=request)
 
 controller 控制器中 `@Controller()` 装饰器对路由进行了包装了。比如如下
 
+```bash
+├── user.controller.ts # 控制器
+├── user.dto.ts # 定义数据传输对象
+├── user.module.ts # 模型 在 app.module.ts 中注入
+└── user.service.ts # 服务 一般用于做数据库的操作
+```
+
+`user.dto.ts`
+
+```ts
+export enum UserRole {
+  seller,
+  buyer
+}
+
+export class CreateUserDto {
+  username: string
+  password: string
+  phone?: number
+  role: UserRole
+}
+```
+
+`user.controller.ts`
+
 ```ts
 import { Body, Controller, Delete, Get, Headers, HttpCode, Param, Patch, Post } from '@nestjs/common'
+import { CreateUserDto } from './user.dto'
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {} // 注入服务
+  constructor(private readonly userService: UserService) {} // 注入服务 本例并无使用
 
   @Get()
   fetch() {
-    return '获取用户列表'
+    return '获取用户列表' // 访问 /user
   }
 
   @Post()
   create(@Body() body: CreateUerDTO) {
+    // body CreateUerDTO 来统一格式
     return '创建用户'
   }
 
@@ -65,31 +87,41 @@ export class UserController {
   }
 
   @Delete(':id')
-  @HttpCode(204)
-  remove(@Param() { id }, @Headers('token') token): string {
+  remove(@Param() { id }): string {
     return 'delete'
   }
+
+  @Get()
+  @Redirect('https://nestjs.com', 301)
+  jump() {}
 }
 ```
 
 访问 `/user/***`
 
-## DTO 定义数据传输格式
-
-比如：`src/modules/user/user.dto.ts`
+<h3>Controller & Service</h3>
 
 ```ts
-import { ApiProperty } from '@nestjs/swagger'
+import { UserService } from './user.service'
 
-export enum UserRole {
-  buyer = 1,
-  seller = 2
-}
+@Controller('user')
+export class UserController {}
+```
 
-export class CreateUerDTO {
-  username: string
-  password: string
-  phone: number
-  role: UserRole
+如果想调用服务，需要做依赖注入
+
+```ts
+import { UserService } from './user.service'
+
+export class UserController {
+  constructor(private readonly userService: UserService) {}
 }
+```
+
+`user.service.ts`
+
+```ts
+import { Injectable } from '@nestjs/common'
+@Injectable()
+export class UserController {}
 ```

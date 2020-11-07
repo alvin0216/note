@@ -328,7 +328,7 @@ module.exports = {
       '/node/': [
         {
           title: 'Nestjs',
-          children: ['nestjs/resource', 'nestjs/init']
+          children: ['nestjs/resource', 'nestjs/init', 'nestjs/database']
         },
         'middleware',
         'node-shell'
