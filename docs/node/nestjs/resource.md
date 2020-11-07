@@ -1,3 +1,7 @@
+---
+title: 学习资源
+---
+
 ## 文档系列
 
 - [Nestjs 中文文档](https://docs.nestjs.cn/7/controllers)
@@ -25,3 +29,20 @@
 - [NestJs 学习之旅(7)——路由守卫](https://juejin.im/post/6844903925435498504)
 - [NestJs 学习之旅(8)——管道](https://juejin.im/post/6844903926169354254)
 - [NestJs 学习之旅(9)——拦截器](https://juejin.im/post/6844903939196846087)
+
+### Nest.js 从零到壹系列
+
+- [Nest.js 从零到壹系列（一）：项目创建&路由设置&模块](https://juejin.im/post/6844904096017678343)
+- [Nest.js 从零到壹系列（二）：使用 Sequelize 操作数据库](https://juejin.im/post/6844904096638451725)
+- [Nest.js 从零到壹系列（三）：使用 JWT 实现注册、登录](https://juejin.im/post/6844904097317912584)
+- [Nest.js 从零到壹系列（四）：使用中间件、拦截器、过滤器打造日志系统](https://juejin.im/post/6844904098689449998)
+- [Nest.js 从零到壹系列（五）：使用管道、DTO 验证入参，摆脱 if-else 的恐惧](https://juejin.im/post/6844904101294112776)
+- [Nest.js 从零到壹系列（六）：用 15 行代码实现 RBAC 0](https://juejin.im/post/6844904109863075853)
+- [Nest.js 从零到壹系列（七）：讨厌写文档，Swagger UI 了解一下？](https://juejin.im/post/6844904125814063118)
+- [Nest.js 从零到壹系列（八）：使用 Redis 实现登录挤出功能](https://juejin.im/post/6854573216879345672)
+
+### tc9011
+
+- [Nestjs 入门（一）](https://juejin.im/post/6844903890777817101)
+- [Nestjs 入门（二）](https://juejin.im/post/6844903894967910414)
+- [Nestjs 入门（三）](https://juejin.im/post/6844903903792742407)

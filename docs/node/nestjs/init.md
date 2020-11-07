@@ -3,10 +3,6 @@ title: 项目搭建
 date: 2020-11-06 22:13:46
 ---
 
-- [Nestjs 中文文档](https://docs.nestjs.cn/7/controllers)
-- [Nestjs 英文文档](https://docs.nestjs.com/)
-- [大地老师 Nestjs](https://www.itying.com/nestjs/article-index-id-108.html)
-
 ```bash
 yarn global add @nestjs/cli
 nest new nestdemo
