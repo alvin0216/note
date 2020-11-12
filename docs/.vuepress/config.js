@@ -426,7 +426,7 @@ module.exports = {
         },
         {
           title: 'TypeScript',
-          children: ['typescript/overview']
+          children: ['typescript/overview', 'typescript/enum', 'typescript/interface']
         }
       ]
     }
