@@ -9,7 +9,7 @@ module.exports = {
     // SEO end...
     ['link', { rel: 'shortcut icon', type: 'image/x-icon', href: '/favicon.ico' }],
     ['meta', { 'http-equiv': 'x-dns-prefetch-control', content: 'on' }],
-    ['link', { rel: 'dns-prefetch', href: 'https://gitee.com/alvin0216/cdn' }]
+    ['link', { rel: 'dns-prefetch', href: 'https://gitee.com/alvin0216/cdn' }],
   ],
   themeConfig: {
     smoothScroll: true,
@@ -26,9 +26,9 @@ module.exports = {
         items: [
           { text: 'HTTP', link: '/http/' },
           { text: 'Browser', link: '/browser/' },
-          { text: '数据结构与算法', link: '/algorithm/' }
-        ]
-      }
+          { text: '数据结构与算法', link: '/algorithm/' },
+        ],
+      },
     ],
     // === sidebar
     sidebar: {
@@ -45,12 +45,12 @@ module.exports = {
         'web-worker',
         {
           title: '二进制数据',
-          children: ['binary/blob', 'binary/file-upload', 'binary/large-file-upload', 'binary/arraybuffer']
+          children: ['binary/blob', 'binary/file-upload', 'binary/large-file-upload', 'binary/arraybuffer'],
         },
         {
           title: '设计模式',
-          children: ['design-patterns/event-emitter', 'design-patterns/proxy', 'design-patterns/strategy']
-        }
+          children: ['design-patterns/event-emitter', 'design-patterns/proxy', 'design-patterns/strategy'],
+        },
       ],
       // === react
       '/react/': [
@@ -68,17 +68,17 @@ module.exports = {
             'useRef',
             {
               title: 'hooks',
-              children: ['hooks/base', 'hooks/render', 'hooks/self-hooks', 'hooks/useState']
+              children: ['hooks/base', 'hooks/render', 'hooks/self-hooks', 'hooks/useState'],
             },
             {
               title: 'Redux',
-              children: ['redux/achieve', 'redux/redux-dynamic-injection']
+              children: ['redux/achieve', 'redux/redux-dynamic-injection'],
             },
             {
               title: 'React router',
-              children: ['router/history-location', 'router/hash-router']
-            }
-          ]
+              children: ['router/history-location', 'router/hash-router'],
+            },
+          ],
         },
         {
           title: 'React 进阶',
@@ -86,7 +86,7 @@ module.exports = {
             'deep/way',
             {
               title: 'React 理念',
-              children: ['deep/idea', 'deep/oldConstructure']
+              children: ['deep/idea', 'deep/oldConstructure'],
             },
             {
               title: 'react 原理学习前置知识（零散）',
@@ -102,8 +102,8 @@ module.exports = {
                 'principle/vdom-diff',
                 'principle/react-diff',
                 'principle/event',
-                'principle/react-requestIdleCallback'
-              ]
+                'principle/react-requestIdleCallback',
+              ],
             },
             {
               title: '跟着 jokcy 学源码（未完成）',
@@ -114,21 +114,21 @@ module.exports = {
                 'code/update',
                 'code/expirationTime',
                 'code/scheduler',
-                'code/scheduleWork'
-              ]
-            }
-          ]
+                'code/scheduleWork',
+              ],
+            },
+          ],
         },
         {
           title: 'SSR',
-          children: ['ssr/ssr-csr', 'ssr/isomorphism']
-        }
+          children: ['ssr/ssr-csr', 'ssr/isomorphism'],
+        },
       ],
       // === algorithm
       '/algorithm/': [
         {
           title: 'Math',
-          children: ['math/bit-operation', 'math/log', 'math/magnitude']
+          children: ['math/bit-operation', 'math/log', 'math/magnitude'],
         },
         {
           title: '数据结构',
@@ -141,8 +141,8 @@ module.exports = {
             'data-structure/tree',
             'data-structure/avl',
             'data-structure/graph',
-            'data-structure/graph-traverse'
-          ]
+            'data-structure/graph-traverse',
+          ],
         },
         {
           title: '排序算法',
@@ -154,8 +154,8 @@ module.exports = {
             'sort/mergeSort',
             'sort/quickSort',
             'sort/shellSort',
-            'sort/heapSort'
-          ]
+            'sort/heapSort',
+          ],
         },
         {
           title: '树',
@@ -170,8 +170,8 @@ module.exports = {
             'tree/treeToDoublyList',
             'tree/serialize',
             'tree/isSubStructure',
-            'tree/bfs-dfs'
-          ]
+            'tree/bfs-dfs',
+          ],
         },
         {
           title: '链表',
@@ -182,12 +182,12 @@ module.exports = {
             'linkList/copyRandomList',
             'linkList/2',
             'linkList/141',
-            'linkList/summary'
-          ]
+            'linkList/summary',
+          ],
         },
         {
           title: '字符串',
-          children: ['string/isPalindrome']
+          children: ['string/isPalindrome'],
         },
         {
           title: '动态规划',
@@ -199,8 +199,8 @@ module.exports = {
             'dynamic-programming/house-robber',
             'dynamic-programming/coinChange',
             'dynamic-programming/minPathSum',
-            'dynamic-programming/uniquePaths'
-          ]
+            'dynamic-programming/uniquePaths',
+          ],
         },
         {
           title: '一些算法思想',
@@ -209,9 +209,9 @@ module.exports = {
             'others/sliding-window',
             'others/binarySearch',
             'others/divide',
-            'others/shuffle'
-          ]
-        }
+            'others/shuffle',
+          ],
+        },
       ],
       // === http
       '/http/': [
@@ -220,33 +220,33 @@ module.exports = {
         'dns',
         {
           title: 'TCP',
-          children: ['tcp/connection', 'tcp/wave', 'tcp/syn', 'tcp/udp', 'tcp/keep-alive']
+          children: ['tcp/connection', 'tcp/wave', 'tcp/syn', 'tcp/udp', 'tcp/keep-alive'],
         },
         {
           title: 'HTTP 报文',
-          children: ['structure/overview', 'structure/method', 'structure/status-code', 'structure/body']
+          children: ['structure/overview', 'structure/method', 'structure/status-code', 'structure/body'],
         },
         {
           title: '缓存',
-          children: ['cache/overview', 'cache/proxy']
+          children: ['cache/overview', 'cache/proxy'],
         },
         {
           title: 'cookie',
-          children: ['cookie/overview', 'cookie/samesite']
+          children: ['cookie/overview', 'cookie/samesite'],
         },
         'cross-domain',
         {
           title: 'HTTPS',
-          children: ['https/https', 'https/certificate', 'https/tsl', 'https/tsl13', 'https/https-perf']
+          children: ['https/https', 'https/certificate', 'https/tsl', 'https/tsl13', 'https/https-perf'],
         },
         {
           title: 'HTTP2',
-          children: ['http2/http2', 'http2/http2-deep', 'http2/http3']
+          children: ['http2/http2', 'http2/http2-deep', 'http2/http3'],
         },
         {
           title: 'nginx',
-          children: ['nginx/1', 'nginx/2', 'nginx/gzip']
-        }
+          children: ['nginx/1', 'nginx/2', 'nginx/gzip'],
+        },
       ],
       // === browser
       '/browser/': [
@@ -258,16 +258,16 @@ module.exports = {
             'macro/url-to-display',
             'macro/rendering1',
             'macro/rendering2',
-            'macro/repaint-reflow'
-          ]
+            'macro/repaint-reflow',
+          ],
         },
         {
           title: 'Javascript 执行机制',
-          children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain', 'js/this']
+          children: ['js/variable-promotion', 'js/context-stack', 'js/scope', 'js/scope-chain', 'js/this'],
         },
         {
           title: 'v8 工作原理',
-          children: ['v8/ram', 'v8/gc', 'v8/run-the-code']
+          children: ['v8/ram', 'v8/gc', 'v8/run-the-code'],
         },
         {
           title: 'EventLoop',
@@ -276,8 +276,8 @@ module.exports = {
             'event-loop/macrotask-microtask',
             'event-loop/browser-event-loop',
             'event-loop/promise',
-            'event-loop/node'
-          ]
+            'event-loop/node',
+          ],
         },
         {
           title: 'web 安全',
@@ -290,23 +290,23 @@ module.exports = {
             'security/url-phishing',
             'security/sql',
             'security/file',
-            'security/ddos'
-          ]
+            'security/ddos',
+          ],
         },
         {
           title: 'DOM 操作',
-          children: ['dom/overview', 'dom/capture-bubble']
+          children: ['dom/overview', 'dom/capture-bubble'],
         },
         {
           title: '其他',
-          children: ['others/css-block', 'others/network', 'others/performance']
-        }
+          children: ['others/css-block', 'others/network', 'others/performance'],
+        },
       ],
       '/webpack/': [
         'dev-env',
         {
           title: '构建优化',
-          children: ['optimization/overview', 'optimization/spritesmith']
+          children: ['optimization/overview', 'optimization/spritesmith'],
         },
         {
           title: '概念',
@@ -317,21 +317,21 @@ module.exports = {
             'concept/babel',
             'concept/babel-ast',
             'concept/tree-shaking',
-            'concept/loader'
-          ]
+            'concept/loader',
+          ],
         },
         {
           title: '原理',
-          children: ['principle/overview', 'principle/self-loader']
-        }
+          children: ['principle/overview', 'principle/self-loader'],
+        },
       ],
       '/node/': [
         {
           title: 'Nestjs',
-          children: ['nestjs/resource', 'nestjs/init', 'nestjs/database', 'nestjs/pipe']
+          children: ['nestjs/resource', 'nestjs/init', 'nestjs/database', 'nestjs/pipe'],
         },
         'middleware',
-        'node-shell'
+        'node-shell',
       ],
       // js
       '/': [
@@ -339,14 +339,14 @@ module.exports = {
           title: '技术漫谈',
           children: [
             'talk/performance',
-            'O&M/wifi',
+            'talk/wifi',
             {
               title: 'algorithm',
-              children: ['talk/algo/pointer/fast-slow', 'talk/algo/pointer/two-pointer']
+              children: ['talk/algo/pointer/fast-slow', 'talk/algo/pointer/two-pointer'],
             },
             {
               title: '第三方授权',
-              children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github']
+              children: ['coding/oAuth2/oAuth2', 'coding/oAuth2/oAuth2-github'],
             },
             {
               title: '网络请求问题',
@@ -359,35 +359,35 @@ module.exports = {
                 'coding/request/queue',
                 {
                   title: '😊TODO:HTTP 请求过大',
-                  children: ['coding/request/compression/overview']
-                }
-              ]
+                  children: ['coding/request/compression/overview'],
+                },
+              ],
             },
             {
               title: '机器学习',
-              children: ['talk/machine-learning/overview', 'talk/machine-learning/decision-tree-id3']
+              children: ['talk/machine-learning/overview', 'talk/machine-learning/decision-tree-id3'],
             },
 
             {
               title: '未分类',
-              children: ['coding/others/comment-attack', 'coding/others/subtraction', 'coding/canvas-base64']
-            }
-          ]
+              children: ['coding/others/comment-attack', 'coding/others/subtraction', 'coding/canvas-base64'],
+            },
+          ],
         },
 
         {
           title: '环境配置',
           children: [
-            'git/base',
-            'git/webhook',
-            'O&M/mac',
-            'O&M/linux',
-            'O&M/vim',
-            'O&M/vscode',
-            'O&M/ssh',
-            'O&M/certificate',
-            'O&M/charles'
-          ]
+            'config/git',
+            'config/ssh',
+            'config/npm',
+            'config/webhook',
+            'config/command',
+            'config/mac',
+            'config/vscode',
+            'config/certificate',
+            'config/charles',
+          ],
         },
         {
           title: '模拟实现',
@@ -402,12 +402,12 @@ module.exports = {
             'achieve/instanceof',
             'achieve/deepClone',
             'achieve/modal',
-            'achieve/lazyload-img'
-          ]
+            'achieve/lazyload-img',
+          ],
         },
         {
           title: 'HTML',
-          children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href', 'html/link-meta-script']
+          children: ['html/semantic', 'html/defer-async', 'html/meta', 'html/src-href', 'html/link-meta-script'],
         },
 
         {
@@ -416,20 +416,20 @@ module.exports = {
             'css/overview',
             {
               title: '布局',
-              children: ['css/layout/BFC', 'css/layout/flex', 'css/layout/flex-examples']
+              children: ['css/layout/BFC', 'css/layout/flex', 'css/layout/flex-examples'],
             },
             {
               title: '移动端',
-              children: ['css/mobile/flexible', 'css/mobile/1px']
-            }
-          ]
+              children: ['css/mobile/flexible', 'css/mobile/1px'],
+            },
+          ],
         },
         {
           title: 'TypeScript',
-          children: ['typescript/overview', 'typescript/enum', 'typescript/interface', 'typescript/react']
-        }
-      ]
-    }
+          children: ['typescript/overview', 'typescript/enum', 'typescript/interface', 'typescript/react'],
+        },
+      ],
+    },
   },
   plugins: [
     ['container', { type: 'note', defaultTitle: 'NOTE' }],
@@ -442,9 +442,9 @@ module.exports = {
       options: {
         margin: 24,
         background: '#BADA55',
-        scrollOffset: 0
-      }
+        scrollOffset: 0,
+      },
     },
-    'vuepress-plugin-mathjax'
-  ]
+    'vuepress-plugin-mathjax',
+  ],
 }
