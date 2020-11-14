@@ -2,14 +2,39 @@
 title: 在 React 中的实践
 ---
 
-- [TypeScript 2.8 下的终极 React 组件模式](https://juejin.im/post/6844903612787720206)
-- [[译] 使用 TypeScript 开发 React Hooks](https://juejin.im/post/6854573212374663176)
-- [TypeScript 在 React 中使用总结](https://juejin.im/post/6844904112882974728)
-- [Setup TypeScript with React](https://react-typescript-cheatsheet.netlify.app/docs/basic/setup)
+- [TypeScript 在 React 中使用总结](https://juejin.im/post/6844903684422254606)
 
-## 事件
+## React.FC
+
+```ts
+type FC<P = {}> = FunctionComponent<P>
+
+interface FunctionComponent<P = {}> {
+  (props: PropsWithChildren<P>, context?: any): ReactElement<any, any> | null
+  propTypes?: WeakValidationMap<P>
+  contextTypes?: ValidationMap<any>
+  defaultProps?: Partial<P>
+  displayName?: string
+}
+```
+
+用这个类型可以避免我们重复定义 `children`、 `propTypes`、 `contextTypes`、 `defaultProps`、`displayName` 的类型。
+
+通常使用在函数组件中：
 
 ```tsx
+interface BtnProps {
+  size: 'large' | 'middle' | 'small'
+}
+
+const Button: React.FC<BtnProps> = props => {
+  return <button>click</button>
+}
+```
+
+## 事件处理
+
+```ts
 import React, { ChangeEvent, MouseEvent, useRef } from 'react'
 
 const Events: React.FC = props => {
@@ -74,64 +99,19 @@ const Events: React.FC = props => {
 }
 ```
 
-## Promise
-
-```ts
-function getResponse(): Promise<string> {
-  return Promise.resolve('alvin')
-}
-```
-
-或者指定泛型输入：
+## defaultProps
 
 ```tsx
-interface IResponse<T> {
-  message: string
-  result: T
-  success: boolean
+const defaultProps = {
+  size: 'middle'
 }
 
-function getResponse(): Promise<IResponse<number[]>> {
-  return Promise.resolve({
-    message: 'alvin',
-    result: [1, 2, 3],
-    success: true
-  })
-}
-```
+type BtnProps = typeof defaultProps & { size: 'large' | 'middle' | 'small' }
 
-## typeof
+const Button = ({ size }: BtnProps) => <button>{size}</button>
+Button.defaultProps = defaultProps
 
-```ts
-let p = {
-  name: 'alvin',
-  age: 18,
-  list: [1, 2, '3']
-}
-
-type Person = typeof p
-
-// Person 会被解析为
-interface Person {
-  name: string
-  age: number
-  list: (string | number)[]
-}
-```
-
-## &
-
-```ts
-interface P {
-  name: string
-}
-
-interface T {
-  age: number
-}
-
-let s: P & T = {
-  name: 'alvin',
-  age: 18
+const Demo: React.FC = props => {
+  return <Button />
 }
 ```
