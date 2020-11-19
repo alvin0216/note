@@ -2,6 +2,184 @@
 title: TS 实践
 ---
 
+## 类型运算
+
+### 集合运算
+
+> `|` 表示联合类型，`&` 表示交叉类型。
+
+`|` 在 JS 中表示位或运算符，在 Typescript 中用来计算两个类型的`并集`。
+
+```ts
+type Type1 = 'a' | 'b'
+type Type2 = 'b' | 'c'
+type Type3 = Type1 | Type2 // "a" | "b" | "c"
+```
+
+`&` 在 JS 中表示位与运算符，在 Typescript 中用来计算两个类型的`交集`。
+
+```ts
+type Type1 = 'a' | 'b'
+type Type2 = 'b' | 'c'
+type Type3 = Type1 | Type2 // "b"
+```
+
+结合接口看一下：
+
+```ts
+interface A {
+  name: string
+}
+
+interface B {
+  age: number
+}
+
+type C = A & B
+// C { name: string, age: number }
+// C { A | B } 实现接口 A 或者 B 都可以
+```
+
+还可以利用 & 去做接口增加属性约束
+
+```ts
+type C = A & { age: number } // C 相当于在 接口 A 上增加 age 约束
+```
+
+### 索引签名
+
+索引签名可以用来定义对象内的属性、值的类型，例如定义一个 React 组件，允许 `Props` 可以传任意 `key` 为 `string`，`value` 为 `number` 的 `props`。
+
+```tsx
+interface Props {
+  [key: string]: number
+}
+
+<Component count={1} /> // OK
+<Component count={true} /> // Error
+
+const c: Props = {
+  num: 1, // OK
+  name: 'alvin' // Error
+};
+```
+
+### 类型键入
+
+类型键入允许 `Typescript` 像对象取属性值一样使用类型。
+
+```ts
+type User = {
+  userId: string
+  friendList: {
+    fristName: string
+    lastName: string
+  }[]
+}
+
+type UserIdType = User['userId'] // string
+type FriendList = User['friendList'] // { fristName: string; lastName: string; }[]
+type Friend = FriendList[number] // { fristName: string; lastName: string; }
+```
+
+在上面的例子中，我们利用类型键入的功能从 `User` 类型中计算出了其他的几种类型。`FriendList[number]` 这里的 `number` 是关键字，用来取数组子项的类型。在元组中也可以使用字面量数字得到数组元素的类型。
+
+```ts
+type Tuple = [number, string]
+type First = Tuple[0] // number
+type Second = Tuple[1] // string
+```
+
+### typeof value
+
+`typeof` 关键字在 JS 中用来获取变量的类型，运算结果是一个字符串（值）。而在 TS 中表示的是推算一个变量的类型（类型）
+
+```ts
+const age = 18
+type Age = typeof age // type Age = 18
+
+const obj = { name: 'alvin' }
+type A = typeof obj // type A = { name: string }
+```
+
+### keyof Type
+
+`keyof` 关键字可以用来获取一个对象类型的所有 `key` 类型。
+
+```ts
+type User = {
+  id: string
+  name: string
+}
+
+type UserKeys = keyof User //"id" | "name"
+```
+
+`enum` 在 Typescript 中有一定的特殊性（有时表示类型，又是表示值），如果要获取 enum 的 key 类型，需要先把它当成值，用 typeof 再用 keyof。
+
+```ts
+enum ActiveType {
+  Active,
+  Inactive
+}
+
+type KeyOfType = keyof typeof ActiveType // "Active" | "Inactive"
+```
+
+### extends
+
+`extends` 关键字同样存在多种用途，在 `interface` 中表示类型扩展，在条件类型语句中表示布尔运算，在泛型中起到限制的作用，在 `class` 中表示继承。
+
+```ts
+// 表示类型扩展
+interface A {
+  a: string
+}
+
+interface B extends A {
+  // { a: string, b: string }
+  b: string
+}
+
+// 条件类型中起到布尔运算的功能
+type Bar<T> = T extends string ? 'string' : never
+type C = Bar<number> // never
+type D = Bar<string> // string
+type E = Bar<'fooo'> // string
+
+// 起到类型限制的作用
+type Foo<T extends object> = T
+type F = Foo<number> // 类型“number”不满足约束“object”。
+type G = Foo<string> // 类型“string”不满足约束“object”。
+type H = Foo<{}> // OK
+
+// 类继承
+class I {}
+class J extends I {}
+```
+
+<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<!--
 ## Promise
 
 ```ts
@@ -238,4 +416,6 @@ type NonNullable<T> = T extends null | undefined ? never : T
 
 ```ts
 type T = NonNullable<string | string[] | null | undefined> // string | string[]
-```
+``` -->
+
+- [参考](https://juejin.im/post/6876981358346895368)
