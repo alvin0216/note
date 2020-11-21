@@ -335,7 +335,8 @@ module.exports = {
         'node-shell'
       ],
       '/typescript/': [
-        'summary'
+        'summary',
+        'react'
         // {
         //   title: 'TypeScript',
         //   children: ['typescript/overview', 'typescript/interface', 'typescript/summary', 'typescript/react'],

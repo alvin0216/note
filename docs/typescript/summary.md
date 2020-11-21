@@ -90,7 +90,7 @@ type First = Tuple[0] // number
 type Second = Tuple[1] // string
 ```
 
-### typeof value
+### typeof value 获取属性类型
 
 `typeof` 关键字在 JS 中用来获取变量的类型，运算结果是一个字符串（值）。而在 TS 中表示的是推算一个变量的类型（类型）
 
@@ -102,7 +102,7 @@ const obj = { name: 'alvin' }
 type A = typeof obj // type A = { name: string }
 ```
 
-### keyof Type
+### keyof Type 获取 key 值
 
 `keyof` 关键字可以用来获取一个对象类型的所有 `key` 类型。
 
@@ -158,236 +158,78 @@ class I {}
 class J extends I {}
 ```
 
-<!--
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--->
-<!--
-## Promise
+## 泛型
 
 ```ts
-function getResponse(): Promise<string> {
-  return Promise.resolve('alvin')
+type Foo<T, U = string> = {
+  // 多参数、默认值
+  foo: Array<T> // 可以传递
+  bar: U
+}
+
+type A = Foo<number> // type A = { foo: number[]; bar: string; }
+type B = Foo<number, number> // type B = { foo: number[]; bar: number; }
+```
+
+泛型参数还可以有限制，例如下面的例子 extends 的作用是限制 T 至少是个 `HTMLElement` 类型。
+
+```ts
+type MyEvent<T extends HTMLElement = HTMLElement> = {
+  target: T
+  type: string
 }
 ```
 
-或者指定泛型输入：
+`Typescript` 自带了一些泛型工具，下面逐个介绍并附上实现代码。
+
+### 1⃣️ 映射类型
+
+### 关键字 in
+
+in 关键字在类型中表示类型映射，和索引签名的写法有些相似。下面的例子中声明一个 Props 的类型，key 类型为 `'count' | 'id'` `类型，value` 为 `number` 类型。
 
 ```ts
-interface IResponse<T> {
-  message: string
-  result: T
-  success: boolean
+type Props = {
+  [key in 'count' | 'id']: number
 }
 
-function getResponse(): Promise<IResponse<number[]>> {
-  return Promise.resolve({
-    message: 'alvin',
-    result: [1, 2, 3],
-    success: true
-  })
-}
-```
-
-## 基础类型
-
-### typeof
-
-一般我们都是先定义类型，再去赋值使用，但是使用 `typeof` 我们可以把使用顺序倒过来。
-
-```ts
-let p = {
-  name: 'alvin',
-  list: [1, '2']
+// OK
+const props1: Props = {
+  count: 1,
+  id: 1
 }
 
-type Person = typeof p
-```
-
-相当于
-
-```ts
-interface Person {
-  name: string
-  list: (string | number)[]
-}
-```
-
-### 使用联合类型
-
-使用联合类型：可以通过管道(`|`)将变量设置多种类型，赋值时可以根据设置的类型来赋值。
-
-```ts
-interface Unit {
-  sex: 1 | 2
-  subject: 'Math' | 'English' | 'Chinese'
-}
-```
-
-### &
-
-```ts
-interface P {
-  name: string
+const props2: Props = {
+  count: '1', // ERROR
+  id: 1
 }
 
-interface T {
-  age: number
+const props3: Props = {
+  count: 1,
+  id: 1,
+  name: 1 // ERROR
 }
-
-let s: P & T = {
-  name: 'alvin',
-  age: 18
-}
-```
-
-## 工具泛型使用技巧
-
-### Partial 将所有的 props 属性都变为可选值
-
-使用 `Partial` 将所有的 props 属性都变为可选值
-
-```ts
-type Partial<T> = { [P in keyof T]?: T[P] }
-```
-
-上面代码的意思是 `keyof T` 拿到 `T` 所有属性名, 然后 `in` 进行遍历, 将值赋给 `P` , 最后 `T[P]` 取得相应属性的值，中间的 `?` 用来进行设置为可选值。
-
-```tsx
-interface Unit {
-  sex: 1 | 2
-  subject: 'Math' | 'English' | 'Chinese'
-}
-
-let p: Partial<Unit> = {
-  sex: 1
-  // 没有写 subject 属性也不会报错啦
-}
-```
-
-譬如你在 React 中写 props
-
-```ts
-interface BtnProps {
-  size: 'large' | 'middle' | 'small'
-}
-
-const Button: React.FC<BtnProps> = props => {
-  return <button>click</button>
-}
-
-// 在使用时一定要加 size 属性
-const App = () => <Button size='small' />
-
-// 使用 Partial 后，属性全部都是可选的，
-const Button: React.FC<Partial<BtnProps>> = props => {
-  return <button>click</button>
-}
-```
-
-### 使用 Required 将所有 props 属性都设为必填项
-
-```ts
-type Required<T> = { [P in keyof T]-?: T[P] }
-```
-
-`-?` 的功能就是把可选属性的 `?` 去掉使该属性变成必选项，对应的还有 `+?` ，作用与 `-?` 相反，是把属性变为可选项。
-
-### `Omit<T,K>` 属性排除
-
-从对象 `T` 中排除 `key` 是 `K` 的属性。
-
-```ts
-type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
-```
-
-其中 `Pick` & `Exclude` 后面讲。示例，排除接口 `Person` 的 `name` 属性：
-
-```ts
-interface Person {
-  name: string
-  age: number
-  sex: string
-}
-
-let person: Omit<Person, 'name'> = {
-  age: 1,
-  sex: '男'
-}
-```
-
-### Pick 属性提取
-
-从 `T` 中取出一系列 `K` 的属性。
-
-```ts
-type Pick<T, K extends keyof T> = {
-  [P in K]: T[P]
-}
-```
-
-示例：
-
-```ts
-interface Person {
-  name: string
-  age: number
-  sex: string
-}
-
-// 相当于只拿接口的 name 和 age 属性
-let person: Pick<Person, 'name' | 'age'> = {
-  name: '小王',
-  age: 21
-}
-```
-
-### `Exclude<T,U>` 类型排除
-
-从 `T` 中排除那些可以赋值给 `U` 的类型。
-
-```ts
-type Exclude<T, U> = T extends U ? never : T
-```
-
-示例：
-
-```ts
-type T = Exclude<1 | 2 | 3 | 4 | 5, 3 | 4> // T = 1|2|5
-```
-
-### `Extract<T,U>` 类型提取
-
-```ts
-type Extract<T, U> = T extends U ? T : never
-```
-
-示例：
-
-```ts
-type T = Extract<1 | 2 | 3 | 4 | 5, 3 | 4> // T = 3|4
 ```
 
 ### `Record<K,T>` 属性 K 定义为类型 T
 
-将 `K` 中所有的属性的值转化为 `T` 类型。
+比如
+
+```ts
+Record<'name' | 'desc', string> // { name: string, desc: string }
+
+enum ErrorCodes {
+  Timeout = 10001,
+  ServerBusy = 10002
+}
+
+const ErrorMessageMap: Record<ErrorCodes, string> = {
+  [ErrorCodes.Timeout]: 'Timeout, please try again',
+  [ErrorCodes.ServerBusy]: 'Server is busy now'
+}
+```
+
+代码实现：
 
 ```ts
 type Record<K extends keyof any, T> = {
@@ -395,27 +237,261 @@ type Record<K extends keyof any, T> = {
 }
 ```
 
-将 `name` 、 `age` 属性全部设为 `string` 类型。
+### Partial 可选值
 
 ```ts
-let person: Record<'name' | 'age', string> = {
-  name: '小王',
-  age: '12'
+type User = {
+  id?: string
+  gender: 'male' | 'female'
+}
+
+type PartialUser = Partial<User> // { id?: string, gender?: 'male' | 'female'}
+```
+
+代码实现：
+
+```ts
+type Partial<T> = {
+  [P in keyof T]?: T[P]
 }
 ```
 
-### `NonNullable <T>`
+以上面的例子为例：
 
-排除 `T` 为 `null` 、`undefined`。
+```ts
+//  keyof T
+type K = keyof User // "id" | "gender"
+P in K // 获取属性类型
+?: K[P] // 变成可选值
+```
+
+### Required 必选值
+
+`Required` 和 Partial 的作用相反，是将对象类型的属性都变成必须。
+
+```ts
+type Required<T> = { [P in keyof T]-?: T[P] }
+```
+
+`-?` 符号在这里表示的意思是去掉可选符号 `?`。
+
+### Readonly 只读
+
+```ts
+type ReadonlyUser = Readonly<User> // { readonly id?: string, readonly gender: 'male' | 'female'}
+
+const user: ReadonlyUser = {
+  id: '1',
+  gender: 'male'
+}
+
+user.gender = 'femail' // 无法分配到 "gender" ，因为它是只读属性。
+```
+
+代码实现：
+
+```ts
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P]
+}
+```
+
+### Pick 属性提取
+
+```ts
+type Location = {
+  latitude: number
+  longitude: number
+  city: string
+  address: string
+  province: string
+  district: string
+}
+
+type LatLong = Pick<Location, 'latitude' | 'longitude'> //  { latitude: number; longitude: number; }
+
+const region: LatLong = {
+  latitude: 22.545001,
+  longitude: 114.011712
+}
+```
+
+代码实现：
+
+```ts
+type Pick<T, K extends keyof T> = {
+  [P in K]: T[P]
+}
+```
+
+### Omit 属性排除
+
+`Omit` 结合了 `Pick` 和 `Exclude`，将忽略对象类型中的部分 keys。
+
+```ts
+interface Todo {
+  title: string
+  description: string
+  completed: boolean
+}
+
+type TodoPreview = Omit<Todo, 'description'> // { title: string; completed: boolean; }
+
+const todo: TodoPreview = {
+  title: 'Clean room',
+  completed: false
+}
+```
+
+代码实现：
+
+```ts
+type Omit<T, K extends keyof any> = Pick<T, Exclude<keyof T, K>>
+```
+
+### 2⃣️ 条件类型
+
+### 三目运算符
+
+`Typescript` 类型运算也支持“三目运算符”，称之为条件类型，一般通过 `extends` 关键字判断条件成不成立，成立的话得到一个类型，不成立的话返回另一个类型。条件类型通常是与泛型同时出现的（：因为如果是已知固定类型就没必要再判断了。
+
+```ts
+type IsString<T> = T extends string ? true : false
+
+type A = IsString<number> // false
+type B = IsString<string> // true
+```
+
+在处理并集时，条件类型还具有条件分配的逻辑，`number | string` 做条件运算等价于 `number 条件运算 | string` 条件运算
+
+```ts
+type ToArray<T> = T[]
+type A = ToArray<number | string> // (string | number)[]
+
+type ToArray2<T> = T extends unknown ? T[] : T[]
+type B = ToArray2<number | string> // string[] | number[]
+```
+
+### info 动态推导
+
+除了显示声明泛型参数，`Typescrip`t 还支持动态推导泛型，用到的是 `infer` 关键字。什么场景下还需要动态推导？通常是需要通过传入的泛型参数去获取新的类型，这和直接定义一个新的泛型参数不一样。
+
+例如现在定义了 `ApiResponse` 的两个具体类型 `UserResponse` 和 `EventResponse`，如果想得到 `User` 实体类型和 `Event` 实体类型需要怎么做？
+
+```ts
+type ApiResponse<T> = {
+  code: number
+  data: T
+}
+
+type UserResponse = ApiResponse<{
+  id: string
+  name: string
+}>
+
+type EventResponse = ApiResponse<{
+  id: string
+  title: string
+}>
+```
+
+当然可以拎出来单独定义新的类型。
+
+```ts
+type User = {
+  id: string
+  name: string
+}
+
+type UserResponse = ApiResponse<User>
+```
+
+但如果类型是由其他人提供的就不好处理了。这时可以尝试下使用 `infer`，代码如下：
+
+```ts
+type ApiResponseEntity<T> = T extends ApiResponse<infer U> ? U : never
+
+type User = ApiResponseEntity<UserResponse> // { id: string; name: string; }
+type Event = ApiResponseEntity<EventResponse> // { id: string; title: string; }
+```
+
+示例中，判断传入的类型 T 是不是 `T extends ApiResponse<infer U>` 的子集，这里的 `infer` 既是让 `Typescript` 尝试去理解 `T` 具体是那种类型的 `ApiResponse`，生成新的泛型参数 `U`。如果满足 `extends` 条件则将 `U` 类型返回。
+
+充分理解了条件类型和 `infer` 关键字之后，`Typescript` 自带的条件泛型工具也就很好理解了。
+
+### ReturnType 获取返回值类型
+
+```ts
+type A = (a: number) => string
+type B = ReturnType<A> // string
+```
+
+代码实现：
+
+```ts
+type ReturnType<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any
+```
+
+### Parameters 获取方法的参数类型
+
+```ts
+function func(name: string, age: number) {}
+
+type FuncParameters = Parameters<typeof func>
+// type FuncParameters = [name: string, age: number]
+
+typeof func // (name: string, age: number) => void
+```
+
+代码实现：
+
+```ts
+type Parameters<T extends (...args: any) => any> = T extends (...args: infer P) => any ? P : never
+```
+
+- [参考](https://juejin.im/post/6876981358346895368)
+
+### Exclude 属性排除
+
+```ts
+type A = number | string
+type B = string
+type C = Exclude<A, B> // number
+```
+
+代码实现：
+
+```ts
+type Exclude<T, U> = T extends U ? never : T
+```
+
+### Extract 属性交集
+
+Extract 用来计算 T 中可以赋值给 U 的类型
+
+```ts
+type A = number | string
+type B = string
+type C = Extract<A, B> // string
+```
+
+代码实现：
+
+```ts
+type Extract<T, U> = T extends U ? T : never
+```
+
+### NonNullable 排除 null 和 undefined
+
+```ts
+type A = {
+  a?: number | null
+}
+type B = NonNullable(A['a']) // number
+```
+
+代码实现：
 
 ```ts
 type NonNullable<T> = T extends null | undefined ? never : T
 ```
-
-示例：
-
-```ts
-type T = NonNullable<string | string[] | null | undefined> // string | string[]
-``` -->
-
-- [参考](https://juejin.im/post/6876981358346895368)
