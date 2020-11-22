@@ -334,15 +334,7 @@ module.exports = {
         'middleware',
         'node-shell'
       ],
-      '/typescript/': [
-        'summary',
-        'react',
-        'class'
-        // {
-        //   title: 'TypeScript',
-        //   children: ['typescript/overview', 'typescript/interface', 'typescript/summary', 'typescript/react'],
-        // },
-      ],
+      '/typescript/': ['summary', 'react', 'class', 'decorator'],
 
       // js
       '/': [
