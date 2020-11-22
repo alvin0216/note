@@ -18,7 +18,7 @@ module.exports = {
     nav: [
       { text: '主页', link: '/' },
       { text: 'Javascript', link: '/javascript/' },
-      { text: 'Typescript', link: '/typescript/summary' },
+      { text: 'Typescript', link: '/typescript/' },
       { text: 'React', link: '/react/' },
       { text: 'Webpack', link: '/webpack/' },
       { text: 'Node', link: '/node/' },
@@ -336,7 +336,8 @@ module.exports = {
       ],
       '/typescript/': [
         'summary',
-        'react'
+        'react',
+        'class'
         // {
         //   title: 'TypeScript',
         //   children: ['typescript/overview', 'typescript/interface', 'typescript/summary', 'typescript/react'],
