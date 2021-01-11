@@ -1,9 +1,0 @@
----
-title: 12345678910 格式化为 123-4567-8910
-date: 2020-05-19 10:12:58
----
-
-```js
-// 请事先函数对手机格式化
-function formatPhoneNumber(phone, inputOrDelete) {}
-```

@@ -1,26 +1,21 @@
 {
-  "name": "note",
+  "name": "alvin-note",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "author": "reco_luan",
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "dev": "npm run docs:dev",
-    "build": "npm run docs:build",
-    "page": "node ./utils/page.js p",
-    "push": "node ./utils/push"
-  },
-  "dependencies": {
-    "vuepress": "^1.5.2",
-    "vuepress-plugin-container": "^2.1.5",
-    "vuepress-plugin-mathjax": "^1.2.8",
-    "vuepress-plugin-medium-zoom": "^1.1.8"
+    "dev": "vuepress dev . --open --host \"localhost\"",
+    "build": "vuepress build .",
+    "push": "node push.js"
   },
   "devDependencies": {
-    "chalk": "^3.0.0",
-    "commander": "^4.1.0",
-    "inquirer": "^7.0.3",
-    "watchpack": "^1.6.1"
-  }
+    "vuepress": "1.5.4",
+    "vuepress-plugin-element-tabs": "^0.2.8",
+    "vuepress-theme-reco": "1.5.7"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.2",
+    "core-js": "2",
+    "vue-class-component": "^7.2.3"
+  },
+  "description": "alvin's note"
 }
