@@ -20,7 +20,7 @@ branches:
 
 # 需要执行的脚本
 script:
-  - yarn test
+  - yarn build
 
 # 添加 SSH 信任列表（服务器的IP）
 addons:
@@ -34,6 +34,6 @@ before_install:
 
     # 执行部署脚本 （$remote_ip $remote_user $project_dir 在 travis 上配置即可）
 after_success:
-  - ssh root@47.112.48.225 -o StrictHostKeyChecking=no rm -rf $project_dir
-    # - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
-    # - scp -o StrictHostKeyChecking=no -r ./public $remote_user@$remote_ip:$project_dir
+  # - ssh root@47.112.48.225 -o StrictHostKeyChecking=no rm -rf $project_dir
+  # - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
+  - scp -o StrictHostKeyChecking=no -r ./public $remote_user@$remote_ip:$project_dir
