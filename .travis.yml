@@ -23,7 +23,7 @@ script:
   - yarn test
 
 # 添加 SSH 信任列表（服务器的IP）
-addons: $remote_ip
+addons: 47.112.48.225
 
 # 用于 ssh 连接服务器
 before_install:
