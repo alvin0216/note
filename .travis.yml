@@ -28,7 +28,7 @@ addons: $remote_ip
 # 用于 ssh 连接服务器
 before_install:
 - openssl aes-256-cbc -K $encrypted_0ddd2445e49f_key -iv $encrypted_0ddd2445e49f_iv
-  -in travis_rsa.enc -out travis_rsa -d
+  -in id_rsa.enc -out id_rsa -d
 
 # 执行部署脚本 （$remote_ip $remote_user $project_dir 在 travis 上配置即可）
 after_success:
