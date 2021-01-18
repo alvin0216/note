@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
     "build": "vuepress build .",
-    "push": "node push.js"
+    "push": "node push.js",
+    "test": "echo this is a test............."
   },
   "devDependencies": {
     "vuepress": "1.5.4",
