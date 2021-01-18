@@ -141,7 +141,6 @@ module.exports = {
     {
       title: '技术漫谈',
       children: [
-        'webhooks',
         'certificate',
         'node-shell',
         'id3',
@@ -161,8 +160,11 @@ module.exports = {
         'devops/overview',
         'devops/git-commit',
         'devops/husky',
-        'devops/jest',
-        'devops/lerna'
+        'devops/lerna',
+        {
+          title: '持续集成',
+          children: ['ci/what-is-ci-cd', 'ci/webhooks', 'ci/travis']
+        }
       ]
     },
     {

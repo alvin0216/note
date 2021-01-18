@@ -1,10 +1,11 @@
 ---
 title: github webhooks 自动化部署
-date: 2019-07-15 13:00:28
+date: 2019-07-15 13:00:29
 sidebar: 'auto'
 tags:
   - webhooks
-  - 环境配置
+  - 持续集成
+  - 前端工程化
 categories:
   - 技术漫谈
 ---
