@@ -1,5 +1,6 @@
 module.exports = {
   title: "alvin's note",
+  base: '/note/',
   description: '天行健，君子以自强不息',
   dest: 'public',
   head: [
