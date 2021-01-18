@@ -158,11 +158,11 @@ module.exports = {
     {
       title: '前端工程化',
       children: [
-        'engineering/overview',
-        'engineering/git-commit',
-        'engineering/husky',
-        'engineering/jest',
-        'engineering/lerna'
+        'devops/overview',
+        'devops/git-commit',
+        'devops/husky',
+        'devops/jest',
+        'devops/lerna'
       ]
     },
     {
