@@ -16,7 +16,7 @@ install:
 # 设置需要监听的分支
 branches:
   only:
-    - master
+    - travis-test
 
 # 需要执行的脚本
 script:
@@ -32,5 +32,5 @@ before_install:
 
 # 执行部署脚本 （$remote_ip $remote_user $project_dir 在 travis 上配置即可）
 after_success:
-  - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
+  # - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
   - scp -o StrictHostKeyChecking=no -r ./public $remote_user@$remote_ip:$project_dir
