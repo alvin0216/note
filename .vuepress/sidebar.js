@@ -137,7 +137,7 @@ module.exports = {
   ],
 
   // TODO 技术漫谈
-  '/blogs/ramble/': [
+  '/blogs/talk/': [
     {
       title: '技术漫谈',
       children: [
