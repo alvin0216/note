@@ -1,13 +1,16 @@
 {
   "name": "alvin-note",
   "version": "1.0.0",
-  "author": "reco_luan",
+  "author": "alvin",
+  "description": "alvin's note",
   "scripts": {
     "dev": "vuepress dev . --open --host \"localhost\"",
     "build": "vuepress build .",
+    "build:github": "cross-env BUILD_TARGET=github vuepress build .",
     "push": "node push.js"
   },
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "vuepress": "1.5.4",
     "vuepress-plugin-element-tabs": "^0.2.8",
     "vuepress-theme-reco": "1.5.7"
@@ -16,6 +19,5 @@
     "ant-design-vue": "^1.7.2",
     "core-js": "2",
     "vue-class-component": "^7.2.3"
-  },
-  "description": "alvin's note"
+  }
 }

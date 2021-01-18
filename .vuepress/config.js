@@ -1,6 +1,10 @@
+// BUILD_TARGET 打包对象
+const buildBase = process.env.BUILD_TARGET ? '/note/' : '/';
+
 module.exports = {
   title: "alvin's note",
   description: '天行健，君子以自强不息',
+  base: buildBase,
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
@@ -33,4 +37,4 @@ module.exports = {
     lineNumbers: false
   },
   plugins: ['vuepress-plugin-element-tabs']
-}
+};

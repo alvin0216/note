@@ -1,8 +1,8 @@
 language: node_js
 
-# 指定 NodeJs 版本，也可直接设为 stable
+# 指定 NodeJs 版本，也可直接设为 12
 node_js:
-  - 12
+  - 'stable'
 
 # 缓存依赖
 cache:
@@ -20,17 +20,30 @@ branches:
 
 # 需要执行的脚本
 script:
-  - yarn build
+  - yarn build:github
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  local_dir: public
+  on:
+    branch: master
 
 # 添加 SSH 信任列表（服务器的IP）
-addons: $remote_ip
+addons:
+  # ssh_known_hosts:
+  #   - $remote_ip
 
-# 用于 ssh 连接服务器
 before_install:
-- openssl aes-256-cbc -K $encrypted_0ddd2445e49f_key -iv $encrypted_0ddd2445e49f_iv
-  -in travis_rsa.enc -out travis_rsa -d
+  # 用于 ssh 连接服务器
+  # - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
+  # -in id_rsa.enc -out ~/.ssh/id_rsa -d
+  # - chmod 600 ~/.ssh/id_rsa
 
 # 执行部署脚本 （$remote_ip $remote_user $project_dir 在 travis 上配置即可）
 after_success:
-  - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
-  - scp -o StrictHostKeyChecking=no -r ./public $remote_user@$remote_ip:$project_dir
+  # - ssh $remote_user@$remote_ip -o StrictHostKeyChecking=no rm -rf $project_dir
+  # - scp -o StrictHostKeyChecking=no -r ./public $remote_user@$remote_ip:$project_dir
+  #
