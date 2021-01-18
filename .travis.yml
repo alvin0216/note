@@ -16,7 +16,7 @@ addons:
   - 47.112.48.225
 before_install:
 - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
-  -in id_rsa.enc -out id_rsa -d
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
 - chmod 600 ~/.ssh/id_rsa
 
 after_success:
