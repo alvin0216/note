@@ -24,7 +24,7 @@ module.exports = {
       tag: { location: 3, text: '标签' }
     },
     friendLink: require('./friendLink'),
-    logo: '/logo.png',
+    // logo: '/logo.png',
     search: true,
     searchMaxSuggestions: 10,
     lastUpdated: 'Last Updated',

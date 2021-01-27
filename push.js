@@ -7,7 +7,7 @@ function execute(cmd) {
     if (error) {
       console.error(error)
     } else {
-      console.log(chalk.green('SUCCESS PUSH:'), dateFormatter())
+      console.log(chalk.green('SUCCESS PUSH:'), `updated at ${dateFormatter()}`)
     }
   })
 }
