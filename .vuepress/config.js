@@ -1,6 +1,7 @@
 module.exports = {
   title: "alvin's note",
   description: '天行健，君子以自强不息',
+  base: '/note/',
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
