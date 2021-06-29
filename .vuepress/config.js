@@ -12,8 +12,7 @@ module.exports = {
     nav: [
       // { text: '主页', link: '/', icon: 'reco-home' },
 
-      { text: 'Typescript', link: '/docs/typescript/' },
-      { text: 'HTML & CSS', link: '/docs/html-css/iframe' },
+      { text: '笔记', link: '/docs/coding/typescript/' },
       { text: '浏览器', link: '/docs/browser/cache' },
       { text: '前端工程化', link: '/docs/devops/' },
       { text: '算法', link: '/docs/algorithm/data-structure/stack' },
@@ -27,8 +26,14 @@ module.exports = {
       },
     ],
     sidebar: {
-      '/docs/typescript/': [''],
-      '/docs/html-css/': ['iframe'],
+      // '/docs/coding/': ['lowcode'],
+      '/docs/coding/': [
+        { title: '开发实录', children: ['lowcode'] },
+        { title: 'Typescript', children: ['typescript/'] },
+        { title: 'HTML', children: ['html/iframe'] },
+      ],
+      // '/docs/typescript/': [''],
+      // '/docs/html-css/': ['iframe'],
       '/docs/devops/': [
         '',
         {
@@ -77,7 +82,7 @@ module.exports = {
     type: 'blog',
     // 博客设置
     blogConfig: {
-      // category: { location: 8, text: '分类' },
+      category: { location: 1, text: '分类' },
       // tag: { location: 2, text: '标签' },
     },
     friendLink: require('./friendLink'),
