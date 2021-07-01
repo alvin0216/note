@@ -1,7 +1,7 @@
 ---
 title: 链表的实现与应用
 date: 2020-05-10 15:16:26
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:

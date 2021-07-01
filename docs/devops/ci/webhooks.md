@@ -1,7 +1,7 @@
 ---
 title: github webhooks 自动化部署
 date: 2019-07-15 13:00:29
-sidebar: 'auto'
+sidebar: auto
 tags:
   - webhooks
   - 持续集成

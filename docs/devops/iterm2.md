@@ -1,7 +1,7 @@
 ---
 title: mac 命令以及 iterm2
 date: 2019-07-15 13:00:28
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 环境配置
   - 前端工程化

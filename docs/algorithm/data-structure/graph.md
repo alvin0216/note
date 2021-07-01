@@ -1,7 +1,7 @@
 ---
 title: 图的实现
 date: 2020-05-21 22:30:33
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -167,9 +167,9 @@ class Graph {
 
   toString() {
     let s = '';
-    this.vertices.forEach(v => {
+    this.vertices.forEach((v) => {
       s += `${v} -> `;
-      this.adjList.get(v).forEach(n => {
+      this.adjList.get(v).forEach((n) => {
         s += `${n} `;
       });
       s += '\n';
@@ -184,7 +184,7 @@ class Graph {
 ```js
 let graph = new Graph();
 let myVertices = ['A', 'B', 'C', 'D', 'E', 'F'];
-myVertices.forEach(v => {
+myVertices.forEach((v) => {
   graph.addVertex(v);
 });
 graph.addEdge('A', 'B');

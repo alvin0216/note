@@ -1,7 +1,7 @@
 ---
 title: 树的实现
 date: 2020-05-16 16:43:44
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -204,7 +204,7 @@ tree.insert(14);
 tree.insert(18);
 tree.insert(25);
 
-tree.preOrderTraverse(value => console.log(value));
+tree.preOrderTraverse((value) => console.log(value));
 // 11, 7, 5, 3, 6, 9, 8, 10, 15, 13, 12, 14, 20, 18, 25
 ```
 
@@ -223,7 +223,7 @@ tree.preOrderTraverse(value => console.log(value));
 ![](https://gitee.com/alvin0216/cdn/raw/master/images/tree6.png)
 
 ```js
-tree.postOrderTraverse(value => console.log(value));
+tree.postOrderTraverse((value) => console.log(value));
 // 3, 6, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11
 ```
 
@@ -236,7 +236,7 @@ tree.postOrderTraverse(value => console.log(value));
 最后再来看看后序遍历的情况。
 
 ```js
-tree.postOrderTraverse(value => console.log(value));
+tree.postOrderTraverse((value) => console.log(value));
 // 3, 6, 5, 8, 10, 9, 7, 12, 14, 13, 18, 25, 20, 15, 11
 ```
 

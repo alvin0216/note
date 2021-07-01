@@ -1,7 +1,7 @@
 ---
 title: 字典和散列表的实现
 date: 2020-05-12 16:00:33
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -352,7 +352,7 @@ class HashTableSeparateChaining extends HashTable {
 
   size() {
     let count = 0;
-    this.table.forEach(item => {
+    this.table.forEach((item) => {
       if (item !== undefined) count += item.size();
     });
     return count;

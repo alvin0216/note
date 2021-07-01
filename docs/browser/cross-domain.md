@@ -1,7 +1,7 @@
 ---
 title: 谈一谈跨域以及解决方案？
 date: 2020-07-15 13:00:28
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 跨域
   - 浏览器

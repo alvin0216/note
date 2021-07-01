@@ -1,7 +1,7 @@
 ---
 title: iframe 和 postMessage
 date: 2020-07-14 13:00:28
-sidebar: 'auto'
+sidebar: auto
 tags:
   - Iframe
   - postMessage

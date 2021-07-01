@@ -1,7 +1,7 @@
 ---
 title: 谈一谈浏览器缓存？
 date: 2020-06-10 16:01:15
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 浏览器缓存
 categories:
@@ -63,7 +63,7 @@ http
 
       response.writeHead(200, {
         'Content-Type': 'text/javascript',
-        Expires: now.toGMTString()
+        Expires: now.toGMTString(),
       });
       response.end("console.log('script loaded')");
     }
@@ -138,14 +138,14 @@ http
         response.writeHead(304, {
           'Content-Type': 'text/javascript',
           'Cache-Control': 'no-cache',
-          'Last-Modified': lastModified
+          'Last-Modified': lastModified,
         });
         response.end();
       } else {
         response.writeHead(200, {
           'Content-Type': 'text/javascript',
           'Cache-Control': 'no-cache', // no-cache 进行协商缓存
-          'Last-Modified': lastModified // 设置上次修改时间 配合 If-Modified-Since 或者 If-Unmodified-Since 使用
+          'Last-Modified': lastModified, // 设置上次修改时间 配合 If-Modified-Since 或者 If-Unmodified-Since 使用
         });
         response.end("console.log('script loadedxx')");
       }

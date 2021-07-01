@@ -1,7 +1,7 @@
 ---
 title: 什么是 XSS 攻击？
 date: 2020-11-20 20:39:27
-sidebar: 'auto'
+sidebar: auto
 tags:
   - xss
   - 浏览器安全

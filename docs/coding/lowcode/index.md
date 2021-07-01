@@ -1,6 +1,7 @@
 ---
 title: 低代码平台
 date: 2021-06-29 10:54:23
+sidebar: auto
 tags:
   - 低代码平台
 categories:
@@ -33,3 +34,15 @@ categories:
 - [动态表单之表单组件的插件式加载方案](https://juejin.cn/post/6924829595006926856)
 - [微前端 动态加载远程组件](https://zh-hans.single-spa.js.org/docs/getting-started-overview)
 - [react-vue-micro-frame](https://github.com/y805939188/react-vue-micro-frame)
+
+## 云凤蝶
+
+- [云凤蝶可视化搭建的推导与实现](https://zhuanlan.zhihu.com/p/90746742)
+- [云凤蝶中台研发提效实践](https://zhuanlan.zhihu.com/p/78425921)
+
+---
+
+- 中后台 Web 应用搭建有哪些关键要素？
+- 可视化编辑器如何对齐 Pro Code 下视图 DSL 的表达能力？
+- 交互逻辑与状态如何进行组织与聚合？
+- 如何基于可视化底盘去探索 10 倍效能提升？

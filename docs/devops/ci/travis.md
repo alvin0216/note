@@ -1,7 +1,7 @@
 ---
 title: 使用 travis 进行持续集成
 date: 2019-07-15 13:00:30
-sidebar: 'auto'
+sidebar: auto
 tags:
   - travis
   - 持续集成

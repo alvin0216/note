@@ -14,7 +14,7 @@ module.exports = {
 
       { text: '笔记', link: '/docs/coding/typescript/' },
       { text: '浏览器', link: '/docs/browser/cache' },
-      { text: '前端工程化', link: '/docs/devops/' },
+      { text: '前端工程化', link: '/docs/devops/webpack/module' },
       { text: '算法', link: '/docs/algorithm/data-structure/stack' },
       {
         text: '快速入口',
@@ -26,24 +26,15 @@ module.exports = {
       },
     ],
     sidebar: {
-      // '/docs/coding/': ['lowcode'],
       '/docs/coding/': [
-        { title: '开发实录', children: ['lowcode'] },
+        { title: '开发实录', children: ['lowcode/', 'lowcode/practice'] },
         { title: 'Typescript', children: ['typescript/'] },
         { title: 'HTML', children: ['html/iframe'] },
       ],
-      // '/docs/typescript/': [''],
-      // '/docs/html-css/': ['iframe'],
       '/docs/devops/': [
-        '',
-        {
-          title: '持续集成',
-          children: ['travis', 'webhooks', 'github-action'],
-        },
-        {
-          title: '环境配置',
-          children: ['ssh', 'iterm2', 'charles'],
-        },
+        { title: 'Webpack', children: ['webpack/module'] },
+        { title: '持续集成', children: ['ci/travis', 'ci/webhooks', 'ci/github-action'] },
+        { title: '环境配置', children: ['ssh', 'iterm2', 'charles'] },
       ],
       '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],
       '/docs/algorithm/': [
@@ -74,10 +65,6 @@ module.exports = {
           ],
         },
       ],
-      // '/docs/theme-reco/': [
-      //   { title: 'xx', children: ['', 'api'] },
-      //   { title: '2', children: ['theme', 'plugin'] },
-      // ],
     },
     type: 'blog',
     // 博客设置

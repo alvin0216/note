@@ -1,7 +1,7 @@
 ---
 title: charles 抓包环境配置
 date: 2019-07-15 13:00:28
-sidebar: 'auto'
+sidebar: auto
 tags:
   - charles 抓包
   - 环境配置

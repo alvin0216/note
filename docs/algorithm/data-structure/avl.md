@@ -1,7 +1,7 @@
 ---
 title: TODO 平衡二叉树 (AVL)
 date: 2020-09-03 15:46:39
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -74,7 +74,7 @@ function BinarySearchTree() {
 
   // 前序遍历 根左右 【中序遍历 左根右；后序遍历 左右根】
   this.preOrderTraverse = function(callback) {
-    let traverse = node => {
+    let traverse = (node) => {
       if (node) {
         callback(node.val);
         node.left && traverse(node.left);

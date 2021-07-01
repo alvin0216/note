@@ -1,7 +1,7 @@
 ---
 title: 集合的实现与应用
 date: 2020-05-11 20:09:24
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -98,15 +98,15 @@ class Set {
 
   union(otherSet) {
     let unionSet = new Set();
-    this.values().forEach(value => unionSet.add(value));
-    otherSet.values().forEach(value => unionSet.add(value));
+    this.values().forEach((value) => unionSet.add(value));
+    otherSet.values().forEach((value) => unionSet.add(value));
     return unionSet;
   }
 
   intersection(otherSet) {
     // 交集
     let intersectionSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       if (otherSet.has(value)) intersectionSet.add(value);
     });
     return intersectionSet;
@@ -115,7 +115,7 @@ class Set {
   difference(otherSet) {
     // 差集
     let differenceSet = new Set();
-    this.values().forEach(value => {
+    this.values().forEach((value) => {
       if (!otherSet.has(value)) differenceSet.add(value);
     });
     return differenceSet;
@@ -126,7 +126,7 @@ class Set {
     if (this.size() > otherSet.size()) return false;
 
     let isSubset = true;
-    this.values().every(value => {
+    this.values().every((value) => {
       if (!otherSet.has(value)) {
         isSubset = false;
         return false;

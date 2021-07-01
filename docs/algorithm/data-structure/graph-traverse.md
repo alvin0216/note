@@ -1,7 +1,7 @@
 ---
 title: 图的遍历
 date: 2020-05-23 19:57:46
-sidebar: 'auto'
+sidebar: auto
 tags:
   - 算法与数据结构
 categories:
@@ -188,9 +188,9 @@ class Graph {
 
   toString() {
     let s = '';
-    this.vertices.forEach(v => {
+    this.vertices.forEach((v) => {
       s += `${v} -> `;
-      this.adjList.get(v).forEach(n => {
+      this.adjList.get(v).forEach((n) => {
         s += `${n} `;
       });
       s += '\n';
@@ -271,7 +271,7 @@ let breadthFirstSearch = (graph, startVertex, callback) => {
 在前面我们给出的测试用例的基础上，添加下面的代码，来看看 `breadthFirstSearch()`方法的执行结果：
 
 ```js
-breadthFirstSearch(graph, 'A', value => console.log(`visited vertex: ${value}`));
+breadthFirstSearch(graph, 'A', (value) => console.log(`visited vertex: ${value}`));
 ```
 
 参数 `graph` 为前面测试用例中 `Graph` 类的实例，也就是我们用来保存图的数据的对象，'A'被作为遍历的起始顶点，在回调函数中，打印一行文本，用来展示顶点被遍历的顺序。下面是测试结果：
@@ -341,14 +341,14 @@ let BFS = function(graph, startVertex) {
   // 初始化所有顶点的距离为0，前置节点为null
   // { A: 0, B: 0, C: 0, D: 0, E: 0, F: 0 }
   // { A: null, B: null, C: null, D: null, E: null, F: null }
-  vertices.forEach(v => {
+  vertices.forEach((v) => {
     distances[v] = 0;
     pred[v] = null;
   });
 
   while (!queue.isEmpty()) {
     let u = queue.dequeue(); // 取出当前顶点
-    adjList.get(u).forEach(n => {
+    adjList.get(u).forEach((n) => {
       if (color[n] === Colors.WHITE) {
         color[n] = Colors.GREY;
         distances[n] = distances[u] + 1;
@@ -392,7 +392,7 @@ const { distances, pred } = BFS(graph, startVertex);
 
 function print(from) {
   console.log(pred);
-  myVertices.forEach(v => {
+  myVertices.forEach((v) => {
     let path = new Stack();
     for (let to = v; to !== from; to = pred[to]) {
       path.push(to);
@@ -473,7 +473,7 @@ const dijkstra = (graph, src) => {
 :::details floydWarshall 代码
 
 ```js
-const floydWarshall = graph => {
+const floydWarshall = (graph) => {
   const dist = [];
   const { length } = graph;
   for (let i = 0; i < length; i++) {
@@ -524,7 +524,7 @@ const union = (i, j, parent) => {
   }
   return false;
 };
-const initializeCost = graph => {
+const initializeCost = (graph) => {
   const cost = [];
   const { length } = graph;
   for (let i = 0; i < length; i++) {
@@ -539,7 +539,7 @@ const initializeCost = graph => {
   }
   return cost;
 };
-const kruskal = graph => {
+const kruskal = (graph) => {
   const { length } = graph;
   const parent = [];
   let ne = 0;
@@ -591,7 +591,7 @@ const minKey = (graph, key, visited) => {
   }
   return minIndex;
 };
-const prim = graph => {
+const prim = (graph) => {
   const parent = [];
   const key = [];
   const visited = [];
@@ -631,7 +631,7 @@ let dfsVisited = (u, color, adjList, callback) => {
   color[u] = Colors.GREY;
   if (callback) callback(u);
 
-  adjList.get(u).forEach(n => {
+  adjList.get(u).forEach((n) => {
     if (color[n] === Colors.WHITE) {
       dfsVisited(n, color, adjList, callback);
     }
@@ -645,14 +645,14 @@ let dfs = (graph, callback) => {
   let adjList = graph.getAdjList();
   let color = initializeColor(vertices);
 
-  vertices.forEach(v => {
+  vertices.forEach((v) => {
     if (color[v] === Colors.WHITE) {
       dfsVisited(v, color, adjList, callback);
     }
   });
 };
 
-dfs(graph, value => console.log(`visited vertex: ${value}`));
+dfs(graph, (value) => console.log(`visited vertex: ${value}`));
 ```
 
 对应的测试用例及执行结果如下：
