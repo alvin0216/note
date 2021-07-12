@@ -10,9 +10,7 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
     nav: [
-      // { text: '主页', link: '/', icon: 'reco-home' },
-
-      { text: '笔记', link: '/docs/coding/typescript/' },
+      { text: '笔记', link: '/docs/coding/lowcode/' },
       { text: '浏览器', link: '/docs/browser/cache' },
       { text: '前端工程化', link: '/docs/devops/lerna' },
       { text: '算法', link: '/docs/algorithm/data-structure/stack' },
@@ -27,7 +25,10 @@ module.exports = {
     ],
     sidebar: {
       '/docs/coding/': [
-        { title: '开发实录', children: ['lowcode/', 'lowcode/practice'] },
+        {
+          title: '低代码可视化平台',
+          children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice'],
+        },
         { title: 'Typescript', children: ['typescript/'] },
         { title: 'HTML', children: ['html/iframe'] },
       ],
