@@ -3,7 +3,6 @@ title: ssh 免密登陆服务器配置
 date: 2019-07-15 13:00:28
 tags:
   - ssh
-  - 环境配置
   - 前端工程化
 categories:
   - 前端工程化
