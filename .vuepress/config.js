@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: '笔记', link: '/docs/coding/' },
-      { text: '前端工程化', link: '/docs/devops/' },
+      { text: '前端工程化', link: '/docs/devops/package/micro-frontend' },
       { text: '浏览器', link: '/docs/browser/cache' },
       { text: '算法', link: '/docs/algorithm/data-structure/stack' },
       {
@@ -32,17 +32,18 @@ module.exports = {
         },
         { title: 'Typescript', children: ['typescript/'] },
         { title: 'HTML', children: ['html/iframe'] },
+        { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
       ],
       '/docs/devops/': [
         {
           title: 'Devops',
-          children: ['', 'package/npm', 'package/lerna', 'package/micro-frontend'],
+          children: ['package/micro-frontend', 'package/npm', 'package/lerna'],
         },
         { title: '打包工具', children: ['webpack/module'] },
         { title: '持续集成', children: ['ci/travis', 'ci/webhooks', 'ci/github-action'] },
         {
           title: '环境配置',
-          children: ['config/ssh', 'config/iterm2', 'config/certificate', 'config/charles'],
+          children: ['config/mac', 'config/ssh', 'config/certificate', 'config/charles'],
         },
       ],
       '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],

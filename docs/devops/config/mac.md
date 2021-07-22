@@ -1,5 +1,5 @@
 ---
-title: mac 命令以及 iterm2
+title: Mac 常用命令
 date: 2019-07-15 13:00:28
 sidebar: auto
 tags:
@@ -8,7 +8,7 @@ categories:
   - 前端工程化
 ---
 
-如何安装 `zsh + oh-my-zsh + autojump` 自行百度
+<!-- 如何安装 `zsh + oh-my-zsh + autojump` 自行百度 -->
 
 :::: tabs
 
@@ -22,6 +22,11 @@ kill pid # 释放进程
 # 切换 bash 与 zsh
 chsh -s /bin/bash
 chsh -s /bin/zsh
+
+
+# 获取系统时间 2021-07-22 09:23:33
+time=$(date "+%Y-%m-%d %H:%M:%S")
+echo "${time}"
 ```
 
 :::
@@ -116,3 +121,7 @@ jco c // 在文件管理器中打开一个子目录
 :::
 
 ::::
+
+Sed 主要用来自动编辑一个或多个文件、简化对文件的反复操作、编写转换程序等.
+
+[Linux sed 命令](https://www.runoob.com/linux/linux-comm-sed.html)
