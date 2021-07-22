@@ -32,6 +32,7 @@ module.exports = {
         },
         { title: 'Typescript', children: ['typescript/'] },
         { title: 'HTML', children: ['html/iframe'] },
+        { title: 'CSS', children: ['css/drop-shadow'] },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
       ],
       '/docs/devops/': [
@@ -93,5 +94,5 @@ module.exports = {
     startYear: '2017',
   },
   markdown: { lineNumbers: false },
-  plugins: ['vuepress-plugin-element-tabs'],
+  plugins: ['vuepress-plugin-element-tabs', 'demo-container'],
 };
