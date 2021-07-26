@@ -1,0 +1,23 @@
+<head>
+  <title>systemjs-react</title>
+  <!-- 按照 systemjs 模块化的方式引入React框架应用 -->
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom/umd/react-dom.production.min.js",
+        "react-router-dom": "https://cdn.jsdelivr.net/npm/react-router-dom@5.2.0/umd/react-router-dom.min.js"
+      }
+    }
+  </script>
+  <!--  systemjs 库 -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.0/dist/system.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    // 按照 systemp 的方式，引入具体应用
+    System.import('./main.js');
+  </script>
+</body>
