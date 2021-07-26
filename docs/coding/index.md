@@ -32,6 +32,8 @@ echo "${time}"
 - [性能优化到底应该怎么做](https://juejin.cn/post/6962039912392556575)
 - [47 张图带你走进浏览器的前世今生！](https://mp.weixin.qq.com/s?__biz=Mzg5MTU5ODYxOA==&mid=2247488538&idx=1&sn=73c4a580de48319c9d23ca71d3e35155&chksm=cfcbb66ff8bc3f7963ca800dc9b7bf2bea12e2ae6240327b6c9da7e8e26428dcce280602a9bd&mpshare=1&scene=1&srcid=0721j3P1PPfGR6MFMF7NaJff&sharer_sharetime=1626832397265&sharer_shareid=6c571175851759869a1aa0675b3936f3#rd)
 - [万字干货！详解 JavaScript 执行过程](https://mp.weixin.qq.com/s?__biz=MzkwODIwMDY2OQ==&mid=2247490736&idx=1&sn=b00645ef0303635695dc2e208f2767df&chksm=c0ccc302f7bb4a147d4e0133717c006d1fd160f7b7308f1b6838d1cb42a64b0b8a42d87e4e65&mpshare=1&scene=1&srcid=07224Yswf8I9huzzLqEwAeJA&sharer_sharetime=1626914349023&sharer_shareid=6c571175851759869a1aa0675b3936f3#rd)
+- [那些高级/资深的前端是如何回答 JavaScript 面试题的 （一）](https://juejin.cn/post/6971727286856843295)
+-
 
 ## 写过的 demo
 
