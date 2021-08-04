@@ -5,7 +5,13 @@ module.exports = {
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    ['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1,user-scalable=no' }],
+    [
+      'meta',
+      {
+        name: 'viewport',
+        content: 'width=device-width,initial-scale=1,user-scalable=no',
+      },
+    ],
   ],
   theme: 'reco',
   themeConfig: {
@@ -18,7 +24,11 @@ module.exports = {
         text: '快速入口',
         items: [
           { text: '标签索引', link: '/tag/', icon: 'reco-tag' },
-          { text: '分类索引', link: '/categories/Typescript/', icon: 'reco-category' },
+          {
+            text: '分类索引',
+            link: '/categories/Typescript/',
+            icon: 'reco-category',
+          },
           { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
         ],
       },
@@ -30,6 +40,7 @@ module.exports = {
           title: '低代码可视化平台',
           children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice'],
         },
+        { title: 'React', children: ['react/', 'react/mini', 'react/async'] },
         { title: 'Typescript', children: ['typescript/'] },
         { title: 'HTML', children: ['html/iframe'] },
         { title: 'CSS', children: ['css/drop-shadow'] },
@@ -41,10 +52,18 @@ module.exports = {
           children: ['package/micro-frontend', 'package/npm', 'package/lerna'],
         },
         { title: '打包工具', children: ['webpack/module'] },
-        { title: '持续集成', children: ['ci/travis', 'ci/webhooks', 'ci/github-action'] },
+        {
+          title: '持续集成',
+          children: ['ci/travis', 'ci/webhooks', 'ci/github-action'],
+        },
         {
           title: '环境配置',
-          children: ['config/mac', 'config/ssh', 'config/certificate', 'config/charles'],
+          children: [
+            'config/mac',
+            'config/ssh',
+            'config/certificate',
+            'config/charles',
+          ],
         },
       ],
       '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],
