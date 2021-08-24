@@ -89,6 +89,16 @@ module.exports = {
             'sort/heapSort',
           ],
         },
+        {
+          title: '一些算法思想',
+          children: [
+            'method/complexity',
+            'method/sliding-window',
+            'method/binarySearch',
+            'method/divide',
+            'method/shuffle',
+          ],
+        },
       ],
 
       '/docs/protocol/': [
