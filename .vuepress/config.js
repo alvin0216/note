@@ -16,22 +16,9 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
     nav: [
-      { text: '笔记', link: '/docs/coding/' },
-      { text: '前端工程化', link: '/docs/devops/package/micro-frontend' },
-      { text: '浏览器', link: '/docs/browser/cache' },
-      { text: '算法', link: '/docs/algorithm/data-structure/stack' },
-      {
-        text: '快速入口',
-        items: [
-          { text: '标签索引', link: '/tag/', icon: 'reco-tag' },
-          {
-            text: '分类索引',
-            link: '/categories/Typescript/',
-            icon: 'reco-category',
-          },
-          { text: '时间轴', link: '/timeline/', icon: 'reco-date' },
-        ],
-      },
+      { text: '主页', link: '/', icon: 'reco-home' },
+      { text: '动态', link: '/timeline/', icon: 'reco-date' },
+      { text: '关于', link: '/docs/', icon: 'reco-account' },
     ],
     sidebar: {
       '/docs/coding/': [
@@ -40,12 +27,16 @@ module.exports = {
           title: '低代码可视化平台',
           children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice'],
         },
-        { title: 'React', children: ['react/', 'react/mini', 'react/async'] },
-        { title: 'Typescript', children: ['typescript/'] },
-        { title: 'HTML', children: ['html/iframe'] },
-        { title: 'CSS', children: ['css/drop-shadow'] },
+        { title: 'Typescript', children: ['typescript/', 'typescript/react'] },
+        { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
+        {
+          title: 'CSS',
+          children: ['css/center', 'css/bfc', 'css/drop-shadow'],
+        },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
       ],
+
+      '/docs/react/': [{ title: 'React', children: ['', 'mini', 'async'] }],
       '/docs/devops/': [
         {
           title: 'Devops',
@@ -64,6 +55,10 @@ module.exports = {
             'config/certificate',
             'config/charles',
           ],
+        },
+        {
+          title: 'nginx',
+          children: ['nginx/basics', 'nginx/proxy', 'nginx/gizp'],
         },
       ],
       '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],
@@ -95,12 +90,91 @@ module.exports = {
           ],
         },
       ],
+
+      '/docs/protocol/': [
+        {
+          title: '计算机基础',
+          children: ['', 'network-model', 'dns', 'uri'],
+        },
+        {
+          title: 'TCP',
+          children: [
+            'tcp/structure',
+            'tcp/tcp-udp',
+            'tcp/handshake',
+            'tcp/wave',
+            'tcp/sync-attack',
+          ],
+        },
+        {
+          title: 'HTTP',
+          children: [
+            'http/structure',
+            'http/request-method',
+            'http/status-code',
+            'http/request-header',
+            'http/desc',
+            'http/cookie',
+            'http/blocking',
+            'http/cache',
+            'http/cross-domain',
+          ],
+        },
+        {
+          title: 'HTTPS',
+          children: [
+            'https/overview',
+            'https/ca',
+            'https/tsl1.2',
+            'https/tsl1.3',
+          ],
+        },
+        {
+          title: 'HTTP2',
+          children: [
+            'http2/http2-vs-http',
+            'http2/frame',
+            'http2/http3',
+            'http2/push',
+          ],
+        },
+      ],
+
+      '/docs/javascript/': [
+        {
+          title: 'JS - 基础',
+          children: [
+            'basis/data-types',
+            'basis/prototype',
+            'basis/this',
+            'basis/extends',
+            'basis/for-of',
+          ],
+        },
+        {
+          title: 'JS - 代码实现',
+          children: ['achieve/call-apply', 'achieve/bind', 'achieve/promise'],
+        },
+        {
+          title: 'v8 - 引擎工作原理',
+          children: [
+            'v8/run-js',
+            'v8/context-stack',
+            'v8/scope',
+            'v8/scope-chain',
+            'v8/closure',
+            'v8/gc',
+            'v8/compile',
+            'v8/eventloop',
+          ],
+        },
+      ],
     },
     type: 'blog',
     // 博客设置
     blogConfig: {
       category: { location: 1, text: '分类' },
-      // tag: { location: 2, text: '标签' },
+      tag: { location: 2, text: '标签' },
     },
     friendLink: require('./friendLink'),
     logo: '/logo.png',
