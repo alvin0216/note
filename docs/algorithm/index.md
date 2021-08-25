@@ -6,27 +6,16 @@ sidebar: auto
 
 ## 二分法
 
-二分查找的关键点是确定**循环截止条件**、**边界更新方式**、**边界更新条件**。
+- ✅ [704. 二分查找](https://leetcode-cn.com/problems/binary-search/)
+- ✅ [69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)
+- [278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
+- [35. 搜索插入位置](https://leetcode-cn.com/problems/search-insert-position/)
+- ❌ [162. 寻找峰值](https://leetcode-cn.com/problems/find-peak-element/) （不是很理解）
+- [34 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+- [287. 寻找重复数](https://leetcode-cn.com/problems/find-the-duplicate-number/)
+- [374. 猜数字大小](https://leetcode-cn.com/problems/guess-number-higher-or-lower/)
+- [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
 
-1. 循环截止条件无非两种，left <= right、left < right,
-2. 边界更新为 `[left = mid + 1, right = mid - 1]`、`[left = mid + 1, right = mid]`。
-3. 对于边界更新的条件，牢牢把握住，每次更新都是确定性地丢弃一半数据，缩小一半查找范围这一中心思想，就不会没有头绪了。
+---
 
-```js
-function search(nums, target) {
-  let l = 0,
-    r = nums.length - 1;
-
-  while (l <= r) {
-    const mid = (l + r) >> 1;
-    if (nums[mid] === target) return mid;
-    else if (nums[mid] > target) {
-      l = mid + 1;
-    } else {
-      r = mid - 1;
-    }
-  }
-
-  return -1;
-}
-```
+[写对二分查找不能靠模板，需要理解加练习 （附练习题）](https://leetcode-cn.com/problems/search-insert-position/solution/te-bie-hao-yong-de-er-fen-cha-fa-fa-mo-ban-python-/)
