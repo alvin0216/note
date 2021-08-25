@@ -16,10 +16,19 @@ module.exports = {
   theme: 'reco',
   themeConfig: {
     nav: [
-      { text: '主页', link: '/', icon: 'reco-home' },
-      { text: '动态', link: '/timeline/', icon: 'reco-date' },
-      { text: '关于', link: '/docs/', icon: 'reco-account' },
+      // { text: '主页', link: '/', icon: 'reco-home' },
+      // { text: '动态', link: '/timeline/', icon: 'reco-date' },
+      // { text: '关于', link: '/docs/', icon: 'reco-account' },
+      { text: 'docs', link: '/docs/coding/' },
+      { text: '算法', link: '/docs/algorithm/' },
+      { text: '网络协议', link: '/docs/protocol/' },
+      { text: '工程化', link: '/docs/devops/package/micro-frontend' },
     ],
+    // 博客设置
+    blogConfig: {
+      category: { location: 12, text: '分类' },
+      // tag: { location: 2, text: '标签' },
+    },
     sidebar: {
       '/docs/coding/': [
         '',
@@ -63,6 +72,7 @@ module.exports = {
       ],
       '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],
       '/docs/algorithm/': [
+        '',
         {
           title: '数据结构',
           children: [
@@ -181,11 +191,6 @@ module.exports = {
       ],
     },
     type: 'blog',
-    // 博客设置
-    blogConfig: {
-      category: { location: 1, text: '分类' },
-      tag: { location: 2, text: '标签' },
-    },
     friendLink: require('./friendLink'),
     logo: '/logo.png',
     search: true,
