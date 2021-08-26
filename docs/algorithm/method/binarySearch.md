@@ -53,5 +53,34 @@ var search = function(nums, target) {
 };
 ```
 
+## 278. 第一个错误的版本
+
+[278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)
+
+```js
+var solution = function(isBadVersion) {
+  /**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  return function(n) {
+    let l = 1,
+      r = n;
+
+    // 循环条件终止条件 l === r
+    while (l < r) {
+      const mid = Math.floor(l + (r - l) / 2);
+      if (isBadVersion(mid)) {
+        r = mid; // 为什么不是 mid - 1？如果 mid 是最后一个错误版本，那么进入下一个循环之后 就会找不到该版本
+      } else {
+        l = mid + 1; // 为什么不是 mid？mid 都确定不是错误版本了，应该排除
+      }
+    }
+
+    return l;
+  };
+};
+```
+
 <!--
 鉴于 [我写了一首诗，把所有滑动窗口问题变成了默写题](https://leetcode-cn.com/problems/permutation-in-string/solution/wo-xie-liao-yi-shou-shi-ba-suo-you-hua-dong-chuang/) -->

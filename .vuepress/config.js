@@ -1,6 +1,6 @@
 module.exports = {
   title: "alvin's note",
-  description: '天行健，君子以自强不息',
+  description: '每天努力一小时！',
   base: '/note/',
   dest: 'public',
   head: [
@@ -20,9 +20,11 @@ module.exports = {
       // { text: '动态', link: '/timeline/', icon: 'reco-date' },
       // { text: '关于', link: '/docs/', icon: 'reco-account' },
       { text: 'docs', link: '/docs/coding/' },
+      { text: 'Javascript', link: '/docs/javascript/' },
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
       { text: '工程化', link: '/docs/devops/package/micro-frontend' },
+      { text: '浏览器', link: '/docs/browser/' },
     ],
     // 博客设置
     blogConfig: {
@@ -70,7 +72,7 @@ module.exports = {
           children: ['nginx/basics', 'nginx/proxy', 'nginx/gizp'],
         },
       ],
-      '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf'],
+      '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf', 'cookie'],
       '/docs/algorithm/': [
         '',
         {
