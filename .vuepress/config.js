@@ -25,6 +25,7 @@ module.exports = {
       { text: '网络协议', link: '/docs/protocol/' },
       { text: '工程化', link: '/docs/devops/package/micro-frontend' },
       { text: '浏览器', link: '/docs/browser/' },
+      { text: 'React', link: '/docs/react/' },
     ],
     // 博客设置
     blogConfig: {
@@ -32,6 +33,7 @@ module.exports = {
       // tag: { location: 2, text: '标签' },
     },
     sidebar: {
+      // TODO coding
       '/docs/coding/': [
         '',
         {
@@ -47,7 +49,10 @@ module.exports = {
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
       ],
 
+      // TODO react
       '/docs/react/': [{ title: 'React', children: ['', 'mini', 'async'] }],
+
+      // TODO devops
       '/docs/devops/': [
         {
           title: 'Devops',
@@ -72,7 +77,18 @@ module.exports = {
           children: ['nginx/basics', 'nginx/proxy', 'nginx/gizp'],
         },
       ],
-      '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf', 'cookie'],
+
+      // TODO browser
+      '/docs/browser/': [
+        'cache',
+        'cross-domain',
+        'xss',
+        'csrf',
+        'cookie',
+        'cookie-samesite',
+      ],
+
+      // TODO algorithm
       '/docs/algorithm/': [
         '',
         {
@@ -113,6 +129,7 @@ module.exports = {
         },
       ],
 
+      // TODO protocol
       '/docs/protocol/': [
         {
           title: '计算机基础',
@@ -162,6 +179,7 @@ module.exports = {
         },
       ],
 
+      // TODO javascript
       '/docs/javascript/': [
         {
           title: 'JS - 基础',
