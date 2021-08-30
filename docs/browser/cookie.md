@@ -9,124 +9,138 @@ categories:
   - 浏览器
 ---
 
-## cookie 与 session
+- [概念区分，什么是跨站，什么是跨域](https://cloud.tencent.com/developer/article/1751237)
+- [当 CORS 遇到 SameSite](https://juejin.cn/post/6844904095271288840)
+- [阮一峰：Cookie 的 SameSite 属性](https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
+- [✨ 当浏览器全面禁用三方 Cookie](https://juejin.cn/post/6844904128557105166)
+- [✨ Chrome 80+以後的第三方 cookie 政策](https://www.youtube.com/watch?v=lrNwwcA9SKs)
 
-### 什么是 Cookie
+## 什么是同站（跨站），第三方 cookie
 
-HTTP 是无状态的协议（对于事务处理没有记忆能力，每次客户端和服务端会话完成时，服务端不会保存任何会话信息）：每个请求都是完全独立的，服务端无法确认当前访问者的身份信息，无法分辨上一次的请求发送者和这一次的发送者是不是同一个人。所以服务器与浏览器为了进行会话跟踪（知道是谁在访问我），就必须主动的去维护一个状态，这个状态用于告知服务端前后两个请求是否来自同一浏览器。而这个状态需要通过 cookie 或者 session 去实现
+- 跨域 cross-orgin：老生常谈，协议、域名、端口有一个不一样就跨域了
+- 同站 cross-site：Cookie 与此息息相关，Cookie 实际上遵守的是“同站”策略，同站的 `cookie` 可以共享.
 
-Cookie 主要用于以下三个方面：
+> **只要两个 URL 的 eTLD+1 相同即是同站, 也即有效顶级域名+二级域名**
+
+- `eTLD`: 即 `effective top-level domain` (有效顶级域)。
+- 公共后缀列表: [Public Suffix List（PSL）](https://publicsuffix.org/)
+
+| URL                 | 是否同站 | 理由        |
+| ------------------- | -------- | ----------- |
+| sugarat.top         | ✅       | eTLD+1 一致 |
+| ep.sugarat.top      | ✅       | eTLD+1 一致 |
+| ep.sugarat.top:8080 | ✅       | eTLD+1 一致 |
+| baidu.com           | ❌       | eTLD 不一致 |
+
+举个例子：`web.alvin.com` 与 `service.alvin.com` 具有相同的二级域名，可以看作是同站不同源(same-site, cross-origin)。但，`web.github.io` 与 `service.github.io` 则是不同的站点不同的源(cross-site, cross-origin)，因为 github.io 属于公共后缀（[Public Suffix](https://github.com/publicsuffix/list)）。
+
+第三方 cookie 的概念其实很简单，个人理解：同站内共享的 cookie ，都是第一方、其他例如跨域等产生的 cookie 属于第三方 cookie。
+
+chrome 80+ 版本后默认 sameSite 为 `lax`, 也就是默认大部分第三方 cookie 无法被使用啦。
+
+## Cookie 追踪用户行为，代码示例
+
+了解 cookie 的一个重要的用法，比如我在百度搜索了喜欢的水果苹果，那么在水果购买网站通过 cookie 拿到用户喜好，自动推荐苹果的相关链接。
+
+演示版本 chrome 80+，所以要禁用 samesite 属性才行，否则第三方 cookie 无法被携带！
+
+**index.html**
+
+```html
+<h1>你的喜好</h1>
+<button onclick="sendFav('apple')">apple</button>
+<button onclick="sendFav('banana')">banana</button>
+
+<script>
+  function sendFav(item) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `http://localhost:3000/api?fav=${item}`);
+    xhr.withCredentials = true;
+    xhr.send();
+  }
+</script>
+```
+
+**server.js**
+
+```js
+const express = require('express');
+const app = express();
+const router = express.Router();
+const port = 3000;
+
+router.get('/', (req, res) => {
+  res.end(`hello world!, cookie: ${req.headers.cookie}`);
+});
+
+router.get('/api', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.cookie('fav', req.query.fav, {
+    secure: true, //
+    sameSite: 'none',
+  });
+  res.json({ status: 'ok' });
+});
+
+app.use('/', router);
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+```
+
+上面代码有几个注意点，
+
+1. xhr 携带 cookie，需要设置 `withCredentials = true`, 服务端 `Access-Control-Allow-Origin` 不能为 `*`
+2. 禁用 `samesite`，使得第三方 `cookie` 得以使用，需要设置 `secure = true`
+
+![](https://gitee.com/alvin0216/cdn/raw/master/images/samesite.png)
+
+## Cookie 相关属性
+
+![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie3.png)
+
+重点讲一下：
+
+- `httpOnly`: boolean，不能通过 document.cookie 访问到 cookie，有效防止 [xss 攻击](./xss.md)
+- `secure`: true, cookie 只会在 https 和 ssl 等安全协议下传输
+- `samesite`：第三方 cookie 的一些策略，后面讲到。
+- `path`: 限制 cookie 的路由匹配，比如 `/test` `/test/aa`, 前者包容后者，默认是 `/`。
+- `domain`: cookie 的 domain，比如 `.baidu.com`, 那么 `a.baidu.com`、`b.baidu.com` 可以共享。
+- `expires/max-age`: 过期时间。
+
+**sameSite 属性**
+
+- `Strict`：完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。
+- `Lax`:
+  ![](https://gitee.com/alvin0216/cdn/raw/master/images/samesite-lax.png)
+- `None`：显式关闭 `SameSite` 属性，不过，前提是必须同时设置 `Secure` 属性
+
+## Cookie 一些概念 & Session
+
+可能面试常问，这里简单列一下。
+
+**1. 什么是 Cookie？**
+
+HTTP 是无状态的协议（对于事务处理没有记忆能力，每次客户端和服务端会话完成时，服务端不会保存任何会话信息）：每个请求都是完全独立的，服务端无法确认当前访问者的身份信息，无法分辨上一次的请求发送者和这一次的发送者是不是同一个人。所以服务器与浏览器为了进行会话跟踪（知道是谁在访问我），就必须主动的去维护一个状态，这个状态用于告知服务端前后两个请求是否来自同一浏览器。而这个状态需要通过 cookie 或者 session 去实现。
+
+**2. Cookie 设置的过程。**
+
+客户端发送请求 -> 服务端设置 `Cookie` -> 浏览器保存 `Cookie`, 以后每次请求都带上。
+
+**3. Cookie 的作用。**
 
 - 会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）
 - 个性化设置（如用户自定义设置、主题等）
 - 浏览器行为跟踪（如跟踪分析用户行为等）
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie3.png)
+**4. 与 Session 的区别。**
 
-### 什么是 Session
+首先注意。Session 是依赖于 Cookie 的，如果 Cookie 被禁用了，Session 也用不了。
 
-Session 代表着服务器和客户端一次会话的过程。Session 对象存储特定用户会话所需的属性及配置信息。这样，当用户在应用程序的 Web 页之间跳转时，存储在 Session 对象中的变量将不会丢失，而是在整个用户会话中一直存在下去。当客户端关闭会话，或者 Session 超时失效时会话结束。
+客户端发送请求 -> 服务端设置 `Cookie`，里面可能只有 sessionId -> 浏览器保存 `Cookie`, 以后每次请求都带上。
 
-### Cookie 和 Session 有什么不同？
+最大区别莫过于一个是存储在浏览器端，显而易见不安全、而 Session 保存在服务端，相对安全。基于这一点，可见：
 
-1. Cookie 存储在客户端，比较容易遭到不法获取，Session 存储在服务端，安全性相对 Cookie 要好一些
-2. 有效期不同，Cookie 可设置为长时间保持，比如我们经常使用的默认登录功能，Session 一般失效时间较短，客户端关闭或者 Session 超时都会失效。
-3. ...
-
-### Cookie 和 Session，他们有什么关联？
-
-![](https://gitee.com/alvin0216/cdn/raw/master/images/session.png)
-
-用户第一次请求服务器的时候，服务器根据用户提交的相关信息，创建创建对应的 Session ，请求返回时将此 Session 的唯一标识信息 SessionID 返回给浏览器，浏览器接收到服务器返回的 SessionID 信息后，会将此信息存入到 Cookie 中，同时 Cookie 记录此 SessionID 属于哪个域名。
-
-当用户第二次访问服务器的时候，请求会自动判断此域名下是否存在 Cookie 信息，如果存在自动将 Cookie 信息也发送给服务端，服务端会从 Cookie 中获取 SessionID，再根据 SessionID 查找对应的 Session 信息，如果没有找到说明用户没有登录或者登录失效，如果找到 Session 证明用户已经登录可执行后面操作。
-
-根据以上流程可知，SessionID 是连接 Cookie 和 Session 的一道桥梁，大部分系统也是根据此原理来验证用户登录状态。
-
-既然服务端是根据 Cookie 中的信息判断用户是否登录，那么如果浏览器中禁止了 Cookie，如何保障整个机制的正常运转。
-
-## 浏览器针对 cookie 的策略
-
-chrome80 版本以后默认把 cookie 的 SameSite 属性设置为 Lax，以此来对第三方 cookie 做一些限制，对于使用第三方 cookie 场景的系统，往往会造成登陆异常，系统崩溃等大问题。
-Safari 13.1、Firefox 79 版本中，三方 Cookie 已经被默认禁用
-
-### 什么是第三方 cookie？
-
-我们打开天猫的网站，看他的控制台 application 中的 cookie：
-
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie4.png)
-
-我们可以发现，在天猫的网站下，不只是有 `.tmall.com` 下的 `cookie`，还有.taobao.com 下的很多 cookie。
-
-当我们在访问 `www.tmall.com` 的时候，将与页面网址同站的 Cookie 叫做第一方 cookie，与页面网址跨站的 cookie 称为第三方 cookie（.taobao.com）。
-
-举例：`a.jd.com` 网址下
-
-- `.mercury.jd.com` 下的 Cookie---第一方 Cookie
-- `.a.taobao.com` 下的 Cookie---第三方 Cookie
-
-但是，我从来没有在电脑上访问过 taobao.com 啊？为什么他会出现在我的 cookie 中呢？
-
-### 第三方 cookie 是怎么得到的？
-
-继续上面的例子，`.taobao.com` 下的 cookie 是如何写入`.tmall.com` 网站的？
-
----通过跨站发送请求
-
-我们在打开天猫网站进行登录的时候，发现有一个 `pass.tmall.com/add` 的请求，它就是天猫登录的接口，它把用户名和密码发给天猫的服务端。登录成功之后服务端通过 set-cookie 字段向本站注入了与登录相关的 cookie（在.tmall.com 域名下）。
-
-同时页面会向淘宝（`login.taobao.com`）发送请求，由于淘宝和天猫用的是同一套登录系统，淘宝服务端可以获取到此时的天猫登录信息，将该信息通过 set-cookie 的形式绑定在.taobao.com 域名下。
-
-这样，打开淘宝之后，可以直接登录淘宝。
-
----
-
-- [当浏览器全面禁用三方 Cookie](https://juejin.cn/post/6844904128557105166)
-
-<!--
-
-
-
-
-
-### 第三方 cookie
-
-访问 www.taobao.com 该网站会把一些 cookie 写入到 .taobao.com 这个域下。然而打开控制台你会看到，并里面还有很多其他域下的 Cookie，这些所有非当前域下的 Cookie 都属于第三方 Cookie，虽然你可能从来没访问过这些域，但是他们已经悄咪咪的通过这些第三方 Cookie 来标识你的信息，然后把你的个人信息发送过去了。 -->
-
-<!-- ## 第三方 Cookie
-
-### cookie 的属性
-
-- name：这个显而易见，就是代表 cookie 的名字的意思
-- value：值
-- domain：这个是指的域名，这个代表的是，cookie 绑定的域名，如果没有设置，就会自动绑定到执行语句的当前域，还有值得注意的点，统一个域名下的二级域名也是不可以交换使用 cookie 的，比如，你设置 www.baidu.com 和 image.baidu.com,依旧是不能公用的
-- path： path 这个属性默认是'/'，这个值匹配的是 web 的路由，举个例子：
-
-  ```js
-  //默认路径
-  www.baidu.com;
-  //blog路径
-  www.baidu.com / blog;
-  ```
-
-  我为什么说的是匹配呢，就是当你路径设置成/blog 的时候，其实它会给/blog、/blogabc 等等的绑定 cookie
-
-  - max-age： cookie 的有效期
-  - secure：这个属性译为安全，http 不仅是无状态的，还是不安全的协议，容易被劫持，打个比方，你在手机端浏览网页的时候，有没有中国移动图标跳出来过，闲言少叙，当这个属性设置为 true 时，此 cookie 只会在 https 和 ssl 等安全协议下传输
-  - HttpOnly：这个属性是面试的时候常考的，如果这个属性设置为 true，就不能通过 js 脚本来获取 cookie 的值，能有效的防止 xss 攻击。
-
-### cookie 被禁用
-
-如果 cookie 无法自动携带，如果是试用 axios，检查是否开启 `withCredentials`.
-
-谷歌浏览器默认的 samesite 属性是 `lax`，大部分是不允许自动携带 cookie 的，也可能存在这个原因。解决方案自查。
-
-- [当浏览器全面禁用三方 Cookie](https://juejin.cn/post/6844904128557105166)
-
-## Session
-
-Session 的作用呢，和 cookie 差不多，整个 cookie 呢是客户端的 session 呢，在服务端它呢，是用来解决 HTTP 协议不能维持状态的，这个问题正由于 session 是存在服务端的，所以呢，他不会在网络中进行传输，所以相比起 cookie 呢，Session 会相对安全一些，但是呢，Session 是依赖于 cookie 的什么意思呢？当用户去访问某一个站点的时候，服务器端呢，会为这个用户去产生一个唯一的 session ID，并且呢，他把这个 session ID 以 cookie 的方式发送到客户端，我们来看一下啊，因为。
-
-![](https://gitee.com/alvin0216/cdn/raw/master/images/session.png)
-
-第一的时候呢，会给服务端去发送一个请求，服务端收到这个请求，他会做一个初始化 session ID 的这样一个操作，因为他第一次访问，所以这个时候呢，服务端是没有 ID 的，所以他要创建一个 session ID，然后呢，将这个 session ID 存储在我们的数据结构里面，假设是一个 KV 这样的一个结构，那么屁呢存的 session ID value 呢，存的是 session 的一个具体的信息，然后呢，他将这个 session ID 写入在库里面，返回我们的客户端，当他第二次访问的时候呢，那么服务端肯定会根据他 request 里面传过来的，这个 session ID，能够在服务器里面去找到这个对应的 session，所以呢，服务器就会认为哦，你已经登录了或者说呢。你已经开始保持了一个绘画，直到服务端这个 session 过期，所以呢，当 session 过期的时候，我们有时候呢，从网站里就会自动的退出来，当我们的浏览器禁用了 cookie 之后呢，Session 实际上是没有办法运作的，所以呢，他们就提出来了，一种方式是我们前面所说的 url 传参的 -->
+高并发的时候 Session 由于是在服务端的，所以压力大，所以简单的来说 session 一般设置失效时间较短。

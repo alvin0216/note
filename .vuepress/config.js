@@ -44,7 +44,12 @@ module.exports = {
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
           title: 'CSS',
-          children: ['css/center', 'css/bfc', 'css/drop-shadow'],
+          children: [
+            'css/center',
+            'css/bfc',
+            'css/drop-shadow',
+            'css/transform',
+          ],
         },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
       ],
@@ -79,14 +84,7 @@ module.exports = {
       ],
 
       // TODO browser
-      '/docs/browser/': [
-        'cache',
-        'cross-domain',
-        'xss',
-        'csrf',
-        'cookie',
-        'cookie-samesite',
-      ],
+      '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf', 'cookie'],
 
       // TODO algorithm
       '/docs/algorithm/': [
@@ -209,6 +207,9 @@ module.exports = {
           ],
         },
       ],
+    },
+    locales: {
+      '/': { lang: 'zh-CN' },
     },
     type: 'blog',
     friendLink: require('./friendLink'),
