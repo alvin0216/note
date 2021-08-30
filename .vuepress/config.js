@@ -1,6 +1,6 @@
 module.exports = {
   title: "alvin's note",
-  description: '每天努力一小时！',
+  description: 'Peace and love...',
   base: '/note/',
   dest: 'public',
   head: [
@@ -84,7 +84,7 @@ module.exports = {
       ],
 
       // TODO browser
-      '/docs/browser/': ['cache', 'cross-domain', 'xss', 'csrf', 'cookie'],
+      '/docs/browser/': ['cache', 'cross-origin', 'xss', 'csrf', 'cookie'],
 
       // TODO algorithm
       '/docs/algorithm/': [
@@ -154,7 +154,7 @@ module.exports = {
             'http/cookie',
             'http/blocking',
             'http/cache',
-            'http/cross-domain',
+            'http/cross-origin',
           ],
         },
         {

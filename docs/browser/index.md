@@ -8,4 +8,4 @@ categories:
   - 浏览器
 ---
 
-每天努力一小时！
+Peace and love...

@@ -8,4 +8,4 @@ categories:
   - Javascript
 ---
 
-每天努力一小时！
+Peace and love...

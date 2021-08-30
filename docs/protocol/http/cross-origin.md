@@ -5,4 +5,4 @@ categories:
 date: 2020-07-15 13:00:28
 ---
 
-<meta http-equiv="refresh" content="0;url=/docs/browser/cross-domain" />
+<meta http-equiv="refresh" content="0;url=/docs/browser/cross-origin" />
