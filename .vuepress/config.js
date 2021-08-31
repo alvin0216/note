@@ -1,7 +1,7 @@
 module.exports = {
   title: "alvin's note",
   description: 'Peace and love...',
-  base: '/note/',
+  base: process.env.TARGET === 'gh-pages' ? '/note/' : undefined,
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
