@@ -16,7 +16,7 @@ jobs:
           node-version: 12.x
 
       - name: Build project
-        run: yarn && yarn build & tar zcvf ./dist.gz ./public
+        run: yarn && yarn build && tar zcvf ./dist.gz ./public
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
