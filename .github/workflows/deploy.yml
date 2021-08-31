@@ -36,9 +36,9 @@ jobs:
           password: ${{ secrets.DEPLOY_PASSWORD }}
           port: 22
           script: | # 清除缓存
-            rm -rf /site/note
-            tar zxvf /site/dist.gz
-            mv /site/public /site/note
+            cd /site
+            rm -rf note
+            tar zxvf dist.gz && mv public note
             rm -rf dist.gz
 
       - name: Build project
