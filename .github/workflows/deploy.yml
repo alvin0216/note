@@ -37,8 +37,8 @@ jobs:
           port: 22
           script: | # 清除缓存
             rm -rf /site/note
-            tar zxvf dist.gz
-            mv public note
+            tar zxvf /site/dist.gz
+            mv /site/public /site/note
             rm -rf dist.gz
 
       - name: Build project
