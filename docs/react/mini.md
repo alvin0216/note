@@ -2,10 +2,10 @@
 title: 简单复现 React 工作过程
 date: 2021-06-29 10:54:23
 sidebar: auto
-tags: React
+tags:
+  - React
 categories: React
 ---
-
 
 ```js
 let workInProgressHook;
@@ -100,5 +100,3 @@ function App() {
 const app = schedule();
 app.onClick();
 ```
-
-

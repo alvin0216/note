@@ -89,7 +89,7 @@ CORS 其实是 W3C 的一个标准，全称是**跨域资源共享**。它需要
 
 :::: tabs
 
-::: tab Access-Control-Allow-Origin
+Access-Control-Allow-Origin
 
 对于简单请求，浏览器直接发出 CORS 请求。具体来说，就是在头信息之中，增加一个 `Origin` 字段，用来说明请求来自哪个**源**。服务器拿到请求之后，在回应时对应地添加 `Access-Control-Allow-Origin` 字段，如果 Origin 不在这个字段的范围中，那么浏览器就会将响应拦截。
 

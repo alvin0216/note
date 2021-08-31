@@ -2,29 +2,30 @@
 title: setState 异步？
 date: 2021-06-29 10:54:23
 sidebar: auto
-tags: React
+tags:
+  - React
 categories: React
 ---
 
 ```jsx
 class App extends Component {
-  state = { val: 0 }
+  state = { val: 0 };
 
   componentDidMount() {
-    this.setState({ val: this.state.val + 1 })
-    console.log(this.state.val) // 0
-    this.setState({ val: this.state.val + 1 })
-    console.log(this.state.val) // 0
+    this.setState({ val: this.state.val + 1 });
+    console.log(this.state.val); // 0
+    this.setState({ val: this.state.val + 1 });
+    console.log(this.state.val); // 0
     setTimeout(() => {
-      this.setState({ val: this.state.val + 1 })
-      console.log(this.state.val) // 2
-      this.setState({ val: this.state.val + 1 })
-      console.log(this.state.val) // 3
-    })
+      this.setState({ val: this.state.val + 1 });
+      console.log(this.state.val); // 2
+      this.setState({ val: this.state.val + 1 });
+      console.log(this.state.val); // 3
+    });
   }
 
   render() {
-    return null
+    return null;
   }
 }
 ```

@@ -55,7 +55,9 @@ module.exports = {
       ],
 
       // TODO react
-      '/docs/react/': [{ title: 'React', children: ['', 'mini', 'async'] }],
+      '/docs/react/': [
+        { title: 'React', children: ['', 'immer', 'mini', 'async'] },
+      ],
 
       // TODO devops
       '/docs/devops/': [
@@ -208,9 +210,7 @@ module.exports = {
         },
       ],
     },
-    locales: {
-      '/': { lang: 'zh-CN' },
-    },
+
     type: 'blog',
     friendLink: require('./friendLink'),
     logo: '/logo.png',
@@ -221,6 +221,9 @@ module.exports = {
     authorAvatar: '/avatar.png',
     record: '粤ICP备20056911号',
     startYear: '2017',
+  },
+  locales: {
+    '/': { lang: 'zh-CN' },
   },
   markdown: { lineNumbers: false },
   plugins: ['vuepress-plugin-element-tabs', 'demo-container'],
