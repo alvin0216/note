@@ -9,3 +9,6 @@ categories:
 ---
 
 Peace and love...
+
+- [阮一峰 ES6](https://es6.ruanyifeng.com/)
+- [冴羽的博客](https://github.com/mqyqingfeng/Blog)

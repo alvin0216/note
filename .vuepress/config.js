@@ -181,13 +181,14 @@ module.exports = {
 
       // TODO javascript
       '/docs/javascript/': [
+        '',
         {
           title: 'JS - 基础',
           children: [
-            'basis/data-types',
             'basis/prototype',
-            'basis/this',
             'basis/extends',
+            'basis/this',
+            'basis/data-types',
             'basis/for-of',
           ],
         },
