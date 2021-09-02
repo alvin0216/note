@@ -1,5 +1,5 @@
 ---
-title: 不可变数据之 immer 的简单实现
+title: 不可变数据
 date: 2021-08-31 09:58:29
 sidebar: auto
 tags:
@@ -8,7 +8,7 @@ categories: React
 ---
 
 - [阮一峰 ECMAScript 6 入门](https://es6.ruanyifeng.com/#docs/proxy)
-- [带你重学 ES6 | proxy 和 defineProperty](https://juejin.cn/post/6857319959774265358)
+- [带你重学 ES6 | proxy](https://juejin.cn/post/6857319959774265358)
 - [带你重学 ES6 | Reflect](https://juejin.cn/post/6859162309449744391)
 - [实现双向绑定 Proxy 比 defineproperty 优劣如何?](https://juejin.cn/post/6844903601416978439)
 
