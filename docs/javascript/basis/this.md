@@ -21,7 +21,7 @@ function log() {
 
 let foo = {
   env: 'foo',
-  log
+  log,
 };
 
 foo.log(); //  相当于 window.foo.log, 运行环境为 foo，读取内部环境变量 foo
@@ -52,10 +52,10 @@ function func() {
 }
 var obj = {
   length: 5,
-  run: function(func) {
+  run: function (func) {
     func();
     arguments[0]();
-  }
+  },
 };
 
 obj.run(func, 123);
@@ -75,10 +75,10 @@ var name = 'global';
 var obj = {
   name: 'obj',
   a() {
-    return function() {
+    return function () {
       console.log(this.name);
     };
-  }
+  },
 };
 
 obj.a()();
@@ -98,18 +98,56 @@ var name = 'windowsName';
 
 var a = {
   name: 'Cherry',
-  func1: function() {
+  func1: function () {
     console.log(this.name);
   },
-  func2: function() {
-    setTimeout(function() {
+  func2: function () {
+    setTimeout(function () {
       console.log(this.name); // windowsName
       this.func1(); // this.func1 is not a function
     }, 100);
-  }
+  },
 };
 
 a.func2();
 ```
 
 this 的运行时是在一个定时器中，因为它是匿名函数被单独调用，其上下文是全局，所以没有 func1 这个方法。所以必然报错。
+
+真题解析：
+
+```js
+var a = {
+  b: function () {
+    console.log(this);
+  },
+  c: () => {
+    console.log(this);
+  },
+  d: {
+    e: () => {
+      console.log(this);
+    },
+    g: {
+      i: () => {
+        console.log(this);
+      },
+    },
+  },
+  f: function () {
+    var a = () => {
+      console.log(this);
+    };
+    a();
+  },
+};
+
+a.b(); // a
+a.c(); // window
+a.d.e(); // window
+a.d.g.i(); // window
+a.f(); // a
+```
+
+1. 箭头函数里面的 this 就是定义时上层作用域中的 this！
+2. 注意 this 指的是**函数**运行时所在的环境，a 对象并没有被函数包裹，所以输出 window 是默认只想上一级环境，也就是 window

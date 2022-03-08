@@ -12,14 +12,9 @@ categories:
 - [冴羽 JavaScript 深入之从原型到原型链](https://github.com/mqyqingfeng/Blog/issues/2)
 - [【重点】图解：告诉面试官什么是 JS 原型和原型链?](https://juejin.cn/post/6844903976907997192)
 
-通常 Java 生成对象是通过 new 的方式，通过类生成一个实例对象的过程。但是 JS 中并没有类，那 JS 的设计者要怎么做？
+每个函数都有一个特殊的属性叫作原型, `prototype`, 用于存放共享的属性和方法。怎么共享呢？
 
-Java 的 new 的过程内部其实调用了**构造函数**。但是 JS 是没有“类”的概念的，于是 JS 就把 new 一个“类”设计成了 new 一个**构造函数**，于是构造函数成为了一个实例对象的**原型对象**。
-
-> JS 声明构造函数(用来实例化对象的函数)时，会在内存中创建一个对应的对象，这个对象就是原函数的原型。构造函数默认有一个 `prototype` 属性，`prototype` 的值指向函数的原型。同时原型中也有一个 `constructor` 属性，`constructor` 的值指向函数对象。
-> 通过构造函数实例化出来的对象，并不具有 `prototype` 属性，其默认有一个 `__proto__` 属性，`__proto__` 的值指向构造函数的原型。在原型对象上添加或修改的属性，在所有实例化出的对象上都可共享。
-
-![](https://gitee.com/alvin0216/cdn/raw/master/images/prototype5.png)
+通过 new 一个构造函数生成实例，该实例通过 `__proto__` 指向该构造函数的原型，那么访问实例属性的时候先在实例上找，如果找不到会往构造函数的原型上找，这也就是原型链。
 
 ```js
 function Person(name) {
@@ -33,3 +28,5 @@ var p = new Person()
 2. Person.prototype 指向原型对象
 3. p.__proto__ === Person.prototype 实例通过 __proto__ （原型链）指向原型
 ```
+
+![](https://gitee.com/alvin0216/cdn/raw/master/images/prototype5.png)

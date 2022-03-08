@@ -20,7 +20,7 @@ module.exports = {
       // { text: '动态', link: '/timeline/', icon: 'reco-date' },
       // { text: '关于', link: '/docs/', icon: 'reco-account' },
       { text: 'docs', link: '/docs/coding/' },
-      { text: 'Javascript', link: '/docs/javascript/' },
+      { text: 'Javascript', link: '/docs/javascript/basis/prototype' },
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
       { text: '工程化', link: '/docs/devops/package/micro-frontend' },
@@ -44,20 +44,13 @@ module.exports = {
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
           title: 'CSS',
-          children: [
-            'css/center',
-            'css/bfc',
-            'css/drop-shadow',
-            'css/transform',
-          ],
+          children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
-        { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
+        { title: '开发笔记', children: ['dev/interview', 'dev/oAuth2', 'dev/oAuth2-github'] },
       ],
 
       // TODO react
-      '/docs/react/': [
-        { title: 'React', children: ['', 'immer', 'mini', 'async'] },
-      ],
+      '/docs/react/': [{ title: 'React', children: ['', 'immer', 'mini', 'async'] }],
 
       // TODO devops
       '/docs/devops/': [
@@ -72,12 +65,7 @@ module.exports = {
         },
         {
           title: '环境配置',
-          children: [
-            'config/mac',
-            'config/ssh',
-            'config/certificate',
-            'config/charles',
-          ],
+          children: ['config/mac', 'config/ssh', 'config/certificate', 'config/charles'],
         },
         {
           title: 'nginx',
@@ -137,13 +125,7 @@ module.exports = {
         },
         {
           title: 'TCP',
-          children: [
-            'tcp/structure',
-            'tcp/tcp-udp',
-            'tcp/handshake',
-            'tcp/wave',
-            'tcp/sync-attack',
-          ],
+          children: ['tcp/structure', 'tcp/tcp-udp', 'tcp/handshake', 'tcp/wave', 'tcp/sync-attack'],
         },
         {
           title: 'HTTP',
@@ -161,27 +143,16 @@ module.exports = {
         },
         {
           title: 'HTTPS',
-          children: [
-            'https/overview',
-            'https/ca',
-            'https/tsl1.2',
-            'https/tsl1.3',
-          ],
+          children: ['https/overview', 'https/ca', 'https/tsl1.2', 'https/tsl1.3'],
         },
         {
           title: 'HTTP2',
-          children: [
-            'http2/http2-vs-http',
-            'http2/frame',
-            'http2/http3',
-            'http2/push',
-          ],
+          children: ['http2/http2-vs-http', 'http2/frame', 'http2/http3', 'http2/push'],
         },
       ],
 
       // TODO javascript
       '/docs/javascript/': [
-        '',
         {
           title: 'JS - 基础',
           children: [
@@ -189,6 +160,7 @@ module.exports = {
             'basis/extends',
             'basis/this',
             'basis/data-types',
+            'basis/closure',
             'basis/for-of',
           ],
         },
@@ -203,7 +175,6 @@ module.exports = {
             'v8/context-stack',
             'v8/scope',
             'v8/scope-chain',
-            'v8/closure',
             'v8/gc',
             'v8/compile',
             'v8/eventloop',
