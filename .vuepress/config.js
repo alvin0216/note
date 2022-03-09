@@ -23,7 +23,7 @@ module.exports = {
       { text: 'Javascript', link: '/docs/javascript/basis/prototype' },
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
-      { text: '工程化', link: '/docs/devops/package/micro-frontend' },
+      { text: '工程化', link: '/docs/devops/package/summary' },
       { text: '浏览器', link: '/docs/browser/' },
       { text: 'React', link: '/docs/react/' },
     ],
@@ -57,7 +57,7 @@ module.exports = {
       '/docs/devops/': [
         {
           title: 'Devops',
-          children: ['package/micro-frontend', 'package/npm', 'package/lerna'],
+          children: ['package/summary', 'package/micro-frontend', 'package/npm', 'package/lerna'],
         },
         { title: '打包工具', children: ['webpack/module'] },
         {
