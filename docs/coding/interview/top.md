@@ -42,6 +42,11 @@ categories: 面试
 1. BFS 遍历
 2. 富文本编辑器会遇到什么坑
 3. 瀑布流避免 dom 卡顿，怎么解决
+4. React diff
+5. 浏览器缓存
+6. 组件库搭建思路
+7. lerna 遇到什么问题
+8. 难点 跨 iframe 拖拽，怎么难
 
 ## Mobiuspace
 
@@ -59,3 +64,14 @@ categories: 面试
 9. 解决常见的安全性，有哪些
 10. OAuth2 原理
 11. [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+
+## 顺丰（据说是很赚钱的组）
+
+1. react 优化 useMemo useCallback
+2. react 和 vue 的虚拟 dom 的区别是什么
+3. 快排算法 你知道那些数据结构
+4. react router 原理
+5. pm2 你了解有什么常用的配置
+6. nginx 能力
+7. http2 新增了什么属性
+8. eventloop node 和浏览器的表现有什么不同

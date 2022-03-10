@@ -47,7 +47,7 @@ module.exports = {
           children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
-        { title: 'interview', children: ['interview/top', 'interview/bfs'] },
+        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/https'] },
       ],
 
       // TODO react
