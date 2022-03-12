@@ -5,6 +5,7 @@ module.exports = {
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
+    // ['link', { name: 'dns-prefetch', href: '//gitee.com' }],
     [
       'meta',
       {
@@ -47,7 +48,7 @@ module.exports = {
           children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
-        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/https'] },
+        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/net'] },
       ],
 
       // TODO react

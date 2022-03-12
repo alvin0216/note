@@ -11,9 +11,7 @@ categories: 面试
 
 ## ssl/tsl2
 
-[图片链接](https://gitee.com/alvin0216/cdn/raw/master/images/tsl.png)
-
-![](https://gitee.com/alvin0216/cdn/raw/master/images/tsl.png)
+![](https://user-images.githubusercontent.com/34113677/158003021-3b7b9c78-0dab-4644-bc99-bc9853e5eff5.png)
 
 - web `- client hellow ->` server
   - 客户端：我生成一个随机数 A，还有我支持的加密套件有哪些给你知道，当前我用的是 tsl 1.2 版本
@@ -35,3 +33,5 @@ categories: 面试
 [前端必需了解的 CDN 知识](https://juejin.cn/post/6913704568325046279)
 
 ## dns 解析
+
+![图片链接](https://user-images.githubusercontent.com/34113677/158003001-9bbe6511-89bf-4e82-901f-fc267cdded51.png)
