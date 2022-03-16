@@ -39,7 +39,7 @@ module.exports = {
         '',
         {
           title: '低代码可视化平台',
-          children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice'],
+          children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice', 'lowcode/hard'],
         },
         { title: 'Typescript', children: ['typescript/', 'typescript/react'] },
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
@@ -48,7 +48,7 @@ module.exports = {
           children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
         { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
-        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/net'] },
+        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/net', 'interview/algorithm'] },
       ],
 
       // TODO react
@@ -76,7 +76,7 @@ module.exports = {
       ],
 
       // TODO browser
-      '/docs/browser/': ['cache', 'cross-origin', 'xss', 'csrf', 'cookie'],
+      '/docs/browser/': ['cache', 'cross-origin', 'xss', 'csrf', 'cookie', 'render'],
 
       // TODO algorithm
       '/docs/algorithm/': [
