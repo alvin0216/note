@@ -1,25 +1,35 @@
-// 2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。
-
-// 1 2 3 4 5
-
 /**
- * @param {number[]} nums
- * @return {boolean}
+ * @param {number[][]} grid
+ * @return {number}
  */
-var isStraight = function (nums) {
-  let min = 0,
-    max = 14,
-    set = new Set();
+var maxValue = function (grid) {
+  let row = grid.length,
+    col = grid[0].length;
 
-  for (let n of nums) {
-    if (n === 0) continue;
-    max = Math.max(n, max);
-    min = Math.min(n, min);
-    // 若有重复，提前返回 false
-    if (set.has(n)) return false;
-    set.add(n);
+  for (let i = 0; i < row; i++) {
+    for (let j = 0; j < col; j++) {
+      if (i === 0 && j === 0) continue;
+      else if (i == 0) {
+        grid[i][j] += grid[i][j - 1];
+      } else if (j === 0) {
+        grid[i][j] += grid[i - 1][j];
+      } else {
+        grid[i][j] += Math.max(grid[i][j - 1], grid[i - 1][j]);
+      }
+    }
   }
 
-  // 最大牌 - 最小牌 < 5 则可构成顺子
-  return max - min < 5;
+  return grid[row - 1][col - 1];
 };
+
+maxValue([
+  [1, 2, 5],
+  [3, 2, 1],
+]);
+
+// let grid = [
+//   [1, 2, 5],
+//   [3, 2, 1],
+// ];
+
+// console.log(grid[1][0]);

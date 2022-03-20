@@ -8,6 +8,10 @@ categories:
   - 开发实录
 ---
 
+1. 开发过程可视化。可视化交互是低代码平台所具备的一种必备能力，不再面对冷冰冰的传统文本 IDE 编辑器，转而和可视化的编辑器进行交互，不管是 UI 界面，交互事件、后端接口、数据库/Redis 调用，都能通过优雅而简单的可视化交互完成配置和编辑。
+2. 代码开发组件化。这个能力和中台化、SDK 的概念有相似之处，就是将重复的公共的能力沉淀出来，封装起来，让开发人员可以在低代码平台上，直接拿出来作为工具嵌到产品中，这样开发者就不用再关心这个功能/组件的内部实现。
+3. 一次开发，多端发布。对于前端研发人员来说，经常需要多端发布同一个项目/页面，H5/小程序/IOS/Android 的开发工作，经常需要不同技术栈的研发人员。而对于低代码，就屏蔽了具体的代码选型，内部编辑都用一种低代码语言，最后发布上线，可以发布到小程序/安卓/IOS 等多个端，而且能尽量保证 UI、交互、功能的一致性。
+
 ## 相关资料
 
 - 相关资料
@@ -27,6 +31,7 @@ categories:
   - [微前端 动态加载远程组件](https://zh-hans.single-spa.js.org/docs/getting-started-overview)
   - [react-vue-micro-frame](https://github.com/y805939188/react-vue-micro-frame)
   - [揭秘 vivo 如何打造千万级 DAU 活动中台 - 启航篇](https://xie.infoq.cn/article/2eac85154f18010da98cb8301)
+  - [Vue.js - Is it possible to use Javascript Dynamic Imports to load components from another server?](https://stackoverflow.com/questions/54763605/vue-js-is-it-possible-to-use-javascript-dynamic-imports-to-load-components-fro)
 - 案例
   - [云凤蝶可视化搭建的推导与实现](https://zhuanlan.zhihu.com/p/90746742)
   - [云凤蝶中台研发提效实践](https://zhuanlan.zhihu.com/p/78425921)

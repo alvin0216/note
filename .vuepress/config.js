@@ -39,7 +39,7 @@ module.exports = {
         '',
         {
           title: '低代码可视化平台',
-          children: ['lowcode/', 'lowcode/dynamic', 'lowcode/practice', 'lowcode/hard'],
+          children: ['lowcode/', 'lowcode/problem'],
         },
         { title: 'Typescript', children: ['typescript/', 'typescript/react'] },
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
