@@ -37,6 +37,7 @@ module.exports = {
       // TODO coding
       '/docs/coding/': [
         '',
+        { title: '遇到的一些问题', children: ['problem/canvas-cross-origin'] },
         {
           title: '低代码可视化平台',
           children: ['lowcode/', 'lowcode/problem'],

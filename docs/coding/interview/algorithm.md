@@ -62,4 +62,10 @@ function insert(nums, target) {
 - K 个一组翻转链表
 - 数组中的第 K 个最大元素
 - LRU 缓存机制
-- 接雨水
+- [接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
+- 岛屿数量
+- 最短单词距离
+- 二叉树中和为某一值的路径
+- 找最长回文字符串
+- 蛇形遍历二叉树
+- 合并 K 个排序链表
