@@ -53,7 +53,7 @@ module.exports = {
       ],
 
       // TODO react
-      '/docs/react/': [{ title: 'React', children: ['', 'immer', 'mini', 'async', 'diff'] }],
+      '/docs/react/': [{ title: 'React', children: ['', 'immer', 'hooks-api', 'mini', 'async', 'diff'] }],
 
       // TODO devops
       '/docs/devops/': [

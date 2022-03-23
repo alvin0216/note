@@ -7,6 +7,19 @@ tags:
 categories: 面试
 ---
 
+- ✅ [连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/) `easy`
+- ✅ [K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) `hard`
+- ✅ [反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) `medium`
+- [数组中的第 K 个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+- LRU 缓存机制
+- [接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
+- [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
+- [最短单词距离](https://leetcode-cn.com/problems/shortest-word-distance/)
+- [二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+- [最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+- 蛇形遍历二叉树
+- 合并 K 个排序链表
+
 ## 二分
 
 1. 排序，快排
@@ -57,15 +70,3 @@ function insert(nums, target) {
 
 // 删除略
 ```
-
-- 连续子数组的最大和
-- K 个一组翻转链表
-- 数组中的第 K 个最大元素
-- LRU 缓存机制
-- [接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
-- 岛屿数量
-- 最短单词距离
-- 二叉树中和为某一值的路径
-- 找最长回文字符串
-- 蛇形遍历二叉树
-- 合并 K 个排序链表
