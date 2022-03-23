@@ -6,7 +6,9 @@
     "dev": "vuepress dev . --open --host \"localhost\" --cache .cache",
     "build": "vuepress build .",
     "build:gh-pages": "cross-env TARGET=gh-pages vuepress build .",
-    "push": "node push.js"
+    "push": "node push.js",
+    "cli": "node md-cli.js",
+    "test": "nodemon test/index.js"
   },
   "devDependencies": {
     "cross-env": "^7.0.3",

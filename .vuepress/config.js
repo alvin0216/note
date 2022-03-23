@@ -159,12 +159,13 @@ module.exports = {
         {
           title: 'JS - 基础',
           children: [
+            'basis/this',
+            'basis/closure',
             'basis/prototype',
             'basis/extends',
-            'basis/this',
             'basis/data-types',
-            'basis/closure',
             'basis/for-of',
+            'basis/awsome',
           ],
         },
         {
