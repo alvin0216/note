@@ -160,6 +160,7 @@ module.exports = {
             'basis/extends',
             'basis/data-types',
             'basis/for-of',
+            'basis/eventloop',
             'basis/awsome',
           ],
         },

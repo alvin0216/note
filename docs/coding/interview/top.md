@@ -7,6 +7,19 @@ tags:
 categories: 面试
 ---
 
+## 字节飞书
+
+1. 闭包问题
+2. eventloop 题目
+3. setTimeout setInterval requestAnimation 区别
+4. generator 返回什么
+5. 洗牌算法 快排
+6. babal ast & React.createElement
+7. react 事件机制，为什么，冒泡到哪里
+8. setState 产生的更新为什么有时候没作用在 dom 上
+9. http 报文结构 & 状态码
+10. 项目...
+
 ## 飞猪某部门
 
 ### 飞猪一面 1h

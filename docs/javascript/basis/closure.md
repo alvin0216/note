@@ -74,14 +74,39 @@ c.fun(3); // 1
 
 ::::
 
-<!-- :::: tabs
+## 题目 2
+
+:::: tabs
 
 ::: tab 题目
+
+```js
+let a = 3;
+total = 0;
+
+function func(a) {
+  let result = [];
+  for (var i = 0; i < 3; i++) {
+    result[i] = function () {
+      total += i * a;
+      console.log(total);
+    };
+  }
+  return result;
+}
+
+const bb = func(1);
+bb[0]();
+bb[1]();
+bb[2]();
+```
 
 :::
 
 ::: tab 答案
 
+3 6 9
+
 :::
 
-:::: -->
+::::
