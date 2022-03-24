@@ -184,10 +184,10 @@ var b = () => {
   try {
     async function async1() {
       console.log(1);
-      const b = await 99; // a
-      console.log(b);
+      const b = await 99;
+      console.log(b); // a
       const c = await async2();
-      console.log(2);
+      console.log(2); // c
       console.log(c);
     }
     const lbl = Promise.resolve('101');
@@ -197,6 +197,7 @@ var b = () => {
       return new Promise((resolve, reject) => {
         console.log(lbl);
         setTimeout(() => {
+          // d
           resolve(98);
         }, 100);
       });
@@ -211,6 +212,7 @@ var b = () => {
         console.log('e', e);
       })
       .then(() => {
+        // b
         Promise.reject(100);
         console.log(6);
       });
@@ -221,7 +223,7 @@ var b = () => {
   }
 };
 b();
-// 1 4 7
+// 1 4 7 99 3 Promise<101> 6  2 98
 ```
 
 ::::

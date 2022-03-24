@@ -82,6 +82,7 @@ module.exports = {
       // TODO algorithm
       '/docs/algorithm/': [
         '',
+        'binarySearch',
         {
           title: '数据结构',
           children: [
@@ -110,13 +111,7 @@ module.exports = {
         },
         {
           title: '一些算法思想',
-          children: [
-            'method/complexity',
-            'method/sliding-window',
-            'method/binarySearch',
-            'method/divide',
-            'method/shuffle',
-          ],
+          children: ['method/complexity', 'method/sliding-window', 'method/divide', 'method/shuffle'],
         },
       ],
 
