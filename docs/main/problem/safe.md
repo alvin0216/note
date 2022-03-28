@@ -1,14 +1,16 @@
 ---
-title: 字符串加密和解密
+title: 安全措施解决方案
 date: 2022-03-26 14:53:44
 sidebar: auto
 tags:
   - 加密
 categories:
-  - 加密
+  - 技术漫谈
 ---
 
-## 字符串转 base64
+（遇到就加上）
+
+## url 转为 Base64
 
 安全性不高，但也比明文高很多
 

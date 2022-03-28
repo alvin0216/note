@@ -1,10 +1,25 @@
 ---
-title: 🌞 索引
+title: 技术漫谈
 date: 2021-07-22 09:23:33
 sidebar: auto
 ---
 
-## 命令备忘录
+## 实现过的一些 demo
+
+1. [实现 commonjs](https://github.com/alvin0216/note/tree/master/.demo/packages/commonJS)
+2. [github 授权登录](https://github.com/alvin0216/note/tree/master/.demo/packages/github-oauth2)
+3. [lerna + workspaces](https://github.com/alvin0216/note/tree/master/.demo/packages/lerna-demo)
+4. [实现 Promise A+](https://github.com/alvin0216/note/tree/master/.demo/packages/my-promise)
+5. [简单实现 react-router](https://github.com/alvin0216/note/tree/master/.demo/packages/my-react-router)
+6. [简单实现 react-redux](https://github.com/alvin0216/note/tree/master/.demo/packages/my-redux)
+7. [react ssr 搭建 demo](https://github.com/alvin0216/note/tree/master/.demo/packages/react-ssr-demo)
+8. [vdom diff](https://github.com/alvin0216/note/tree/master/.demo/packages/vdom-diff)
+9. [vite demo](https://github.com/alvin0216/note/tree/master/.demo/packages/vite-ts-demo)
+10. [webrtc-demo 视频通话](https://github.com/alvin0216/note/tree/master/.demo/packages/webrtc-demo)
+11. [github action demo](https://github.com/alvin0216/note/tree/master/.demo/packages/github-action-demo)
+12. [github webhook demo](https://github.com/alvin0216/note/tree/master/.demo/packages/github-webhook-demo)
+
+<!-- ## 命令备忘录
 
 ```bash
 # 批量删除本地包
@@ -35,17 +50,4 @@ echo "${time}"
 - [那些高级/资深的前端是如何回答 JavaScript 面试题的 （一）](https://juejin.cn/post/6971727286856843295)
 -
 
-## 写过的 demo
-
-- [实现 commonjs](https://github.com/alvin0216/note/tree/master/.demo/packages/commonJS)
-- [github 授权登录](https://github.com/alvin0216/note/tree/master/.demo/packages/github-oauth2)
-- [lerna + workspaces](https://github.com/alvin0216/note/tree/master/.demo/packages/lerna-demo)
-- [实现 Promise A+](https://github.com/alvin0216/note/tree/master/.demo/packages/my-promise)
-- [简单实现 react-router](https://github.com/alvin0216/note/tree/master/.demo/packages/my-react-router)
-- [简单实现 react-redux](https://github.com/alvin0216/note/tree/master/.demo/packages/my-redux)
-- [react ssr 搭建 demo](https://github.com/alvin0216/note/tree/master/.demo/packages/react-ssr-demo)
-- [vdom diff](https://github.com/alvin0216/note/tree/master/.demo/packages/vdom-diff)
-- [vite demo](https://github.com/alvin0216/note/tree/master/.demo/packages/vite-ts-demo)
-- [webrtc-demo 视频通话](https://github.com/alvin0216/note/tree/master/.demo/packages/webrtc-demo)
-- [github action demo](https://github.com/alvin0216/note/tree/master/.demo/packages/github-action-demo)
-- [github webhook demo](https://github.com/alvin0216/note/tree/master/.demo/packages/github-webhook-demo)
+## 写过的 demo -->

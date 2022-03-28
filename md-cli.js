@@ -10,7 +10,7 @@ sidebar: auto
 tags:
   - dmeo
 categories:
-  - dmeo
+  - 技术漫谈
 ---
 `,
   'utf-8'

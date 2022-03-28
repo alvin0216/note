@@ -1,5 +1,5 @@
 ---
-title: for-of
+title: 解析 for of
 date: 2019-07-16 13:00:28
 sidebar: 'auto'
 tags:
@@ -59,15 +59,15 @@ function unique(array) {
 function createIterator(items) {
   var i = 0;
   return {
-    next: function() {
+    next: function () {
       var done = i >= item.length;
       var value = !done ? items[i++] : undefined;
 
       return {
         done: done,
-        value: value
+        value: value,
       };
-    }
+    },
   };
 }
 
@@ -106,7 +106,7 @@ ES6 规定，默认的 Iterator 接口部署在数据结构的 Symbol.iterator �
 
 ```js
 const obj = {
-  value: 1
+  value: 1,
 };
 
 for (value of obj) {
@@ -120,10 +120,10 @@ for (value of obj) {
 
 ```js
 const obj = {
-  value: 1
+  value: 1,
 };
 
-obj[Symbol.iterator] = function() {
+obj[Symbol.iterator] = function () {
   return createIterator([1, 2, 3]);
 };
 
@@ -157,7 +157,7 @@ for (let color of colors) {
 ```js
 var colors = ['red', 'green', 'blue'];
 
-colors[Symbol.iterator] = function() {
+colors[Symbol.iterator] = function () {
   return createIterator([1, 2, 3]);
 };
 

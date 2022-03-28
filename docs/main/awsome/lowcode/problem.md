@@ -5,7 +5,7 @@ sidebar: auto
 tags:
   - 低代码平台
 categories:
-  - 开发实录
+  - 技术漫谈
 ---
 
 ## 遇到过什么问题 怎么解决的？

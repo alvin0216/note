@@ -1,6 +1,10 @@
 ---
 title: github 授权登录
 date: 2020-07-04 22:15:04
+tags:
+  - oAuth2
+categories:
+  - 技术漫谈
 ---
 
 > github 授权主要是利用 oAuth2 的授权码模式登录

@@ -1,11 +1,15 @@
 ---
-title: 遇到的一些问题
+title: 面试系列
 date: 2021-07-22 09:23:33
 sidebar: auto
 tags:
   - 面试
 categories: 面试
+keys:
+  - 'c4ca4238a0b923820dcc509a6f75849b'
 ---
+
+#
 
 ## 字节飞书
 
@@ -98,3 +102,51 @@ categories: 面试
 15. 个人规划是什么 好的前端开发工程师需要什么
 16. 怎么看前端发展
 17. 公司项目里面存在什么问题 ？（⚠️ 这里最好答存在什么问题 你怎么去解决的）
+
+## 面试常考算法题
+
+- ✅ [连续子数组的最大和](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/) `easy`
+- ✅ [K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) `hard`
+- ✅ [反转链表 II](https://leetcode-cn.com/problems/reverse-linked-list-ii/) `medium`
+- [数组中的第 K 个最大元素](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)
+- LRU 缓存机制
+- [接雨水](https://leetcode-cn.com/problems/trapping-rain-water/)
+- [岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
+- [最短单词距离](https://leetcode-cn.com/problems/shortest-word-distance/)
+- [二叉树中和为某一值的路径](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+- [最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
+- 蛇形遍历二叉树
+- 合并 K 个排序链表
+
+<!--
+
+[HTTPS 是什么？加密原理和证书。SSL/TLS 握手过程](https://www.bilibili.com/video/BV1KY411x7Jp?spm_id_from=333.337.search-card.all.click)
+
+## ssl/tsl2
+
+![](https://user-images.githubusercontent.com/34113677/158003021-3b7b9c78-0dab-4644-bc99-bc9853e5eff5.png)
+
+- web `- client hellow ->` server
+  - 客户端：我生成一个随机数 A，还有我支持的加密套件有哪些给你知道，当前我用的是 tsl 1.2 版本
+- web `<- server hello -` server
+  - 服务端：我也生成一个随机数 B，我挑了一个加密套件 咱们使用这个套件进行加密
+- web `<- server key exchange -` server
+  - 服务端：我给你发个证书还有公钥，你可以用公钥加密
+- web `<- server hello done -` server
+  - 服务端：通知一下你 我完成啦
+- web `- client key exchange ->` server
+  - 客户端：检查了一下你的证书是有效的。我在生成了一个随机数 C，用你给我的公钥加密 发给你了
+- 服务端：我拿到了第三个随机数，我们使用同样的加密方式生成我们的会话密钥。以后咱们使用这个密钥进行通信吧
+- 客户端：好的，会话密钥只应用于当前会话，咱们传输很安全了。
+
+## cdn
+
+代理源服务器的相关内容，通过用户请求 ip 去附近的站点拿资源，除此之外还可以做到内容压缩、内容加速、负载均衡等。
+
+[前端必需了解的 CDN 知识](https://juejin.cn/post/6913704568325046279)
+
+## dns 解析
+
+![图片链接](https://user-images.githubusercontent.com/34113677/158003001-9bbe6511-89bf-4e82-901f-fc267cdded51.png)
+
+ -->

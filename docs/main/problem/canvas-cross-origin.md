@@ -5,7 +5,7 @@ sidebar: auto
 tags:
   - canvas 跨域问题
 categories:
-  - 开发实录
+  - 技术漫谈
 ---
 
 ## 首先看看 canvas 怎么将图片转化为 base64 的

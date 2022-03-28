@@ -1,5 +1,5 @@
 ---
-title: 数据类型 & 隐式转换
+title: 隐式转换
 date: 2019-07-15 13:00:28
 sidebar: 'auto'
 tags:
@@ -142,7 +142,7 @@ arr.toString(); // '1,2'
 var d = new Date();
 d.toString(); // "Wed Oct 11 2017 08:00:00 GMT+0800 (中国标准时间)"
 
-var func = function() {};
+var func = function () {};
 func.toString(); // "function () {}"
 
 // 除这些对象及其实例化对象之外，其他对象返回的都是该对象的类型

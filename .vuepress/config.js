@@ -19,8 +19,8 @@ module.exports = {
       // { text: '主页', link: '/', icon: 'reco-home' },
       // { text: '动态', link: '/timeline/', icon: 'reco-date' },
       // { text: '关于', link: '/docs/', icon: 'reco-account' },
-      { text: 'docs', link: '/docs/coding/' },
-      { text: 'Javascript', link: '/docs/javascript/basis/prototype' },
+      { text: 'docs', link: '/docs/main/' },
+      { text: 'Javascript', link: '/docs/javascript/' },
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
       { text: '工程化', link: '/docs/devops/package/summary' },
@@ -34,21 +34,29 @@ module.exports = {
     },
     sidebar: {
       // TODO coding
-      '/docs/coding/': [
-        '',
-        { title: '遇到的一些问题', children: ['problem/canvas-cross-origin'] },
+      '/docs/main/': [
         {
-          title: '低代码可视化平台',
-          children: ['lowcode/', 'lowcode/problem'],
+          title: '问题 & 解决方案',
+          children: ['problem/canvas-cross-origin', 'problem/safe', 'problem/lerna', 'problem/gzip'],
         },
-        { title: 'Typescript', children: ['typescript/', 'typescript/react'] },
+        {
+          title: 'Awsome',
+          children: [
+            'awsome/oAuth2',
+            'awsome/oAuth2-github',
+            {
+              title: '🍪 低代码平台',
+              children: ['awsome/lowcode/', 'awsome/lowcode/problem'],
+            },
+            { title: '😍 Typescript', children: ['awsome/typescript/', 'awsome/typescript/react'] },
+            { title: '🙃️ 面试系列', children: ['awsome/interview/'] },
+          ],
+        },
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
           title: 'CSS',
           children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
-        { title: '开发笔记', children: ['dev/oAuth2', 'dev/oAuth2-github'] },
-        { title: 'interview', children: ['interview/top', 'interview/bfs', 'interview/net', 'interview/algorithm'] },
       ],
 
       // TODO react
@@ -71,7 +79,7 @@ module.exports = {
         },
         {
           title: 'nginx',
-          children: ['nginx/basics', 'nginx/proxy', 'nginx/gizp'],
+          children: ['nginx/basics', 'nginx/proxy'],
         },
       ],
 
@@ -151,20 +159,20 @@ module.exports = {
       // TODO javascript
       '/docs/javascript/': [
         {
-          title: 'JS - 基础',
+          title: 'Javascript',
           children: [
-            'basis/this',
-            'basis/closure',
-            'basis/prototype',
-            'basis/extends',
-            'basis/data-types',
-            'basis/for-of',
-            'basis/eventloop',
-            'basis/awsome',
+            'awsome',
+            'this',
+            'closure',
+            'prototype',
+            'extends',
+            'for-of',
+            'requestAnimationFrame',
+            'data-types',
           ],
         },
         {
-          title: 'JS - 代码实现',
+          title: '代码实现系列',
           children: ['achieve/call-apply', 'achieve/bind', 'achieve/promise'],
         },
         {

@@ -1,13 +1,12 @@
 ---
-title: EventLoop 相关问题
+title: requestAnimationFrame
 date: 2022-03-24 21:38:40
 sidebar: auto
 tags:
   - requestAnimationFrame
-  - EventLoop
+  - setTimeout
 categories:
-  - requestAnimationFrame
-  - EventLoop
+  - Javascript
 ---
 
 ## setTimeout & setInterval 的区别
