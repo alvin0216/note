@@ -1,32 +1,21 @@
-// setTimeout(() => {
-//   console.log('setTimeout');
-// });
+const interval = 1000;
+let ms = 5000; // 从服务器和活动开始时间计算出的时间差，这里测试用 5000 ms
+let count = 0;
+const startTime = Date.now();
+let timeCounter = setTimeout(countDownStart, interval);
 
-// Promise.resolve(1)
-//   .then(() => {
-//     console.log(2);
-//   })
-//   .then(() => {
-//     console.log(3);
-//   });
-
-let a = 3;
-total = 0;
-
-function func(a) {
-  let result = [];
-  for (var i = 0; i < 3; i++) {
-    result[i] = function () {
-      total += i * a;
-      console.log(total);
-    };
+function countDownStart() {
+  count++;
+  const offset = Date.now() - (startTime + count * interval); // A
+  let nextTime = interval - offset;
+  if (nextTime < 0) {
+    nextTime = 0;
   }
-  return result;
+  ms -= interval;
+  console.log(`误差：${offset} ms，下一次执行：${nextTime} ms 后，离活动开始还有：${ms} ms`);
+  if (ms < 0) {
+    clearTimeout(timeCounter);
+  } else {
+    timeCounter = setTimeout(countDownStart, nextTime);
+  }
 }
-
-const bb = func(1);
-bb[0]();
-bb[1]();
-bb[2]();
-
-// 你了解过

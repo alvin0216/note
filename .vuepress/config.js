@@ -167,6 +167,7 @@ module.exports = {
             'prototype',
             'extends',
             'for-of',
+            'setTimeout',
             'requestAnimationFrame',
             'data-types',
           ],

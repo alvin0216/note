@@ -10,245 +10,73 @@ categories:
 
 ## eventloop
 
-### 题目 1
-
-:::: tabs
-
-::: tab 题目
-
-```js
-var b = () => {
-  try {
-    async function async1() {
-      console.log(1);
-      await async2();
-      console.log(2); // a
-    }
-    //
-    async function async2() {
-      console.log(3);
-    }
-    async1();
-    new Promise(function (resolve, reject) {
-      reject(8);
-      console.log(4);
-    })
-      .catch((e) => {
-        console.log(5); // b
-        console.log(e);
-      })
-      .then(() => {
-        console.log(6);
-      });
-    console.log(7);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-b();
-```
-
-:::
-
-::: tab 答案与解析
-
-```js
-var b = () => {
-  try {
-    async function async1() {
-      console.log(1);
-      await async2();
-      console.log(2); // a
-    }
-    async function async2() {
-      console.log(3);
-    }
-    async1();
-    new Promise(function (resolve, reject) {
-      reject(8);
-      console.log(4);
-    })
-      .catch((e) => {
-        console.log(5); // b
-        console.log(e);
-      })
-      .then(() => {
-        console.log(6);
-      });
-    console.log(7);
-  } catch (error) {
-    console.log(error);
-  }
-};
-b();
-
-// 1 3 4 7 2 5 8 6
-```
-
-前面都好理解最后一个 6 呢？
+### Promise（catch & then）
 
 ```js
 new Promise(function (resolve, reject) {
-  reject(8);
-  console.log(4);
+  reject(1);
+  console.log(2);
 })
-  .then(() => {
-    console.log(6);
-  })
   .catch((e) => {
-    console.log(5);
-    console.log(e);
+    console.log(3);
+    console.log('catch', e);
+  })
+  .then(() => {
+    console.log(4);
   });
 
-// 4 5 8
+// 2 3 catch 1 4
+```
 
+把 then 放前面呢？
+
+```js
 new Promise(function (resolve, reject) {
-  reject(8);
-  console.log(4);
+  reject(1);
+  console.log(2);
 })
 
+  .then(() => {
+    console.log(4);
+  })
   .catch((e) => {
-    console.log(5); // b
-    console.log(e);
+    console.log(3);
+    console.log('catch', e);
+  });
+
+// 2 3 catch 1
+```
+
+如果没有 catch，会被 try catch 里面捕捉吗？：
+
+```js
+try {
+  new Promise(function (resolve, reject) {
+    reject(1);
+    console.log(2);
+  }).then(() => {
+    console.log(3);
+  });
+} catch (error) {
+  console.log('error', error);
+}
+// 2 不会
+```
+
+### Promise & setTimeout
+
+```js
+setTimeout(() => {
+  console.log(1);
+});
+
+Promise.resolve()
+  .then(() => {
+    console.log(2);
   })
   .then(() => {
-    console.log(6);
+    console.log(3);
   });
-// 4 5 8 6
+
+// 2 3 1
 ```
-
-catch 先，会执行 then
-
-:::
-
-::::
-
-### 题目 2
-
-:::: tabs
-
-::: tab 题目
-
-```js
-const b = () => {
-  try {
-    async function async1() {
-      console.log(1);
-      const b = await 99;
-      console.log(b);
-      const c = await async2();
-      console.log(2);
-      console.log(c);
-    }
-    const lbl = Promise.resolve('101');
-    const gsw = Promise.reject('102');
-    async function async2() {
-      console.log(3);
-      return new Promise((resolve, reject) => {
-        console.log(lbl);
-        setTimeout(() => {
-          resolve(98);
-        }, 100);
-      });
-    }
-    async1();
-    new Promise(function (resolve, reject) {
-      resolve(8);
-      console.log(4);
-    })
-      .catch((e) => {
-        console.log(5);
-        console.log('e', e);
-      })
-      .then(() => {
-        Promise.reject(100);
-        console.log(6);
-      });
-
-    console.log(7);
-  } catch (error) {
-    console.log(error);
-  }
-};
-```
-
-:::
-
-::: tab 答案与解析
-
-:::
-
-```js
-var b = () => {
-  try {
-    async function async1() {
-      console.log(1);
-      const b = await 99;
-      console.log(b); // a
-      const c = await async2();
-      console.log(2); // c
-      console.log(c);
-    }
-    const lbl = Promise.resolve('101');
-    const gsw = Promise.reject('102');
-    async function async2() {
-      console.log(3);
-      return new Promise((resolve, reject) => {
-        console.log(lbl);
-        setTimeout(() => {
-          // d
-          resolve(98);
-        }, 100);
-      });
-    }
-    async1();
-    new Promise(function (resolve, reject) {
-      resolve(8);
-      console.log(4);
-    })
-      .catch((e) => {
-        console.log(5);
-        console.log('e', e);
-      })
-      .then(() => {
-        // b
-        Promise.reject(100);
-        console.log(6);
-      });
-
-    console.log(7);
-  } catch (error) {
-    console.log(error);
-  }
-};
-b();
-// 1 4 7 99 3 Promise<101> 6  2 98
-```
-
-::::
-
-<!-- :::: tabs
-
-::: tab 题目
-
-:::
-
-
-::: tab 答案与解析
-
-:::
-
-:::: -->
-<!-- :::: tabs
-
-::: tab 题目
-
-:::
-
-
-::: tab 答案与解析
-
-:::
-
-:::: -->
