@@ -7,7 +7,7 @@ date: 2020-05-08 15:56:34
 
 队列遵循的是 FIFO，也就是先进先出的原则。队列从尾部添加新元素，从顶部移除元素，最新添加的元素必须排列在队列的末尾。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/queue.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/queue.png)
 
 :::details 队列的方法
 
@@ -31,38 +31,38 @@ function Queue() {
   let items = [];
 
   // 向队列添加元素（一个或多个）
-  this.enqueue = function(element) {
+  this.enqueue = function (element) {
     if (element instanceof Array) items = items.concat(element);
     else items.push(element);
   };
 
   // 从队列移除元素
-  this.dequeue = function() {
+  this.dequeue = function () {
     return items.shift();
   };
 
   // 返回队列中的第一个元素
-  this.front = function() {
+  this.front = function () {
     return items[0];
   };
 
   // 判断队列是否为空
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return items.length === 0;
   };
 
   // 返回队列的长度
-  this.size = function() {
+  this.size = function () {
     return items.length;
   };
 
   // 清空队列
-  this.clear = function() {
+  this.clear = function () {
     items = [];
   };
 
   // 打印队列内的所有元素
-  this.print = function() {
+  this.print = function () {
     console.log(items.toString());
   };
 }
@@ -95,7 +95,7 @@ queue.print(); //
 与栈的实现方式一样，这里我们也同样给出用 ES6 的 `WeakMap` 类来实现的队列版本。
 
 ```js
-let Queue = (function() {
+let Queue = (function () {
   const items = new WeakMap();
 
   class Queue {
@@ -147,7 +147,7 @@ let Queue = (function() {
 function PriorityQueue() {
   let items = [];
 
-  this.enqueue = function(obj) {
+  this.enqueue = function (obj) {
     if (obj instanceof Array) {
       // 批量入列
       for (let i = 0; i < obj.length; i++) {
@@ -172,33 +172,33 @@ function PriorityQueue() {
   };
 
   // 从队列移除元素
-  this.dequeue = function() {
+  this.dequeue = function () {
     return items.shift();
   };
 
   // 返回队列中的第一个元素
-  this.front = function() {
+  this.front = function () {
     return items[0];
   };
 
   // 判断队列是否为空
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return items.length === 0;
   };
 
   // 返回队列的长度
-  this.size = function() {
+  this.size = function () {
     return items.length;
   };
 
   // 清空队列
-  this.clear = function() {
+  this.clear = function () {
     items = [];
   };
 
   // 打印队列内的所有元素
-  this.print = function() {
-    items.forEach(function(item) {
+  this.print = function () {
+    items.forEach(function (item) {
       console.log(`${item.element} - ${item.priority}`);
     });
   };

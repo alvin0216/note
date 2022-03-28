@@ -21,16 +21,16 @@ JavaScript 代码是按顺序执行的吗？
 
 **实际上变量和函数声明在代码里的位置是不会改变的，而且是在编译阶段被 JavaScript 引擎放入内存中。**，一段 JavaScript 代码在执行之前需要被 JavaScript 引擎编译，编译完成之后，才会进入执行阶段。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-run-js.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-run-js.png)
 
 以这段代码为例
 
 ```js
-showName()
-console.log(myname)
-var myname = '极客时间'
+showName();
+console.log(myname);
+var myname = '极客时间';
 function showName() {
-  console.log('函数showName被执行')
+  console.log('函数showName被执行');
 }
 ```
 
@@ -43,9 +43,9 @@ function showName() {
 ::: tab 变量提升
 
 ```js
-var myname = undefined
+var myname = undefined;
 function showName() {
-  console.log('函数showName被执行')
+  console.log('函数showName被执行');
 }
 ```
 
@@ -54,9 +54,9 @@ function showName() {
 ::: tab 可执行代码
 
 ```js
-showName()
-console.log(myname)
-myname = '极客时间'
+showName();
+console.log(myname);
+myname = '极客时间';
 ```
 
 :::
@@ -65,7 +65,7 @@ myname = '极客时间'
 
 下面我们就可以把 JavaScript 的执行流程细化，如下图所示:
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-context.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-context.png)
 
 从上图可以看出，输入一段代码，经过编译后，会生成两部分内容：**执行上下文（Execution context）**和**可执行代码**。
 
@@ -86,11 +86,11 @@ VariableEnvironment:
 了解完变量环境对象的结构后，接下来，我们再结合下面这段代码来分析下是如何生成变量环境对象的。
 
 ```js
-showName()
-console.log(myname)
-var myname = '极客时间'
+showName();
+console.log(myname);
+var myname = '极客时间';
 function showName() {
-  console.log('函数showName被执行')
+  console.log('函数showName被执行');
 }
 ```
 
@@ -101,9 +101,9 @@ function showName() {
 这样就生成了变量环境对象。接下来 JavaScript 引擎会把声明以外的代码编译为字节码，你可以类比如下的模拟代码：
 
 ```js
-showName()
-console.log(myname)
-myname = '极客时间'
+showName();
+console.log(myname);
+myname = '极客时间';
 ```
 
 好了，现在有了执行上下文和可执行代码了，那么接下来就到了执行阶段了。

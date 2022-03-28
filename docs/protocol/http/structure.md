@@ -18,7 +18,7 @@ categories:
 
 :::details
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http-wireshark.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http-wireshark.png)
 
 :::
 
@@ -42,7 +42,7 @@ HTTP/1.1 200 OK
 
 ## 头部
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/response-header.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/response-header.png)
 
 不管是请求头还是响应头，其中的字段是相当多的，而且牵扯到 http 非常多的特性，这里就不一一列举的，重点看看这些头部字段的格式：
 

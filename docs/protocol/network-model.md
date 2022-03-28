@@ -10,7 +10,7 @@ categories:
 
 数据链路层（mac） -> 网络层（IP）-> 传输层（TCP/UDP）-> 应用层（HTTP、SMTP、FTP）
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/network-model.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/network-model.png)
 
 ## 数据链路层(Mac)
 

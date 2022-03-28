@@ -50,7 +50,7 @@ HTTP2 针对头部字段，也采用了对应的压缩算法——**HPACK**，�
 
 将用到的字段存放在这张表中，那么在传输的时候对于之前出现过的值，只需要把**索引**(比如 0，1，2，...)传给对方即可，对方拿到索引查表就行了。这种传索引的方式，可以说让请求头字段得到极大程度的精简和复用。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/hpack-table.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/hpack-table.png)
 
 :::
 

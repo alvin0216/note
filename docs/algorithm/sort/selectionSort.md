@@ -37,7 +37,7 @@ let arr = [4, 2, 3, 6, 5]
 console.log(selectionSort(arr)) // [ 2, 3, 4, 5, 6 ]
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/selectionSort.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/selectionSort.png)
 
 - 动画来源 [图解面试算法](https://github.com/MisterBooo/LeetCodeAnimation)
 - 参考 [优雅的 JavaScript 排序算法（ES6）](https://juejin.im/post/5ab62ec36fb9a028cf326c49)

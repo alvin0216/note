@@ -13,11 +13,11 @@ date: 2020-05-08 15:27:10
 
 ```js {3}
 function cal(n) {
-  let sum = 0
+  let sum = 0;
   for (let i = 1; i <= n; i++) {
-    sum = sum + i
+    sum = sum + i;
   }
-  return sum
+  return sum;
 }
 ```
 
@@ -27,24 +27,24 @@ function cal(n) {
 
 ```js
 function cal(n) {
-  let sum_1 = 0
+  let sum_1 = 0;
   for (let p = 1; p < 100; p++) {
-    sum_1 = sum_1 + p
+    sum_1 = sum_1 + p;
   }
 
-  let sum_2 = 0
+  let sum_2 = 0;
   for (let q = 1; q < n; q++) {
-    sum_2 = sum_2 + q
+    sum_2 = sum_2 + q;
   }
 
-  let sum_3 = 0
+  let sum_3 = 0;
   for (let i = 0; i <= n; i++) {
     for (let j = 1; j < n; j++) {
-      sum_3 = sum_3 + i + j
+      sum_3 = sum_3 + i + j;
     }
   }
 
-  return sum_1 + sum_2 + sum_3
+  return sum_1 + sum_2 + sum_3;
 }
 ```
 
@@ -62,17 +62,17 @@ function cal(n) {
 
 ```js
 function cal(n) {
-  let ret = 0
+  let ret = 0;
   for (let i = 1; i <= n; i++) {
-    ret = ret + f(i)
+    ret = ret + f(i);
   }
 }
 function f(n) {
-  let sum = 0
+  let sum = 0;
   for (let i = 0; i <= n; i++) {
-    sum = sum + i
+    sum = sum + i;
   }
-  return sum
+  return sum;
 }
 ```
 
@@ -90,9 +90,9 @@ function f(n) {
 
 ```js
 function cal(n) {
-  let sum = 0
+  let sum = 0;
   for (let i = 1; i <= 10000; i++) {
-    sum = sum + i + n
+    sum = sum + i + n;
   }
 }
 ```
@@ -103,9 +103,9 @@ function cal(n) {
 
 ```js
 function cal(n) {
-  let i = 1
+  let i = 1;
   while (i <= n) {
-    i = i * 2
+    i = i * 2;
   }
 }
 ```
@@ -138,9 +138,9 @@ functin cal(m, n) {
 
 ```js
 function fn(n) {
-  let arr = new Array(n)
+  let arr = new Array(n);
   for (let i = 0; i < n; i++) {
-    arr[i] = i
+    arr[i] = i;
   }
 }
 ```
@@ -151,6 +151,6 @@ function fn(n) {
 
 ## 内容小节
 
-![](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/complexity/1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/time-complexity.png)
 
 用一张图来表示各个复杂度随着数据量的增长趋势，让我们能更直观的感受到不同算法之间的性能差异。一些基本的算法基本上复杂度都是图上的这几个。在看代码的时候，多思考，也可以多想想自己现在写的代码时间空间复杂度是多少，是否能够降低，长此以往，能够大大提升自己的代码质量和代码性能。

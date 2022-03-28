@@ -9,18 +9,18 @@ title: 滑动窗口
 该算法的大致逻辑如下：
 
 ```js
-let left = 0
-let right = 0
+let left = 0;
+let right = 0;
 
 while (right < s.length) {
   // 增大窗口
-  window.add(s[right])
-  right++
+  window.add(s[right]);
+  right++;
 
   while (临界条件) {
     // 缩小窗口
-    window.remove(s[left])
-    left++
+    window.remove(s[left]);
+    left++;
   }
 }
 ```
@@ -78,29 +78,29 @@ var lengthOfLongestSubstring = function (s) {}
 
 <h3>题解</h3>
 
-![无重复字符最长字串](https://gitee.com/alvin0216/cdn/raw/master/img/algorithm/others/无重复字符最长字串.gif)
+![无重复字符最长字串](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/无重复字符最长字串.gif)
 
 ```js
 var lengthOfLongestSubstring = function (s) {
-  let start = 0
-  let maxLen = 0
-  let end = 0
-  let map = new Map()
+  let start = 0;
+  let maxLen = 0;
+  let end = 0;
+  let map = new Map();
   while (end < s.length) {
-    let char = s[end]
+    let char = s[end];
 
     // 当且仅当 s[start,end) 中存在s[end]时更新start
     if (map.has(char)) {
-      start = Math.max(start, map.get(char) + 1)
+      start = Math.max(start, map.get(char) + 1);
     }
-    map.set(char, end) // 记录每个字符最后出现位置
-    end++
+    map.set(char, end); // 记录每个字符最后出现位置
+    end++;
 
-    maxLen = Math.max(maxLen, end - start)
+    maxLen = Math.max(maxLen, end - start);
   }
 
-  return maxLen
-}
+  return maxLen;
+};
 ```
 
 以 `abcabcbb` 为例
@@ -126,24 +126,24 @@ var lengthOfLongestSubstring = function (s) {
 
 ```js
 var minSubArrayLen = function (s, nums) {
-  let start = 0
-  let end = 0
-  let sum = 0
-  let minLen = Infinity // 定义为无穷大
+  let start = 0;
+  let end = 0;
+  let sum = 0;
+  let minLen = Infinity; // 定义为无穷大
 
   while (end < nums.length) {
-    sum += nums[end]
+    sum += nums[end];
 
     while (sum >= s) {
-      minLen = Math.min(minLen, end - start + 1)
-      sum -= nums[start]
-      start++
+      minLen = Math.min(minLen, end - start + 1);
+      sum -= nums[start];
+      start++;
     }
 
-    end++
+    end++;
   }
-  return minLen === Infinity ? 0 : minLen
-}
+  return minLen === Infinity ? 0 : minLen;
+};
 ```
 
 :::
@@ -178,49 +178,49 @@ var checkInclusion = function(s1, s2) {}
 
 ```js
 var checkInclusion = function (s1, s2) {
-  let window = {}
-  let dictionary = {} // 字典存储
+  let window = {};
+  let dictionary = {}; // 字典存储
   for (const char of s1) {
-    if (dictionary.hasOwnProperty(char)) dictionary[char]++
-    else dictionary[char] = 1
+    if (dictionary.hasOwnProperty(char)) dictionary[char]++;
+    else dictionary[char] = 1;
   }
 
   let start = 0,
-    end = 0
+    end = 0;
 
   while (end < s2.length) {
-    const char = s2[end]
+    const char = s2[end];
 
     // 塞入窗口
-    if (window.hasOwnProperty(char)) window[char]++
-    else window[char] = 1
+    if (window.hasOwnProperty(char)) window[char]++;
+    else window[char] = 1;
 
-    end++
+    end++;
 
     // 调整窗口，判断左侧窗口是否要收缩
     while (end - start > s1.length) {
-      let d = s2[start]
-      start++
-      window[d]--
+      let d = s2[start];
+      start++;
+      window[d]--;
     }
 
     // 判断 window 和 dictionary 是否相等
     if (isEqual(dictionary, window)) {
-      return true
+      return true;
     }
   }
 
-  return false
-}
+  return false;
+};
 
 // 以 ob1 为准
 function isEqual(obj1, obj2) {
   for (let k in obj1) {
     if (obj1[k] !== obj2[k]) {
-      return false
+      return false;
     }
   }
-  return true
+  return true;
 }
 ```
 

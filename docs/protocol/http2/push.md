@@ -22,7 +22,7 @@ categories:
 
 使用内置的 `http2` 模块，我们可以创建一个 `http2` 服务器。有趣的一点在于，当 `index.htm`l 被请求时，我们会主动推送其他资源：`bundle1.js` 和 `bundle2.js`。这样的话，`bundle1.js` 和 `bundle2.js` 可以在浏览器请求它们之前就推送过去了。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http2-push.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http2-push.png)
 
 目录
 
@@ -62,7 +62,7 @@ function push(stream, filePath) {
   const { file, headers } = getFile(filePath);
   const pushHeaders = { [HTTP2_HEADER_PATH]: filePath };
 
-  stream.pushStream(pushHeaders, pushStream => {
+  stream.pushStream(pushHeaders, (pushStream) => {
     pushStream.respondWithFD(file, headers);
   });
 }
@@ -97,7 +97,7 @@ const publicFiles = helper.getFiles(PUBLIC_PATH);
 const server = http2.createSecureServer(
   {
     cert: fs.readFileSync(path.join(__dirname, '../ssl/cert.pem')),
-    key: fs.readFileSync(path.join(__dirname, '../ssl/key.pem'))
+    key: fs.readFileSync(path.join(__dirname, '../ssl/key.pem')),
   },
   requestHandler
 );
@@ -110,7 +110,7 @@ function push(stream, path) {
     return;
   }
 
-  stream.pushStream({ [HTTP2_HEADER_PATH]: path }, pushStream => {
+  stream.pushStream({ [HTTP2_HEADER_PATH]: path }, (pushStream) => {
     pushStream.respondWithFD(file.fileDescriptor, file.headers);
   });
 }
@@ -137,7 +137,7 @@ function requestHandler(req, res) {
   res.stream.respondWithFD(file.fileDescriptor, file.headers);
 }
 
-server.listen(PORT, err => {
+server.listen(PORT, (err) => {
   console.log(`Server listening on ${PORT}`);
 });
 ```
@@ -152,7 +152,7 @@ const mime = require('mime');
 function getFiles(baseDir) {
   const files = new Map();
 
-  fs.readdirSync(baseDir).forEach(fileName => {
+  fs.readdirSync(baseDir).forEach((fileName) => {
     const filePath = path.join(baseDir, fileName);
     const fileDescriptor = fs.openSync(filePath, 'r');
     const stat = fs.fstatSync(fileDescriptor);
@@ -163,8 +163,8 @@ function getFiles(baseDir) {
       headers: {
         'content-length': stat.size,
         'last-modified': stat.mtime.toUTCString(),
-        'content-type': contentType
-      }
+        'content-type': contentType,
+      },
     });
   });
 

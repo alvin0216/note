@@ -7,7 +7,7 @@ tags:
 categories: React
 ---
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/setState-async.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/setState-async.png)
 
 - [React 中 setState 是一个宏任务还是微任务？](https://juejin.cn/post/6992006476558499853?from=main_page)
 - [React 架构的演变 - 从同步到异步](https://blog.shenfq.com/posts/2020/React%20%E6%9E%B6%E6%9E%84%E7%9A%84%E6%BC%94%E5%8F%98%20-%20%E4%BB%8E%E5%90%8C%E6%AD%A5%E5%88%B0%E5%BC%82%E6%AD%A5.html)

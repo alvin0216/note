@@ -32,11 +32,11 @@ ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p
 
 `Charles 菜单栏 -> Proxy -> Proxy Settings`
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/proxy-settings.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/proxy-settings.png)
 
 3. 配置 iPhone 代理
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/phone-proxy.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/phone-proxy.png)
 
 注意，这里链接的是同个局域网。现在可以开始抓 `http` 包了，但是还不可以抓取 `https`
 
@@ -44,21 +44,21 @@ ifconfig | grep -oE 'inet.*netmask' | grep -oE '(\d+\.){3}\d+' | sed -n 2p
 
 1. 在 `Charles 菜单栏 -> Help -> SSL Proxying -> Install Charles Root Certificate` 中可以为 PC 安装证书，图示配置如下：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/add-certificate.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/add-certificate.png)
 
 证书可以在 Mac 的钥匙串中查看，双击证书，将信任权限设定为始终信任。图示如下：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/auth-certificate.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/auth-certificate.png)
 
 2. iPhone 安装证书
 
 在 `Charles 菜单栏 -> Help -> SSL Proxying -> Install Charles Root Certificate on a Mobile Device or Remote Browser` 中查看最新的官方证书下载地址。图示如下：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/phone-certificate.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/phone-certificate.png)
 
 下载并安装描述文件。之后在到 `iPhone 设置 -> 关于本机 -> 证书信任设置`中启用根证书。图示如下：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/phone-auth-certificate.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/phone-auth-certificate.png)
 
 这样，就可以使用 Charles 中抓包 iPhone 发出的 HTTPS 请求并预览明文数据了。
 

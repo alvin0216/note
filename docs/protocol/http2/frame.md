@@ -10,7 +10,7 @@ categories:
 
 下面的这张图对比了 HTTP/1、HTTPS 和 HTTP/2 的协议栈，你可以清晰地看到，HTTP/2 是建立在“HPack”“Stream”“TLS1.2”基础之上的，比 HTTP/1、HTTPS 复杂了一些。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http2-vs-http.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http2-vs-http.png)
 
 ## 连接前言
 
@@ -46,7 +46,7 @@ server {
 
 HTTP/2 中传输的帧结构如下图所示
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/binary-frame.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/binary-frame.png)
 
 每个帧分为**帧头**和**帧体**。先是三个字节的帧长度，这个长度表示的是**帧体**的长度。
 
@@ -62,7 +62,7 @@ HTTP/2 中传输的帧结构如下图所示
 
 HTTP/2 其实也是借鉴了 TCP 状态变化的思想，根据帧的标志位来实现具体的状态改变。这里我们以一个普通的请求-响应过程为例来说明：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/stream.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/stream.png)
 
 最开始两者都是空闲状态，当客户端发送 Headers 帧后，开始分配 `Stream ID`, 此时客户端的流打开, 服务端接收之后服务端的流也打开，两端的流都打开之后，就可以互相传递数据帧和控制帧了。
 

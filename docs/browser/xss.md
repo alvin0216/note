@@ -17,7 +17,7 @@ categories:
 
 ## XSS 分类
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/xss.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/xss.png)
 
 ### 反射型
 
@@ -30,7 +30,7 @@ categories:
   结果如下：;
 </div>
 <script>
-  window.onload = function() {
+  window.onload = function () {
     const searchParams = new URLSearchParams(window.location.search);
     document.getElementById('keyword').innerHTML = searchParams.get('keyword');
   };

@@ -21,10 +21,10 @@ categories:
 **第一阶段是分词（tokenize），又称为词法分析**，其作用是将一行行的源码拆解成一个个 token。所谓 token，指的是语法上不可能再分的、最小的单个字符或字符串。你可以参考下图来更好地理解什么 token。
 
 ```js
-let myName = '极客时间'
+let myName = '极客时间';
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-complie1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-complie1.png)
 
 即解析成了四个 token，这就是词法分析的作用。
 
@@ -37,15 +37,15 @@ let myName = '极客时间'
 你可以结合下面这段代码来直观地感受下什么是 AST：
 
 ```js
-var myName = '极客时间'
+var myName = '极客时间';
 function foo() {
-  return 23
+  return 23;
 }
-myName = 'geektime'
-foo()
+myName = 'geektime';
+foo();
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-complie2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-complie2.png)
 
 当生成了 AST 之后，编译器/解释器后续的工作都要依靠 AST 而不是源代码。
 
@@ -65,7 +65,7 @@ AST 是非常重要的一种数据结构，在很多项目中有着广泛的应�
 
 和原来不同的是，现在不用一次性将全部的字节码都转换成机器码，而是通过解释器来逐行执行字节码，省去了生成二进制文件的操作，这样就大大降低了内存的压力。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-complie3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-complie3.png)
 
 从图中可以看出，机器码所占用的空间远远超过了字节码，所以使用字节码可以减少系统的内存使用。
 
@@ -77,7 +77,7 @@ AST 是非常重要的一种数据结构，在很多项目中有着广泛的应�
 
 你可以结合下图看看 JIT 的工作过程：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-complie4.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-complie4.png)
 
 ---
 

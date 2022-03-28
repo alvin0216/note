@@ -35,18 +35,18 @@ JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。
 ::: tab 例子
 
 ```js
-var value = 1
+var value = 1;
 
 function foo() {
-  console.log(value)
+  console.log(value);
 }
 
 function bar() {
-  var value = 2
-  foo()
+  var value = 2;
+  foo();
 }
 
-bar()
+bar();
 
 // 结果是 1
 ```
@@ -55,27 +55,27 @@ bar()
 ::: tab 《JavaScript 权威指南》中的例子
 
 ```js
-var scope = 'global scope'
+var scope = 'global scope';
 function checkscope() {
-  var scope = 'local scope'
+  var scope = 'local scope';
   function f() {
-    return scope
+    return scope;
   }
-  return f()
+  return f();
 }
-checkscope() // local scope
+checkscope(); // local scope
 ```
 
 ```js
-var scope = 'global scope'
+var scope = 'global scope';
 function checkscope() {
-  var scope = 'local scope'
+  var scope = 'local scope';
   function f() {
-    return scope
+    return scope;
   }
-  return f
+  return f;
 }
-checkscope()()
+checkscope()();
 ```
 
 两段代码都会打印：`local scope`。
@@ -95,9 +95,9 @@ checkscope()()
 ```js
 function foo() {
   for (var i = 0; i < 7; i++) {}
-  console.log(i) // 这里还可以访问到 i = 7
+  console.log(i); // 这里还可以访问到 i = 7
 }
-foo()
+foo();
 ```
 
 在创建执行上下文阶段，变量 i 就已经被提升了，所以当 for 循环结束之后，变量 i 并没有被销毁。
@@ -107,21 +107,21 @@ foo()
 ::: tab 变量容易在不被察觉的情况下被覆盖掉
 
 ```js
-var myname = 'alvin'
+var myname = 'alvin';
 function showName() {
-  console.log(myname) // undefined
+  console.log(myname); // undefined
   if (1) {
-    var myname = 'tony'
+    var myname = 'tony';
   }
-  console.log(myname) // tony
+  console.log(myname); // tony
 }
-showName()
+showName();
 ```
 
 `showName` 函数的执行上下文创建，JavaScript 引擎便开始执行 `showName` 函数内部的代码了。首先：
 
 ```js
-console.log(myname)
+console.log(myname);
 ```
 
 `myname` 在全局执行上下文和 `showName` 函数的执行上下文中都存在。在函数执行过程中，**JavaScript 会优先从当前的执行上下文中查找变量**，由于变量提升，当前的执行上下文中就包含了变量 `myname`，而值是 `undefined`，所以获取到的 `myname` 的值就是 `undefined`。
@@ -137,20 +137,20 @@ console.log(myname)
 
 ```js
 function foo() {
-  var a = 1
-  let b = 2
+  var a = 1;
+  let b = 2;
   {
-    let b = 3
-    var c = 4
-    let d = 5
-    console.log(a)
-    console.log(b)
+    let b = 3;
+    var c = 4;
+    let d = 5;
+    console.log(a);
+    console.log(b);
   }
-  console.log(b)
-  console.log(c)
-  console.log(d)
+  console.log(b);
+  console.log(c);
+  console.log(d);
 }
-foo()
+foo();
 ```
 
 当执行上面这段代码的时候，JavaScript 引擎会先对其进行编译并创建执行上下文，然后再按照顺序执行代码，关于如何创建执行上下文我们在前面的文章中已经分析过了，但是现在的情况有点不一样，我们引入了 let 关键字，let 关键字会创建块级作用域，那么 let 关键字是如何影响执行上下文的呢？
@@ -167,7 +167,7 @@ LexicalEnvironment:
   b -> undefined
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-scope1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-scope1.png)
 
 通过上图，我们可以得出以下结论：
 
@@ -187,7 +187,7 @@ LexicalEnvironment:
   b -> 2
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-scope2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-scope2.png)
 
 从图中可以看出，当进入函数的作用域块时，作用域块中通过 let 声明的变量，会被存放在词法环境的一个单独的区域中，这个区域中的变量并不影响作用域块外面的变量，比如在作用域外面声明了变量 b，在该作用域块内部也声明了变量 b，当执行到作用域内部时，它们都是独立的存在。
 
@@ -197,7 +197,7 @@ LexicalEnvironment:
 
 这样一个变量查找过程就完成了，你可以参考下图：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-scope3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-scope3.png)
 
 从上图你可以清晰地看出变量查找流程，不过要完整理解查找变量或者查找函数的流程，就涉及到作用域链了。
 

@@ -20,7 +20,7 @@ categories:
 
 实现过程中，render 层拖拽（v1 版本 同事实现的）物料拖入的位置仅仅支持拖拽到物料的上一层，以及放置面板会发生闪烁的情况（具体原因忘记了）
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/drag.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/drag.png)
 
 **我的实现**，在 `container` 层增加的 `drop` 事件，判断 `target` 对象。如果是物料，那么 `dropIndex` 在 `target` 的上一层，否则于最后一个。
 

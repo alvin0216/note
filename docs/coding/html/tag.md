@@ -12,7 +12,7 @@ categories:
 :::: tabs
 
 ::: tab 概览
-![](https://gitee.com/alvin0216/cdn/raw/master/images/html5-layout.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/html5-layout.png)
 :::
 
 ::: tab 代码
@@ -52,10 +52,7 @@ categories:
         <time datetime="2020-02-15" pubdate>2012年02月15日</time>
         <strong>加粗字体</strong>
         <u>下划线字体</u>
-        <em
-          >斜体：em
-          是句意强调，加与不加会引起语义变化，也可以理解为局部强调，用在语句某个单词上来改变句子的侧重。</em
-        >
+        <em>斜体：em 是句意强调，加与不加会引起语义变化，也可以理解为局部强调，用在语句某个单词上来改变句子的侧重。</em>
         <cite>斜体：用于定义引用内容出自书籍或杂志等的标题，不允许其他信息，如作者，日期等。</cite>
         <abbr title="xx">定义一个缩写文本，建议在 abbr 的 title 属性中描述缩写的全称</abbr>
       </section>
@@ -65,7 +62,7 @@ categories:
 
         <!-- 富文本 图片+描述 -->
         <figure>
-          <img src="https://gitee.com/alvin0216/cdn/raw/master/images/html5-layout.png" />
+          <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/html5-layout.png" />
           <figcaption>照片描述</figcaption>
         </figure>
 
@@ -93,9 +90,7 @@ categories:
   </main>
 
   <footer>
-    <address>
-      地址：代表区块容器，必须是作为联系信息出现，邮编地址、邮件地址等等,一般出现在footer
-    </address>
+    <address>地址：代表区块容器，必须是作为联系信息出现，邮编地址、邮件地址等等,一般出现在footer</address>
   </footer>
 </body>
 ```
@@ -109,7 +104,7 @@ categories:
 ```html
 <!-- 富文本 图片+描述 -->
 <figure>
-  <img src="https://gitee.com/alvin0216/cdn/raw/master/images/html5-layout.png" />
+  <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/html5-layout.png" />
   <figcaption>照片描述</figcaption>
 </figure>
 ```

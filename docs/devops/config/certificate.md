@@ -42,7 +42,7 @@ acme.sh --issue --dns dns_ali -d alvin.run -d '*.alvin.run'
 
 成功的结果：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/certificate.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/certificate.png)
 
 到了这一步大功告成，撒花
 

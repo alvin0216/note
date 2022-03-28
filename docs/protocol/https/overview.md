@@ -20,7 +20,7 @@ HTTP 报文是通过明文传输，这样很容易造成信息泄漏。(例如�
 
 HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套多了一层 `SSL/TSL` 协议。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/https-vs-http.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/https-vs-http.png)
 
 - SSL：（Secure Socket Layer，安全套接字层），位于可靠的面向连接的网络层协议和应用层协议之间的一种协议层。SSL 通过互相认证、使用数字签名确保完整性、使用加密确保私密性，以实现客户端和服务器之间的安全通讯。该协议由两层组成：SSL 记录协议和 SSL 握手协议。
 - TLS：(Transport Layer Security，传输层安全协议)，用于两个应用程序之间提供保密性和数据完整性。该协议由两层组成：TLS 记录协议和 TLS 握手协议。
@@ -31,7 +31,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 - 篡改：通过摘要算法生成唯一值，只要有修改立马就可以发现。
 - 身份证书：则是通过数字签名和 CA 证书。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/ssl.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/ssl.png)
 
 ## 防窃听
 
@@ -43,7 +43,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面是一个通过 `AES` 算法加密的传输过程：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/symmetric-encryption.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/symmetric-encryption.png)
 
 这样黑客截获了密文后也无法得知里面的内容，除非他也有密钥。
 
@@ -71,7 +71,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面是非对称加密的过程：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/asymmetric.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/asymmetric.png)
 
 由于黑客不知道后面的密钥是什么，所以也解密不出来。但是非对称加密也面临着风险：
 
@@ -86,7 +86,7 @@ HTTPS 默认端口 `443`, 和 HTTP 不同之处在于 HTTPS 的下层协议套�
 
 下面也是一个混合加密的例子：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/hybrid-encryption.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/hybrid-encryption.png)
 
 1. 客户端索要公钥
 2. 服务端返回公钥
@@ -126,7 +126,7 @@ HTTPS 第二个目的是对网站服务器进行真实身份认证
 
 其实最后还有一个很关键的点是 我们刚刚所有的假设都基于 客户端的公钥是服务器传递过来的 那如果攻击者伪造了服务器的公钥怎么办呢
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/fake.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/fake.png)
 
 解决上述身份验证问题的关键是确保获取的公钥途径是合法的，能够验证服务器的身份信息，为此需要引入权威的第三方机构 CA。
 

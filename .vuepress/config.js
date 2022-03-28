@@ -5,7 +5,6 @@ module.exports = {
   dest: 'public',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico' }],
-    // ['link', { name: 'dns-prefetch', href: '//gitee.com' }],
     [
       'meta',
       {

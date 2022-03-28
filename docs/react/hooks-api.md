@@ -29,7 +29,7 @@ render 阶段到 commit 阶段，传递的时包含不同 fiber 节点的 effect
 2. componentDidMount 是 commit 阶段完成视图更新（mutation 阶段）后，在 layout 阶段同步调用
 3. useLayoutEffect 和 componentDidMount 调用时机一致，也是在 layout 阶段同步调用
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/hooks-api.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/hooks-api.png)
 
 <!-- `useEffect` 可以看成 `componentDidMount / componentDidUpdate / componentWillUnmount` 这 3 个生命周期函数的替代。
 

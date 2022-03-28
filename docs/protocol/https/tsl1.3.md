@@ -40,7 +40,7 @@ HTTPS 建立连接时除了要做 TCP 握手，还要做 TLS 握手，在 1.2 �
 
 ### 握手提升
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/tsl-13.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tsl-13.png)
 
 大体的方式和 TLS1.2 差不多，不过和 TLS 1.2 相比少了一个 RTT， 服务端不必等待对方验证证书之后才拿到 client_params，而是直接在第一次握手的时候就能够拿到, 拿到之后立即计算 secret，节省了之前不必要的等待时间。同时，这也意味着在第一次握手的时候客户端需要传送更多的信息，一口气给传完。
 

@@ -42,7 +42,7 @@ categories:
 - 按增量序列个数 k，对序列进行 k 趟排序；
 - 每趟排序，根据对应的增量 ti，将待排序列分割成若干长度为 m 的子序列，分别对各子表进行直接插入排序。仅增量因子为 1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/ShellSort.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/ShellSort.png)
 
 ## 第一版：基本实现
 

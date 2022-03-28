@@ -9,12 +9,12 @@ categories:
   - 算法与数据结构
 ---
 
-<!-- ![](https://gitee.com/alvin0216/cdn/raw/master/images/merge.png) -->
+<!-- ![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/merge.png) -->
 
 用到分治算法，将大数组二分为一为两个小数组，递归去比较排序。算法复杂度 $O(nlog(n))$
 
 ```js
-var mergeSort = function(arr) {
+var mergeSort = function (arr) {
   const len = arr.length;
   if (len === 1) return arr;
   const mid = Math.floor(len / 2);

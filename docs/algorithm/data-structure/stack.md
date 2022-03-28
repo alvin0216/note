@@ -16,13 +16,13 @@ categories:
 
 在计算机编程中，栈是一种很常见的数据结构，它遵从**后进先出**（`LIFO——Last In First Out`）原则，新添加或待删除的元素保存在栈的同一端，称作栈顶，另一端称作栈底。在栈中，新元素总是靠近栈顶，而旧元素总是接近栈底。
 
-栈 示意图 >> ![栈 示意图](https://gitee.com/alvin0216/cdn/raw/master/images/stack2.png)
+栈 示意图 >> ![栈 示意图](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/stack2.png)
 
 ## 栈和函数
 
 在讲述一个概念，让我们加深对栈的认识，莫过于 JavaScript 函数的调用
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/stack4.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/stack4.png)
 
 执行顺序
 
@@ -63,31 +63,31 @@ test()
 function Stack() {
   let items = [];
 
-  this.push = function(element) {
+  this.push = function (element) {
     items.push(element);
   };
 
-  this.pop = function() {
+  this.pop = function () {
     return items.pop();
   };
 
-  this.peek = function() {
+  this.peek = function () {
     return items[items.length - 1];
   };
 
-  this.isEmpty = function() {
+  this.isEmpty = function () {
     return items.length === 0;
   };
 
-  this.size = function() {
+  this.size = function () {
     return items.length;
   };
 
-  this.clear = function() {
+  this.clear = function () {
     items = [];
   };
 
-  this.print = function() {
+  this.print = function () {
     console.log(items.toString());
   };
 }
@@ -261,7 +261,7 @@ class Stack {
 现在，items 在 `Stack` 类里是真正的私有属性了，但是，它是在 `Stack` 类的外部声明的，这就意味着谁都可以对它进行操作，虽然我们可以将 Stack 类和 items 变量的声明放到闭包中，但是这样却又失去了类本身的一些特性（如扩展类无法继承私有属性）。所以，尽管我们可以用 ES6 的新语法来简化一个类的实现，但是毕竟不能像其它强类型语言一样声明类的私有属性和方法。有许多方法都可以达到相同的效果，但无论是语法还是性能，都会有各自的优缺点。
 
 ```js
-let Stack = (function() {
+let Stack = (function () {
   const items = new WeakMap();
   class Stack {
     constructor() {
@@ -319,7 +319,7 @@ let Stack = (function() {
 入栈 0 0 0 1
 出栈 1 0 0 0
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/stack3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/stack3.png)
 
 ### 汉诺塔
 
@@ -333,7 +333,7 @@ let Stack = (function() {
 >
 > 将一个圆盘从一根柱子移到另一根柱子，算移动“1 次”，那么，将若干个圆盘全部从 a 移到 c 最少需要移动几次呢?
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/hanno.gif)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/hanno.gif)
 
 #### 分析
 
@@ -424,7 +424,7 @@ Move disc 1 from B to A
 我们在前面定义的栈的数据结构应用进来，完整的代码如下
 
 ```js
-let towerOfHanoi = function(n, from, help, to) {
+let towerOfHanoi = function (n, from, help, to) {
   if (n > 0) {
     towerOfHanoi(n - 1, from, to, help); // A -> B
 

@@ -15,11 +15,11 @@ categories:
 
 ```html
 <h4>原图标</h4>
-<img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+<img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
 
 <h4>变色后</h4>
 <div class="png-icon">
-  <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+  <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
 </div>
 
 <style>
@@ -45,19 +45,19 @@ categories:
 ```html
 <div class="box">
   <div class="png-icon">
-    <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+    <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
   </div>
   <div class="png-icon">
-    <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+    <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
   </div>
   <div class="png-icon">
-    <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+    <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
   </div>
   <div class="png-icon">
-    <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+    <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
   </div>
   <div class="png-icon">
-    <img src="https://gitee.com/alvin0216/cdn/raw/master/images/icon64.png" />
+    <img src="https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/icon64.png" />
   </div>
 </div>
 

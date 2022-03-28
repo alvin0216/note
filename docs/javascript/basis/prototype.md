@@ -29,4 +29,4 @@ var p = new Person()
 3. p.__proto__ === Person.prototype 实例通过 __proto__ （原型链）指向原型
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/prototype5.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/prototype5.png)

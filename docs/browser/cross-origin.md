@@ -13,7 +13,7 @@ categories:
 
 回顾一下 URI 的组成:
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/uri.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/uri.png)
 
 浏览器遵循同源政策(`scheme(协议)`、`host(主机)`和 `port(端口)`都相同则为同源)。非同源站点有这样一些限制:
 
@@ -53,7 +53,7 @@ const http = require('http');
 const url = require('url');
 
 http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     if (req.url !== '/favicon.ico') {
       const { query } = url.parse(req.url, true);
       const list = [{ name: 'alvin' }, { name: 'foo' }];
@@ -104,7 +104,7 @@ Access-Control-Allow-Origin
 const http = require('http');
 
 http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     res.writeHead(200, { 'Access-Control-Allow-Origin': '*' });
     res.end('hello world');
   })
@@ -136,7 +136,7 @@ CORS 请求默认不发送 Cookie 和 HTTP 认证信息。如果要把 Cookie �
 const http = require('http');
 
 http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     res.writeHead(200, {
       'Access-Control-Allow-Origin': 'http://127.0.0.1:5500', // 只有 http://127.0.0.1:5500 才能访问
       'Access-Control-Allow-Credentials': true, // 允许携带 cookie
@@ -193,7 +193,7 @@ http
 const http = require('http');
 
 http
-  .createServer(function(req, res) {
+  .createServer(function (req, res) {
     res.writeHead(200, {
       'Access-Control-Allow-Origin': 'http://127.0.0.1:5500', // 只有 http://127.0.0.1:5500 才能访问
       'Access-Control-Allow-Methods': 'POST, PUT, DELETE', // 支持

@@ -18,7 +18,7 @@ categories:
 
 下面是链表数据结构的示意图：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList1.png)
 
 :::details 链表的基本方法
 
@@ -75,7 +75,7 @@ class LinkedList {
 首先我们需要一个辅助类，用来描述链表中的节点。这个类很简单，只需要两个属性，一个用来保存节点的值，一个用来保存指向下一个节点的指针。
 
 ```js
-let Node = function(element) {
+let Node = function (element) {
   this.element = element;
   this.next = null;
 };
@@ -147,11 +147,11 @@ insert(position, element) {
 
 首先也是要判断参数 `position` 的边界值，不能越界。当 `position` 的值为 0 时，表示要在链表的头部插入新节点，对应的操作如下图所示。将新插入节点的 `next` 指针指向现在的 head，然后更新 `head` 的值为新插入的节点。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList2.png)
 
 如果要插入的节点在链表的中间或者尾部，对应的操作如下图。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList3.png)
 
 假设链表长度为 3，要在位置 2 插入新节点，我们首先找到位置 2 的前一个节点 `previous node`，将新节点 `new node`的 `next` 指针指向 `previous node` 的 `next` 所对应的节点，然后再将 `previous node` 的 `next` 指针指向 new node，这样就把新节点挂到链表中了。
 
@@ -184,8 +184,8 @@ removeAt(position) {
 
 下面两张示意图说明了从链表头部和其它位置删除节点的情况。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList4.png)
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList5.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList4.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList5.png)
 
 如果要删除的节点为链表的头部，只需要将 `head` 移到下一个节点即可。
 
@@ -387,12 +387,12 @@ console.log(linkedList.size());
 
 在双向链表中，除了可以像单向链表一样从头部开始遍历之外，还可以从尾部进行遍历。下面是双向链表的数据结构示意图：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList6.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList6.png)
 
 由于双向链表具有单向链表的所有特性，因此我们的双向链表类可以继承自前面的单向链表类，不过辅助类 Node 需要添加一个 prev 属性，用来指向前一个节点。
 
 ```js
-let Node = function(element) {
+let Node = function (element) {
   this.element = element;
   this.next = null;
   this.prev = null;
@@ -715,7 +715,7 @@ console.log(doubleLinkedList.toString());
 
 顾名思义，循环链表的尾部指向它自己的头部。循环链表可以有单向循环链表，也可以有双向循环链表。下面是单向循环链表和双向循环链表的数据结构示意图：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/linkedList7.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/linkedList7.png)
 
 在实现循环链表时，需要确保最后一个元素的 `next` 指针指向 `head`。下面是单向循环链表的完整代码：
 

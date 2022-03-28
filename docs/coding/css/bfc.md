@@ -45,7 +45,7 @@ categories:
 </div>
 ```
 
-效果：![](https://gitee.com/alvin0216/cdn/raw/master/images/bfc1.png)
+效果：![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/bfc1.png)
 
 在这里父元素的高度不是 110px，而是 100px，在这里发生了**高度坍塌**。
 
@@ -81,7 +81,7 @@ categories:
 </section>
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/bfc2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/bfc2.png)
 
 可以看到 1 和 2,2 和 3 之间的间距不是 50px，发生了**边距重叠是取了它们之间的最大值** 30px。
 
@@ -119,7 +119,7 @@ categories:
 <p>3</p>
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/bfc3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/bfc3.png)
 
 :::
 
@@ -179,7 +179,7 @@ categories:
 
 在这里设置右边的高度高于左边，可以看到左边超出的部分跑到右边去了，这是由于由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样导致的。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/bfc4.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/bfc4.png)
 
 解决方案为给右侧元素创建一个 BFC，原理是 BFC 不会与 float 元素发生重叠。
 
@@ -191,6 +191,6 @@ categories:
 }
 ```
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/bfc5.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/bfc5.png)
 
 参考 [边距重叠与 BFC](https://segmentfault.com/a/1190000012265930)

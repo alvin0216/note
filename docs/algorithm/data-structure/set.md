@@ -12,11 +12,11 @@ categories:
 
 在上一篇学习[数据结构--链表](./linkedList)中我们说了链表这种数据结构，但归根结底，不论是栈，队列亦或是链表都是线性结构。他们都是一种很规矩的数据结构，就像幼儿园的小朋友排队乖乖的站在那不会动一样。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/set1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/set1.png)
 
 然而纷杂的数据并不会总是排队站在那里，幼儿园小朋友一旦下了课那可就撒欢了，乱糟糟一团。可我们的幼儿园老师却能分辨出这些小朋友，因为啥？因为每个小朋友都在一个班里，而且每一个小朋友都有自己的名字。老师自然很容易就找到小朋友了。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/set2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/set2.png)
 
 而本篇博文要说的集合正是一堆`乱糟糟的数据`，唯一的共同点是这些数据隶属于同一个`集合`
 

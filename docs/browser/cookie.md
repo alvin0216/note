@@ -95,11 +95,11 @@ app.listen(port, () => {
 1. xhr 携带 cookie，需要设置 `withCredentials = true`, 服务端 `Access-Control-Allow-Origin` 不能为 `*`
 2. 禁用 `samesite`，使得第三方 `cookie` 得以使用，需要设置 `secure = true`
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/samesite.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/samesite.png)
 
 ## Cookie 相关属性
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/cookie3.png)
 
 重点讲一下：
 
@@ -114,7 +114,7 @@ app.listen(port, () => {
 
 - `Strict`：完全禁止第三方 Cookie，跨站点时，任何情况下都不会发送 Cookie。
 - `Lax`:
-  ![](https://gitee.com/alvin0216/cdn/raw/master/images/samesite-lax.png)
+  ![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/samesite-lax.png)
 - `None`：显式关闭 `SameSite` 属性，不过，前提是必须同时设置 `Secure` 属性
 
 ## Cookie 一些概念 & Session

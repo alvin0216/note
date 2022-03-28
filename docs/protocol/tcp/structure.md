@@ -10,7 +10,7 @@ categories:
 
 TCP 报文是 TCP 层传输的数据单元，也叫报文段。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/tcp-structure.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tcp-structure.png)
 
 ## 源端口、目标端口
 
@@ -63,7 +63,7 @@ ISN 并不是一个固定的值，而是每 4 ms 加一，溢出则回到 0，�
 
 可选项的格式如下:
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/tcp-structure2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tcp-structure2.png)
 
 常用的可选项有以下几个:
 

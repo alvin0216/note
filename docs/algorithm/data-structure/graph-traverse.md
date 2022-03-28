@@ -12,7 +12,7 @@ categories:
 
 和树类似，我们也可以对图进行遍历，以访问图中的所有顶点。图的遍历方式分为两种：**广度优先（Breadth-First Search，BFS）**和**深度优先（Depth-First Search，DFS）**。对图的遍历可以用来寻找特定的顶点或两个顶点之间的最短路径，以及检查图是否连通、图中是否含有环等。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph7.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph7.png)
 
 | 算法     | 数据结构 | 描述                                                                   |
 | -------- | -------- | ---------------------------------------------------------------------- |
@@ -21,7 +21,7 @@ categories:
 
 :::details 图遍历的基本思路
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph8.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph8.png)
 
 :::
 
@@ -31,7 +31,7 @@ categories:
 
 比如上面的例子。广度优先遍历会先把 A 旁边的节点全部遍历一遍。第一层遍历 A -> B -> C -> D 结束，再遍历第二层 D -> E -> F，所以相当于优先遍历图的横向，当然对于图来说没有横向的概念的，这里只是为了方便理解。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph9.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph9.png)
 
 在接下来要实现的算法中，我们按照如下的约定对图中的顶点进行遍历，每个顶点最多访问两次：
 
@@ -49,7 +49,7 @@ categories:
 :::details 队列、字典类、图代码
 
 ```js
-let Queue = (function() {
+let Queue = (function () {
   const items = new WeakMap();
 
   class Queue {
@@ -310,7 +310,7 @@ C    D
 
 前面展示了**广度优先算法**的工作原理，我们可以使用它做更多的事情，例如在一个图 G 中，从顶点 v 开始到其它所有顶点间的最短距离。我们考虑一下如何用 `BFS` 来实现寻找最短路径。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph10.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph10.png)
 
 1. 首先我们用 `distance` 即距离记录顶点到顶点的距离，以顶点 A 为例比如 `A -> A = 0`, `A -> B = 1`, `A -> E = 2`等等
 
@@ -327,7 +327,7 @@ pred = { A: null, B: 'A', ... }
 下面是对 `breadthFirstSearch()`方法的改进，用来返回从起始顶点开始到其它所有顶点间的距离，以及所有顶点的前置顶点。
 
 ```js {25,26}
-let BFS = function(graph, startVertex) {
+let BFS = function (graph, startVertex) {
   let vertices = graph.getVertices();
   let adjList = graph.getAdjList();
   let color = initializeColor(vertices);
@@ -622,7 +622,7 @@ const prim = (graph) => {
 
 深度优先算法从图的第一个顶点开始，沿着这个顶点的一条路径递归查找到最后一个顶点，然后返回并探查路径上的其它路径，直到所有路径都被访问到。最终，深度优先算法会先深后广地访问图中的所有顶点。下面是深度优先遍历的示意图：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph11.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph11.png)
 
 我们仍然采用和广度优先算法一样的思路，一开始将所有的顶点初始化为白色，然后沿着路径递归探查其余顶点，当顶点被访问过，将颜色改为灰色，如果顶点被探索过（处理过），则将颜色改为黑色。下面是深度优先算法的具体实现：
 
@@ -671,6 +671,6 @@ visited vertex: H
 
 为了便于理解，我们将整个遍历过程用下面的示意图来展示：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/graph12.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/graph12.png)
 
 前面说过，深度优先算法的数据结构是栈，然而这里我们并没有使用栈来存储任何数据，而是使用了函数的递归调用，其实递归也是栈的一种表现形式。另外一点，如果图是连通的（即图中任何两个顶点之间都存在路径），我们可以对上述代码中的 `dfs()`方法进行改进，只需要对图的起始顶点开始遍历一次就可以了，而不需要遍历图的所有顶点，因为从起始顶点开始的递归就可以覆盖图的所有顶点。

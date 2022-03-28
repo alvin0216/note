@@ -3,9 +3,9 @@ title: awsome
 date: 2022-03-24 00:20:07
 sidebar: auto
 tags:
-  - javascript
+  - Javascript
 categories:
-  - javascript
+  - Javascript
 ---
 
 ## eventloop

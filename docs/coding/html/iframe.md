@@ -55,17 +55,12 @@ const Iframe: React.FC<{}> = (props) => {
 
 ```ts
 // parent to iframe
-aliIframeRef.current?.contentWindow?.postMessage(
-  { method: 'parentToIframe', data: { name: 'alibaba' } },
-  '*'
-);
+aliIframeRef.current?.contentWindow?.postMessage({ method: 'parentToIframe', data: { name: 'alibaba' } }, '*');
 
 // iframe
 window.addEventListener('message', (e) => {
   if (e.data.method === 'parentToIframe') {
-    document.getElementById('message').innerHTML = `接收到父级发来的消息 ${JSON.stringify(
-      e.data.data
-    )}`;
+    document.getElementById('message').innerHTML = `接收到父级发来的消息 ${JSON.stringify(e.data.data)}`;
   }
 });
 ```
@@ -78,7 +73,7 @@ window.addEventListener('message', (e) => {
 
 ::: tab 效果
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/iframe.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/iframe.png)
 
 :::
 
@@ -116,10 +111,7 @@ function useIframeMethod() {
     emit() {
       console.log(aliIframeRef.current?.contentWindow?.postMessage);
 
-      aliIframeRef.current?.contentWindow?.postMessage(
-        { method: 'parentToIframe', data: { name: 'alibaba' } },
-        '*'
-      );
+      aliIframeRef.current?.contentWindow?.postMessage({ method: 'parentToIframe', data: { name: 'alibaba' } }, '*');
     },
   };
 }
@@ -189,13 +181,11 @@ export default Iframe;
 
       window.addEventListener('message', (e) => {
         if (e.data.method === 'parentToIframe') {
-          document.getElementById('message').innerHTML = `接收到父级发来的消息 ${JSON.stringify(
-            e.data.data
-          )}`;
+          document.getElementById('message').innerHTML = `接收到父级发来的消息 ${JSON.stringify(e.data.data)}`;
         }
       });
 
-      document.getElementById('btn1').onclick = function() {
+      document.getElementById('btn1').onclick = function () {
         window.parent.postMessage(
           {
             method: 'iframeToParent',

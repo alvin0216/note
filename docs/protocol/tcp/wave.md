@@ -10,7 +10,7 @@ categories:
 
 四次挥手即终止 TCP 连接，就是指断开一个 TCP 连接时，需要客户端和服务端总共发送 4 个包以确认连接的断开。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/wave.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/wave.png)
 
 ## 挥手过程
 

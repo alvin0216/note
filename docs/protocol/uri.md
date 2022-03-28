@@ -14,7 +14,7 @@ URI, 全称为(Uniform Resource Identifier), 也就是**统一资源标识符**�
 
 ## URI 的结构
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/uri.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/uri.png)
 
 - `scheme` 表示协议名，比如 http, https, file 等等。后面必须和://连在一起。
 - `user:passwd@` 表示登录主机时的用户信息，不过很不安全，不推荐使用，也不常用。

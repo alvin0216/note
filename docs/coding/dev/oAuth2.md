@@ -112,7 +112,7 @@ OAuth 2.0 对于如何颁发令牌的细节，规定得非常详细。具体来�
 
 以 `github` 登录为例：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/img/others/vscode/github-login.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/github-login.png)
 
 (A). 用户在网站上使用 github 登录，首先会重定向到 github 的授权端点：
 

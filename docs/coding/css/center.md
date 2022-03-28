@@ -9,7 +9,7 @@ categories:
   - HTML & CSS
 ---
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/css-center.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/css-center.png)
 
 :::: tabs
 

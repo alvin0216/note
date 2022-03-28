@@ -34,7 +34,7 @@ Google 在推 SPDY 的时候就已经意识到了这个问题，于是就又发�
 
 这里先贴一下 HTTP/3 的协议栈图，让你对它有个大概的了解。
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http3-vs-http.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http3-vs-http.png)
 
 ## QUIC 协议
 

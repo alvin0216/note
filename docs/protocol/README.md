@@ -12,12 +12,12 @@ categories:
 
 ## HTTP1.1
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http1.1.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http1.1.png)
 
 ## HTTP2
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http2.png)
 
 ## HTTP3
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/http3.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/http3.png)

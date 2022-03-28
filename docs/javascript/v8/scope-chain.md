@@ -22,14 +22,14 @@ categories:
 
 ```js
 function bar() {
-  console.log(myName) // ???
+  console.log(myName); // ???
 }
 function foo() {
-  var myName = '极客邦'
-  bar()
+  var myName = '极客邦';
+  bar();
 }
-var myName = '极客时间'
-foo()
+var myName = '极客时间';
+foo();
 ```
 
 :::
@@ -38,7 +38,7 @@ foo()
 
 全局上下文入栈 => 执行 foo 入栈 => 执行 bar 入栈
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-scope4.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-scope4.png)
 
 上面那段代码在查找 `myName` 变量时，如果在当前的变量环境中没有查找到，那么 JavaScript 引擎会继续在 `outer` 所指向的执行上下文中查找。
 
@@ -56,31 +56,31 @@ foo()
 
 ```js
 function bar() {
-  var myName = '极客世界'
-  let test1 = 100
+  var myName = '极客世界';
+  let test1 = 100;
   if (1) {
-    let myName = 'Chrome浏览器'
-    console.log(test) // ？？？
+    let myName = 'Chrome浏览器';
+    console.log(test); // ？？？
   }
 }
 function foo() {
-  var myName = '极客邦'
-  let test = 2
+  var myName = '极客邦';
+  let test = 2;
   {
-    let test = 3
-    bar()
+    let test = 3;
+    bar();
   }
 }
-var myName = '极客时间'
-let myAge = 10
-let test = 1
-foo()
+var myName = '极客时间';
+let myAge = 10;
+let test = 1;
+foo();
 ```
 
 要想得出其执行结果，那接下来我们就得站在**作用域链**和**词法环境**的角度来分析下其执行过程。
 
 ES6 是支持块级作用域的，当执行到代码块时，如果代码块中有 let 或者 const 声明的变量，那么变量就会存放到该函数的词法环境中。对于上面这段代码，当执行到 bar 函数内部的 if 语句块时，其调用栈的情况如下图所示：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/v8-scope5.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/v8-scope5.png)
 
 首先是在 bar 函数的执行上下文中查找，但因为 bar 函数的执行上下文中没有定义 test 变量，所以根据词法作用域的规则，下一步就在 bar 函数的外部作用域中查找，也就是全局作用域。最终找到 test = 1。

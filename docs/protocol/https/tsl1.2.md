@@ -10,9 +10,9 @@ categories:
 
 主流的 TLS 1.2 版本所采用的方式为 **ECDHE 握手**，除此外还有 **RSA 握手**。本文主要讲主流的 ECDHE 握手过程。
 
-| ECDHE 握手过程流程图                                                      | ECDHE 握手过程流程图 2                                                      |
-| ------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| <img src='https://gitee.com/alvin0216/cdn/raw/master/images/tsl12.png' /> | <img src='https://gitee.com/alvin0216/cdn/raw/master/images/tsl12-0.png' /> |
+| ECDHE 握手过程流程图                                                          | ECDHE 握手过程流程图 2                                                          |
+| ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| <img src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tsl12.png' /> | <img src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tsl12-0.png' /> |
 
 ## step 1: Client Hello
 

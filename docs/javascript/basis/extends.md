@@ -33,7 +33,7 @@ console.log(apple1.alias, apple1);
 
 执行结果：
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/extends2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/extends2.png)
 
 <span class="red">缺点：引用类型的属性被所有实例共享，相互影响</span>
 
@@ -107,7 +107,7 @@ function Apple(name, count) {
 }
 
 // 关键的三步
-var F = function() {};
+var F = function () {};
 F.prototype = Fruit.prototype;
 Apple.prototype = new F();
 ```

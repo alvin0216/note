@@ -21,7 +21,7 @@ HTTP Cache 是我们开发中接触最多的缓存，它分为强缓存和协商
 
 :::details 流程图
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cache-progress.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/cache-progress.png)
 
 :::
 
@@ -35,9 +35,9 @@ HTTP Cache 是我们开发中接触最多的缓存，它分为强缓存和协商
 
 ::: tab 效果示例
 
-| 响应                                                                                | 60s 内刷新页面                                                                      |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| <img alt='' src='https://gitee.com/alvin0216/cdn/raw/master/images/expires1.png' /> | <img alt='' src='https://gitee.com/alvin0216/cdn/raw/master/images/expires2.png' /> |
+| 响应                                                                                    | 60s 内刷新页面                                                                          |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| <img alt='' src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/expires1.png' /> | <img alt='' src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/expires2.png' /> |
 
 在 60 秒内修改返回值 `response.end("console.log('script loaded xxxx')")`，再刷新页面重新请求可以看到浏览器输出的仍然是 `script loaded` 说明浏览器并没有请求新的文件而是读取本地缓存。
 
@@ -49,7 +49,7 @@ HTTP Cache 是我们开发中接触最多的缓存，它分为强缓存和协商
 const http = require('http');
 
 http
-  .createServer(function(request, response) {
+  .createServer(function (request, response) {
     console.log(request.url);
     if (request.url === '/') {
       //  指定 html 不然不识别为 html；指定编码 utf-8 不然中文乱码
@@ -124,7 +124,7 @@ setTimeout(() => {
 }, 60000);
 
 http
-  .createServer(function(request, response) {
+  .createServer(function (request, response) {
     if (request.url === '/') {
       response.writeHead(200, { 'Content-Type': 'text/html;charset=utf-8' });
       response.end(`<h2>协商缓存</h2><script src="/script.js"></script>`);
@@ -162,9 +162,9 @@ console.log('http://127.0.0.1:3300');
 
 刷新主页，60s 内刷新页面，就可以看到:
 
-| pic1                                                                            | pic2                                                                                  |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src='https://gitee.com/alvin0216/cdn/raw/master/images/if-modified.jpg' /> | <img src='https://gitee.com/alvin0216/cdn/raw/master/images/if-modified-since.jpg' /> |
+| pic1                                                                                | pic2                                                                                      |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| <img src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/if-modified.jpg' /> | <img src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/if-modified-since.jpg' /> |
 
 :::
 

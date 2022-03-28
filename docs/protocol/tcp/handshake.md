@@ -11,7 +11,7 @@ categories:
 
 TCP 的三次握手，也是需要确认双方的两样能力: 发送的能力和接收的能力。于是便会有下面的三次握手的过程:
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/shake-hand.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/shake-hand.png)
 
 ## 握手过程
 
@@ -55,7 +55,7 @@ SYN 需要对端的确认， 而 ACK 并不需要，因此 SYN 消耗一个序�
 
 状态变迁如下:
 
-<img className='small' alt='' src='https://gitee.com/alvin0216/cdn/raw/master/images/tcp-connection.png' />
+<img className='small' alt='' src='https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/tcp-connection.png' />
 
 在发送方给接收方发 `SYN` 报文的同时，接收方也给发送方发 `SYN` 报文，两个人刚上了!
 

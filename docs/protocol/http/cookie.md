@@ -23,7 +23,7 @@ categories:
 
 ::: tab 流程图
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/cookie.png)
 
 :::
 
@@ -33,11 +33,11 @@ categories:
 const http = require('http');
 
 http
-  .createServer(function(request, response) {
+  .createServer(function (request, response) {
     if (request.url === '/') {
       response.writeHead(200, {
         'Content-Type': 'text/html;charset=utf-8',
-        'Set-Cookie': 'id=123'
+        'Set-Cookie': 'id=123',
       });
       response.end(`
         <h2>Cookie</h2>
@@ -57,7 +57,7 @@ console.log('http://127.0.0.1:3300');
 ```js
 response.writeHead(200, {
   'Content-Type': 'text/html;charset=utf-8',
-  'Set-Cookie': ['id=123', 'age=18']
+  'Set-Cookie': ['id=123', 'age=18'],
 });
 ```
 
@@ -65,7 +65,7 @@ response.writeHead(200, {
 
 ::: tab network 面板示例
 
-![](https://gitee.com/alvin0216/cdn/raw/master/images/cookie2.png)
+![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/cookie2.png)
 
 :::
 
