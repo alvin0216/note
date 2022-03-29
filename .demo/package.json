@@ -3,5 +3,9 @@
   "private": true,
   "devDependencies": {
     "lerna": "^4.0.0"
+  },
+  "script": {
+    "dev:vite-ts-demo": "lerna run dev --parallel --scope=vite-ts-demo",
+    "bootstrap:vite-ts-demo": "lerna bootstrap --scope=vite-ts-demo --hoist"
   }
 }

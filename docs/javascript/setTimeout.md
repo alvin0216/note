@@ -18,6 +18,15 @@ categories:
 
 首先，无论是 setTimeOut 和 setInterval 都会有时间偏差问题。
 
+setTimeout 最小延迟时间
+
+```js
+console.time('ok');
+setTimeout(() => {
+  console.timeEnd('ok');
+}, 0); // ok: 1.93115234375 ms 预期是 0ms 实际上 大于 1ms
+```
+
 实现倒计时 10 秒，产生的偏差值：
 
 ```js
