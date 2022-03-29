@@ -68,20 +68,29 @@ module.exports = {
       '/docs/devops/': [
         {
           title: 'Devops',
-          children: ['talk', 'package/summary', 'package/micro-frontend', 'package/npm', 'package/lerna'],
+          children: [
+            'talk',
+            {
+              title: '🍞 包管理',
+              children: ['npm', 'lerna'],
+            },
+            {
+              title: '🔧 持续集成',
+              children: ['ci/travis', 'ci/webhooks', 'ci/github-action'],
+            },
+            {
+              title: '🐒 环境配置',
+              children: ['config/mac', 'config/ssh', 'config/certificate', 'config/charles'],
+            },
+            {
+              title: '🥣 nginx',
+              children: ['nginx/basics', 'nginx/proxy'],
+            },
+          ],
         },
-        { title: '打包工具', children: ['webpack/module'] },
         {
-          title: '持续集成',
-          children: ['ci/travis', 'ci/webhooks', 'ci/github-action'],
-        },
-        {
-          title: '环境配置',
-          children: ['config/mac', 'config/ssh', 'config/certificate', 'config/charles'],
-        },
-        {
-          title: 'nginx',
-          children: ['nginx/basics', 'nginx/proxy'],
+          title: '监控系列',
+          children: ['monitor/'],
         },
       ],
 
