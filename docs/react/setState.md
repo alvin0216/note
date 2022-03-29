@@ -7,23 +7,24 @@ tags:
 categories: React
 ---
 
-```js
-const runSetState = () => {
-  setCount((prev) => prev + 1);
-  setAge((prev) => prev + 1);
-};
+```jsx
+trigger = (isBatchedUpdate: boolean) => {
+  const runSetState = () => {
+    this.setState({ count: this.state.count + 1 }, () => console.log(this.state.count));
+  };
 
-// button onClick --> trigger
-const trigger = (isBatchedUpdate: boolean) => {
   if (isBatchedUpdate) {
-    runSetState(); // 只触发一次 render
+    runSetState();
   } else {
-    setTimeout(runSetState, 0); // 会触发两次 render
+    setTimeout(runSetState, 0);
   }
 };
+
+<button onClick={() => this.trigger(true)}>触发合成事件</button>;
+<button onClick={() => this.trigger(false)}>触发 setTimeout 事件</button>;
 ```
 
-在**React 合成事件**中执行多次 setState 后，react 会合并进行一次更新，这样就可以提高性能，这就是**批处理**的概念。
+可以发现两个执行的时机不一样，`console.log` 的结果也不一样。一个是同步，一个则是异步。
 
 ## 分析
 
@@ -71,16 +72,6 @@ function batchedEventUpdates$1(fn, a) {
 
 所以，不管是直接调用 flushSyncCallbackQueue ，还是推迟调用，这里本质上都是同步的，只是有个先后顺序的问题。
 
-<!--
-
-
-
-
-可以看到, 是否同步渲染调度决定代码是 `flushSyncCallbackQueue()`. 进入该分支的条件:
-
-1. 必须是 `legacy` 模式, `concurrent` 模式下 `expirationTime` 不会为 `Sync`
-2. ` executionContext === NoContext`, 执行上下文必须要为空. -->
-
 ## 结论
 
 **同步情况**
@@ -92,6 +83,27 @@ function batchedEventUpdates$1(fn, a) {
 
 1. 如果是合成事件中的回调, `executionContext |= EventContext`, 所以不会进入, 最终表现出异步
 2. concurrent 模式下都为异步
+
+## 批处理
+
+在**React 合成事件**中执行多次 setState 后，react 会合并进行一次更新，这样就可以提高性能，这就是**批处理**的概念。
+
+```jsx
+trigger = (isBatchedUpdate: boolean) => {
+  const runSetState = () => {
+    this.setState({ count: this.state.count + 1 });
+    this.setState({ age: this.state.age + 1 });
+  };
+
+  if (isBatchedUpdate) {
+    runSetState(); // render 一次
+  } else {
+    setTimeout(runSetState, 0); // render 两次
+  }
+};
+```
+
+即使是 async 函数，isBatchedUpdate 为 false，那多次 setState 实际上也会 render 多次。～～
 
 ## 给张图
 

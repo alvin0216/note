@@ -23,7 +23,7 @@ module.exports = {
       { text: 'Javascript', link: '/docs/javascript/' },
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
-      { text: '工程化', link: '/docs/devops/package/summary' },
+      { text: '工程化', link: '/docs/devops/talk' },
       { text: '浏览器', link: '/docs/browser/' },
       { text: 'React', link: '/docs/react/' },
     ],
@@ -60,13 +60,15 @@ module.exports = {
       ],
 
       // TODO react
-      '/docs/react/': [{ title: 'React', children: ['', 'immer', 'hooks-api', 'mini', 'setState', 'diff'] }],
+      '/docs/react/': [
+        { title: 'React', children: ['', 'immer', 'hooks-api', 'mini', 'setState', 'concurrent', 'diff'] },
+      ],
 
       // TODO devops
       '/docs/devops/': [
         {
           title: 'Devops',
-          children: ['package/summary', 'package/micro-frontend', 'package/npm', 'package/lerna'],
+          children: ['talk', 'package/summary', 'package/micro-frontend', 'package/npm', 'package/lerna'],
         },
         { title: '打包工具', children: ['webpack/module'] },
         {
