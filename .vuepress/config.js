@@ -126,7 +126,7 @@ module.exports = {
       '/docs/protocol/': [
         {
           title: '计算机基础',
-          children: ['', 'network-model', 'dns', 'uri'],
+          children: ['', 'network-model', 'dns', 'cdn'],
         },
         {
           title: 'TCP',
