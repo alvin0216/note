@@ -4,8 +4,10 @@
   "devDependencies": {
     "lerna": "^4.0.0"
   },
-  "script": {
+  "scripts": {
     "dev:vite-ts-demo": "lerna run dev --parallel --scope=vite-ts-demo",
-    "bootstrap:vite-ts-demo": "lerna bootstrap --scope=vite-ts-demo --hoist"
+    "dev:vite-react-demo": "lerna run dev --parallel --scope=vite-react-demo",
+    "bootstrap:vite-ts-demo": "lerna bootstrap --scope=vite-ts-demo --hoist",
+    "bootstrap:vite-react-demo": "lerna bootstrap --scope=vite-react-demo --hoist"
   }
 }
