@@ -37,7 +37,13 @@ module.exports = {
       '/docs/main/': [
         {
           title: '问题 & 解决方案',
-          children: ['problem/canvas-cross-origin', 'problem/safe', 'problem/lerna', 'problem/gzip'],
+          children: [
+            'problem/canvas-cross-origin',
+            'problem/safe',
+            'problem/lerna',
+            'problem/gzip',
+            'problem/iframe-fullScreen',
+          ],
         },
         {
           title: 'Awsome',
@@ -70,6 +76,7 @@ module.exports = {
           title: 'Devops',
           children: [
             'talk',
+            'grayscale-release',
             {
               title: '🍞 包管理',
               children: ['npm', 'lerna'],
@@ -87,6 +94,10 @@ module.exports = {
               children: ['nginx/basics', 'nginx/proxy'],
             },
           ],
+        },
+        {
+          title: '打包工具',
+          children: ['build/esbuild'],
         },
         {
           title: '监控系列',

@@ -8,7 +8,14 @@ tags:
 categories: React
 ---
 
-Diff 算法：基本概念、更新时机 、遍历算法、优化策略
+> 调和函数([源码](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactChildFiber.old.js#L1274-L1410))是在 fiber 树构(对比更新)过程中对旧 fiber 节点与新 reactElement 进行比较, 判定旧 fiber 节点是否可以复用的一个比较函数.
+
+它的主要作用:
+
+1. 给新增,移动,和删除节点设置 fiber.flags (新增, 移动: `Placement`, 删除:` Deletion`)
+2. 如果是需要删除的 fiber, [除了自身打上 Deletion 之外, 还要将其添加到父节点的 effects 链表中](https://github.com/facebook/react/blob/v17.0.2/packages/react-reconciler/src/ReactChildFiber.old.js#L275-L294)(正常副作用队列的处理是在 `completeWork` 函数, 但是该节点(被删除)会脱离 `fiber` 树, 不会再进入 `completeWork` 阶段, 所以在 `beginWork` 阶段提前加入副作用队列).
+
+<!-- Diff 算法：基本概念、更新时机 、遍历算法、优化策略
 
 ## 基本概念
 
@@ -58,4 +65,4 @@ React 用了一个非常经典的手法将复杂度降低为 0(n)就是分治，
 
 - 根据 diff 算法的设计原则,应尽量避免跨层级节点移动。
 - 通过设置唯一 key 进行优化，尽量减少组件层级深度，因为过深的层级会加深遍历深度，带来性能问题。
-- 设置 shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数
+- 设置 shouldComponentUpdate 或者 React.pureComponet 减少 diff 次数 -->
