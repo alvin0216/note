@@ -115,6 +115,8 @@ module.exports = {
       '/docs/algorithm/': [
         '',
         'binarySearch',
+        'bfs-dfs',
+        'math',
         {
           title: '数据结构',
           children: [
