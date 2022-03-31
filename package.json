@@ -13,7 +13,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "vuepress": "1.8.2",
-    "vuepress-theme-reco": "1.6.6"
+    "vuepress-theme-reco": "1.6.11"
   },
   "description": "前端开发",
   "dependencies": {

@@ -8,9 +8,9 @@ title: demo
 date: ${dateFormatter()}
 sidebar: auto
 tags:
-  - dmeo
+  - 剑指 offer
 categories:
-  - 技术漫谈
+  - 算法与数据结构
 ---
 `,
   'utf-8'

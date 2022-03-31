@@ -117,39 +117,68 @@ module.exports = {
 
       // TODO algorithm
       '/docs/algorithm/': [
-        '',
-        'binarySearch',
-        'bfs-dfs',
-        'math',
         {
-          title: '数据结构',
+          title: 'Leetcode',
           children: [
-            'data-structure/stack',
-            'data-structure/queue',
-            'data-structure/linkedList',
-            'data-structure/set',
-            'data-structure/dict-hashtable',
-            'data-structure/tree',
-            'data-structure/avl',
-            'data-structure/graph',
-            'data-structure/graph-traverse',
+            {
+              title: '字符串',
+              children: ['offer/48. 最长不含重复字符的子字符串'],
+            },
+            {
+              title: '递归',
+              children: ['offer/16.数值的整数次方', 'offer/33. 二叉搜索树的后序遍历序列'],
+            },
+            {
+              title: '链表',
+              children: ['offer/25. K 个一组翻转链表'],
+            },
+            {
+              title: '动态规划',
+              children: ['offer/42. 连续子数组的最大和'],
+            },
+            {
+              title: '高频',
+              children: ['offer/31. 最近最少使用缓存'],
+            },
           ],
         },
         {
-          title: '排序算法',
+          title: '算法基础',
           children: [
-            'sort/bubbleSort',
-            'sort/selectionSort',
-            'sort/insertSort',
-            'sort/mergeSort',
-            'sort/quickSort',
-            'sort/shellSort',
-            'sort/heapSort',
+            'binarySearch',
+            'bfs-dfs',
+            'math',
+            {
+              title: '💭 数据结构',
+              children: [
+                'data-structure/stack',
+                'data-structure/queue',
+                'data-structure/linkedList',
+                'data-structure/set',
+                'data-structure/dict-hashtable',
+                'data-structure/tree',
+                'data-structure/avl',
+                'data-structure/graph',
+                'data-structure/graph-traverse',
+              ],
+            },
+            {
+              title: '👉 排序算法',
+              children: [
+                'sort/bubbleSort',
+                'sort/selectionSort',
+                'sort/insertSort',
+                'sort/mergeSort',
+                'sort/quickSort',
+                'sort/shellSort',
+                'sort/heapSort',
+              ],
+            },
+            {
+              title: '🧠 一些算法思想',
+              children: ['method/complexity', 'method/sliding-window', 'method/divide', 'method/shuffle'],
+            },
           ],
-        },
-        {
-          title: '一些算法思想',
-          children: ['method/complexity', 'method/sliding-window', 'method/divide', 'method/shuffle'],
         },
       ],
 
