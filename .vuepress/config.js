@@ -99,6 +99,10 @@ module.exports = {
           ],
         },
         {
+          title: '模块化解决方案',
+          children: ['module/mf'],
+        },
+        {
           title: '打包工具',
           children: ['build/esbuild'],
         },
