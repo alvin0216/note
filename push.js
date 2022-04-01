@@ -1,12 +1,11 @@
 const exec = require('child_process').exec;
-const chalk = require('chalk');
 
 function execute(cmd) {
-  exec(cmd, function(error, stdout, stderr) {
+  exec(cmd, function (error, stdout, stderr) {
     if (error) {
       console.error(error);
     } else {
-      console.log(chalk.green('SUCCESS PUSH:'), `updated at ${dateFormatter()}`);
+      console.log(`SUCCESS PUSH: updated at ${dateFormatter()}`);
     }
   });
 }
@@ -35,10 +34,7 @@ function dateFormatter(fmt = 'YYYY-MM-DD hh:mm:ss') {
     for (let k in opt) {
       ret = new RegExp('(' + k + ')').exec(fmt);
       if (ret) {
-        fmt = fmt.replace(
-          ret[1],
-          ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, '0')
-        );
+        fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, '0'));
       }
     }
     return fmt;

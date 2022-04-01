@@ -82,7 +82,7 @@ module.exports = {
             'grayscale-release',
             {
               title: '🍞 包管理',
-              children: ['npm', 'lerna'],
+              children: ['packages/pnpm', 'packages/npm', 'packages/lerna'],
             },
             {
               title: '🔧 持续集成',
