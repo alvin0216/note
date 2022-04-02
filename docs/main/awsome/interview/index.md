@@ -9,6 +9,23 @@ keys:
   - 'c4ca4238a0b923820dcc509a6f75849b'
 ---
 
+[时隔一年半，我，一个卑微的前端菜鸡，又来写面经了](https://juejin.cn/post/7036581158670303240)
+
+## 阿里 lazada
+
+1. 高并发场景处理方案
+2. 动态加载 选择 umd 的原因是什么？（比对模块联邦 微前端）
+   1. 除了技术比较新，还有什么考虑点？接入成本那些、不适合当前业务
+3. 为什么写原生拖拽 （React dnd 说了不适合、原生可以支持跨框架）
+4. 讲一下你的 json schema 是如何设计的。
+5. 笔试题
+   1. 实现 promise.all ，reject 的时候返回 array
+   2. 写事件发布订阅
+6. 小程序的 h5 页面不支持小程序某些方法，比如静默授权等，你怎么解决的（没遇到过 实在不行通过微信开发者工具打开）
+7. 讲一下 react 源码你看过什么 、讲一下 hooks 的原理，尽量详细点
+8. 推送技术更新，你主要做了什么事情？为什么这么做，class 和 hooks 的区别是什么？你怎么思考 hooks 的封装。
+9. 为什么离职。下一份工作的期望是什么
+
 ## 字节飞书
 
 1. 闭包问题
@@ -104,7 +121,7 @@ keys:
 ## 乐信
 
 1. npm 发生错误之后 ，怎么去监控，怎么去推进，怎么去修复
-2. 怎么支持一个脚手架跑 vue2 vue3
+2. 怎么支持一个脚手架跑 vue2 vue3 （模块联邦、转译代码）
 3. 小程序有一个体验码 有什么方式支持多个分支
 4. pnpm 了解过吗，和 lerna 有什么区别。
 5. 使用 umi 你怎么去设计跨平台的一个能力
@@ -128,36 +145,3 @@ keys:
 - [最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)
 - 蛇形遍历二叉树
 - 合并 K 个排序链表
-
-<!--
-
-[HTTPS 是什么？加密原理和证书。SSL/TLS 握手过程](https://www.bilibili.com/video/BV1KY411x7Jp?spm_id_from=333.337.search-card.all.click)
-
-## ssl/tsl2
-
-![](https://user-images.githubusercontent.com/34113677/158003021-3b7b9c78-0dab-4644-bc99-bc9853e5eff5.png)
-
-- web `- client hellow ->` server
-  - 客户端：我生成一个随机数 A，还有我支持的加密套件有哪些给你知道，当前我用的是 tsl 1.2 版本
-- web `<- server hello -` server
-  - 服务端：我也生成一个随机数 B，我挑了一个加密套件 咱们使用这个套件进行加密
-- web `<- server key exchange -` server
-  - 服务端：我给你发个证书还有公钥，你可以用公钥加密
-- web `<- server hello done -` server
-  - 服务端：通知一下你 我完成啦
-- web `- client key exchange ->` server
-  - 客户端：检查了一下你的证书是有效的。我在生成了一个随机数 C，用你给我的公钥加密 发给你了
-- 服务端：我拿到了第三个随机数，我们使用同样的加密方式生成我们的会话密钥。以后咱们使用这个密钥进行通信吧
-- 客户端：好的，会话密钥只应用于当前会话，咱们传输很安全了。
-
-## cdn
-
-代理源服务器的相关内容，通过用户请求 ip 去附近的站点拿资源，除此之外还可以做到内容压缩、内容加速、负载均衡等。
-
-[前端必需了解的 CDN 知识](https://juejin.cn/post/6913704568325046279)
-
-## dns 解析
-
-![图片链接](https://user-images.githubusercontent.com/34113677/158003001-9bbe6511-89bf-4e82-901f-fc267cdded51.png)
-
- -->

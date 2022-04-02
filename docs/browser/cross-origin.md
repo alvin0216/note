@@ -9,25 +9,21 @@ categories:
   - 浏览器
 ---
 
-## 什么是跨域
+> 跨域：浏览器的安全策略，**协议、ip、端口**有一个不同就会产生跨域问题.
 
-回顾一下 URI 的组成:
+常见解决方案：
 
-![](https://alvin-cdn.oss-cn-shenzhen.aliyuncs.com/images/uri.png)
-
-浏览器遵循同源政策(`scheme(协议)`、`host(主机)`和 `port(端口)`都相同则为同源)。非同源站点有这样一些限制:
-
-- 不能读取和修改对方的 DOM
-- 不读访问对方的 Cookie、IndexDB 和 LocalStorage
-- 限制 XMLHttpRequest 请求。
-
-接下来我们来说一说解决跨域问题的几种方案。
+1. jsonp
+2. cors
+3. iframe + postMessage
+4. nginx 转发
+5. websocket...
 
 ## jsonp
 
 HTML 标签里，一些标签比如 script、img 这样的获取资源的标签是没有跨域限制的
 
-jsonp 跨域其实也是 JavaScript 设计模式中的一种代理模式。方式为 **动态的创建 script 标签，再去请求一个带参网址来实现跨域通信**
+jsonp： **动态的创建 script 标签，再去请求一个带参网址来实现跨域通信**
 
 :::: tabs
 
@@ -74,9 +70,15 @@ http
 
 虽然这种方式**兼容性好**，但是一个最大的缺陷是，**只能够实现 get 请求**
 
-## cros
+## cors
 
-CORS 其实是 W3C 的一个标准，全称是**跨域资源共享**。它需要浏览器和服务器的共同支持，具体来说，非 IE 和 IE10 以上支持 CORS，服务器需要附加特定的响应头，后面具体拆解。不过在弄清楚 CORS 的原理之前，我们需要清楚两个概念:**简单请求**和**非简单请求**。
+**兼容性：非 IE 和 IE10 以上支持**
+
+通过后端在响应头加 `Access-Control-Allow-Origin`, 以及请求头 `orgin` 字段进行对比，符合规格则允许跨域。
+
+我们需要清楚两个概念:**简单请求**和**非简单请求**。
+
+简单请求不需要进行**预检 options 请求操作**，非简单请求需要。
 
 浏览器根据请求方法和请求头的特定字段，将请求做了一下分类，具体来说规则是这样，凡是满足下面条件的属于简单请求:
 
@@ -89,16 +91,11 @@ CORS 其实是 W3C 的一个标准，全称是**跨域资源共享**。它需要
 
 :::: tabs
 
-Access-Control-Allow-Origin
+::: tab Access-Control-Allow-Origin
 
 对于简单请求，浏览器直接发出 CORS 请求。具体来说，就是在头信息之中，增加一个 `Origin` 字段，用来说明请求来自哪个**源**。服务器拿到请求之后，在回应时对应地添加 `Access-Control-Allow-Origin` 字段，如果 Origin 不在这个字段的范围中，那么浏览器就会将响应拦截。
 
 因此，`Access-Control-Allow-Origin`字段是服务器用来决定浏览器是否拦截这个响应，这是必需的字段。与此同时，其它一些可选的功能性的字段，用来描述如果不会拦截，这些字段将会发挥各自的作用。
-
-比如 `Access-Control-Allow-Credentials` 表示是否允许发送 `cookie`
-:::
-
-::: tab 代码
 
 ```js {5}
 const http = require('http');
@@ -210,20 +207,9 @@ http
 
 ::::
 
-## nginx
+### 为什么要对非简单跨域请求做预检？
 
-转发代理，解决跨域问题。
+1. 减少非简单跨域请求对服务器的影响（开始时就提到，服务器有时候不想理睬跨域请求），比如 PUT、DELETE 请求可以直接新建或者修改、删除服务器中的资源。预检请求可以防止该情况发生。
+2. 减少服务器对于是否跨域的计算量
 
-```yml
-server {
-  #...
-
-  location /api {
-    proxy_pass http://127.0.0.1:6060;
-  }
-}
-```
-
-## iframe + postMessage
-
-请看 [iframe 和 postMessage](../../html/iframe)
+对于非简单请求的跨域请求，服务器对于是否跨域的计算是在预检请求上，如果预检请求通过之后，正式请求都不用再次计算。而且一次预检请求通过后，之后的每次请求都只会发正式请求。节约了很多服务端的计算量。

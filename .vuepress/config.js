@@ -80,6 +80,7 @@ module.exports = {
           children: [
             'talk',
             'grayscale-release',
+            'high-concurrency',
             {
               title: '🍞 包管理',
               children: ['packages/pnpm', 'packages/npm', 'packages/lerna'],
@@ -202,13 +203,11 @@ module.exports = {
             'http/desc',
             'http/cookie',
             'http/blocking',
-            'http/cache',
-            'http/cross-origin',
           ],
         },
         {
           title: 'HTTPS',
-          children: ['https/overview', 'https/ca', 'https/tsl1.2', 'https/tsl1.3'],
+          children: ['https/https', 'https/tsl', 'https/ca'],
         },
         {
           title: 'HTTP2',
