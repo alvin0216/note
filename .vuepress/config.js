@@ -114,7 +114,21 @@ module.exports = {
       ],
 
       // TODO browser
-      '/docs/browser/': ['cache', 'cross-origin', 'xss', 'csrf', 'cookie', 'render'],
+      '/docs/browser/': [
+        {
+          title: 'Browser',
+          children: [
+            'cookie',
+            'cache',
+            'render',
+            'safe',
+            {
+              title: '🔐 浏览器安全',
+              children: ['cross-origin', 'xss', 'csrf'],
+            },
+          ],
+        },
+      ],
 
       // TODO algorithm
       '/docs/algorithm/': [
