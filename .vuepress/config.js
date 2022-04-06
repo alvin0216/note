@@ -100,6 +100,10 @@ module.exports = {
           ],
         },
         {
+          title: '性能优化',
+          children: ['performance/what-is-perf'],
+        },
+        {
           title: '模块化解决方案',
           children: ['module/mf'],
         },
@@ -201,31 +205,36 @@ module.exports = {
       '/docs/protocol/': [
         {
           title: '计算机基础',
-          children: ['', 'network-model', 'dns', 'cdn'],
-        },
-        {
-          title: 'TCP',
-          children: ['tcp/structure', 'tcp/tcp-udp', 'tcp/handshake', 'tcp/wave', 'tcp/sync-attack'],
-        },
-        {
-          title: 'HTTP',
           children: [
-            'http/structure',
-            'http/request-method',
-            'http/status-code',
-            'http/request-header',
-            'http/desc',
-            'http/cookie',
-            'http/blocking',
+            '',
+            'network-model',
+            'dns',
+            'cdn',
+            {
+              title: '💭 TCP',
+              children: ['tcp/structure', 'tcp/tcp-udp', 'tcp/handshake', 'tcp/wave', 'tcp/sync-attack'],
+            },
+            {
+              title: '🏷️ HTTP',
+              children: [
+                'http/structure',
+                'http/request-method',
+                'http/status-code',
+                'http/request-header',
+                'http/desc',
+                'http/cookie',
+                'http/blocking',
+              ],
+            },
+            {
+              title: '🤓️ HTTPS',
+              children: ['https/https', 'https/tsl', 'https/ca'],
+            },
+            {
+              title: '🐈 HTTP2',
+              children: ['http2/http2-vs-http', 'http2/frame', 'http2/http3', 'http2/push'],
+            },
           ],
-        },
-        {
-          title: 'HTTPS',
-          children: ['https/https', 'https/tsl', 'https/ca'],
-        },
-        {
-          title: 'HTTP2',
-          children: ['http2/http2-vs-http', 'http2/frame', 'http2/http3', 'http2/push'],
         },
       ],
 
