@@ -26,6 +26,18 @@ keys:
 7. 讲一下 react 源码你看过什么 、讲一下 hooks 的原理，尽量详细点
 8. 推送技术更新，你主要做了什么事情？为什么这么做，class 和 hooks 的区别是什么？你怎么思考 hooks 的封装。
 9. 为什么离职。下一份工作的期望是什么
+10. mysql leftjoin & innerjoin 区别，密码你怎么存入数据库的
+11. 讲一下 oAuth2 原理
+12. 浏览器的 js 执行和 node 执行有什么区别
+13. cookie 放 token 安全吗 token 怎么防伪造
+14. session 和 token 的区别是什么
+15. 怎么让 token 失效
+16. react 原理（讲虚拟 dom），requestIdleCallback
+17. react 事件系统 你讲一下
+18. 讲一下排序算法，归并算法，算法复杂度等等，听过桶排序吗
+19. 排序离散的数据 比如学生成绩 你用什么排序算法
+20. react 怎么触发冒泡事件
+21.
 
 ## 字节飞书
 
