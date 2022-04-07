@@ -24,3 +24,17 @@ categories:
 - chrome 工具 `performance` `network` `lighthouse`
 - 更专业的网站 [https://www.webpagetest.org](https://www.webpagetest.org/)
 - 其他工具...
+
+## FCP
+
+First Contentful Paint 首次内容绘制 (FCP)
+
+- [优化方案](https://web.dev/i18n/zh/fcp/)
+
+## TTFB
+
+- [到第一个字节的时间](https://web.dev/ttfb/)
+
+## LCP
+
+[Largest Contentful Paint 最大内容绘制 (LCP) ](https://web.dev/i18n/zh/lcp/)
