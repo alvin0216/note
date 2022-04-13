@@ -9,6 +9,7 @@ categories:
   - 浏览器
 ---
 
+- [看完这篇 Session、Cookie、Token，和面试官扯皮就没问题了](https://juejin.cn/post/6844904115080790023)
 - [概念区分，什么是跨站，什么是跨域](https://cloud.tencent.com/developer/article/1751237)
 - [当 CORS 遇到 SameSite](https://juejin.cn/post/6844904095271288840)
 - [阮一峰：Cookie 的 SameSite 属性](https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)

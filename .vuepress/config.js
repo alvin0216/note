@@ -55,7 +55,7 @@ module.exports = {
               children: ['awsome/lowcode/', 'awsome/lowcode/problem'],
             },
             { title: '😍 Typescript', children: ['awsome/typescript/', 'awsome/typescript/react'] },
-            { title: '🙃️ 面试系列', children: ['awsome/interview/'] },
+            { title: '🙃️ 面试系列', children: ['awsome/interview/', 'awsome/interview/hr'] },
           ],
         },
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
@@ -123,6 +123,7 @@ module.exports = {
           title: 'Browser',
           children: [
             'cookie',
+            'token',
             'cache',
             'render',
             'safe',
