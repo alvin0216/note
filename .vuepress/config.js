@@ -126,6 +126,7 @@ module.exports = {
             'token',
             'cache',
             'render',
+            'paint',
             'safe',
             {
               title: '🔐 浏览器安全',
