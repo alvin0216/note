@@ -4,7 +4,13 @@ date: 2021-07-22 09:23:33
 sidebar: auto
 ---
 
-- [面试指南](https://m26bxrpatp.feishu.cn/base/appcn5mUun8tTLsaFG0jrTeUnBg?table=tbllAUETZhGVTWMA&view=vewJHSwJVd)
+## 收藏夹
+
+- [面试真题，会 80% 直接进大厂](https://m26bxrpatp.feishu.cn/base/appcn5mUun8tTLsaFG0jrTeUnBg?table=tbllAUETZhGVTWMA&view=vewJHSwJVd)
+- [我的前端性能优化知识体系](https://juejin.cn/post/7063754993072865287)
+- [得物 AppH5 秒开优化实战](https://mp.weixin.qq.com/s/c66wNbyIJ1GXbLz4Te4qDg)
+- [探索 webpack5 新特性 Module federation 在腾讯文档的应用](http://www.alloyteam.com/2020/04/14338/#prettyPhoto)
+- [Webapck5 核心打包原理全流程解析](https://juejin.cn/post/7031546400034947108)
 
 ## 实现过的一些 demo
 
