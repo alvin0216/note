@@ -1,5 +1,41 @@
-// https://leetcode-cn.com/problems/permutations-ii/
+---
+title: 全排列II
+date: 2022-03-31 20:46:00
+sidebar: auto
+tags:
+  - 回溯算法
+categories:
+  - leetcode
+---
 
+[力扣题目链接](https://leetcode-cn.com/problems/permutations-ii/)
+
+给定一个可包含重复数字的序列 nums ，按任意顺序 返回所有不重复的全排列。
+
+```js
+示例 1：
+
+- 输入：nums = [1,1,2]
+- 输出：[[1,1,2],[1,2,1],[2,1,1]]
+
+示例 2：
+
+- 输入：nums = [1,2,3]
+- 输出：[[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
+```
+
+提示：
+
+- 1 <= nums.length <= 8
+- -10 <= nums[i] <= 10
+
+## 思路
+
+[代码随想录](https://programmercarl.com/0047.%E5%85%A8%E6%8E%92%E5%88%97II.html#_47-%E5%85%A8%E6%8E%92%E5%88%97-ii)
+
+## 代码
+
+```js
 /**
  * @param {number[]} nums
  * @return {number[][]}
@@ -41,5 +77,4 @@ var permuteUnique = function (nums) {
 
   return result;
 };
-
-console.log(permuteUnique([1, 2, 1]));
+```

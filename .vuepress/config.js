@@ -140,29 +140,60 @@ module.exports = {
       // TODO algorithm
       '/docs/algorithm/': [
         {
-          title: 'Leetcode',
+          title: '字符串',
+          children: ['字符串/最长不含重复字符的子字符串', '字符串/反转字符串II'],
+        },
+        {
+          title: '链表',
+          children: ['链表/移除链表元素', '链表/删除链表的倒数第n个结点', '链表/反转链表'],
+        },
+        {
+          title: '哈希',
+          children: ['哈希/两数之和'],
+        },
+        {
+          title: '双指针',
+          children: ['双指针/三数之和'],
+        },
+        {
+          title: '回溯算法',
           children: [
-            '',
-            {
-              title: '🤔 mark',
-              children: [
-                'leetcode/16.数值的整数次方',
-                'leetcode/33. 二叉搜索树的后序遍历序列',
-                'leetcode/38. 字符串的排列',
-                'leetcode/49. 丑数',
-              ],
-            },
-            {
-              title: '🔥 hot ',
-              children: [
-                'leetcode/25. K 个一组翻转链表',
-                'leetcode/31. 最近最少使用缓存',
-                'leetcode/42. 连续子数组的最大和',
-                'leetcode/48. 最长不含重复字符的子字符串',
-              ],
-            },
+            '回溯/总结',
+            '回溯/全排列',
+            '回溯/全排列II',
+            '回溯/字符串的排列',
+            '回溯/字母大小写全排列',
+            '回溯/分割回文串',
+            '回溯/子集',
+            '回溯/子集II',
+            '回溯/组合总和',
+            '回溯/N皇后',
           ],
         },
+        // {
+        //   title: 'Leetcode',
+        //   children: [
+        //     '',
+        //     {
+        //       title: '🤔 mark',
+        //       children: [
+        //         'leetcode/16.数值的整数次方',
+        //         'leetcode/33. 二叉搜索树的后序遍历序列',
+        //         'leetcode/38. 字符串的排列',
+        //         'leetcode/49. 丑数',
+        //       ],
+        //     },
+        //     {
+        //       title: '🔥 hot ',
+        //       children: [
+        //         'leetcode/25. K 个一组翻转链表',
+        //         'leetcode/31. 最近最少使用缓存',
+        //         'leetcode/42. 连续子数组的最大和',
+        //         'leetcode/48. 最长不含重复字符的子字符串',
+        //       ],
+        //     },
+        //   ],
+        // },
         {
           title: '算法基础',
           children: [

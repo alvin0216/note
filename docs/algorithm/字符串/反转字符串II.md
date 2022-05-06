@@ -1,10 +1,14 @@
-/*
- * @lc app=leetcode.cn id=541 lang=javascript
- *
- * [541] 反转字符串 II
- */
+---
+title: 反转字符串II
+date: 2022-03-31 20:46:00
+sidebar: auto
+tags:
+  - 字符串
+categories:
+  - leetcode
+---
 
-// @lc code=start
+```js
 /**
  * @param {string} s
  * @param {number} k
@@ -22,7 +26,4 @@ var reverseStr = function (s, k) {
 
   return arr.join('');
 };
-
-console.log(reverseStr('abcdefg', 2));
-
-// @lc code=end
+```
