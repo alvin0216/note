@@ -1,5 +1,4 @@
 /*
- * @lc app=leetcode.cn id=784 lang=javascript
  *
  * [784] 字母大小写全排列
  * https://leetcode-cn.com/problems/letter-case-permutation/
@@ -9,7 +8,6 @@
  *
  */
 
-// @lc code=start
 /**
  * @param {string} s
  * @return {string[]}
@@ -33,6 +31,31 @@ var letterCasePermutation = function (s) {
   return result;
 };
 
-// @lc code=end
+// 使用回溯
+var letterCasePermutation = function (s) {
+  let result = [];
+
+  function backtrack(s, idx) {
+    result.push(s);
+    for (let i = idx; i < s.length; i++) {
+      // 数字 跳过
+      if (/\d/.test(s[i])) continue;
+      // 字母, 反转字母大小写
+      s = s.slice(0, i) + reverseStr(s[i]) + s.slice(i + 1);
+
+      backtrack(s, i + 1);
+
+      // 回溯, 将字母大小写反转回来
+      s = s.slice(0, i) + reverseStr(s[i]) + s.slice(i + 1);
+    }
+  }
+
+  function reverseStr(s) {
+    return /[a-z]/.test(s) ? s.toUpperCase() : s.toLowerCase();
+  }
+
+  backtrack(s, 0);
+  return result;
+};
 
 console.log(letterCasePermutation('a1b2'));
