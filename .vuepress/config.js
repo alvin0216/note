@@ -43,6 +43,7 @@ module.exports = {
             'problem/lerna',
             'problem/gzip',
             'problem/iframe-fullScreen',
+            'problem/remote',
           ],
         },
         {
@@ -144,7 +145,12 @@ module.exports = {
             '',
             {
               title: '🤔 mark',
-              children: ['leetcode/16.数值的整数次方', 'leetcode/33. 二叉搜索树的后序遍历序列', 'leetcode/49. 丑数'],
+              children: [
+                'leetcode/16.数值的整数次方',
+                'leetcode/33. 二叉搜索树的后序遍历序列',
+                'leetcode/38. 字符串的排列',
+                'leetcode/49. 丑数',
+              ],
             },
             {
               title: '🔥 hot ',
