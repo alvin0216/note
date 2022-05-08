@@ -159,7 +159,7 @@ module.exports = {
         },
         {
           title: '双指针',
-          children: ['双指针/三数之和'],
+          children: ['双指针/三数之和', '双指针/接雨水'],
         },
         {
           title: '二叉树',
