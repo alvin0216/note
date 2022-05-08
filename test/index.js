@@ -1,29 +1,23 @@
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+  let len = nums.length;
 
-let root = new TreeNode(3, new TreeNode(1, null, new TreeNode(2, null, null)), new TreeNode(4, null, null));
+  if (len === 0) return 0;
+  if (len === 1) return nums[0];
 
-function dfs(root) {
-  const stack = [];
-  let nums = [];
-  let current = root;
-
-  while (current || stack.length > 0) {
-    while (current) {
-      stack.push(current);
-      current = current.left;
+  function fn(nums) {
+    let _len = nums.length;
+    let dp = [nums[0], Math.max(nums[0], nums[1])];
+    for (let i = 2; i < _len; i++) {
+      dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
     }
-
-    current = stack.pop();
-    nums.push(current.val);
-
-    current = current.right;
+    return dp[_len - 1];
   }
 
-  console.log(nums); // [ 1, 2, 3, 4 ]
-}
+  return Math.max(fn(nums.slice(0, len - 1)), fn(nums.slice(1)));
+};
 
-dfs(root);
+console.log(rob([1, 2, 3, 1]));
