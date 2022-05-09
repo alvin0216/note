@@ -1,23 +1,17 @@
 /**
- * @param {number[]} nums
+ * @param {number[]} cost
  * @return {number}
  */
-var rob = function (nums) {
-  let len = nums.length;
-
-  if (len === 0) return 0;
-  if (len === 1) return nums[0];
-
-  function fn(nums) {
-    let _len = nums.length;
-    let dp = [nums[0], Math.max(nums[0], nums[1])];
-    for (let i = 2; i < _len; i++) {
-      dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
-    }
-    return dp[_len - 1];
+var minCostClimbingStairs = function (cost) {
+  // dp[i] = Math.min()
+  let len = cost.length;
+  let dp = [cost[0], cost[1]];
+  for (let i = 2; i < cost.length; i++) {
+    dp[i] = Math.min(dp[i - 1], dp[i - 2]) + cost[i];
   }
 
-  return Math.max(fn(nums.slice(0, len - 1)), fn(nums.slice(1)));
+  //已经在楼顶了，在前两步中找花费最少的
+  return Math.min(dp[len - 1], dp[len - 2]);
 };
 
-console.log(rob([1, 2, 3, 1]));
+minCostClimbingStairs([1, 2, 3, 4, 5]);

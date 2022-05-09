@@ -55,7 +55,9 @@ actionLink: /views/other/guide
 
 ## 动态规划
 
-- [动态规划题目集合](./docs/algorithm/动态规划/动态规划题目集合.md)
+- [斐波那契数](./docs/algorithm/动态规划/动态规划题目集合.md#斐波那契数)
+- [爬楼梯](./docs/algorithm/动态规划/动态规划题目集合.md#爬楼梯)
+- [使用最小花费爬楼梯](./docs/algorithm/动态规划/动态规划题目集合.md#使用最小花费爬楼梯)
 - [打家劫舍系列](./docs/algorithm/动态规划/打家劫舍系列.md)
 - [买卖股票的最佳时机](./docs/algorithm/动态规划/买卖股票的最佳时机.md)
 
