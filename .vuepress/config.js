@@ -144,6 +144,10 @@ module.exports = {
           children: ['字符串/最长不含重复字符的子字符串', '字符串/反转字符串II'],
         },
         {
+          title: '数组',
+          children: ['数组/两数之和'],
+        },
+        {
           title: '链表',
           children: [
             '链表/移除链表元素',
@@ -152,10 +156,6 @@ module.exports = {
             '链表/环形链表II',
             '链表/k个一组翻转链表',
           ],
-        },
-        {
-          title: '哈希',
-          children: ['哈希/两数之和'],
         },
         {
           title: '双指针',

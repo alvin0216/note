@@ -1,47 +1,94 @@
 /**
- * @param {number[][]} obstacleGrid
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
  * @return {number}
  */
-var uniquePathsWithObstacles = function (obstacleGrid) {
-  let m = obstacleGrid.length;
-  let n = obstacleGrid[0].length;
-  let dp = new Array(m).fill().map(() => new Array(n).fill(0));
+var rob = function (root) {
+  if (!root) return 0;
 
-  for (let i = 0; i < m && obstacleGrid[i][0] === 0; i++) {
-    dp[i][0] = 1;
-  }
+  let nums = [];
+  let queue = [root];
 
-  for (let i = 0; i < n && obstacleGrid[0][i] === 0; i++) {
-    dp[0][i] = 1;
-  }
-  // i = 0 || j = 0 default 1
+  while (queue.length) {
+    let len = queue.length;
 
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      if (obstacleGrid[i][j] == 1) continue;
-      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+    let sum = 0;
+    for (let i = 0; i < len; i++) {
+      let node = queue.shift();
+      sum += node.val;
+      node.left && queue.push(node.left);
+      node.right && queue.push(node.right);
     }
+    nums.push(sum);
   }
 
-  return dp[m - 1][n - 1];
+  console.log(111, nums);
+  return;
+  // 打家劫舍
+  function robRoom(nums) {
+    let len = nums.length;
+    let dp = [nums[0], Math.max(nums[0], nums[1])];
+    for (let i = 2; i < len; i++) {
+      dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+    }
+    return dp[len - 1];
+  }
+
+  return robRoom(nums);
 };
 
-var uniquePaths = function (m, n) {
-  let dp = new Array(m).fill().map(() => new Array(n).fill(0));
-  for (let i = 0; i < m; i++) {
-    dp[i][0] = 1;
+class Node {
+  // 定义节点
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
   }
+}
 
-  for (let i = 0; i < n; i++) {
-    dp[0][i] = 1;
+const createTree = (arr) => {
+  // 创建二叉树
+  let tree = new Node(arr[0]);
+  let Nodes = [tree];
+  let i = 1;
+  for (let node of Nodes) {
+    Nodes.push((node.left = new Node(arr[i])));
+    i += 1;
+    if (i == arr.length) return tree;
+    Nodes.push((node.right = new Node(arr[i])));
+    i += 1;
+    if (i == arr.length) return tree;
   }
-  // i = 0 || j = 0 default 1
-
-  for (let i = 1; i < m; i++) {
-    for (let j = 1; j < n; j++) {
-      dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
-    }
-  }
-
-  return dp[m - 1][n - 1];
 };
+
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrder = function (root) {
+  if (!root) return [];
+  let result = [];
+  let queue = [root];
+
+  while (queue.length) {
+    let len = queue.length;
+    let temp = [];
+    for (let i = 0; i < len; i++) {
+      let node = queue.shift();
+      temp.push(node.val);
+      node.left && queue.push(node.left);
+      node.right && queue.push(node.right);
+    }
+    result.push(temp);
+  }
+  return result;
+};
+
+console.log(rob(createTree([2, 1, 3, null, 4])));

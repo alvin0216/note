@@ -30,6 +30,10 @@ actionLink: /views/other/guide
 - [最长不含重复字符的子字符串](./docs/algorithm/字符串/最长不含重复字符的子字符串.md)
 - [反转字符串 II](./docs/algorithm/字符串/反转字符串II.md)
 
+## 数组
+
+- [两数之和](./docs/algorithm/数组/两数之和.md)
+
 ## 链表
 
 - [移除链表元素](./docs/algorithm/链表/移除链表元素.md)
@@ -37,10 +41,6 @@ actionLink: /views/other/guide
 - [反转链表](./docs/algorithm/链表/反转链表.md)
 - [环形链表 II](./docs/algorithm/链表/环形链表II.md)
 - [k 个一组翻转链表](./docs/algorithm/链表/k个一组翻转链表.md)
-
-## 哈希
-
-- [两数之和](./docs/algorithm/哈希/两数之和.md)
 
 ## 双指针
 
@@ -60,8 +60,11 @@ actionLink: /views/other/guide
 - [使用最小花费爬楼梯](./docs/algorithm/动态规划/爬楼梯.md#使用最小花费爬楼梯)
 - [不同路径](./docs/algorithm/动态规划/不同路径.md)
 - [不同路径 II](./docs/algorithm/动态规划/不同路径.md#不同路径-ii)
-- [打家劫舍系列](./docs/algorithm/动态规划/打家劫舍系列.md)
+- [打家劫舍 I](./docs/algorithm/动态规划/打家劫舍系列.md)
+- [打家劫舍 II](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-ii)
+- [打家劫舍 III](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-iii)
 - [买卖股票的最佳时机](./docs/algorithm/动态规划/买卖股票的最佳时机.md)
+- [买卖股票的最佳时机 II](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-ii)
 
 ## 回溯算法
 
