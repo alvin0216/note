@@ -192,6 +192,10 @@ module.exports = {
           ],
         },
         {
+          title: '深度遍历',
+          children: ['深度遍历/岛屿数量'],
+        },
+        {
           title: '算法基础',
           children: [
             'binarySearch',
