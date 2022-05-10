@@ -35,4 +35,15 @@ module.exports = [
     avatar: 'https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png',
     link: 'https://vuepress-theme-reco.recoluan.com',
   },
+  {
+    title: '代码随想录',
+    desc: '算法',
+    avatar: 'https://img-blog.csdnimg.cn/20210614201246512.png',
+    link: 'https://programmercarl.com/',
+  },
+  {
+    title: '图解React原理系列',
+    desc: 'React 原理',
+    link: 'https://7kms.github.io/react-illustration-series/',
+  },
 ];

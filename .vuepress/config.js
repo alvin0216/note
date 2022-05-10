@@ -173,6 +173,7 @@ module.exports = {
             '动态规划/不同路径',
             '动态规划/打家劫舍系列',
             '动态规划/买卖股票的最佳时机',
+            '动态规划/最长重复子数组',
           ],
         },
         {
@@ -281,6 +282,7 @@ module.exports = {
             'setTimeout',
             'requestAnimationFrame',
             'data-types',
+            'eval',
           ],
         },
         {
