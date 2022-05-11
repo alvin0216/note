@@ -29,6 +29,7 @@ actionLink: /views/other/guide
 
 - [最长不含重复字符的子字符串](./docs/algorithm/字符串/最长不含重复字符的子字符串.md)
 - [反转字符串 II](./docs/algorithm/字符串/反转字符串II.md)
+- [字符串的排列](./docs/algorithm/字符串/字符串的排列.md)
 
 ## 数组
 
@@ -49,9 +50,18 @@ actionLink: /views/other/guide
 
 ## 二叉树
 
-- [遍历方式](./docs/algorithm/二叉树/遍历方式.md)
-- [二叉树的层序遍历](./docs/algorithm/二叉树/二叉树的层序遍历.md)
-- [二叉树题目集合](./docs/algorithm/二叉树/二叉树题目集合.md)
+- 遍历方式
+  - [144. 二叉树的前序遍历](./docs/algorithm/二叉树/二叉树的遍历方式.md#二叉树的前序遍历)
+  - [145. 二叉树的后序遍历](./docs/algorithm/二叉树/二叉树的遍历方式.md#二叉树的后序遍历)
+  - [94. 二叉树的中序遍历](./docs/algorithm/二叉树/二叉树的遍历方式.md#二叉树的中序遍历)
+  - [102. 二叉树的层序遍历](./docs/algorithm/二叉树/二叉树的遍历方式.md#二叉树的层序遍历)
+- 二叉树的属性
+  - [101. 对称二叉树](./docs/algorithm/二叉树/二叉树的属性.md#对称二叉树)
+  - [104. 二叉树的最大深度](./docs/algorithm/二叉树/二叉树的属性.md#二叉树的最大深度)
+  - [111. 二叉树的最小深度](./docs/algorithm/二叉树/二叉树的属性.md#二叉树的最小深度)
+  - [110. 平衡二叉树](./docs/algorithm/二叉树/二叉树的属性.md#平衡二叉树)
+- 二叉树的修改与构造
+  - [226. 翻转二叉树](./docs/algorithm/二叉树/翻转二叉树.md#翻转二叉树)
 
 ## 动态规划
 
@@ -107,6 +117,6 @@ actionLink: /views/other/guide
 
 ## DFS 遍历
 
-- 岛屿数量
+- [岛屿数量](./docs/algorithm/深度遍历/岛屿数量.md)
 - 岛屿的周长
 - 岛屿的最大面积

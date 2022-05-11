@@ -1,20 +1,29 @@
 const fs = require('fs');
 const { resolve } = require('path');
 
-fs.writeFileSync(
-  resolve(__dirname, 'demo.md'),
-  `---
-title: demo
+// fs.writeFileSync(
+//   resolve(__dirname, 'demo.md'),
+//   `---
+// title: demo
+// date: ${dateFormatter()}
+// sidebar: auto
+// tags:
+//   - 性能优化
+// categories:
+//   - 前端工程化
+// ---
+// `,
+//   'utf-8'
+// );
+console.log(`---
+title: 二叉树
 date: ${dateFormatter()}
 sidebar: auto
 tags:
-  - 性能优化
+  - 二叉树
 categories:
-  - 前端工程化
----
-`,
-  'utf-8'
-);
+  - leetcode
+---`);
 
 function dateFormatter(fmt = 'YYYY-MM-DD hh:mm:ss') {
   try {
