@@ -61,26 +61,28 @@ actionLink: /views/other/guide
   - [111. 二叉树的最小深度](./docs/algorithm/二叉树/二叉树的属性.md#二叉树的最小深度)
   - [110. 平衡二叉树](./docs/algorithm/二叉树/二叉树的属性.md#平衡二叉树)
 - 二叉树的修改与构造
-  - [226. 翻转二叉树](./docs/algorithm/二叉树/翻转二叉树.md#翻转二叉树)
+  - [226. 翻转二叉树](./docs/algorithm/二叉树/二叉树的修改与构造.md#翻转二叉树)
+  - [106. 从中序与后序遍历序列构造二叉树](./docs/algorithm/二叉树/二叉树的修改与构造.md#从中序与后序遍历序列构造二叉树)
+  - [【剑指】 07. 重建二叉树](./docs/algorithm/二叉树/二叉树的修改与构造.md#重建二叉树)
 
 ## 动态规划
 
 - [动态规划理论基础](./docs/algorithm/动态规划/动态规划理论基础.md)
 - 基础入门
-  - [爬楼梯](./docs/algorithm/动态规划/爬楼梯.md#爬楼梯)
-  - [使用最小花费爬楼梯](./docs/algorithm/动态规划/爬楼梯.md#使用最小花费爬楼梯)
-  - [不同路径](./docs/algorithm/动态规划/不同路径.md)
-  - [不同路径 II](./docs/algorithm/动态规划/不同路径.md#不同路径-ii)
+  - [70. 爬楼梯](./docs/algorithm/动态规划/爬楼梯.md#爬楼梯)
+  - [746. 使用最小花费爬楼梯](./docs/algorithm/动态规划/爬楼梯.md#使用最小花费爬楼梯)
+  - [62. 不同路径](./docs/algorithm/动态规划/不同路径.md)
+  - [63. 不同路径 II](./docs/algorithm/动态规划/不同路径.md#不同路径-ii)
 - 打家劫舍
-  - [打家劫舍 I](./docs/algorithm/动态规划/打家劫舍系列.md)
-  - [打家劫舍 II](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-ii)
-  - [打家劫舍 III](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-iii)
+  - [198. 打家劫舍 I](./docs/algorithm/动态规划/打家劫舍系列.md)
+  - [213. 打家劫舍 II](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-ii)
+  - [337. 打家劫舍 III](./docs/algorithm/动态规划/打家劫舍系列.md#打家劫舍-iii)
 - 买卖股票的最佳时机
-  - [买卖股票的最佳时机](./docs/algorithm/动态规划/买卖股票的最佳时机.md)
-  - [买卖股票的最佳时机 II](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-ii)
-  - [买卖股票的最佳时机 III](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-iii)
+  - [121. 买卖股票的最佳时机](./docs/algorithm/动态规划/买卖股票的最佳时机.md)
+  - [122. 买卖股票的最佳时机 II](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-ii)
+  - [123. 买卖股票的最佳时机 III](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-iii)
+- 背包问题
 - 子序列问题
-
   - 不连续
     - 最长上升子序列
     - 最长公共子序列
@@ -98,19 +100,17 @@ actionLink: /views/other/guide
     - 回文子串
     - 最长回文序列
 
-- 背包问题
-
 ## 回溯算法
 
 - [总结](./docs/algorithm/回溯/总结.md)
 - 排列
-  - [全排列](./docs/algorithm/回溯/全排列.md)
-  - [全排列 II](./docs/algorithm/回溯/全排列II.md)
-  - [字符串的排列](./docs/algorithm/回溯/字符串的排列.md)
-  - [字母大小写全排列](./docs/algorithm/回溯/字母大小写全排列.md)
+  - [46. 全排列](./docs/algorithm/回溯/全排列.md)
+  - [47. 全排列 II](./docs/algorithm/回溯/全排列II.md)
+  - [784. 字母大小写全排列](./docs/algorithm/回溯/字母大小写全排列.md)
+  - [【剑指】38. 字符串的排列](./docs/algorithm/回溯/字符串的排列.md)
 - 子集
-  - [子集](./docs/algorithm/回溯/子集.md)
-  - [子集 II](./docs/algorithm/回溯/子集II.md)
+  - [78. 子集](./docs/algorithm/回溯/子集.md)
+  - [90. 子集 II](./docs/algorithm/回溯/子集II.md)
 - [组合总和](./docs/algorithm/回溯/组合总和.md)
 - [分割回文串](./docs/algorithm/回溯/分割回文串.md)
 - [N 皇后](./docs/algorithm/回溯/N皇后.md)
