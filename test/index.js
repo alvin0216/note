@@ -1,44 +1,48 @@
-function createTree(arr) {
-  class Node {
-    // 定义节点
-    constructor(val) {
-      this.val = val;
-      this.left = null;
-      this.right = null;
-    }
-  }
-  // 创建二叉树
-  let tree = new Node(arr[0]);
-  let Nodes = [tree];
-  let i = 1;
-  for (let node of Nodes) {
-    console.log(arr[i]);
-    Nodes.push((node.left = new Node(arr[i])));
-    i += 1;
-    if (i == arr.length) return tree;
-    Nodes.push((node.right = new Node(arr[i])));
-    i += 1;
-    if (i == arr.length) return tree;
-  }
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
 }
 
-var levelOrderBottom = function (root) {
-  if (!root) return [];
-  let result = [];
-  let queue = [root];
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @return {TreeNode}
+ */
+var buildTree = function (inorder, postorder) {
+  if (!inorder.length || !postorder.length) return null;
 
-  while (queue.length) {
-    let len = queue.length;
-    let temp = [];
-    for (let i = 0; i < len; i++) {
-      let node = queue.shift();
-      temp.push(node.val);
-      node.left && queue.push(node.left);
-      node.right && queue.push(node.right);
-    }
-    result.unshift(temp);
-  }
-  return result;
+  // inorder 左根右 postorder 左右根
+  // 推导根 postorder[postorder.length - 1]
+
+  const root = new TreeNode(postorder[postorder.length - 1]);
+
+  // 分割点
+  const index = inorder.findIndex((v) => root.val === v);
+
+  // 左子树的中序遍历
+  const leftInroder = inorder.slice(0, index);
+  // 左子树的后续遍历
+  const leftPostorder = postorder.slice(0, index);
+
+  // 右子树的中序遍历
+  const rightInroder = inorder.slice(index + 1, inorder.length);
+  // 右子树的后续遍历
+  const rightPostorder = postorder.slice(index, postorder.length - 1);
+
+  // console.log({ index, leftInroder, leftPostorder, rightInroder, rightPostorder });
+  root.left = buildTree(leftInroder, leftPostorder);
+  root.right = buildTree(rightInroder, rightPostorder);
+
+  return root;
 };
 
-console.log(levelOrderBottom(createTree([3, 9, 20, null, null, 15, 7])));
+console.log(buildTree([9, 3, 15, 20, 7], [9, 15, 7, 20, 3]));

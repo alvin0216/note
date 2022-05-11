@@ -8,6 +8,16 @@ categories:
   - Javascript
 ---
 
+## Array.slice
+
+```js
+参数对应前闭后开：[start, end)
+var a = [0, 1, 2, 3, 4];
+a.slice(); // 等同于 a.slice(0) [0, 1, 2, 3, 4]
+a.slice(1); // [1, 2, 3, 4]
+a.slice(1, 2); // [1]
+```
+
 ## eventloop
 
 ### Promise（catch & then）
