@@ -1,9 +1,3 @@
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
-
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -13,36 +7,32 @@ function TreeNode(val, left, right) {
  * }
  */
 /**
- * @param {number[]} inorder
- * @param {number[]} postorder
+ * @param {TreeNode} root
+ * @param {number} key
  * @return {TreeNode}
  */
-var buildTree = function (inorder, postorder) {
-  if (!inorder.length || !postorder.length) return null;
+var deleteNode = function (root, key) {
+  if (!root) return null;
+  if (key > root.val) root.right = deleteNode(root.right, key);
+  else if (key < root.val) root.left = deleteNode(root.left, key);
+  else {
+    // 删除的是当前节点
+    if (!root.left) return root.right;
+    else if (!root.right) return root.left;
+    else {
+      // 左右子树都存在的情况下
+      let newRoot = root.right;
 
-  // inorder 左根右 postorder 左右根
-  // 推导根 postorder[postorder.length - 1]
+      // 找到右子树下的最左子树，将原本的 root.left 指向这个节点
+      let cur = root.right;
+      while (cur.left) {
+        cur = cur.left;
+      }
+      cur.left = root.left;
 
-  const root = new TreeNode(postorder[postorder.length - 1]);
-
-  // 分割点
-  const index = inorder.findIndex((v) => root.val === v);
-
-  // 左子树的中序遍历
-  const leftInroder = inorder.slice(0, index);
-  // 左子树的后续遍历
-  const leftPostorder = postorder.slice(0, index);
-
-  // 右子树的中序遍历
-  const rightInroder = inorder.slice(index + 1, inorder.length);
-  // 右子树的后续遍历
-  const rightPostorder = postorder.slice(index, postorder.length - 1);
-
-  // console.log({ index, leftInroder, leftPostorder, rightInroder, rightPostorder });
-  root.left = buildTree(leftInroder, leftPostorder);
-  root.right = buildTree(rightInroder, rightPostorder);
+      return newRoot;
+    }
+  }
 
   return root;
 };
-
-console.log(buildTree([9, 3, 15, 20, 7], [9, 15, 7, 20, 3]));
