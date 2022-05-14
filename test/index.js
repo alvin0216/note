@@ -1,14 +1,16 @@
-var thousandSeparator = function (n) {
-  let s = n.toString();
-  let j = s.length;
-  let result = [];
-  while (j - 3 > 0) {
-    result.unshift(s.slice(j - 3, j));
-    j -= 3;
-  }
-  if (j > 0) result.unshift(s.slice(0, j));
+var maxSubArray = function (nums) {
+  // dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
 
-  return result.join('.');
+  let dp = [nums[0]];
+  let len = nums.length;
+
+  for (let i = 1; i < len; i++) {
+    dp[i] = Math.max(nums[i], dp[i - 1] + nums[i]);
+  }
+
+  console.log(dp);
+
+  return dp[len - 1];
 };
 
-thousandSeparator(1234);
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));
