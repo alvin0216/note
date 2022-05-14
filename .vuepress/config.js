@@ -150,7 +150,7 @@ module.exports = {
         },
         {
           title: '数组',
-          children: ['数组/两数之和'],
+          children: ['数组/两数之和', '数组/合并两个有序数组'],
         },
         {
           title: '链表',

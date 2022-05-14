@@ -35,6 +35,7 @@ actionLink: /views/other/guide
 ## 数组
 
 - [两数之和](./docs/algorithm/数组/两数之和.md)
+- [合并两个有序数组](./docs/algorithm/数组/合并两个有序数组.md)
 
 ## 链表
 
