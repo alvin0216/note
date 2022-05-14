@@ -27,7 +27,9 @@ actionLink: /views/other/guide
 
 ## 字符串
 
+- [1556. 千位分隔数](./docs/algorithm/字符串/千位分隔数.md)
 - [反转字符串 II](./docs/algorithm/字符串/反转字符串II.md)
+- [409. 最长回文串](./docs/algorithm/字符串/最长回文串.md)
 - [字符串的排列](./docs/algorithm/字符串/字符串的排列.md)
 - [🌟 最长不含重复字符的子字符串](./docs/algorithm/字符串/最长不含重复字符的子字符串.md)
 - [🌟 76. 最小覆盖子串](./docs/algorithm/字符串/最小覆盖子串.md)
@@ -48,7 +50,7 @@ actionLink: /views/other/guide
 ## 双指针
 
 - [三数之和](./docs/algorithm/双指针/三数之和.md)
-- [接雨水](./docs/algorithm/双指针/接雨水.md)
+- [🌟 42. 接雨水](./docs/algorithm/双指针/接雨水.md)
 
 ## 二叉树
 

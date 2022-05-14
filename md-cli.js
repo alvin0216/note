@@ -16,11 +16,11 @@ const { resolve } = require('path');
 //   'utf-8'
 // );
 console.log(`---
-title: 二叉树
+title: 字符串
 date: ${dateFormatter()}
 sidebar: auto
 tags:
-  - 二叉树
+  - 字符串
 categories:
   - leetcode
 ---`);
