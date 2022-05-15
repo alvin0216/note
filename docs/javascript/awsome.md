@@ -8,6 +8,33 @@ categories:
   - Javascript
 ---
 
+## 变量提升 & 函数声明
+
+```js
+fn(); // 2
+function fn() {
+  console.log(1);
+}
+
+fn(); // 2
+function fn() {
+  console.log(2);
+}
+```
+
+```js
+fn(); // 2
+var fn = function () {
+  console.log(1);
+};
+
+fn(); // 1
+
+function fn() {
+  console.log(2);
+}
+```
+
 ## Array.slice
 
 ```js
