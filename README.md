@@ -162,18 +162,18 @@ actionLink: /views/other/guide
 | ✅ 165. 比较版本号                            | 11       | https://leetcode-cn.com/problems/compare-version-numbers                                           |
 | 215. 数组中的第 K 个最大元素                  | 10       | https://leetcode-cn.com/problems/kth-largest-element-in-an-array                                   |
 | ✅ 209. 长度最小的子数组                      | 8        | https://leetcode-cn.com/problems/minimum-size-subarray-sum                                         |
-| 剑指 Offer 22. 链表中倒数第 k 个节点          | 8        | https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof                      |
+| ✅ 剑指 Offer 22. 链表中倒数第 k 个节点       | 8        | https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof                      |
 | 415. 字符串相加                               | 8        | https://leetcode-cn.com/problems/add-strings                                                       |
-| 46. 全排列                                    | 8        | https://leetcode-cn.com/problems/permutations                                                      |
+| ✅ 46. 全排列                                 | 8        | https://leetcode-cn.com/problems/permutations                                                      |
 | 206. 反转链表                                 | 7        | https://leetcode-cn.com/problems/reverse-linked-list                                               |
-| 102. 二叉树的层序遍历                         | 6        | https://leetcode-cn.com/problems/binary-tree-level-order-traversal                                 |
+| ✅ 102. 二叉树的层序遍历                      | 6        | https://leetcode-cn.com/problems/binary-tree-level-order-traversal                                 |
 | 70. 爬楼梯                                    | 6        | https://leetcode-cn.com/problems/climbing-stairs                                                   |
 | 54. 螺旋矩阵                                  | 6        | https://leetcode-cn.com/problems/spiral-matrix                                                     |
 | 93. 复原 IP 地址                              | 5        | https://leetcode-cn.com/problems/restore-ip-addresses                                              |
 | 200. 岛屿数量                                 | 5        | https://leetcode-cn.com/problems/number-of-islands                                                 |
 | 230. 二叉搜索树中第 K 小的元素                | 5        | https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst                                     |
 | 15. 三数之和                                  | 5        | https://leetcode-cn.com/problems/3sum                                                              |
-| 141. 环形链表                                 | 5        | https://leetcode-cn.com/problems/linked-list-cycle                                                 |
+| ✅ 141. 环形链表                              | 5        | https://leetcode-cn.com/problems/linked-list-cycle                                                 |
 | 429. N 叉树的层序遍历                         | 5        | https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal                                  |
 | 226. 翻转二叉树                               | 4        | https://leetcode-cn.com/problems/invert-binary-tree                                                |
 | 121. 买卖股票的最佳时机                       | 4        | https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock                                   |
@@ -198,7 +198,7 @@ actionLink: /views/other/guide
 | 394. 字符串解码                               | 2        | https://leetcode-cn.com/problems/decode-string                                                     |
 | 19. 删除链表的倒数第 N 个节点                 | 2        | https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list                                  |
 | 剑指 Offer 24. 反转链表                       | 2        | https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof                                          |
-| 42. 接雨水                                    | 2        | https://leetcode-cn.com/problems/trapping-rain-water                                               |
+| ✅ 42. 接雨水                                 | 2        | https://leetcode-cn.com/problems/trapping-rain-water                                               |
 | 155. 最小栈                                   | 2        | https://leetcode-cn.com/problems/min-stack                                                         |
 | 169. 多数元素                                 | 2        | https://leetcode-cn.com/problems/majority-element                                                  |
 | 剑指 Offer 21. 调整数组顺序使奇数位于偶数前面 | 2        | https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof |
@@ -229,7 +229,7 @@ actionLink: /views/other/guide
 | 227. 基本计算器 II                            | 1        | https://leetcode-cn.com/problems/basic-calculator-ii                                               |
 | 剑指 Offer 04. 二维数组中的查找               | 1        | https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof                              |
 | 443. 压缩字符串                               | 1        | https://leetcode-cn.com/problems/string-compression                                                |
-| 142. 环形链表 II                              | 1        | https://leetcode-cn.com/problems/linked-list-cycle-ii                                              |
+| ✅ 142. 环形链表 II                           | 1        | https://leetcode-cn.com/problems/linked-list-cycle-ii                                              |
 | 984. 不含 AAA 或 BBB 的字符串                 | 1        | https://leetcode-cn.com/problems/string-without-aaa-or-bbb                                         |
 | 151. 翻转字符串里的单词                       | 1        | https://leetcode-cn.com/problems/reverse-words-in-a-string                                         |
 | 213. 打家劫舍 II                              | 1        | https://leetcode-cn.com/problems/house-robber-ii                                                   |
