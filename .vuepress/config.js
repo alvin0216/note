@@ -82,6 +82,7 @@ module.exports = {
             'talk',
             'grayscale-release',
             'high-concurrency',
+            '沙箱的实现方式',
             {
               title: '🍞 包管理',
               children: ['packages/pnpm', 'packages/npm', 'packages/lerna'],
@@ -105,12 +106,8 @@ module.exports = {
           children: ['performance/what-is-perf'],
         },
         {
-          title: '模块化解决方案',
-          children: ['module/mf'],
-        },
-        {
           title: '打包工具',
-          children: ['build/esbuild'],
+          children: ['build/模块联邦', 'build/esbuild'],
         },
         {
           title: '监控系列',
@@ -123,6 +120,7 @@ module.exports = {
         {
           title: 'Browser',
           children: [
+            'token-cookie-session',
             'cookie',
             'token',
             'cache',
@@ -303,6 +301,7 @@ module.exports = {
             'requestAnimationFrame',
             'data-types',
             'eval',
+            'proxy',
           ],
         },
         {

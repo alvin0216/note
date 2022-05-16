@@ -183,7 +183,7 @@ actionLink: /views/other/guide
 | 62. 不同路径                                  | 4        | https://leetcode-cn.com/problems/unique-paths                                                      |
 | 剑指 Offer 62. 圆圈中最后剩下的数字           | 4        | https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof                  |
 | 94. 二叉树的中序遍历                          | 3        | https://leetcode-cn.com/problems/binary-tree-inorder-traversal                                     |
-| 104. 二叉树的最大深度                         | 3        | https://leetcode-cn.com/problems/maximum-depth-of-binary-tree                                      |
+| ✅ 104. 二叉树的最大深度                      | 3        | https://leetcode-cn.com/problems/maximum-depth-of-binary-tree                                      |
 | 21. 合并两个有序链表                          | 3        | https://leetcode-cn.com/problems/merge-two-sorted-lists                                            |
 | 509. 斐波那契数                               | 3        | https://leetcode-cn.com/problems/fibonacci-number                                                  |
 | 113. 路径总和 II                              | 3        | https://leetcode-cn.com/problems/path-sum-ii                                                       |
@@ -196,8 +196,8 @@ actionLink: /views/other/guide
 | 146. LRU 缓存机制                             | 3        | https://leetcode-cn.com/problems/lru-cache                                                         |
 | 322. 零钱兑换                                 | 2        | https://leetcode-cn.com/problems/coin-change                                                       |
 | 394. 字符串解码                               | 2        | https://leetcode-cn.com/problems/decode-string                                                     |
-| 19. 删除链表的倒数第 N 个节点                 | 2        | https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list                                  |
-| 剑指 Offer 24. 反转链表                       | 2        | https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof                                          |
+| ✅ 19. 删除链表的倒数第 N 个节点              | 2        | https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list                                  |
+| ✅ 剑指 Offer 24. 反转链表                    | 2        | https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof                                          |
 | ✅ 42. 接雨水                                 | 2        | https://leetcode-cn.com/problems/trapping-rain-water                                               |
 | 155. 最小栈                                   | 2        | https://leetcode-cn.com/problems/min-stack                                                         |
 | 169. 多数元素                                 | 2        | https://leetcode-cn.com/problems/majority-element                                                  |
