@@ -131,21 +131,27 @@ actionLink: /views/other/guide
 ## 回溯算法
 
 - [总结](./docs/algorithm/回溯/总结.md)
-- 排列
-  - [46. 全排列](./docs/algorithm/回溯/全排列.md)
-  - [47. 全排列 II](./docs/algorithm/回溯/全排列II.md)
-  - [784. 字母大小写全排列](./docs/algorithm/回溯/字母大小写全排列.md)
-  - [【剑指】38. 字符串的排列](./docs/algorithm/回溯/字符串的排列.md)
+- 回溯排列
+  - [46. 全排列](./docs/algorithm/回溯/回溯排列.md#全排列)
+  - [47. 全排列 II](./docs/algorithm/回溯/回溯排列.md#全排列-ii)
+  - [剑指 38. 字符串的排列](./docs/algorithm/回溯/回溯排列.md#字符串的排列)
+  - [784. 字母大小写全排列](./docs/algorithm/回溯/回溯排列.md#字母大小写全排列)
+- 回溯分割
+  - [131. 分割回文串](./docs/algorithm/回溯/回溯分割.md#分割回文串)
+  - [93. 复原 IP 地址](./docs/algorithm/回溯/回溯分割.md#复原-ip-地址)
 - 子集
   - [78. 子集](./docs/algorithm/回溯/子集.md)
   - [90. 子集 II](./docs/algorithm/回溯/子集II.md)
 - [组合总和](./docs/algorithm/回溯/组合总和.md)
-- [分割回文串](./docs/algorithm/回溯/分割回文串.md)
+
 - [N 皇后](./docs/algorithm/回溯/N皇后.md)
 
 ## DFS 遍历
 
-- [岛屿数量](./docs/algorithm/深度遍历/岛屿数量.md)
+- [200. 岛屿数量](./docs/algorithm/深度遍历/岛屿数量.md)
+- [79. 单词搜索](./docs/algorithm/深度遍历/单词搜索.md)
+- [54. 螺旋矩阵](./docs/algorithm/深度遍历/螺旋矩阵.md)
+- [5. 螺旋矩阵 II](./docs/algorithm/深度遍历/螺旋矩阵.md#螺旋矩阵-ii)
 - 岛屿的周长
 - 岛屿的最大面积
 
@@ -163,15 +169,15 @@ actionLink: /views/other/guide
 | 215. 数组中的第 K 个最大元素                  | 10       | https://leetcode-cn.com/problems/kth-largest-element-in-an-array                                   |
 | ✅ 209. 长度最小的子数组                      | 8        | https://leetcode-cn.com/problems/minimum-size-subarray-sum                                         |
 | ✅ 剑指 Offer 22. 链表中倒数第 k 个节点       | 8        | https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof                      |
-| 415. 字符串相加                               | 8        | https://leetcode-cn.com/problems/add-strings                                                       |
+| ✅ 415. 字符串相加                            | 8        | https://leetcode-cn.com/problems/add-strings                                                       |
 | ✅ 46. 全排列                                 | 8        | https://leetcode-cn.com/problems/permutations                                                      |
-| 206. 反转链表                                 | 7        | https://leetcode-cn.com/problems/reverse-linked-list                                               |
+| ✅ 206. 反转链表                              | 7        | https://leetcode-cn.com/problems/reverse-linked-list                                               |
 | ✅ 102. 二叉树的层序遍历                      | 6        | https://leetcode-cn.com/problems/binary-tree-level-order-traversal                                 |
-| 70. 爬楼梯                                    | 6        | https://leetcode-cn.com/problems/climbing-stairs                                                   |
-| 54. 螺旋矩阵                                  | 6        | https://leetcode-cn.com/problems/spiral-matrix                                                     |
-| 93. 复原 IP 地址                              | 5        | https://leetcode-cn.com/problems/restore-ip-addresses                                              |
-| 200. 岛屿数量                                 | 5        | https://leetcode-cn.com/problems/number-of-islands                                                 |
-| 230. 二叉搜索树中第 K 小的元素                | 5        | https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst                                     |
+| ✅ 70. 爬楼梯                                 | 6        | https://leetcode-cn.com/problems/climbing-stairs                                                   |
+| ✅ 54. 螺旋矩阵                               | 6        | https://leetcode-cn.com/problems/spiral-matrix                                                     |
+| ✅ 93. 复原 IP 地址                           | 5        | https://leetcode-cn.com/problems/restore-ip-addresses                                              |
+| ✅ 200. 岛屿数量                              | 5        | https://leetcode-cn.com/problems/number-of-islands                                                 |
+| ✅ 230. 二叉搜索树中第 K 小的元素             | 5        | https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst                                     |
 | 15. 三数之和                                  | 5        | https://leetcode-cn.com/problems/3sum                                                              |
 | ✅ 141. 环形链表                              | 5        | https://leetcode-cn.com/problems/linked-list-cycle                                                 |
 | 429. N 叉树的层序遍历                         | 5        | https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal                                  |
@@ -189,7 +195,7 @@ actionLink: /views/other/guide
 | 113. 路径总和 II                              | 3        | https://leetcode-cn.com/problems/path-sum-ii                                                       |
 | 468. 验证 IP 地址                             | 3        | https://leetcode-cn.com/problems/validate-ip-address                                               |
 | 31. 下一个排列                                | 3        | https://leetcode-cn.com/problems/next-permutation                                                  |
-| 20. 有效的括号                                | 3        | https://leetcode-cn.com/problems/valid-parentheses                                                 |
+| ✅ 20. 有效的括号                             | 3        | https://leetcode-cn.com/problems/valid-parentheses                                                 |
 | 349. 两个数组的交集                           | 3        | https://leetcode-cn.com/problems/intersection-of-two-arrays                                        |
 | 5. 最长回文子串                               | 3        | https://leetcode-cn.com/problems/longest-palindromic-substring                                     |
 | 236. 二叉树的最近公共祖先                     | 3        | https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree                           |
