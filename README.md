@@ -39,6 +39,10 @@ actionLink: /views/other/guide
 - [两数之和](./docs/algorithm/数组/两数之和.md)
 - [合并两个有序数组](./docs/algorithm/数组/合并两个有序数组.md)
 - [长度最小的子数组](./docs/algorithm/数组/长度最小的子数组.md)
+- 双指针
+  - [🌟 31. 下一个排列](./docs/algorithm/数组/双指针.md#下一个排列)
+  - [🌟 15. 三数之和](./docs/algorithm/数组/双指针.md#三数之和)
+  - [🌟 42. 接雨水](./docs/algorithm/数组/双指针.md#接雨水)
 
 ## 链表
 
@@ -48,11 +52,6 @@ actionLink: /views/other/guide
 - [环形链表 II](./docs/algorithm/链表/环形链表II.md)
 - [160. 相交链表](./docs/algorithm/链表/相交链表.md)
 - [k 个一组翻转链表](./docs/algorithm/链表/k个一组翻转链表.md)
-
-## 双指针
-
-- [三数之和](./docs/algorithm/双指针/三数之和.md)
-- [🌟 42. 接雨水](./docs/algorithm/双指针/接雨水.md)
 
 ## 二叉树
 
@@ -178,25 +177,25 @@ actionLink: /views/other/guide
 | ✅ 93. 复原 IP 地址                           | 5        | https://leetcode-cn.com/problems/restore-ip-addresses                                              |
 | ✅ 200. 岛屿数量                              | 5        | https://leetcode-cn.com/problems/number-of-islands                                                 |
 | ✅ 230. 二叉搜索树中第 K 小的元素             | 5        | https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst                                     |
-| 15. 三数之和                                  | 5        | https://leetcode-cn.com/problems/3sum                                                              |
+| ✅ 15. 三数之和                               | 5        | https://leetcode-cn.com/problems/3sum                                                              |
 | ✅ 141. 环形链表                              | 5        | https://leetcode-cn.com/problems/linked-list-cycle                                                 |
-| 429. N 叉树的层序遍历                         | 5        | https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal                                  |
-| 226. 翻转二叉树                               | 4        | https://leetcode-cn.com/problems/invert-binary-tree                                                |
-| 121. 买卖股票的最佳时机                       | 4        | https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock                                   |
-| 718. 最长重复子数组                           | 4        | https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray                               |
-| 160. 相交链表                                 | 4        | https://leetcode-cn.com/problems/intersection-of-two-linked-lists                                  |
-| 695. 岛屿的最大面积                           | 4        | https://leetcode-cn.com/problems/max-area-of-island                                                |
-| 62. 不同路径                                  | 4        | https://leetcode-cn.com/problems/unique-paths                                                      |
+| ✅ 429. N 叉树的层序遍历                      | 5        | https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal                                  |
+| ✅ 226. 翻转二叉树                            | 4        | https://leetcode-cn.com/problems/invert-binary-tree                                                |
+| ✅ 121. 买卖股票的最佳时机                    | 4        | https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock                                   |
+| ✅ 718. 最长重复子数组                        | 4        | https://leetcode-cn.com/problems/maximum-length-of-repeated-subarray                               |
+| ✅ 160. 相交链表                              | 4        | https://leetcode-cn.com/problems/intersection-of-two-linked-lists                                  |
+| ✅ 695. 岛屿的最大面积                        | 4        | https://leetcode-cn.com/problems/max-area-of-island                                                |
+| ✅ 62. 不同路径                               | 4        | https://leetcode-cn.com/problems/unique-paths                                                      |
 | 剑指 Offer 62. 圆圈中最后剩下的数字           | 4        | https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof                  |
-| 94. 二叉树的中序遍历                          | 3        | https://leetcode-cn.com/problems/binary-tree-inorder-traversal                                     |
+| ✅ 94. 二叉树的中序遍历                       | 3        | https://leetcode-cn.com/problems/binary-tree-inorder-traversal                                     |
 | ✅ 104. 二叉树的最大深度                      | 3        | https://leetcode-cn.com/problems/maximum-depth-of-binary-tree                                      |
-| 21. 合并两个有序链表                          | 3        | https://leetcode-cn.com/problems/merge-two-sorted-lists                                            |
-| 509. 斐波那契数                               | 3        | https://leetcode-cn.com/problems/fibonacci-number                                                  |
-| 113. 路径总和 II                              | 3        | https://leetcode-cn.com/problems/path-sum-ii                                                       |
-| 468. 验证 IP 地址                             | 3        | https://leetcode-cn.com/problems/validate-ip-address                                               |
-| 31. 下一个排列                                | 3        | https://leetcode-cn.com/problems/next-permutation                                                  |
+| ✅ 21. 合并两个有序链表                       | 3        | https://leetcode-cn.com/problems/merge-two-sorted-lists                                            |
+| ✅ 509. 斐波那契数                            | 3        | https://leetcode-cn.com/problems/fibonacci-number                                                  |
+| ✅ 113. 路径总和 II                           | 3        | https://leetcode-cn.com/problems/path-sum-ii                                                       |
+| ✅ 468. 验证 IP 地址                          | 3        | https://leetcode-cn.com/problems/validate-ip-address                                               |
+| ✅ 31. 下一个排列                             | 3        | https://leetcode-cn.com/problems/next-permutation                                                  |
 | ✅ 20. 有效的括号                             | 3        | https://leetcode-cn.com/problems/valid-parentheses                                                 |
-| 349. 两个数组的交集                           | 3        | https://leetcode-cn.com/problems/intersection-of-two-arrays                                        |
+| ✅ 349. 两个数组的交集                        | 3        | https://leetcode-cn.com/problems/intersection-of-two-arrays                                        |
 | 5. 最长回文子串                               | 3        | https://leetcode-cn.com/problems/longest-palindromic-substring                                     |
 | 236. 二叉树的最近公共祖先                     | 3        | https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree                           |
 | 146. LRU 缓存机制                             | 3        | https://leetcode-cn.com/problems/lru-cache                                                         |
