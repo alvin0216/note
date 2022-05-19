@@ -29,10 +29,12 @@ actionLink: /views/other/guide
 
 - [1556. 千位分隔数](./docs/algorithm/字符串/千位分隔数.md)
 - [反转字符串 II](./docs/algorithm/字符串/反转字符串II.md)
-- [409. 最长回文串](./docs/algorithm/字符串/最长回文串.md)
 - [字符串的排列](./docs/algorithm/字符串/字符串的排列.md)
 - [🌟 最长不含重复字符的子字符串](./docs/algorithm/字符串/最长不含重复字符的子字符串.md)
 - [🌟 76. 最小覆盖子串](./docs/algorithm/字符串/最小覆盖子串.md)
+- 回文系列
+  - [409. 最长回文串](./docs/algorithm/字符串/回文系列.md#最长回文串)
+  - [5. 最长回文子串](./docs/algorithm/字符串/回文系列.md#最长回文子串)
 
 ## 数组
 
@@ -107,7 +109,7 @@ actionLink: /views/other/guide
   - [121. 买卖股票的最佳时机](./docs/algorithm/动态规划/买卖股票的最佳时机.md)
   - [122. 买卖股票的最佳时机 II](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-ii)
   - [123. 买卖股票的最佳时机 III](./docs/algorithm/动态规划/买卖股票的最佳时机.md#买卖股票的最佳时机-iii)
-- 背包问题
+- ## 背包问题
 - 子序列问题
   - 不连续
     - 最长上升子序列
@@ -144,6 +146,11 @@ actionLink: /views/other/guide
 - [组合总和](./docs/algorithm/回溯/组合总和.md)
 
 - [N 皇后](./docs/algorithm/回溯/N皇后.md)
+
+## 贪心算法
+
+- 贪心入门
+  - [455. 分发饼干](./docs/algorithm/贪心算法/贪心入门.md#分发饼干)
 
 ## DFS 遍历
 
@@ -196,7 +203,7 @@ actionLink: /views/other/guide
 | ✅ 31. 下一个排列                             | 3        | https://leetcode-cn.com/problems/next-permutation                                                  |
 | ✅ 20. 有效的括号                             | 3        | https://leetcode-cn.com/problems/valid-parentheses                                                 |
 | ✅ 349. 两个数组的交集                        | 3        | https://leetcode-cn.com/problems/intersection-of-two-arrays                                        |
-| 5. 最长回文子串                               | 3        | https://leetcode-cn.com/problems/longest-palindromic-substring                                     |
+| ✅ 5. 最长回文子串                            | 3        | https://leetcode-cn.com/problems/longest-palindromic-substring                                     |
 | 236. 二叉树的最近公共祖先                     | 3        | https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree                           |
 | 146. LRU 缓存机制                             | 3        | https://leetcode-cn.com/problems/lru-cache                                                         |
 | 322. 零钱兑换                                 | 2        | https://leetcode-cn.com/problems/coin-change                                                       |
