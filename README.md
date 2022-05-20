@@ -151,6 +151,8 @@ actionLink: /views/other/guide
 
 - 贪心入门
   - [455. 分发饼干](./docs/algorithm/贪心算法/贪心入门.md#分发饼干)
+  - [860. 柠檬水找零](./docs/algorithm/贪心算法/贪心入门.md#柠檬水找零)
+  - [1005. K 次取反后最大化的数组和](./docs/algorithm/贪心算法/贪心入门.md#K-次取反后最大化的数组和)
 
 ## DFS 遍历
 
