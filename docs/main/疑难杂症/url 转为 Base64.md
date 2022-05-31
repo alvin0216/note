@@ -1,5 +1,5 @@
 ---
-title: 安全措施解决方案
+title: url 转为 Base64
 date: 2022-03-26 14:53:44
 sidebar: auto
 tags:
@@ -7,10 +7,6 @@ tags:
 categories:
   - 技术漫谈
 ---
-
-（遇到就加上）
-
-## url 转为 Base64
 
 安全性不高，但也比明文高很多
 

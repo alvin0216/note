@@ -35,19 +35,14 @@ module.exports = {
     sidebar: {
       // TODO coding
       '/docs/main/': [
+        '',
+        { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
-          title: '问题 & 解决方案',
-          children: [
-            'problem/canvas-cross-origin',
-            'problem/safe',
-            'problem/lerna',
-            'problem/gzip',
-            'problem/iframe-fullScreen',
-            'problem/remote',
-          ],
+          title: 'CSS',
+          children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
         {
-          title: 'Awsome',
+          title: '杂七杂八',
           children: [
             'awsome/oAuth2',
             'awsome/oAuth2-github',
@@ -59,10 +54,16 @@ module.exports = {
             { title: '🙃️ 面试系列', children: ['awsome/interview/', 'awsome/interview/hr'] },
           ],
         },
-        { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
-          title: 'CSS',
-          children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
+          title: '疑难杂症',
+          children: [
+            '疑难杂症/canvas 跨域',
+            '疑难杂症/url 转为 Base64',
+            '疑难杂症/lerna 多包管理发布问题',
+            '疑难杂症/nginx gzip 不生效',
+            '疑难杂症/iframe 打开全屏无效',
+            '疑难杂症/远程组件加载方案',
+          ],
         },
       ],
 
