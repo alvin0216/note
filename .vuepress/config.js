@@ -24,7 +24,7 @@ module.exports = {
       { text: '算法', link: '/docs/algorithm/' },
       { text: '网络协议', link: '/docs/protocol/' },
       { text: '工程化', link: '/docs/devops/talk' },
-      { text: '浏览器', link: '/docs/browser/' },
+      { text: '浏览器', link: '/docs/browser/浏览器如何解析html.html' },
       { text: 'React', link: '/docs/react/' },
     ],
     // 博客设置
@@ -118,6 +118,8 @@ module.exports = {
 
       // TODO browser
       '/docs/browser/': [
+        '浏览器如何解析html',
+        'WebComponent',
         {
           title: 'Browser',
           children: [
@@ -125,8 +127,6 @@ module.exports = {
             'cookie',
             'token',
             'cache',
-            'render',
-            'paint',
             'safe',
             {
               title: '🔐 浏览器安全',
