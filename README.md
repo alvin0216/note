@@ -206,9 +206,9 @@ actionLink: /views/other/guide
 | ✅ 20. 有效的括号                             | 3        | https://leetcode-cn.com/problems/valid-parentheses                                                 |
 | ✅ 349. 两个数组的交集                        | 3        | https://leetcode-cn.com/problems/intersection-of-two-arrays                                        |
 | ✅ 5. 最长回文子串                            | 3        | https://leetcode-cn.com/problems/longest-palindromic-substring                                     |
-| 236. 二叉树的最近公共祖先                     | 3        | https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree                           |
-| 146. LRU 缓存机制                             | 3        | https://leetcode-cn.com/problems/lru-cache                                                         |
-| 322. 零钱兑换                                 | 2        | https://leetcode-cn.com/problems/coin-change                                                       |
+| ✅ 236. 二叉树的最近公共祖先                  | 3        | https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree                           |
+| ✅ 146. LRU 缓存机制                          | 3        | https://leetcode-cn.com/problems/lru-cache                                                         |
+| ✅ 322. 零钱兑换                              | 2        | https://leetcode-cn.com/problems/coin-change                                                       |
 | 394. 字符串解码                               | 2        | https://leetcode-cn.com/problems/decode-string                                                     |
 | ✅ 19. 删除链表的倒数第 N 个节点              | 2        | https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list                                  |
 | ✅ 剑指 Offer 24. 反转链表                    | 2        | https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof                                          |
