@@ -67,10 +67,11 @@ module.exports = {
       ],
 
       '/javascript/': [
+        '',
+        'js基础巩固',
         {
-          title: 'Javascript',
+          title: '基础知识',
           children: [
-            'awsome',
             'this',
             'closure',
             'prototype',
@@ -82,10 +83,6 @@ module.exports = {
             'eval',
             'proxy',
           ],
-        },
-        {
-          title: '代码实现系列',
-          children: ['achieve/call-apply', 'achieve/bind', 'achieve/promise'],
         },
         {
           title: 'v8 - 引擎工作原理',

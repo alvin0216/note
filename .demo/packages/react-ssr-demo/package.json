@@ -35,7 +35,7 @@
     "webpack-node-externals": "^2.5.0"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": ">=0.21.2",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
     "react": "^16.13.1",
