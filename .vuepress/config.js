@@ -38,7 +38,7 @@ module.exports = {
         { title: 'HTML', children: ['html/tag', 'html/script', 'html/iframe'] },
         {
           title: 'CSS',
-          children: ['css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
+          children: ['css/box-sizing', 'css/center', 'css/bfc', 'css/drop-shadow', 'css/transform'],
         },
         {
           title: '杂七杂八',
@@ -299,9 +299,10 @@ module.exports = {
       ],
 
       '/react/': [
+        'hooks原理',
         {
           title: 'React',
-          children: ['', 'immer', 'hooks-api', 'mini', 'setState', 'concurrent', 'diff', 'synthetic-event'],
+          children: ['', 'immer', 'hooks-api', 'setState', 'concurrent', 'diff', 'synthetic-event'],
         },
       ],
     },
