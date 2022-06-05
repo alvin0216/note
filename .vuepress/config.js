@@ -146,6 +146,7 @@ module.exports = {
             '动态规划/不同路径',
             '动态规划/打家劫舍系列',
             '动态规划/买卖股票的最佳时机',
+            '动态规划/背包系列',
             '动态规划/连续',
           ],
         },
@@ -300,6 +301,7 @@ module.exports = {
 
       '/react/': [
         'hooks原理',
+        'requestIdleCallback',
         {
           title: 'React',
           children: ['', 'immer', 'hooks-api', 'setState', 'concurrent', 'diff', 'synthetic-event'],

@@ -1,22 +1,24 @@
 const exec = require('child_process').exec;
 
+let now = dateFormatter();
+
+execute(
+  `
+    git add .
+    git commit -m 'updated at ${now}'
+    git push
+  `
+);
+
 function execute(cmd) {
   exec(cmd, function (error, stdout, stderr) {
     if (error) {
       console.error(error);
     } else {
-      console.log(`SUCCESS PUSH: updated at ${dateFormatter()}`);
+      console.log(`SUCCESS PUSH: updated at ${now}`);
     }
   });
 }
-
-execute(
-  `
-    git add .
-    git commit -m 'updated at ${dateFormatter()}'
-    git push
-  `
-);
 
 function dateFormatter(fmt = 'YYYY-MM-DD hh:mm:ss') {
   try {
