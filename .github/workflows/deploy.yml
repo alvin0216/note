@@ -13,11 +13,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: yarn
-      - run: yarn install --frozen-lockfile
+          cache: pnpm
+      - run: pnpm install
 
       - name: Build
-        run: yarn build:gh-pages
+        run: pnpm run build:gh-pages
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
@@ -26,7 +26,7 @@ jobs:
           publish_dir: docs/.vitepress/dist
 
       - name: Build
-        run: yarn build && tar zcvf ./dist.gz docs/.vitepress/dist
+        run: pnpm run build && tar zcvf ./dist.gz docs/.vitepress/dist
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
