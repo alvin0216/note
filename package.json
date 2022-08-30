@@ -1,22 +1,28 @@
 {
-  "name": "alvin-note",
+  "name": "note",
   "version": "1.0.0",
-  "author": "reco_luan",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev . --open --host \"localhost\" --cache .cache",
-    "build": "vuepress build .",
-    "build:gh-pages": "cross-env TARGET=gh-pages vuepress build .",
-    "push": "node ./scripts/push.js",
-    "cli": "node ./scripts/md-cli.js"
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "build:gh-pages": "cross-env KEY=gh-pages vitepress build docs",
+    "serve": "vitepress serve docs",
+    "push": "node push.js"
   },
-  "devDependencies": {
-    "cross-env": "^7.0.3",
-    "vuepress": "1.8.2",
-    "vuepress-theme-reco": "1.6.11"
-  },
-  "description": "前端开发",
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "vuepress-plugin-demo-container": "^0.2.0",
-    "vuepress-plugin-element-tabs": "^0.2.8"
+    "cross-env": "^7.0.3",
+    "vitepress": "^1.0.0-alpha.13",
+    "vitepress-plugin-search": "^0.0.3",
+    "vue": "^3.2.38"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
   }
 }

@@ -1,22 +1,32 @@
-name: awsome-demo
+name: Deploy
 
 on:
   push:
     branches:
-      - master # default branch
+      - main
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup node 12
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 12.x
+          node-version: 16
+          cache: yarn
+      - run: yarn install --frozen-lockfile
 
-      - name: Build project
-        run: yarn && yarn build && tar zcvf ./dist.gz ./public
+      - name: Build
+        run: yarn build:gh-pages
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/.vitepress/dist
+
+      - name: Build
+        run: yarn build && tar zcvf ./dist.gz docs/.vitepress/dist
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
@@ -38,14 +48,6 @@ jobs:
           script: | # 清除缓存
             cd /site
             rm -rf note
-            tar zxvf dist.gz && mv public note
+            tar zxvf dist.gz && mv dist note
             rm -rf dist.gz
 
-      - name: Build project
-        run: yarn && yarn build:gh-pages
-
-      - name: gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public

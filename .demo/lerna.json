@@ -1,4 +1,0 @@
-{
-  "packages": ["packages/*", "mf/*"],
-  "version": "independent"
-}
