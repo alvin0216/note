@@ -31,7 +31,7 @@ jobs:
           publish_dir: docs/.vitepress/dist
 
       - name: Build
-        run: pnpm run build && tar zcvf ./dist.gz docs/.vitepress/dist
+        run: pnpm run build && cd docs/.vitepress && tar zcvf ../../dist.gz dist
 
       - name: Deploy to Server
         uses: appleboy/scp-action@master
