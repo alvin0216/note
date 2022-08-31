@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 importers:
 
@@ -6,12 +6,10 @@ importers:
     specifiers:
       cross-env: ^7.0.3
       vitepress: ^1.0.0-alpha.13
-      vitepress-plugin-search: ^0.0.3
       vue: ^3.2.38
     dependencies:
       cross-env: 7.0.3
       vitepress: 1.0.0-alpha.13
-      vitepress-plugin-search: 0.0.3
       vue: 3.2.38
 
   packages/commonJS:
@@ -7564,12 +7562,6 @@ packages:
       rollup: 2.77.3
     optionalDependencies:
       fsevents: 2.3.2
-    dev: false
-
-  /vitepress-plugin-search/0.0.3:
-    resolution: {integrity: sha512-sXR2pezBt37yZixZgQ3NYoLS56Un9deDDku2c01dznzl6hI1ojjMwacMsZBo/UBm6zRMmdx0PlbfuKG8mjA+Zg==}
-    peerDependencies:
-      cheerio: ^1.0.0-rc.11
     dev: false
 
   /vitepress/1.0.0-alpha.13:

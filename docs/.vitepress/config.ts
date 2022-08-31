@@ -305,10 +305,10 @@ export default defineConfig({
       ],
     },
     editLink: {
-      pattern: 'https://github.com/alvin0216/note/docs/:path',
+      pattern: 'https://github.com/alvin0216/note//blob/master/docs/:path',
       text: 'Edit this page on GitHub',
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/alvin0216/note' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/alvin0216/note/blob/master' }],
 
     footer: {
       message: 'Released under the MIT License.',
