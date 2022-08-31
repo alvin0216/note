@@ -1,0 +1,17 @@
+<div class="app-container">
+  <nav class="app-nav">
+    <ol>
+      <li *ngFor="let r of routes">
+        <a
+          [routerLink]="r.path"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
+          {{ r.title }}
+        </a>
+      </li>
+    </ol>
+  </nav>
+  <!-- The routed views render in the <router-outlet>-->
+  <router-outlet></router-outlet>
+</div>

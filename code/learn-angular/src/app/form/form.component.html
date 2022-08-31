@@ -1,0 +1,47 @@
+<h2>base</h2>
+
+<!-- #username 模板应用变量 -->
+<input type="text" #input1 />
+<button (click)="log(input1.value)">get value</button>
+
+<h2>ngModel</h2>
+
+<!-- 双向绑定 ngModel 只对表单元素有效-->
+<input type="text" [(ngModel)]="title" />
+<button>{{ title }}</button>
+
+<h2>formControl 表单控件</h2>
+
+<!-- formControl 表单控件 -->
+<input type="text" [formControl]="desc" />
+<button>{{ desc.value }}</button>
+
+<h2>Form Group</h2>
+
+<div [formGroup]="loginForm">
+  <input type="text" formControlName="name" placeholder="name" />
+  <input type="text" formControlName="pwd" placeholder="pwd" />
+  <button (click)="log(loginForm)">submit</button>
+</div>
+
+<h2>Form 校验</h2>
+<!--
+<input
+  type="text"
+  id="name"
+  name="name"
+  class="form-control"
+  required
+  minlength="4"
+  appForbiddenName="bob"
+  [(ngModel)]="hero.name"
+  #name="ngModel"
+/>
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert">
+  <div *ngIf="name.errors?.['required']">Name is required.</div>
+  <div *ngIf="name.errors?.['minlength']">
+    Name must be at least 4 characters long.
+  </div>
+  <div *ngIf="name.errors?.['forbiddenName']">Name cannot be Bob.</div>
+</div> -->

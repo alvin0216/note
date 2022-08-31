@@ -1,0 +1,67 @@
+<h4>类、样式绑定</h4>
+
+<!-- <div class="red">Red Text</div> -->
+<ul>
+  <li [class]="['red', 'text20']">类绑定</li>
+  <li [class.red]="true" [class.text20]="true">类绑定</li>
+  <li [class]="{ red: false, text20: true }">类绑定</li>
+</ul>
+
+<ul>
+  <li [style.color]="'#f00'">style</li>
+  <li [style.fontSize.px]="20">style</li>
+  <li style="font-weight: bold" [style]="{ color: '#f00', fontSize: '20px' }">
+    foo
+  </li>
+</ul>
+
+<h4>列表</h4>
+
+<ul>
+  <li>
+    事件绑定
+    <button (click)="addItem(list.length)">increase</button>
+  </li>
+  <li
+    *ngFor="
+      let item of list;
+      index as idx;
+      odd as odd;
+      first as isFirst;
+      last as isLast
+    "
+    [title]="item.value"
+  >
+    {{ idx }}-{{ item.name }} {{ odd ? "奇数" : "偶数" }}
+    {{ isFirst ? "isFirst" : "" }}
+    {{ isLast ? "isLast" : "" }}
+  </li>
+</ul>
+
+<h4>条件判断</h4>
+
+<p *ngIf="count % 2 === 0; else elseBlock">count 偶数</p>
+<ng-template #elseBlock>
+  <p>count 奇数</p>
+</ng-template>
+
+<!-- <p *ngIf="count === 0; then thenBlock; else elseBlock">count 0</p>
+<ng-template #thenBlock>
+  <p>count 1</p>
+</ng-template>
+<ng-template #elseBlock>
+  <p>count 2</p>
+</ng-template> -->
+
+<!-- switch 循环 -->
+<b>switch</b>
+<div [ngSwitch]="count">
+  <div *ngSwitchCase="1">count 条件1</div>
+  <div *ngSwitchCase="2">count 条件2</div>
+  <div *ngSwitchCase="3">count 条件3</div>
+  <div *ngSwitchDefault>count default</div>
+</div>
+
+<h4>传值</h4>
+
+<app-counter [count]="count" (increaseCount)="increaseCount()"></app-counter>
