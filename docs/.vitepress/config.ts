@@ -11,8 +11,8 @@ export default defineConfig({
   themeConfig: {
     algolia: {
       appId: 'KFDE6WX025',
-      apiKey: '638b0912c058ea27ceb0dc0760c723b8',
-      indexName: 'blog',
+      apiKey: '1921e3dd751514552b76ac8dd28ece9a',
+      indexName: 'note',
     },
     nav: [
       { text: 'Home', link: '/others/' },
