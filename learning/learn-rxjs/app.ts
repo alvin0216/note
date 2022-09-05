@@ -1,54 +1,68 @@
 import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
-function fn1() {
+function demo1() {
   let instance = new Observable((subscriber) => {
+    console.log('hello Rxjs');
     // 发布
     subscriber.next(1);
     subscriber.next(2);
     subscriber.complete();
   });
 
-  // 订阅
+  // 会执行 4 次 Observable 构造函数，输出 hello Rxjs
+  instance.subscribe();
+  instance.subscribe();
+  instance.subscribe();
+  instance.subscribe();
+}
+
+function demo2() {
+  let instance = new Observable((subscriber) => {
+    console.log('hello Rxjs');
+    // 发布
+    subscriber.next(1);
+    subscriber.next(2);
+    subscriber.complete();
+  });
+
   instance.subscribe({
     complete: () => {
-      console.log('你好');
+      console.log('complete');
     },
     next: (v) => {
       console.log('next', v);
     },
   });
+  // hello Rxjs
+  // next 1
+  // next 2
+  // complete
 }
 
-function fn2() {
-  // Subject 继承于 Observable 输出结果 fn2 hello two
+function demo3() {
+  // Subject 用于创建可观察的对象，在订阅后不会立即执行
+  // next 方法可以在观察对象外部调用
   let instance = new Subject();
 
-  instance.next('hello one');
-  instance.subscribe((result) => {
-    console.log('fn2', result);
-  });
-  instance.next('hello two');
+  instance.subscribe((value) => console.log('value', value));
+  instance.subscribe((value) => console.log('value', value));
+
+  instance.next(1);
+  instance.subscribe((value) => console.log('不会执行', value));
+  // value 1
+  // value 1
 }
 
-function fn3() {
-  let instance = new BehaviorSubject('hello world');
-  instance.subscribe((result) => {
-    console.log('订阅1', result);
-  });
+function demo4() {
+  // BehaviorSubject 拥有 Subject 全部功能，但是在创建 BehaviorSubject 的时候需传入默认值，观察者订阅后可以拿到默认值
+  let instance = new BehaviorSubject('默认值');
 
-  instance.next('hello world >>> 2');
+  instance.subscribe((value) => console.log('value', value));
+  instance.subscribe((value) => console.log('value', value));
 
-  instance.subscribe((result) => {
-    console.log('订阅2', result);
-  });
-
-  // 每次订阅取得都是最新的值
-
-  // 订阅1 hello world
-  // app.ts:37 订阅1 hello world >>> 2
-  // app.ts:43 订阅2 hello world >>> 2
+  instance.next('hello');
+  // value 默认值
+  // value 默认值
+  // value hello
+  // value hello
 }
-
-// fn1();
-// fn2();
-// fn3();
