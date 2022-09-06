@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DirectComponent } from './direct/direct.component';
 import { FormComponent } from './form/form.component';
+import { HttpDemoComponent } from './http-demo/http-demo.component';
 import { InteractionComponent } from './interaction/interaction.component';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 import { Opt1Component } from './operation/opt1/opt1.component';
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: 'service', component: ServiceDemoComponent, title: '服务' },
   { path: 'direct', component: DirectComponent, title: '指令' },
   { path: 'opt1', component: Opt1Component, title: 'ng-module' },
+  { path: 'http', component: HttpDemoComponent, title: 'http-demo' },
 ];
 
 @NgModule({

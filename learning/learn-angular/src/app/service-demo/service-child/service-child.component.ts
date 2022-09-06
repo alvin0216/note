@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ListService } from '../../services/list.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-service-child',
@@ -10,9 +10,9 @@ import { ListService } from '../../services/list.service';
 export class ServiceChildComponent implements OnInit {
   list: string[] = [];
 
-  constructor(private listService: ListService) {}
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.list = this.listService.getList();
+    this.list = this.dataService.getList();
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ListService } from '../services/list.service';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-service-demo',
@@ -9,18 +9,19 @@ import { ListService } from '../services/list.service';
 })
 export class ServiceDemoComponent implements OnInit {
   list: string[] = [];
-
-  constructor(private listService: ListService) {}
+  count = 0;
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.getList();
+    // this.list = this.DataService.getList();
+    this.list = this.dataService.list;
+
+    this.dataService.count.subscribe((count) => {
+      this.count = count;
+    });
   }
 
   addItem() {
-    this.listService.addListItem('Vue');
-  }
-
-  getList() {
-    this.list = this.listService.getList();
+    this.dataService.addListItem('Vue');
   }
 }

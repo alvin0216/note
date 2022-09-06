@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +8,8 @@ import { AppComponent } from './app.component';
 import { DirectComponent } from './direct/direct.component';
 import { UpperDirective } from './direct/upper.directive';
 import { FormComponent } from './form/form.component';
+import { AuthInterceptor } from './http-demo/auth.interceptor';
+import { HttpDemoComponent } from './http-demo/http-demo.component';
 import { InteractionComponent } from './interaction/interaction.component';
 import { TitleComponent } from './interaction/title/title.component';
 import { LifeCycleDemoComponent } from './life-cycle/life-cycle-demo/life-cycle-demo.component';
@@ -35,16 +38,26 @@ import { TemplateComponent } from './template/template.component';
     ServiceChildComponent,
     DirectComponent,
     UpperDirective,
+    HttpDemoComponent,
   ],
   // 声明需要用到的类
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     OperationModule,
   ],
-  providers: [],
+  providers: [
+    // 应用级别的使用范围
+    {
+      // 标识
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
