@@ -1,15 +1,22 @@
 {
-  "name": "learn-electron",
+  "name": "electron-quick-start",
   "version": "1.0.0",
-  "description": "",
+  "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
     "dev": "electron ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^20.1.2"
+    "electron": "^20.1.1"
   }
 }
