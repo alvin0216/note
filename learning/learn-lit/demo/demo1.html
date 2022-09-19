@@ -1,0 +1,19 @@
+<script>
+  // 定义自定组件
+  class MyButton extends HTMLElement {
+    constructor() {
+      super();
+
+      this.attachShadow({ mode: 'open' });
+      // template
+      this.shadowRoot.innerHTML = `<button>hello <slot /></button>`;
+    }
+  }
+  // 注册组件
+  customElements.define('my-button', MyButton);
+</script>
+
+<!-- 使用组件 -->
+<body>
+  <my-button>world</my-button>
+</body>

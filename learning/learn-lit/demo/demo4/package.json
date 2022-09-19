@@ -2,9 +2,9 @@
   "name": "demo2",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite demo4.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
