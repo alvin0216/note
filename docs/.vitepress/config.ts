@@ -26,7 +26,12 @@ export default defineConfig({
     sidebar: {
       '/others/': [
         {
-          text: '遇到的一些问题',
+          text: 'Recent',
+          items: [{ text: 'Electron', link: '/others/electron' }],
+        },
+        {
+          text: 'Problems',
+          collapsible: true,
           items: [
             { text: 'canvas 跨域', link: '/others/problems/canvas 跨域' },
             { text: 'url 转为 Base64', link: '/others/problems/url 转为 Base64' },
@@ -37,6 +42,7 @@ export default defineConfig({
         },
         {
           text: 'Uncategorized',
+          collapsible: true,
           items: [
             { text: 'OAuth2', link: '/others/oAuth2' },
             { text: 'Github 授权登录', link: '/others/oAuth2-github' },
