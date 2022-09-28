@@ -1,0 +1,13 @@
+<head>
+  <title>Electron demo</title>
+</head>
+<body>
+  <h2>Hello Electron</h2>
+  <script>
+    const func = async () => {
+      const response = await window.versions.ping();
+      console.log(response); // 打印 'pong'
+    };
+    func();
+  </script>
+</body>
