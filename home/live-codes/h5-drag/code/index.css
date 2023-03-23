@@ -1,0 +1,23 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box1 {
+  width: 100px;
+  height: 100px;
+  margin-right: 50px;
+  background-color: cyan;
+}
+
+.box2 {
+  width: 200px;
+  height: 200px;
+  background-color: #ccc;
+}
+
+.demo-list .demo {
+  width: 50%;
+  padding: 20px;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
+}

@@ -1,27 +1,11 @@
 {
-  "name": "note",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "devDependencies": {
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "vitepress": "1.0.0-alpha.61"
+  },
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "build:gh-pages": "cross-env KEY=gh-pages vitepress build docs",
-    "serve": "vitepress serve docs",
+    "dev": "vitepress dev .",
+    "build": "vitepress build .",
     "push": "node push.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cross-env": "^7.0.3",
-    "vitepress": "^1.0.0-alpha.13",
-    "vue": "^3.2.38"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search"
-      ]
-    }
   }
 }

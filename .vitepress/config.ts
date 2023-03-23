@@ -1,21 +1,21 @@
 import { defineConfig } from 'vitepress';
+import vueJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
+  vite: {
+    plugins: [
+      vueJsx(), //插件使用
+    ],
+  },
   title: "Alvin's note",
   description: 'Peace and love...',
   lastUpdated: true,
 
-  // @ts-ignore
-  base: process?.env.KEY === 'gh-pages' ? '/note/' : undefined,
+  base: '/note/',
 
   themeConfig: {
-    algolia: {
-      appId: 'KFDE6WX025',
-      apiKey: '1921e3dd751514552b76ac8dd28ece9a',
-      indexName: 'note',
-    },
     nav: [
-      { text: 'Home', link: '/others/' },
+      { text: 'Home', link: '/home/' },
       { text: 'Javascript', link: '/javascript/' },
       { text: '网络协议', link: '/network-protocol/' },
       { text: '工程化', link: '/devops/' },
@@ -24,23 +24,27 @@ export default defineConfig({
       { text: 'React', link: '/react/' },
     ],
     sidebar: {
-      '/others/': [
+      '/home/': [
+        {
+          text: 'Live Codes',
+          items: [{ text: 'H5 拖拽示例', link: '/home/live-codes/h5-drag/h5-drag' }],
+        },
         {
           text: '遇到的一些问题',
           items: [
-            { text: 'canvas 跨域', link: '/others/problems/canvas 跨域' },
-            { text: 'url 转为 Base64', link: '/others/problems/url 转为 Base64' },
-            { text: 'lerna 多包管理发布问题', link: '/others/problems/lerna 多包管理发布问题' },
-            { text: 'nginx gzip 不生效', link: '/others/problems/nginx gzip 不生效' },
-            { text: 'iframe 打开全屏无效', link: '/others/problems/iframe 打开全屏无效' },
+            { text: 'canvas 跨域', link: '/home/problems/canvas 跨域' },
+            { text: 'url 转为 Base64', link: '/home/problems/url 转为 Base64' },
+            { text: 'lerna 多包管理发布问题', link: '/home/problems/lerna 多包管理发布问题' },
+            { text: 'nginx gzip 不生效', link: '/home/problems/nginx gzip 不生效' },
+            { text: 'iframe 打开全屏无效', link: '/home/problems/iframe 打开全屏无效' },
           ],
         },
         {
           text: 'Uncategorized',
           items: [
-            { text: 'OAuth2', link: '/others/oAuth2' },
-            { text: 'Github 授权登录', link: '/others/oAuth2-github' },
-            { text: '远程组件加载方案', link: '/others/远程组件加载方案' },
+            { text: 'OAuth2', link: '/home/oAuth2' },
+            { text: 'Github 授权登录', link: '/home/oAuth2-github' },
+            { text: '远程组件加载方案', link: '/home/远程组件加载方案' },
           ],
         },
       ],
@@ -97,7 +101,6 @@ export default defineConfig({
       '/network-protocol/': [
         {
           text: 'Awsome',
-          collapsible: true,
           items: [
             { text: 'DNS', link: '/network-protocol/dns' },
             { text: 'CDN', link: '/network-protocol/cdn' },
