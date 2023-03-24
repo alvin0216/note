@@ -27,7 +27,10 @@ export default defineConfig({
       '/home/': [
         {
           text: 'Live Codes',
-          items: [{ text: 'H5 拖拽示例', link: '/home/live-codes/h5-drag/h5-drag' }],
+          items: [
+            { text: 'H5 拖拽示例', link: '/home/live-codes/h5-drag/h5-drag' },
+            { text: 'Postmessage 通信', link: '/home/live-codes/iframe-postmessage/iframe-postmessage' },
+          ],
         },
         {
           text: '遇到的一些问题',

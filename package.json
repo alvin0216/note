@@ -4,8 +4,8 @@
     "vitepress": "1.0.0-alpha.61"
   },
   "scripts": {
-    "dev": "vitepress dev .",
-    "build": "vitepress build .",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
     "push": "node push.js"
   }
 }

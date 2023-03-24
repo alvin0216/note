@@ -8,11 +8,12 @@ import App from './code/App.tsx'
 
 ::: code-group
 
-<<< @/home/live-codes/h5-drag/code/App.tsx
-
 <<< @/home/live-codes/h5-drag/code/Demo1.tsx
 
 <<< @/home/live-codes/h5-drag/code/Demo2.tsx
+
+<<< @/home/live-codes/h5-drag/code/App.tsx
+
 :::
 
 - 区域外：dragleave，离开范围
