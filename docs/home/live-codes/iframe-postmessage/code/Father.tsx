@@ -4,7 +4,7 @@ function App() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const sendMsgToChild = () => {
-    iframeRef.current?.contentWindow?.postMessage('message from father', '*'); // [!code focus]
+    iframeRef.current?.contentWindow?.postMessage('message from father', '*'); // [!code hl]
   };
 
   useEffect(() => {

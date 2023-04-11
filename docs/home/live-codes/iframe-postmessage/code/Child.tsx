@@ -8,7 +8,7 @@ function App() {
   }, []);
 
   const sendMsgToFather = () => {
-    parent?.postMessage('recived message from child', '*'); // [!code focus]
+    parent?.postMessage('recived message from child', '*'); // [!code hl]
   };
 
   return (

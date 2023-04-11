@@ -21,6 +21,7 @@ export default defineConfig({
       { text: '工程化', link: '/devops/' },
       { text: '浏览器', link: '/browser/' },
       { text: '算法', link: '/algorithm/' },
+      { text: '性能优化', link: '/performance/' },
       { text: 'React', link: '/react/' },
     ],
     sidebar: {
