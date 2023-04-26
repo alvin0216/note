@@ -15,7 +15,7 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/home/' },
+      { text: 'Home', link: '/home/accessibility' },
       { text: 'Javascript', link: '/javascript/' },
       { text: '网络协议', link: '/network-protocol/' },
       { text: '工程化', link: '/devops/' },
@@ -27,14 +27,23 @@ export default defineConfig({
     sidebar: {
       '/home/': [
         {
+          text: 'Recently',
+          items: [
+            { text: 'Accessibility', link: '/home/accessibility' },
+            { text: 'NPM Audit', link: '/home/npm-audit' },
+          ],
+        },
+        {
           text: 'Live Codes',
           items: [
             { text: 'H5 拖拽示例', link: '/home/live-codes/h5-drag/h5-drag' },
             { text: 'Postmessage 通信', link: '/home/live-codes/iframe-postmessage/iframe-postmessage' },
           ],
         },
+
         {
           text: '遇到的一些问题',
+          collapsed: true,
           items: [
             { text: 'canvas 跨域', link: '/home/problems/canvas 跨域' },
             { text: 'url 转为 Base64', link: '/home/problems/url 转为 Base64' },
@@ -43,8 +52,10 @@ export default defineConfig({
             { text: 'iframe 打开全屏无效', link: '/home/problems/iframe 打开全屏无效' },
           ],
         },
+       
         {
           text: 'Uncategorized',
+          collapsed: true,
           items: [
             { text: 'OAuth2', link: '/home/oAuth2' },
             { text: 'Github 授权登录', link: '/home/oAuth2-github' },
@@ -113,7 +124,7 @@ export default defineConfig({
         },
         {
           text: 'TCP',
-          collapsible: true,
+          collapsed: true,
           items: [
             { text: 'tcp报文', link: '/network-protocol/02.tcp报文' },
             { text: 'tcp三次握手', link: '/network-protocol/03.tcp三次握手' },
@@ -125,7 +136,6 @@ export default defineConfig({
 
         {
           text: 'HTTP',
-          collapsible: true,
           items: [
             { text: 'http报文结构', link: '/network-protocol/07.http报文结构' },
             { text: 'http的请求方法', link: '/network-protocol/08.http的请求方法' },
@@ -138,7 +148,6 @@ export default defineConfig({
         },
         {
           text: 'HTTPS',
-          collapsible: true,
           items: [
             { text: 'https改进了什么', link: '14.https改进了什么' },
             { text: 'https的tsl连接过程', link: '15.https的tsl连接过程' },
@@ -147,7 +156,6 @@ export default defineConfig({
         },
         {
           text: 'HTTP2',
-          collapsible: true,
           items: [
             { text: 'http2新功能', link: '17.http2新功能' },
             { text: 'http2剖析', link: '18.http2剖析' },
@@ -202,7 +210,6 @@ export default defineConfig({
       '/algorithm/': [
         {
           text: '字符串',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '千位分隔数', link: '/algorithm/字符串/千位分隔数' },
@@ -215,7 +222,6 @@ export default defineConfig({
         },
         {
           text: '数组',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '两数之和', link: '/algorithm/数组/两数之和' },
@@ -226,7 +232,6 @@ export default defineConfig({
         },
         {
           text: '链表',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '移除链表元素', link: '/algorithm/链表/移除链表元素' },
@@ -239,7 +244,6 @@ export default defineConfig({
         },
         {
           text: '二叉树',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '二叉树的遍历方式', link: '/algorithm/二叉树/二叉树的遍历方式' },
@@ -253,7 +257,6 @@ export default defineConfig({
         },
         {
           text: '动态规划',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '动态规划理论基础', link: '/algorithm/动态规划/动态规划理论基础' },
@@ -267,7 +270,6 @@ export default defineConfig({
         },
         {
           text: '回溯算法',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '回溯算法', link: '/algorithm/回溯/回溯算法' },
@@ -281,7 +283,6 @@ export default defineConfig({
         },
         {
           text: '深度遍历',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '岛屿数量', link: '/algorithm/深度遍历/岛屿数量' },
@@ -291,13 +292,11 @@ export default defineConfig({
         },
         {
           text: '贪心算法',
-          collapsible: true,
           collapsed: true,
           items: [{ text: '贪心入门', link: '/algorithm/贪心算法/贪心入门' }],
         },
         {
           text: '排序算法',
-          collapsible: true,
           collapsed: true,
           items: [
             { text: '冒泡排序', link: '/algorithm/sort/bubbleSort' },

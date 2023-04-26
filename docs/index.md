@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /home/
+      link: /home/accessibility
     - theme: alt
       text: View on GitHub
       link: https://github.com/vuejs/vitepress
