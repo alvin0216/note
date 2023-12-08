@@ -1,13 +1,7 @@
 ---
-title: CSRF
+title: CSRF 攻击
 date: 2020-11-20 20:39:27
 sidebar: auto
-tags:
-  - csrf
-  - 写作中
-  - 浏览器安全
-categories:
-  - 浏览器
 ---
 
 黑客利用登录状态，伪造成真实用户进行攻击。

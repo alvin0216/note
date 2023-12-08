@@ -15,100 +15,38 @@ export default defineConfig({
 
   themeConfig: {
     nav: [
-      { text: 'Home', link: '/home/accessibility' },
-      { text: 'Javascript', link: '/javascript/' },
+      { text: '记录', link: '/' },
       { text: '网络协议', link: '/network-protocol/' },
-      { text: '工程化', link: '/devops/' },
-      { text: '浏览器', link: '/browser/' },
       { text: '算法', link: '/algorithm/' },
-      { text: '性能优化', link: '/performance/' },
-      { text: 'React', link: '/react/' },
     ],
     sidebar: {
-      '/home/': [
+      '/': [
         {
-          text: 'Recently',
+          text: 'Quick Guide',
+          collapsed: false,
           items: [
-            { text: 'Accessibility', link: '/home/accessibility' },
-            { text: 'NPM Audit', link: '/home/npm-audit' },
+            { text: 'Github Action 配置', link: '/github-action' },
+            { text: 'ssh 免密登陆服务器配置', link: '/ssh' },
+            { text: "申请Let's Encrypt免费SSL证书", link: '/certificate' },
+            { text: 'H5 拖拽示例', link: '/live-codes/h5-drag/h5-drag' },
+            { text: 'Postmessage 通信', link: '/live-codes/iframe-postmessage/iframe-postmessage' },
+            { text: 'OAuth2', link: '/oAuth2' },
+            { text: 'Github 授权登录', link: '/oAuth2-github' },
+            { text: 'nginx gzip 不生效', link: '/nginx gzip 不生效' },
+            { text: 'iframe 打开全屏无效', link: '/iframe 打开全屏无效' },
           ],
         },
         {
-          text: 'Live Codes',
-          items: [
-            { text: 'H5 拖拽示例', link: '/home/live-codes/h5-drag/h5-drag' },
-            { text: 'Postmessage 通信', link: '/home/live-codes/iframe-postmessage/iframe-postmessage' },
-          ],
-        },
-
-        {
-          text: '遇到的一些问题',
-          collapsed: true,
-          items: [
-            { text: 'canvas 跨域', link: '/home/problems/canvas 跨域' },
-            { text: 'url 转为 Base64', link: '/home/problems/url 转为 Base64' },
-            { text: 'lerna 多包管理发布问题', link: '/home/problems/lerna 多包管理发布问题' },
-            { text: 'nginx gzip 不生效', link: '/home/problems/nginx gzip 不生效' },
-            { text: 'iframe 打开全屏无效', link: '/home/problems/iframe 打开全屏无效' },
-          ],
-        },
-       
-        {
-          text: 'Uncategorized',
-          collapsed: true,
-          items: [
-            { text: 'OAuth2', link: '/home/oAuth2' },
-            { text: 'Github 授权登录', link: '/home/oAuth2-github' },
-            { text: '远程组件加载方案', link: '/home/远程组件加载方案' },
-          ],
-        },
-      ],
-
-      '/react/': [
-        {
-          text: 'React',
-          items: [
-            { text: 'hooks原理', link: '/react/hooks原理' },
-            { text: 'requestIdleCallback', link: '/react/requestIdleCallback' },
-            {
-              text: 'React',
-              items: [
-                { text: 'React 集合', link: '/react/' },
-                { text: '不可变数据', link: '/react/immer' },
-                { text: '探索 hooks API', link: '/react/hooks-api' },
-                { text: 'setState 是同步还是异步的？', link: '/react/setState' },
-                { text: 'concurrent 模式', link: '/react/concurrent' },
-                { text: 'React Diff 算法', link: '/react/diff' },
-                { text: 'React 合成事件', link: '/react/synthetic-event' },
-              ],
-            },
-          ],
-        },
-      ],
-
-      '/devops/': [
-        {
-          text: '持续集成',
-          items: [
-            { text: '使用 travis 进行持续集成', link: '/devops/travis' },
-            { text: 'github webhooks 自动化部署', link: '/devops/webhooks' },
-            { text: 'Github Action', link: '/devops/github-action' },
-          ],
+          text: '八股文',
+          collapsed: false,
+          items: [{ text: '关于 EvenLoop', link: '/eventloop' }],
         },
         {
-          text: '环境配置',
+          text: '理论',
+          collapsed: false,
           items: [
-            { text: 'Mac 常用命令', link: '/devops/mac' },
-            { text: 'ssh 免密登陆服务器配置', link: '/devops/ssh' },
-            { text: "申请Let's Encrypt免费SSL证书", link: '/devops/certificate' },
-            { text: 'charles 抓包环境配置', link: '/devops/charles' },
-          ],
-        },
-        {
-          text: 'nginx',
-          items: [
-            { text: 'nginx 基础', link: '/devops/nginx/basics' },
-            { text: 'nginx 代理', link: '/devops/nginx/proxy' },
+            { text: '[安全] CSREF 攻击', link: '/csrf' },
+            { text: '[浏览器] 缓存', link: '/浏览器缓存' },
           ],
         },
       ],
@@ -161,48 +99,6 @@ export default defineConfig({
             { text: 'http2剖析', link: '18.http2剖析' },
             { text: 'http2服务器推送功能', link: '19.http2服务器推送功能' },
             { text: 'http3', link: '20.http3' },
-          ],
-        },
-      ],
-
-      '/javascript/': [
-        {
-          text: '基础知识',
-          items: [
-            { text: 'this', link: '/javascript/this' },
-            { text: '闭包', link: '/javascript/closure' },
-            { text: '原型', link: '/javascript/prototype' },
-            { text: '继承', link: '/javascript/extends' },
-            { text: 'for of', link: '/javascript/for-of' },
-            { text: 'setTimeout', link: '/javascript/setTimeout' },
-            { text: 'requestAnimationFrame', link: '/javascript/requestAnimationFrame' },
-            { text: '数据类型', link: '/javascript/data-types' },
-            { text: 'eval', link: '/javascript/eval' },
-            { text: 'proxy', link: '/javascript/proxy' },
-          ],
-        },
-        {
-          text: 'v8 - 引擎工作原理',
-          items: [
-            { text: 'JavaScript 代码的执行流程', link: '/javascript/v8/run-js' },
-            { text: '什么是执行上下文栈？', link: '/javascript/v8/context-stack' },
-            { text: '什么是作用域？', link: '/javascript/v8/scope' },
-            { text: '变量在作用域链上怎么查找？', link: '/javascript/v8/scope-chain' },
-            { text: '谈一谈 v8 的垃圾回收机制？', link: '/javascript/v8/gc' },
-            { text: 'V8 是如何执行 JavaScript 的？', link: '/javascript/v8/compile' },
-            { text: '谈一谈 EventLoop？', link: '/javascript/v8/eventloop' },
-          ],
-        },
-      ],
-      '/browser/': [
-        {
-          text: '浏览器',
-          items: [
-            { text: 'Cookie', link: '/browser/cookie' },
-            { text: '浏览器缓存', link: '/browser/cache' },
-            { text: '跨域', link: '/browser/cross-origin' },
-            // { text: 'xss 攻击', link: '/browser/xss' },
-            { text: 'CSRF 攻击', link: '/browser/csrf' },
           ],
         },
       ],
