@@ -8,11 +8,11 @@ import App from './code/App.tsx'
 
 ::: code-group
 
-<<< @/home/live-codes/h5-drag/code/Demo1.tsx
+<<< @/live-codes/h5-drag/code/Demo1.tsx
 
-<<< @/home/live-codes/h5-drag/code/Demo2.tsx
+<<< @/live-codes/h5-drag/code/Demo2.tsx
 
-<<< @/home/live-codes/h5-drag/code/App.tsx
+<<< @/live-codes/h5-drag/code/App.tsx
 
 :::
 
