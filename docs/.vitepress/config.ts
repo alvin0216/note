@@ -14,6 +14,12 @@ export default defineConfig({
   base: '/note/',
 
   themeConfig: {
+    algolia: {
+      appId: '4QUKK9AB99',
+      apiKey: '859dce261164de50e0989b1b9e819711',
+      indexName: 'alvin0216io',
+    },
+
     nav: [
       { text: '记录', link: '/' },
       { text: '网络协议', link: '/network-protocol/' },
@@ -206,6 +212,7 @@ export default defineConfig({
         },
       ],
     },
+
     editLink: {
       pattern: 'https://github.com/alvin0216/note//blob/master/docs/:path',
       text: 'Edit this page on GitHub',
