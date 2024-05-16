@@ -15,6 +15,8 @@ hero:
     - theme: alt
       text: View on GitHub
       link: https://github.com/vuejs/vitepress
+  imgage:
+    src: https://vitepress.dev/vitepress-logo-large.webp
 
 features:
   - title: "Vite: The DX that can't be beat"
@@ -26,3 +28,7 @@ features:
   - title: Fully static yet still dynamic
     details: Go wild with true SSG + SPA architecture. Static on page load, but engage users with 100% interactivity from there.
 ---
+
+World's really stomping on your dreams, huh?
+
+- [Learn React](https://zh-hans.react.dev/learn)

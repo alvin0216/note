@@ -43,14 +43,10 @@ export default defineConfig({
           ],
         },
         {
-          text: '八股文',
-          collapsed: false,
-          items: [{ text: '关于 EvenLoop', link: '/eventloop' }],
-        },
-        {
           text: '理论',
           collapsed: false,
           items: [
+            { text: 'EvenLoop', link: '/eventloop' },
             { text: '[安全] CSREF 攻击', link: '/csrf' },
             { text: '[浏览器] 缓存', link: '/浏览器缓存' },
           ],
