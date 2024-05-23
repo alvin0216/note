@@ -28,6 +28,16 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
+          text: '理论',
+          collapsed: false,
+          items: [
+            { text: 'Javascript', link: '/javascript' },
+            { text: 'EvenLoop', link: '/eventloop' },
+            { text: '[安全] CSREF 攻击', link: '/csrf' },
+            { text: '[浏览器] 缓存', link: '/浏览器缓存' },
+          ],
+        },
+        {
           text: 'Quick Guide',
           collapsed: false,
           items: [
@@ -40,15 +50,6 @@ export default defineConfig({
             { text: 'Github 授权登录', link: '/oAuth2-github' },
             { text: 'nginx gzip 不生效', link: '/nginx gzip 不生效' },
             { text: 'iframe 打开全屏无效', link: '/iframe 打开全屏无效' },
-          ],
-        },
-        {
-          text: '理论',
-          collapsed: false,
-          items: [
-            { text: 'EvenLoop', link: '/eventloop' },
-            { text: '[安全] CSREF 攻击', link: '/csrf' },
-            { text: '[浏览器] 缓存', link: '/浏览器缓存' },
           ],
         },
       ],
