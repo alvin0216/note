@@ -32,6 +32,7 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Javascript', link: '/javascript' },
+            { text: '垃圾回收机制', link: '/gc' },
             { text: 'EvenLoop', link: '/eventloop' },
             { text: '[安全] CSREF 攻击', link: '/csrf' },
             { text: '[浏览器] 缓存', link: '/浏览器缓存' },
