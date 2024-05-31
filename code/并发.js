@@ -7,12 +7,13 @@ class Event {
   constructor() {}
 
   on(type, fn) {
-    eMap.set(type, fn);
+    const list = eMap.get(type) || [];
+    eMap.set(type, [...list, fn]);
   }
 
-  emit(type, args) {
-    const fn = eMap.get(type);
-    fn?.(args);
+  emit(type, ...args) {
+    const list = eMap.get(type) || [];
+    list.forEach((fn) => fn?.(...args));
   }
 }
 
@@ -56,11 +57,6 @@ class Request {
         this.event.emit('suceess', { cacheKey, error: this.error });
       }
     }
-  }
-
-  static clearCache(cacheKey) {
-    map.delete(cacheKey);
-    runMap.delete(cacheKey);
   }
 }
 
