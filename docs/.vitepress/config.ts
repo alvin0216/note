@@ -28,19 +28,28 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: '理论',
+          text: 'Brwoser',
           collapsed: false,
+          items: [
+            { text: 'Cookie', link: '/safe/cookie' },
+            { text: 'JWT', link: '/safe/jwt' },
+            { text: 'XSS', link: '/safe/xss' },
+            { text: 'CSRF', link: '/safe/csrf' },
+          ],
+        },
+        {
+          text: '理论',
+          collapsed: true,
           items: [
             { text: 'Javascript', link: '/javascript' },
             { text: '垃圾回收机制', link: '/gc' },
             { text: 'EvenLoop', link: '/eventloop' },
-            { text: '[安全] CSREF 攻击', link: '/csrf' },
             { text: '[浏览器] 缓存', link: '/浏览器缓存' },
           ],
         },
         {
           text: 'Quick Guide',
-          collapsed: false,
+          collapsed: true,
           items: [
             { text: 'Github Action 配置', link: '/github-action' },
             { text: 'ssh 免密登陆服务器配置', link: '/ssh' },
