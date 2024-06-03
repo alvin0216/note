@@ -100,18 +100,18 @@ export default defineConfig({
         {
           text: 'HTTPS',
           items: [
-            { text: 'https改进了什么', link: '14.https改进了什么' },
-            { text: 'https的tsl连接过程', link: '15.https的tsl连接过程' },
-            { text: 'https证书', link: '16.https证书' },
+            { text: 'https改进了什么', link: '/network-protocol/14.https改进了什么' },
+            { text: 'https的tsl连接过程', link: '/network-protocol/15.https的tsl连接过程' },
+            { text: 'https证书', link: '/network-protocol/16.https证书' },
           ],
         },
         {
           text: 'HTTP2',
           items: [
-            { text: 'http2新功能', link: '17.http2新功能' },
-            { text: 'http2剖析', link: '18.http2剖析' },
-            { text: 'http2服务器推送功能', link: '19.http2服务器推送功能' },
-            { text: 'http3', link: '20.http3' },
+            { text: 'http2新功能', link: '/network-protocol/17.http2新功能' },
+            { text: 'http2剖析', link: '/network-protocol/18.http2剖析' },
+            { text: 'http2服务器推送功能', link: '/network-protocol/19.http2服务器推送功能' },
+            { text: 'http3', link: '/network-protocol/20.http3' },
           ],
         },
       ],
