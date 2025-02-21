@@ -1,46 +1,42 @@
-const exec = require('child_process').exec;
+const { execSync } = require("child_process");
 
-let now = dateFormatter();
+function executeGitPush() {
+  const now = formatDateTime();
 
-execute(
-  `
-    git add .
-    git commit -m 'updated at ${now}'
-    git push
-  `
-);
-
-function execute(cmd) {
-  exec(cmd, function (error, stdout, stderr) {
-    if (error) {
-      console.error(error);
-    } else {
-      console.log(`SUCCESS PUSH: updated at ${now}`);
-    }
-  });
-}
-
-function dateFormatter(fmt = 'YYYY-MM-DD hh:mm:ss') {
   try {
-    const date = new Date();
-    let ret;
-    let opt = {
-      'Y+': date.getFullYear().toString(), // 年
-      'M+': (date.getMonth() + 1).toString(), // 月
-      'D+': date.getDate().toString(), // 日
-      'h+': date.getHours().toString(), // 时
-      'm+': date.getMinutes().toString(), // 分
-      's+': date.getSeconds().toString(), // 秒
-      // 有其他格式化字符需求可以继续添加，必须转化成字符串
-    };
-    for (let k in opt) {
-      ret = new RegExp('(' + k + ')').exec(fmt);
-      if (ret) {
-        fmt = fmt.replace(ret[1], ret[1].length == 1 ? opt[k] : opt[k].padStart(ret[1].length, '0'));
-      }
-    }
-    return fmt;
+    // 根据操作系统选择命令格式
+    const isWindows = process.platform === "win32";
+    const command = isWindows
+      ? `git add . && git commit -m "Updated at ${now}" && git push`
+      : `git add .; git commit -m "Updated at ${now}"; git push`;
+
+    execSync(command, {
+      stdio: "inherit",
+      shell: isWindows ? process.env.ComSpec : "/bin/bash",
+    });
+
+    console.log(`\nSUCCESS: Pushed changes at ${now}`);
   } catch (error) {
-    return '';
+    console.error("\nERROR: Push failed. Possible reasons:");
+    console.error("- No changes to commit");
+    console.error("- Network issues");
+    console.error("- Authentication problems");
+    process.exit(1);
   }
 }
+
+function formatDateTime(format = "YYYY-MM-DD HH:mm:ss") {
+  const pad = (n, len) => String(n).padStart(len, "0");
+  const date = new Date();
+
+  return format
+    .replace(/YYYY/g, pad(date.getFullYear(), 4))
+    .replace(/MM/g, pad(date.getMonth() + 1, 2))
+    .replace(/DD/g, pad(date.getDate(), 2))
+    .replace(/HH/g, pad(date.getHours(), 2))
+    .replace(/mm/g, pad(date.getMinutes(), 2))
+    .replace(/ss/g, pad(date.getSeconds(), 2));
+}
+
+// 执行主函数
+executeGitPush();
