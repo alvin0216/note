@@ -10,60 +10,25 @@ export default defineConfig({
   title: "Alvin's note",
   description: 'Peace and love...',
   lastUpdated: true,
-
   base: '/note/',
-
   themeConfig: {
     algolia: {
       appId: '4QUKK9AB99',
       apiKey: '859dce261164de50e0989b1b9e819711',
       indexName: 'alvin0216io',
     },
-
     nav: [
-      { text: '记录', link: '/' },
+      { text: 'AI', link: '/ai/' },
       { text: '网络协议', link: '/network-protocol/' },
       { text: '算法', link: '/algorithm/' },
     ],
     sidebar: {
-      '/': [
+      '/ai/': [
         {
-          text: 'Brwoser',
-          collapsed: false,
-          items: [
-            { text: 'Cookie', link: '/safe/cookie' },
-            { text: 'JWT', link: '/safe/jwt' },
-            { text: 'XSS', link: '/safe/xss' },
-            { text: 'CSRF', link: '/safe/csrf' },
-          ],
-        },
-        {
-          text: '理论',
-          collapsed: true,
-          items: [
-            { text: 'Javascript', link: '/javascript' },
-            { text: '垃圾回收机制', link: '/gc' },
-            { text: 'EvenLoop', link: '/eventloop' },
-            { text: '[浏览器] 缓存', link: '/浏览器缓存' },
-          ],
-        },
-        {
-          text: 'Quick Guide',
-          collapsed: true,
-          items: [
-            { text: 'Github Action 配置', link: '/github-action' },
-            { text: 'ssh 免密登陆服务器配置', link: '/ssh' },
-            { text: "申请Let's Encrypt免费SSL证书", link: '/certificate' },
-            { text: 'H5 拖拽示例', link: '/live-codes/h5-drag/h5-drag' },
-            { text: 'Postmessage 通信', link: '/live-codes/iframe-postmessage/iframe-postmessage' },
-            { text: 'OAuth2', link: '/oAuth2' },
-            { text: 'Github 授权登录', link: '/oAuth2-github' },
-            { text: 'nginx gzip 不生效', link: '/nginx gzip 不生效' },
-            { text: 'iframe 打开全屏无效', link: '/iframe 打开全屏无效' },
-          ],
+          text: 'Awsome',
+          items: [{ text: 'ChatGPT', link: '/ai/chatgpt' }],
         },
       ],
-
       '/network-protocol/': [
         {
           text: 'Awsome',
@@ -115,7 +80,6 @@ export default defineConfig({
           ],
         },
       ],
-
       '/algorithm/': [
         {
           text: '字符串',

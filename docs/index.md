@@ -30,5 +30,3 @@ features:
 ---
 
 World's really stomping on your dreams, huh?
-
-- [Learn React](https://zh-hans.react.dev/learn)

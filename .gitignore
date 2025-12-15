@@ -4,3 +4,4 @@ yarn.error
 /public
 .cache
 dist
+/docs/.vitepress/cache
