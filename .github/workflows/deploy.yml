@@ -10,20 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-          uses: actions/checkout@v4
-          with:
-            fetch-depth: 0  # 获取所有历史记录以便更好的 git 信息
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取所有历史记录以便更好的 git 信息
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: latest  # 或指定版本如 8.x
+          version: latest # 或指定版本如 8.x
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'  # 推荐使用 LTS 版本
-          cache: 'pnpm'   
+          node-version: '20' # 推荐使用 LTS 版本
+          cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --filter .
