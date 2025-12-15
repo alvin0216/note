@@ -38,15 +38,8 @@ def git_auto_commit_time():
             text=True,
         )
 
-        today_commits = (
-            len(log_result.stdout.strip().split("\n"))
-            if log_result.stdout.strip()
-            else 0
-        )
-        commit_num = today_commits + 1
-
         # 生成提交信息（带序号）
-        commit_message = f"Auto commit #{commit_num} at {time_str}"
+        commit_message = f"Auto commit at {time_str}"
 
         # 执行git操作
         print(f"🕒 提交时间: {time_str}")
