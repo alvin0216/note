@@ -1,60 +1,76 @@
 import subprocess
-import sys
+from datetime import datetime
+import os
 
 
-def git_commit_push(commit_message="Auto commit"):
+def git_auto_commit_time():
     """
-    快速执行 git add, commit, push
+    自动提交并附带时间戳的提交信息
     """
     try:
-        # git add .
+        # 检查是否有需要提交的更改
+        result = subprocess.run(
+            ["git", "status", "--porcelain"], capture_output=True, text=True
+        )
+
+        if not result.stdout.strip():
+            print("📭 没有需要提交的更改")
+            return True
+
+        # 获取当前时间
+        current_time = datetime.now()
+
+        # 格式化时间选项（多种格式）
+        time_formats = {
+            "standard": current_time.strftime("%Y-%m-%d %H:%M:%S"),
+            "compact": current_time.strftime("%Y%m%d_%H%M%S"),
+            "readable": current_time.strftime("%b %d %Y, %I:%M %p"),
+            "timestamp": str(int(current_time.timestamp())),
+        }
+
+        # 使用标准格式
+        time_str = time_formats["standard"]
+
+        # 获取当天提交次数（用于生成序列号）
+        log_result = subprocess.run(
+            ["git", "log", "--oneline", "--since=midnight", "--pretty=format:%s"],
+            capture_output=True,
+            text=True,
+        )
+
+        today_commits = (
+            len(log_result.stdout.strip().split("\n"))
+            if log_result.stdout.strip()
+            else 0
+        )
+        commit_num = today_commits + 1
+
+        # 生成提交信息（带序号）
+        commit_message = f"Auto commit #{commit_num} at {time_str}"
+
+        # 执行git操作
+        print(f"🕒 提交时间: {time_str}")
+        print(f"📝 提交信息: {commit_message}")
+
         subprocess.run(["git", "add", "."], check=True)
-        print("✓ 已添加所有文件")
-
-        # git commit
         subprocess.run(["git", "commit", "-m", commit_message], check=True)
-        print(f"✓ 已提交：{commit_message}")
 
-        # git push
-        result = subprocess.run(["git", "push"], capture_output=True, text=True)
+        # 尝试推送
+        push_result = subprocess.run(["git", "push"], capture_output=True, text=True)
 
-        if result.returncode == 0:
-            print("✓ 推送成功")
+        if push_result.returncode == 0:
+            print("✅ 提交并推送成功")
+            return True
         else:
-            # 如果当前分支没有设置上游分支，尝试设置并推送
-            if "no upstream branch" in result.stderr:
-                # 获取当前分支名
-                branch_result = subprocess.run(
-                    ["git", "branch", "--show-current"], capture_output=True, text=True
-                )
-                branch_name = branch_result.stdout.strip()
+            print("⚠️  提交成功但推送失败")
+            print(f"   错误信息: {push_result.stderr[:100]}...")
+            return False
 
-                # 设置上游分支并推送
-                subprocess.run(
-                    ["git", "push", "--set-upstream", "origin", branch_name], check=True
-                )
-                print(f"✓ 已设置上游分支并推送：origin/{branch_name}")
-            else:
-                print(f"推送失败：{result.stderr}")
-                return False
-
-        return True
-
-    except subprocess.CalledProcessError as e:
-        print(f"❌ 操作失败：{e}")
+    except Exception as e:
+        print(f"❌ 操作失败: {e}")
         return False
 
 
 # 使用示例
 if __name__ == "__main__":
-    # 使用默认提交信息
-    git_commit_push()
-
-    # 或指定提交信息
-    # git_commit_push("修复了xxx问题")
-
-    # 或从命令行参数获取提交信息
-    # if len(sys.argv) > 1:
-    #     git_commit_push(sys.argv[1])
-    # else:
-    #     git_commit_push()
+    git_auto_commit_time()

@@ -10,16 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2.2.2
+      - uses: pnpm/action-setup@v3
         with:
-          version: 7
+          version: 8
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --filter .
 
       - name: Build
         run: pnpm run build
@@ -30,29 +30,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: docs/.vitepress/dist
-
-      # - name: Build
-      #   run: pnpm run build && cd docs/.vitepress && tar zcvf ../../dist.gz dist
-
-      # - name: Deploy to Server
-      #   uses: appleboy/scp-action@master
-      #   with: # 以下为参数
-      #     host: ${{ secrets.DEPLOY_HOST }}
-      #     username: ${{ secrets.DEPLOY_USER }}
-      #     password: ${{ secrets.DEPLOY_PASSWORD }}
-      #     port: 22
-      #     source: dist.gz
-      #     target: /site
-
-      # - name: Replace Prev Files
-      #   uses: appleboy/ssh-action@master # 使用ssh链接服务器
-      #   with:
-      #     host: ${{ secrets.DEPLOY_HOST }}
-      #     username: ${{ secrets.DEPLOY_USER }}
-      #     password: ${{ secrets.DEPLOY_PASSWORD }}
-      #     port: 22
-      #     script: | # 清除缓存
-      #       cd /site
-      #       rm -rf note
-      #       tar zxvf dist.gz && mv dist note
-      #       rm -rf dist.gz
