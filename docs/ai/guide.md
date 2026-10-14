@@ -8,8 +8,4 @@ categories:
   - ai
 ---
 
-本栏目用于整理 AI 相关的学习笔记。
-
-::: tip 待补充
-内容整理中，后续将逐步补全各主题的笔记。
-:::
+![](../../assets/ai-engineer.png)
